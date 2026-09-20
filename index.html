@@ -2,15 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SONA DAILY LIFE HUB | Daily Life, Learning, Rewards & Community</title>
-<meta name="description" content="SONA DAILY LIFE HUB is a daily life and community portal for learning, YouTube videos, social content, referrals, rewards, shopping resources, member tools and secure account services.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SONA DAILY LIFE HUB | Daily Life, Learning, Videos & Community</title>
+<meta name="description" content="SONA DAILY LIFE HUB brings daily-life resources, learning videos, creator tools, shopping resources, community features and member account services together in one responsive web portal.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta name="author" content="SONA DAILY LIFE HUB">
 <meta name="theme-color" content="#ffffff">
+<meta name="color-scheme" content="light">
+<meta name="format-detection" content="telephone=no">
 <meta name="application-name" content="SONA DAILY LIFE HUB">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://cutesysona.shop/">
+<link rel="preload" as="image" href="/Red-YouTube-logo.png" fetchpriority="high">
 <link rel="alternate" hreflang="en" href="https://cutesysona.shop/">
 <meta property="og:locale" content="en_IN">
 <meta property="og:type" content="website">
@@ -23,10 +27,7 @@
 <meta name="twitter:title" content="SONA DAILY LIFE HUB | Daily Life, Learning, Rewards & Community">
 <meta name="twitter:description" content="Learning, YouTube, community, member tools, referrals, rewards and daily-life resources in one hub.">
 <meta name="twitter:image" content="https://cutesysona.shop/Red-YouTube-logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="preconnect" href="https://auwcmybncaaavpwdgkgh.supabase.co" crossorigin>
 <script type="application/ld+json">{
   "@context":"https://schema.org",
@@ -37,7 +38,8 @@
       "url":"https://cutesysona.shop/",
       "name":"SONA DAILY LIFE HUB",
       "description":"Daily life, learning, community, member tools, rewards and lifestyle resources.",
-      "inLanguage":"en-IN"
+      "inLanguage":"en-IN",
+      "potentialAction":{"@type":"SearchAction","target":"https://cutesysona.shop/?q={search_term_string}","query-input":"required name=search_term_string"}
     },
     {
       "@type":"Organization",
@@ -52,13 +54,11 @@
     }
   ]
 }</script>
-<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
     
 </style>
 <style>
@@ -875,6 +875,63 @@ html.dark-mode .sona-workspace-frame-wrap{
 }
 </style>
 
+
+<style id="sona-performance-mobile-seo">
+html{background:#fff;overflow-x:hidden}body{overflow-x:hidden;-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+img{max-width:100%;height:auto}iframe{max-width:100%}
+button,a,input,select{touch-action:manipulation}
+/* Dashboard mobile drawer */
+.dashboard-shell .mobile-menu-btn{display:none}
+.dashboard-shell .mobile-nav-overlay{display:none}
+@media (max-width:700px){
+  .dashboard-shell .app{min-height:100dvh}
+  .dashboard-shell .sidebar{width:min(88vw,320px);transform:translateX(-105%);transition:transform .22s ease;z-index:1001;box-shadow:18px 0 40px rgba(15,23,42,.20);padding:12px;}
+  .dashboard-shell .sidebar.mobile-open{transform:translateX(0)}
+  .dashboard-shell .sidebar .brand div:last-child,.dashboard-shell .sidebar .member,.dashboard-shell .sidebar .nav-title,.dashboard-shell .sidebar .nav button span{display:block}
+  .dashboard-shell .sidebar .brand{padding:8px 8px 16px}
+  .dashboard-shell .sidebar .nav button{font-size:14px;text-align:left;padding:12px 13px}
+  .dashboard-shell .main{margin-left:0;width:100%;min-width:0}
+  .dashboard-shell .topbar{height:64px;padding:0 12px;gap:8px;position:sticky;top:0}
+  .dashboard-shell .topbar h2{font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .dashboard-shell .top-actions{display:none}
+  .dashboard-shell .mobile-menu-btn{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;flex:0 0 42px;border:1px solid #d7dee8;border-radius:12px;background:#fff;color:#172033;font-size:20px}
+  .dashboard-shell .mobile-nav-overlay{position:fixed;inset:0;background:rgba(2,6,23,.48);z-index:1000}
+  .dashboard-shell .mobile-nav-overlay.active{display:block}
+  .dashboard-shell .page{padding:14px;max-width:none}
+  .dashboard-shell .hero{padding:20px 18px;border-radius:16px;margin-bottom:14px}
+  .dashboard-shell .hero h1,.dashboard-shell .hero h2{font-size:23px;line-height:1.18}
+  .dashboard-shell .hero p{font-size:14px}
+  .dashboard-shell .grid,.dashboard-shell .money-grid,.dashboard-shell .two,.dashboard-shell .three,.dashboard-shell .video-grid,.dashboard-shell .creator-grid,.dashboard-shell .shop-grid,.dashboard-shell .profile,.dashboard-shell .deposit-grid,.dashboard-shell .leader-grid{grid-template-columns:1fr!important;gap:12px}
+  .dashboard-shell .card,.dashboard-shell .stat,.dashboard-shell .metric-card,.dashboard-shell .creator-card{padding:16px;border-radius:14px}
+  .dashboard-shell .stat{min-height:94px;padding:14px;gap:12px}
+  .dashboard-shell .stat-icon{width:54px;height:54px;min-width:54px;border-radius:13px}
+  .dashboard-shell .stat-icon svg{width:28px;height:28px}
+  .dashboard-shell .stat strong{font-size:21px}
+  .dashboard-shell .btn{min-height:44px;padding:10px 13px}
+  .dashboard-shell .mini-actions,.dashboard-shell .action-row{display:grid;grid-template-columns:1fr;gap:8px}
+  .dashboard-shell .mini-actions .btn,.dashboard-shell .action-row .btn{width:100%;min-width:0}
+  .dashboard-shell .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .dashboard-shell .table,.dashboard-shell .history-table{min-width:620px}
+  .dashboard-shell .leader-row,.dashboard-shell .investor-row{grid-template-columns:42px 1fr!important;gap:8px}
+  .dashboard-shell .leader-row>div:nth-child(n+3),.dashboard-shell .investor-row>div:nth-child(n+3){grid-column:2}
+  .dashboard-shell .payment-details{padding:16px}
+  .dashboard-shell .bank-detail{grid-template-columns:1fr;gap:4px}
+  .dashboard-shell .search{flex-direction:column}
+  .dashboard-shell .search .btn{width:100%}
+}
+@media (min-width:701px){.dashboard-shell .mobile-nav-overlay{display:none!important}}
+/* Landing page: compact mobile typography and safe-area support */
+@media(max-width:640px){
+  #landingRoot{width:100%;overflow-x:hidden}
+  #landingRoot header>div{height:64px}
+  #landingRoot h1{font-size:2rem;line-height:1.12}
+  #landingRoot section{scroll-margin-top:68px}
+  #authModal{padding:8px}
+  #authModal>div{max-height:calc(100dvh - 16px);overflow:hidden;border-radius:22px}
+  #signupFormContainer{max-height:calc(100dvh - 110px)!important;padding:20px!important}
+}
+</style>
+
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-rose-500 selection:text-white">
 
@@ -892,7 +949,7 @@ html.dark-mode .sona-workspace-frame-wrap{
             <!-- Brand Logo -->
             <a href="#" class="flex items-center gap-3 group">
                 <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-rose-500 to-amber-500 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition">
-                    <i class="fa-solid fa-crown text-xl"></i>
+                    <span aria-hidden="true">👑</span>
                 </div>
                 <div>
                     <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">SONA DAILY LIFE HUB</span>
@@ -904,7 +961,7 @@ html.dark-mode .sona-workspace-frame-wrap{
             <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
                 <a href="#features" class="hover:text-rose-600 transition">Features</a>
                 <a href="#income-streams" class="hover:text-rose-600 transition">Income Streams</a>
-                <a href="#channels" class="hover:text-rose-600 transition flex items-center gap-1.5"><img src="Red-YouTube-logo.png" class="w-4 h-4 object-contain" alt="YouTube" width="16" height="16"> My Channels</a>
+                <a href="#channels" class="hover:text-rose-600 transition flex items-center gap-1.5"><img loading="lazy" decoding="async" src="Red-YouTube-logo.png" class="w-4 h-4 object-contain" alt="YouTube" width="16" height="16"> My Channels</a>
                 <a href="#contact" class="hover:text-rose-600 transition">Contact Us</a>
             </nav>
 
@@ -937,10 +994,10 @@ html.dark-mode .sona-workspace-frame-wrap{
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
                         <button onclick="openModal('signup')" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900 text-white font-bold text-base hover:bg-slate-800 shadow-xl transition flex items-center justify-center gap-3">
-                            <i class="fa-solid fa-user-plus text-rose-400"></i> Register Now
+                            <span aria-hidden="true">➕</span> Register Now
                         </button>
                         <a href="#channels" class="w-full sm:w-auto px-8 py-4 rounded-xl border border-slate-300 bg-white text-slate-700 font-bold text-base hover:bg-slate-50 transition flex items-center justify-center gap-2.5">
-                            <img src="Red-YouTube-logo.png" class="w-5 h-5 object-contain" alt="YouTube"> Visit My YouTube
+                            <img loading="lazy" decoding="async" src="Red-YouTube-logo.png" class="w-5 h-5 object-contain" alt="YouTube"> Visit My YouTube
                         </a>
                     </div>
                 </div>
@@ -970,7 +1027,7 @@ html.dark-mode .sona-workspace-frame-wrap{
                             <div class="bg-slate-800/80 p-4 rounded-2xl border border-slate-700 flex items-center justify-between">
                                 <div class="flex items-center gap-3">
                                     <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
-                                        <i class="fa-solid fa-wallet"></i>
+                                        <span aria-hidden="true">💳</span>
                                     </div>
                                     <div>
                                         <p class="text-xs text-slate-400">Wallet Balance</p>
@@ -1003,24 +1060,24 @@ html.dark-mode .sona-workspace-frame-wrap{
                 <!-- YouTube Card -->
                 <div class="bg-white rounded-3xl p-8 shadow-xl border border-slate-200 hover:shadow-2xl transition flex flex-col items-center text-center group">
                     <div class="w-20 h-20 rounded-2xl bg-red-50 flex items-center justify-center mb-6 group-hover:scale-110 transition shadow-inner p-3">
-                        <img src="Red-YouTube-logo.png" class="w-full h-full object-contain" alt="YouTube Logo">
+                        <img loading="lazy" decoding="async" src="Red-YouTube-logo.png" class="w-full h-full object-contain" alt="YouTube Logo">
                     </div>
                     <h3 class="text-xl font-bold text-slate-900">YouTube Channel</h3>
                     <p class="text-slate-500 text-xs mt-1 mb-6">@CutesySonaFF143 - Free Fire, Gaming & Daily Vlogs</p>
                     <a href="https://www.youtube.com/@CutesySonaFF143" target="_blank" class="w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-sm shadow-lg shadow-red-500/25 transition flex items-center justify-center gap-2">
-                        <img src="Red-YouTube-logo.png" class="w-5 h-5 object-contain filter brightness-0 invert" alt="YouTube" width="20" height="20"> Subscribe on YouTube
+                        <img loading="lazy" decoding="async" src="Red-YouTube-logo.png" class="w-5 h-5 object-contain filter brightness-0 invert" alt="YouTube" width="20" height="20"> Subscribe on YouTube
                     </a>
                 </div>
 
                 <!-- Instagram Card -->
                 <div class="bg-white rounded-3xl p-8 shadow-xl border border-slate-200 hover:shadow-2xl transition flex flex-col items-center text-center group">
                     <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-amber-100 via-rose-100 to-purple-100 flex items-center justify-center mb-6 group-hover:scale-110 transition shadow-inner p-3">
-                        <img src="instagram.avif" class="w-full h-full object-cover rounded-xl" alt="Instagram Logo">
+                        <img loading="lazy" decoding="async" src="instagram.avif" class="w-full h-full object-cover rounded-xl" alt="Instagram Logo">
                     </div>
                     <h3 class="text-xl font-bold text-slate-900">Instagram Handle</h3>
                     <p class="text-slate-500 text-xs mt-1 mb-6">@cutesysonaff - Reels, Lifestyle & Updates</p>
                     <a href="https://www.instagram.com/cutesysonaff/" target="_blank" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-purple-600 via-rose-600 to-amber-500 hover:opacity-95 text-white font-bold text-sm shadow-lg shadow-rose-500/25 transition flex items-center justify-center gap-2">
-                        <img src="instagram.avif" class="w-5 h-5 object-cover rounded-full" alt="Instagram" width="20" height="20"> Follow on Instagram
+                        <img loading="lazy" decoding="async" src="instagram.avif" class="w-5 h-5 object-cover rounded-full" alt="Instagram" width="20" height="20"> Follow on Instagram
                     </a>
                 </div>
             </div>
@@ -1067,7 +1124,7 @@ html.dark-mode .sona-workspace-frame-wrap{
             <div class="space-y-4 md:col-span-2">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-500 to-amber-500 flex items-center justify-center text-white">
-                        <i class="fa-solid fa-crown text-lg"></i>
+                        <span aria-hidden="true">👑</span>
                     </div>
                     <span class="text-xl font-extrabold text-white">SONA DAILY LIFE HUB</span>
                 </div>
@@ -1079,8 +1136,8 @@ html.dark-mode .sona-workspace-frame-wrap{
             <div>
                 <h5 class="text-white font-bold text-sm mb-4 uppercase tracking-wider">Quick Links</h5>
                 <ul class="space-y-2.5 text-sm">
-                    <li><a href="#channels" class="hover:text-white transition flex items-center gap-2"><img src="Red-YouTube-logo.png" class="w-4 h-4 object-contain" alt="YouTube"> YouTube Channel</a></li>
-                    <li><a href="https://www.instagram.com/cutesysonaff/" target="_blank" class="hover:text-white transition flex items-center gap-2"><img src="instagram.avif" class="w-4 h-4 object-cover rounded-full" alt="Instagram"> Instagram Handle</a></li>
+                    <li><a href="#channels" class="hover:text-white transition flex items-center gap-2"><img loading="lazy" decoding="async" src="Red-YouTube-logo.png" class="w-4 h-4 object-contain" alt="YouTube"> YouTube Channel</a></li>
+                    <li><a href="https://www.instagram.com/cutesysonaff/" target="_blank" class="hover:text-white transition flex items-center gap-2"><img loading="lazy" decoding="async" src="instagram.avif" class="w-4 h-4 object-cover rounded-full" alt="Instagram"> Instagram Handle</a></li>
                     <li><a href="#" onclick="openModal('login')" class="hover:text-white transition">Member Login</a></li>
                     <li><a href="#" onclick="openModal('signup')" class="hover:text-white transition">Sign Up / Register</a></li>
                 </ul>
@@ -1089,11 +1146,12 @@ html.dark-mode .sona-workspace-frame-wrap{
                 <h5 class="text-white font-bold text-sm mb-4 uppercase tracking-wider">Legal & Security</h5>
                 <p class="text-xs text-slate-500">All deposits are processed through approved payment gateways. Payout reports are updated in real-time.</p>
                 <div class="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800 text-xs text-emerald-400 border border-slate-700 font-bold">
-                    <i class="fa-solid fa-shield-halved"></i> 256-Bit SSL Secured
+                    <span aria-hidden="true">🛡️</span> 256-Bit SSL Secured
                 </div>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 mt-12 border-t border-slate-800 text-center text-xs text-slate-500">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 text-center text-xs text-slate-400"><p>SONA DAILY LIFE HUB is a responsive daily-life portal for learning videos, creator resources, shopping resources, community features and member account tools.</p></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 mt-12 border-t border-slate-800 text-center text-xs text-slate-500">
             &copy; 2026 SONA DAILY LIFE HUB. All rights reserved.
         </div>
     </footer>
@@ -1105,7 +1163,7 @@ html.dark-mode .sona-workspace-frame-wrap{
             <div id="modalHeaderTabs" class="flex border-b border-slate-200 bg-slate-50">
                 <button id="tabLoginBtn" onclick="switchTab('login')" class="flex-1 py-4 text-center font-bold text-sm text-rose-600 border-b-2 border-rose-600 transition">Log In</button>
                 <button id="tabSignupBtn" onclick="switchTab('signup')" class="flex-1 py-4 text-center font-bold text-sm text-slate-500 hover:text-slate-800 transition">Sign Up</button>
-                <button onclick="closeModal()" class="px-5 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark text-lg"></i></button>
+                <button onclick="closeModal()" class="px-5 text-slate-400 hover:text-slate-700"><span aria-hidden="true">✕</span></button>
             </div>
 
             <!-- Log In Form -->
@@ -1123,7 +1181,7 @@ html.dark-mode .sona-workspace-frame-wrap{
                         <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Password</label>
                         <div class="password-field-wrap">
                             <input type="password" id="loginPassword" required placeholder="••••••••" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500">
-                            <button type="button" class="password-eye" onclick="togglePasswordVisibility('loginPassword',this)" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
+                            <button type="button" class="password-eye" onclick="togglePasswordVisibility('loginPassword',this)" aria-label="Show password"><span aria-hidden="true">👁</span></button>
                         </div>
                     </div>
                     <button type="submit" class="w-full py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm shadow-lg transition">Log In to Dashboard</button>
@@ -1161,14 +1219,14 @@ html.dark-mode .sona-workspace-frame-wrap{
                         <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Create Password</label>
                         <div class="password-field-wrap">
                             <input type="password" id="signupPasswordInput" required minlength="6" placeholder="Enter password" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500">
-                            <button type="button" class="password-eye" onclick="togglePasswordVisibility('signupPasswordInput',this)" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
+                            <button type="button" class="password-eye" onclick="togglePasswordVisibility('signupPasswordInput',this)" aria-label="Show password"><span aria-hidden="true">👁</span></button>
                         </div>
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Confirm Password</label>
                         <div class="password-field-wrap">
                             <input type="password" id="signupConfirmPasswordInput" required minlength="6" placeholder="Re-enter password" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500" oninput="validateSignupPasswords()">
-                            <button type="button" class="password-eye" onclick="togglePasswordVisibility('signupConfirmPasswordInput',this)" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
+                            <button type="button" class="password-eye" onclick="togglePasswordVisibility('signupConfirmPasswordInput',this)" aria-label="Show password"><span aria-hidden="true">👁</span></button>
                         </div>
                         <div id="signupPasswordMatch" class="password-match"></div>
                     </div>
@@ -1183,7 +1241,7 @@ html.dark-mode .sona-workspace-frame-wrap{
             <!-- Congratulations / Success Screen (Hidden by Default) -->
             <div id="congratsScreenContainer" class="p-8 text-center space-y-6 hidden">
                 <div class="w-20 h-20 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto shadow-inner animate-bounce">
-                    <i class="fa-solid fa-party-horn">🎉</i>
+                    <span aria-hidden="true">🎉</span>
                 </div>
                 <div class="space-y-2">
                     <h3 class="text-2xl font-extrabold text-slate-900">Congratulations!</h3>
@@ -1203,7 +1261,7 @@ html.dark-mode .sona-workspace-frame-wrap{
                 </div>
 
                 <button onclick="switchTab('login')" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-rose-600 to-amber-500 text-white font-bold text-sm shadow-lg shadow-rose-500/25 hover:opacity-95 transition flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-right-to-bracket"></i> Login to Your Page
+                    <span aria-hidden="true">↪️</span> Login to Your Page
                 </button>
             </div>
         </div>
@@ -1216,8 +1274,8 @@ html.dark-mode .sona-workspace-frame-wrap{
 <div id="dashboardShell" class="dashboard-shell">
 
 <div class="app">
-<aside class="sidebar">
-  <div class="brand"><div class="logo" id="brandLogo"><span id="brandLogoFallback">₹</span><img id="brandLogoImage" alt="Profile" style="display:none;width:100%;height:100%;object-fit:cover;border-radius:15px;"></div><div><b>SONA DAILY<br><span>LIFE HUB</span></b></div></div>
+<aside id="sonaSidebar" class="sidebar">
+  <div class="brand"><div class="logo" id="brandLogo"><span id="brandLogoFallback">₹</span><img loading="lazy" decoding="async" id="brandLogoImage" alt="Profile" style="display:none;width:100%;height:100%;object-fit:cover;border-radius:15px;"></div><div><b>SONA DAILY<br><span>LIFE HUB</span></b></div></div>
   <div class="member"><strong id="memberNameSide">Member Name</strong><small>ID: <span id="memberIdSide">PM001</span></small></div>
   <nav class="nav">
     <div class="nav-title">Main</div>
@@ -1245,8 +1303,9 @@ html.dark-mode .sona-workspace-frame-wrap{
   <div class="nav-title">Account</div>
   <nav class="nav"><button onclick="logout()">↪️ <span>Log Out</span></button></nav>
 </aside>
+<div id="mobileNavOverlay" class="mobile-nav-overlay" aria-hidden="true"></div>
 <main class="main">
-<header class="topbar">
+<header class="topbar"><button id="mobileMenuButton" class="mobile-menu-btn" type="button" aria-label="Open menu" aria-controls="sonaSidebar">☰</button>
   <h2 id="pageTitle">Dashboard Overview</h2>
   <div class="top-actions">
     <button class="btn hub-live-chip" type="button" onclick="showPage('tasks')" title="Open SONA DAILY CHALLENGE">⏱️ <span id="hubLiveTimeTop">00:00:00</span></button>
@@ -1260,7 +1319,7 @@ html.dark-mode .sona-workspace-frame-wrap{
 </header>
 
 <section id="home" class="page active">
- <div class="hero"><div class="kicker">SONA DAILY LIFE HUB</div><h1>One Place for Your Daily Life</h1><p>Watch & Learn, Instagram Reels, Shopping, Creator tools and your complete personal income account.</p><div class="mini-actions"><button class="btn primary" onclick="showPage('watch')">▶ Watch & Learn</button><button class="btn" onclick="showPage('creator')">🎥 Become a Creator & Make Money</button></div></div>
+ <div class="hero"><div class="kicker">SONA DAILY LIFE HUB</div><h2>One Place for Your Daily Life</h2><p>Watch & Learn, Instagram Reels, Shopping, Creator tools and your complete personal income account.</p><div class="mini-actions"><button class="btn primary" onclick="showPage('watch')">▶ Watch & Learn</button><button class="btn" onclick="showPage('creator')">🎥 Become a Creator & Make Money</button></div></div>
  <div class="grid">
   <div class="card dept" onclick="showPage('income')"><div class="icon">💰</div><h3>My Income</h3><p>All deposits, wallet balances, payouts, referrals and creator/shopping income.</p></div>
   <div class="card dept" onclick="showPage('watch')"><div class="icon">▶️</div><h3>Watch & Learn</h3><p>Search and watch YouTube content. Website ads can appear around the player.</p></div>
@@ -1279,7 +1338,7 @@ html.dark-mode .sona-workspace-frame-wrap{
 <section id="income" class="page">
   <div class="hero">
     <div class="kicker">ACCOUNT FINANCIAL SUMMARY</div>
-    <h1>My Income</h1>
+    <h2>My Income</h2>
     <p>All your recorded deposits, withdrawals and income sources are shown here. Values are connected to this account and update automatically.</p>
     <div class="mini-actions">
       <button class="btn primary" type="button" onclick="showPage('income')">💰 My Income</button>
@@ -1354,7 +1413,7 @@ html.dark-mode .sona-workspace-frame-wrap{
 <section id="deposit" class="page">
   <div class="hero">
     <div class="kicker">FINANCIAL CENTER</div>
-    <h1>Deposit</h1>
+    <h2>Deposit</h2>
     <p>Submit your payment details and transaction screenshot for verification.</p>
     <div class="mini-actions">
       <button class="btn" type="button" onclick="showPage('income')">💰 My Income</button>
@@ -1407,7 +1466,7 @@ html.dark-mode .sona-workspace-frame-wrap{
         <label>Payment Screenshot *</label>
         <div class="upload-box">
           <input id="depositScreenshot" type="file" accept="image/*" onchange="previewDepositScreenshot(event)" required>
-          <img id="depositScreenshotPreview" class="preview-img" alt="Deposit screenshot preview">
+          <img loading="lazy" decoding="async" id="depositScreenshotPreview" class="preview-img" alt="Deposit screenshot preview">
         </div>
         <div class="form-note">Upload a clear payment screenshot. Do not upload your UPI PIN, OTP, password, CVV or other secret credentials.</div>
       </div>
@@ -1441,14 +1500,14 @@ html.dark-mode .sona-workspace-frame-wrap{
     </div>
   </div>
 </section>
-<section id="withdraw" class="page"><div class="hero"><h1 onclick="openWithdrawalFromHistory()">Withdrawal</h1><p>Withdrawal requests and payout status.</p></div><div class="three"><div class="card"><h3>💸 Withdraw Money</h3><div class="field"><label>Amount</label><input id="withdrawAmount" type="number" min="1000" placeholder="₹0.00"></div><button class="btn primary" onclick="demoWithdraw()">Request Withdrawal</button></div><div class="card"><h3>💰 Withdrawal Balance</h3><div class="id-box">₹0.00</div><p>Only eligible funds should be withdrawable after server-side checks.</p></div><div class="card"><h3>📊 Payout Status</h3><p>No payout request in demo mode.</p><button class="btn" onclick="showPage('payout')">Payout Reports</button></div></div></section>
-<section id="reports" class="page"><div class="hero"><h1>Income Reports</h1><p>Deposit, income and payout history.</p></div><div class="table-wrap"><table class="table"><thead><tr><th>Date</th><th>Type</th><th>Reference</th><th>Amount</th><th>Status</th></tr></thead><tbody><tr><td>—</td><td>No transactions</td><td>—</td><td>₹0.00</td><td><span class="pill">Demo</span></td></tr></tbody></table></div></section>
-<section id="business" class="page"><div class="hero"><h1>Business</h1><p>Team business, referrals and package activity.</p></div><div class="grid"><div class="card"><h3>Team Business</h3><div class="id-box">₹0.00</div></div><div class="card"><h3>Direct Referrals</h3><div class="id-box">0</div></div><div class="card"><h3>Team Level Income</h3><div class="id-box">₹0.00</div></div><div class="card"><h3>Rank Reward</h3><div class="id-box">₹0.00</div></div></div></section>
-<section id="activation" class="page"><div class="hero"><h1>Activation</h1><p>Manage account/package activation through your approved backend process.</p></div><div class="card"><h3>Account Activation</h3><p>Your demo account is active. A real activation flow should verify payment and update the server-side account ledger.</p><button class="btn primary" onclick="demo('Activation request sent in demo mode')">Activate</button></div></section>
+<section id="withdraw" class="page"><div class="hero"><h2 onclick="openWithdrawalFromHistory()">Withdrawal</h2><p>Withdrawal requests and payout status.</p></div><div class="three"><div class="card"><h3>💸 Withdraw Money</h3><div class="field"><label>Amount</label><input id="withdrawAmount" type="number" min="1000" placeholder="₹0.00"></div><button class="btn primary" onclick="demoWithdraw()">Request Withdrawal</button></div><div class="card"><h3>💰 Withdrawal Balance</h3><div class="id-box">₹0.00</div><p>Only eligible funds should be withdrawable after server-side checks.</p></div><div class="card"><h3>📊 Payout Status</h3><p>No payout request in demo mode.</p><button class="btn" onclick="showPage('payout')">Payout Reports</button></div></div></section>
+<section id="reports" class="page"><div class="hero"><h2>Income Reports</h2><p>Deposit, income and payout history.</p></div><div class="table-wrap"><table class="table"><thead><tr><th>Date</th><th>Type</th><th>Reference</th><th>Amount</th><th>Status</th></tr></thead><tbody><tr><td>—</td><td>No transactions</td><td>—</td><td>₹0.00</td><td><span class="pill">Demo</span></td></tr></tbody></table></div></section>
+<section id="business" class="page"><div class="hero"><h2>Business</h2><p>Team business, referrals and package activity.</p></div><div class="grid"><div class="card"><h3>Team Business</h3><div class="id-box">₹0.00</div></div><div class="card"><h3>Direct Referrals</h3><div class="id-box">0</div></div><div class="card"><h3>Team Level Income</h3><div class="id-box">₹0.00</div></div><div class="card"><h3>Rank Reward</h3><div class="id-box">₹0.00</div></div></div></section>
+<section id="activation" class="page"><div class="hero"><h2>Activation</h2><p>Manage account/package activation through your approved backend process.</p></div><div class="card"><h3>Account Activation</h3><p>Your demo account is active. A real activation flow should verify payment and update the server-side account ledger.</p><button class="btn primary" onclick="demo('Activation request sent in demo mode')">Activate</button></div></section>
 <section id="payout" class="page">
   <div class="hero">
     <div class="kicker">WITHDRAWAL & PAYOUT REPORT</div>
-    <h1>Payout Reports</h1>
+    <h2>Payout Reports</h2>
     <p>Track your withdrawal requests, processing status, charges and net payout amount.</p>
   </div>
 
@@ -1490,7 +1549,7 @@ html.dark-mode .sona-workspace-frame-wrap{
   </div>
 </section>
 <section id="fund" class="page">
-  <div class="hero"><h1>Fund Management</h1><p>Manage available balances and approved fund movements.</p></div>
+  <div class="hero"><h2>Fund Management</h2><p>Manage available balances and approved fund movements.</p></div>
   <div class="three">
     <div class="card"><h3>Wallet Balance</h3><div id="fundWalletBalance" class="id-box">₹0.00</div></div>
     <div class="card"><h3>Deposit Wallet</h3><div id="fundDepositWallet" class="id-box">₹0.00</div></div>
@@ -1502,7 +1561,7 @@ html.dark-mode .sona-workspace-frame-wrap{
 <section id="watch" class="page">
   <div class="hero">
     <div class="kicker">IN-PAGE YOUTUBE</div>
-    <h1>▶️ Watch & Learn</h1>
+    <h2>▶️ Watch & Learn</h2>
     <p>Watch YouTube content inside SONA DAILY LIFE HUB without leaving this page.</p>
   </div>
   <div class="search">
@@ -1514,14 +1573,14 @@ html.dark-mode .sona-workspace-frame-wrap{
   </div>
   <div class="video-grid">
     <div class="video">
-      <iframe id="watchPlayer1" src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" id="watchPlayer1" src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       <div class="video-body">
         <span class="pill">In-page player</span>
         <h3>Featured YouTube Video</h3>
       </div>
     </div>
     <div class="video">
-      <iframe id="watchPlayer2" src="https://www.youtube-nocookie.com/embed/M7lc1UVf-VE" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" id="watchPlayer2" src="https://www.youtube-nocookie.com/embed/M7lc1UVf-VE" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       <div class="video-body">
         <span class="pill">In-page player</span>
         <h3>Creator Video</h3>
@@ -1546,7 +1605,7 @@ html.dark-mode .sona-workspace-frame-wrap{
 <section id="instagram" class="page">
   <div class="hero">
     <div class="kicker">IN-PAGE INSTAGRAM</div>
-    <h1>📸 Instagram Reels</h1>
+    <h2>📸 Instagram Reels</h2>
     <p>Public Instagram content can be embedded inside the Hub. Instagram account login cannot safely be recreated inside a local HTML page.</p>
   </div>
   <div class="two">
@@ -1580,7 +1639,7 @@ html.dark-mode .sona-workspace-frame-wrap{
 <section id="shop" class="page">
   <div class="hero">
     <div class="kicker">SHOP & EARN</div>
-    <h1>🛒 Shopping Inside SONA</h1>
+    <h2>🛒 Shopping Inside SONA</h2>
     <p>Browse your own product cards and affiliate offers without leaving the Hub. The final Amazon/Flipkart checkout remains on the official partner site.</p>
   </div>
   <div class="shop-grid">
@@ -1609,7 +1668,7 @@ html.dark-mode .sona-workspace-frame-wrap{
   <p class="footer-note">Affiliate rates vary by partner and category. Use your approved affiliate IDs and required disclosures.</p>
 </section>
 
-<section id="creator" class="page"> class="page"><div class="hero"><div class="kicker">CREATOR ONLY</div><h1>Become a Creator & Make Money</h1><p>Create videos, Shorts and live streams. Connect YouTube and KICK here. KICK monetization options belong only to this Creator section, not Watch & Learn.</p><div class="mini-actions"><button class="btn primary" onclick="connectYouTube()">🔴 Connect My YouTube</button><button class="btn green" onclick="openKick()">🟢 Open KICK</button></div></div>
+<section id="creator" class="page"> class="page"><div class="hero"><div class="kicker">CREATOR ONLY</div><h2>Become a Creator & Make Money</h2><p>Create videos, Shorts and live streams. Connect YouTube and KICK here. KICK monetization options belong only to this Creator section, not Watch & Learn.</p><div class="mini-actions"><button class="btn primary" onclick="connectYouTube()">🔴 Connect My YouTube</button><button class="btn green" onclick="openKick()">🟢 Open KICK</button></div></div>
  <div class="creator-grid">
   <div class="creator-card"><div class="big">🎬</div><h3>Create a Video</h3><p>Plan your long-form content.</p><button class="btn" onclick="demo('Video creator workspace opened')">Create Video</button></div>
   <div class="creator-card"><div class="big">⚡</div><h3>Create Shorts</h3><p>Create short-form content for your connected channels.</p><button class="btn" onclick="demo('Shorts workspace opened')">Create Short</button></div>
@@ -1629,7 +1688,7 @@ html.dark-mode .sona-workspace-frame-wrap{
 <section id="tasks" class="page">
   <div class="hero challenge-hero">
     <div class="kicker">SONA DAILY CHALLENGE</div>
-    <h1>🏆 SONA DAILY CHALLENGE</h1>
+    <h2>🏆 SONA DAILY CHALLENGE</h2>
     <p>Complete the challenges, build your verified activity record and check your website time. Challenge rewards must be approved by your real backend/admin system.</p>
     <div class="challenge-live-strip">
       <span>⏱️ Live on website</span><strong id="hubLiveTimeChallenge">00:00:00</strong>
@@ -1693,7 +1752,7 @@ html.dark-mode .sona-workspace-frame-wrap{
 <section id="my-youtube" class="page">
   <div class="hero">
     <div class="kicker">MY CHANNEL</div>
-    <h1>▶️ My YouTube</h1>
+    <h2>▶️ My YouTube</h2>
     <p>Watch your selected YouTube videos and playlist directly inside SONA DAILY LIFE HUB.</p>
   </div>
   <div class="creator-youtube-grid">
@@ -1705,7 +1764,7 @@ html.dark-mode .sona-workspace-frame-wrap{
         <button class="btn" onclick="showPage('settings')">⚙️ Set Channel</button>
       </div>
       <div style="margin-top:14px;">
-        <iframe id="myYoutubePlayer" class="youtube-video-frame" src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4" title="My YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" id="myYoutubePlayer" class="youtube-video-frame" src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4" title="My YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
       <p class="task-note">For a continuous in-page channel experience, add a public YouTube Playlist ID in Settings. A playlist can play your channel's selected videos without sending the user to another page.</p>
     </div>
@@ -1725,13 +1784,13 @@ html.dark-mode .sona-workspace-frame-wrap{
 <section id="meeting" class="page"> class="page">
   <div class="hero">
     <div class="kicker">LIVE MEETING</div>
-    <h1>🔴 Meeting / KICK Live</h1>
+    <h2>🔴 Meeting / KICK Live</h2>
     <p>Watch the creator's KICK livestream directly inside the website.</p>
   </div>
   <div class="card">
     <h3>🎥 KICK Live Stream</h3>
     <p id="kickStatus" class="muted">Add your KICK username in Settings to activate your live player.</p>
-    <iframe id="kickPlayer" class="kick-frame" src="about:blank" title="KICK Live Stream" allowfullscreen></iframe>
+    <iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" id="kickPlayer" class="kick-frame" src="about:blank" title="KICK Live Stream" allowfullscreen></iframe>
     <div class="task-actions" style="margin-top:12px;">
       <button class="btn primary" onclick="openKickChannel()">Open KICK Channel</button>
       <button class="btn" onclick="showPage('settings')">⚙️ Set KICK Username</button>
@@ -1740,7 +1799,7 @@ html.dark-mode .sona-workspace-frame-wrap{
   </div>
 </section>
 
-<section id="account" class="page"><div class="hero"><h1>Profile & Wallet Address</h1><p>Manage your personal details, sponsor information and bank details. USDT (BEP20) wallet is optional.</p></div>
+<section id="account" class="page"><div class="hero"><h2>Profile & Wallet Address</h2><p>Manage your personal details, sponsor information and bank details. USDT (BEP20) wallet is optional.</p></div>
 <div class="card">
   <div class="profile-head"><div class="avatar" id="avatarPreview">👤</div><div><h2 style="margin:0 0 5px">Profile Information (Editable)</h2><p class="muted" style="margin:0">Your account information is shown here. Real banking and KYC data should be protected by your backend.</p></div></div>
 
@@ -1770,12 +1829,12 @@ html.dark-mode .sona-workspace-frame-wrap{
 </div>
 <div class="two" style="margin-top:16px"><div class="card"><h3>🔗 My Referral Link</h3><input id="refBox" style="width:100%;background:#0c1626;border:1px solid #2b3c58;color:#fff;padding:12px;border-radius:9px" readonly><p class="footer-note">Real referral tracking must be implemented on your server.</p></div><div class="card"><h3>▶️ YouTube Account</h3><p id="ytStatus"><span class="pill">Not connected</span></p><p class="muted">Connect through official Google OAuth. Never enter your Google password here.</p><button class="btn primary" onclick="connectYouTube()">Connect YouTube</button></div></div>
 </section>
-<section id="leaderboard" class="page"><div class="hero"><div class="kicker">SONA COMMUNITY</div><h1>🏆 Leaderboard</h1><p>See community rankings based on Hub Points and time spent actively using SONA Daily Life Hub.</p></div>
+<section id="leaderboard" class="page"><div class="hero"><div class="kicker">SONA COMMUNITY</div><h2>🏆 Leaderboard</h2><p>See community rankings based on Hub Points and time spent actively using SONA Daily Life Hub.</p></div>
 <div class="two"><div class="metric-card"><span class="muted">Your Hub Points</span><strong id="myPoints">0</strong><div class="progress"><span id="myPointsBar" style="width:0%"></span></div><p class="footer-note">Points are a demo engagement score. They are not automatically cash and should not be tied to ad clicks.</p></div><div class="metric-card"><span class="muted">Active Hub Time</span><strong id="myHours">0h 00m</strong><p class="footer-note">Time is counted only while this page is open and active. A real system should verify active sessions on the server.</p></div></div>
 <div class="leader-grid" style="margin-top:16px"><div class="card"><h3>Top Members</h3><div id="leaderRows"></div></div><div class="card"><h3>How to Move Up</h3><p class="muted">• Use the website normally and complete eligible activities.</p><p class="muted">• Build Hub Points through approved platform activities.</p><p class="muted">• Keep your account active and complete your profile.</p><p class="muted">• Creator achievements can be shown here separately from Watch & Learn.</p><p class="footer-note">Do not reward users for clicking Google ads, generating impressions, or other prohibited ad interactions.</p></div></div></section>
-<section id="investors" class="page"><div class="hero"><div class="kicker">SONA BUSINESS</div><h1>💎 Top Investors</h1><p>Company investor/business leaderboard. Use consented, non-sensitive display names in the real system.</p></div><div class="card"><h3>Leading Investor / Business Members</h3><div class="investor-row" style="font-weight:700;color:#9fb1c9"><div>#</div><div>Member</div><div>Business Volume</div><div>Rank</div></div><div class="investor-row"><div>1</div><div><strong>Investor A</strong><br><span class="muted">PM101</span></div><div>₹25,00,000</div><div><span class="pill">Platinum</span></div></div><div class="investor-row"><div>2</div><div><strong>Investor B</strong><br><span class="muted">PM087</span></div><div>₹18,50,000</div><div><span class="pill">Gold</span></div></div><div class="investor-row"><div>3</div><div><strong>Investor C</strong><br><span class="muted">PM064</span></div><div>₹12,00,000</div><div><span class="pill">Gold</span></div></div><div class="investor-row"><div>4</div><div><strong>Investor D</strong><br><span class="muted">PM042</span></div><div>₹8,75,000</div><div><span class="pill">Silver</span></div></div></div><p class="footer-note">These are sample entries for the frontend. Do not publish a person's real investment amount, bank details, PAN, or other sensitive financial information without appropriate authorization.</p></section>
+<section id="investors" class="page"><div class="hero"><div class="kicker">SONA BUSINESS</div><h2>💎 Top Investors</h2><p>Company investor/business leaderboard. Use consented, non-sensitive display names in the real system.</p></div><div class="card"><h3>Leading Investor / Business Members</h3><div class="investor-row" style="font-weight:700;color:#9fb1c9"><div>#</div><div>Member</div><div>Business Volume</div><div>Rank</div></div><div class="investor-row"><div>1</div><div><strong>Investor A</strong><br><span class="muted">PM101</span></div><div>₹25,00,000</div><div><span class="pill">Platinum</span></div></div><div class="investor-row"><div>2</div><div><strong>Investor B</strong><br><span class="muted">PM087</span></div><div>₹18,50,000</div><div><span class="pill">Gold</span></div></div><div class="investor-row"><div>3</div><div><strong>Investor C</strong><br><span class="muted">PM064</span></div><div>₹12,00,000</div><div><span class="pill">Gold</span></div></div><div class="investor-row"><div>4</div><div><strong>Investor D</strong><br><span class="muted">PM042</span></div><div>₹8,75,000</div><div><span class="pill">Silver</span></div></div></div><p class="footer-note">These are sample entries for the frontend. Do not publish a person's real investment amount, bank details, PAN, or other sensitive financial information without appropriate authorization.</p></section>
 <section id="settings" class="page">
-  <div class="hero"><h1>Settings</h1><p>Manage your account preferences and password security.</p></div>
+  <div class="hero"><h2>Settings</h2><p>Manage your account preferences and password security.</p></div>
   
   <div class="card security-card" style="margin-top:16px;">
     <h3>🎬 Creator Media Settings</h3>
@@ -1811,21 +1870,21 @@ html.dark-mode .sona-workspace-frame-wrap{
         <label>Current Password *</label>
         <div class="password-field-wrap">
           <input id="currentPasswordInput" type="password" autocomplete="current-password" placeholder="Enter current password">
-          <button type="button" class="password-eye" onclick="togglePasswordVisibility('currentPasswordInput',this)" aria-label="Show current password"><i class="fa-solid fa-eye"></i></button>
+          <button type="button" class="password-eye" onclick="togglePasswordVisibility('currentPasswordInput',this)" aria-label="Show current password"><span aria-hidden="true">👁</span></button>
         </div>
       </div>
       <div class="field">
         <label>New Password *</label>
         <div class="password-field-wrap">
           <input id="newPasswordInput" type="password" autocomplete="new-password" minlength="6" placeholder="Enter new password" oninput="validateChangePassword()">
-          <button type="button" class="password-eye" onclick="togglePasswordVisibility('newPasswordInput',this)" aria-label="Show new password"><i class="fa-solid fa-eye"></i></button>
+          <button type="button" class="password-eye" onclick="togglePasswordVisibility('newPasswordInput',this)" aria-label="Show new password"><span aria-hidden="true">👁</span></button>
         </div>
       </div>
       <div class="field">
         <label>Confirm Password *</label>
         <div class="password-field-wrap">
           <input id="confirmPasswordInput" type="password" autocomplete="new-password" minlength="6" placeholder="Re-enter new password" oninput="validateChangePassword()">
-          <button type="button" class="password-eye" onclick="togglePasswordVisibility('confirmPasswordInput',this)" aria-label="Show confirmed password"><i class="fa-solid fa-eye"></i></button>
+          <button type="button" class="password-eye" onclick="togglePasswordVisibility('confirmPasswordInput',this)" aria-label="Show confirmed password"><span aria-hidden="true">👁</span></button>
         </div>
         <div id="changePasswordMatch" class="password-match"></div>
       </div>
@@ -1866,7 +1925,7 @@ html.dark-mode .sona-workspace-frame-wrap{
 <section id="withdrawal-panel" class="page" style="display:none;">
   <div class="hero">
     <div class="kicker">WITHDRAWAL REQUEST</div>
-    <h1>💸 Withdraw Money</h1>
+    <h2>💸 Withdraw Money</h2>
     <p>Withdrawals require a completed Profile & Wallet Address and a minimum request of ₹1,000.</p>
   </div>
 
@@ -2044,7 +2103,7 @@ function loadSavedProfile() {
   setField('walletAddress', p.walletAddress);
   if (p.avatar) {
     const avatar = document.getElementById('avatarPreview');
-    if (avatar) avatar.innerHTML = '<img alt="Profile" src="' + p.avatar + '">';
+    if (avatar) avatar.innerHTML = '<img loading="lazy" decoding="async" alt="Profile" src="' + p.avatar + '">';
   }
   updateWithdrawalGate();
 }
@@ -2062,7 +2121,7 @@ function previewProfile(e) {
   const r = new FileReader();
   r.onload = () => {
     const avatar = document.getElementById('avatarPreview');
-    if (avatar) avatar.innerHTML = '<img alt="Profile" src="' + r.result + '">';
+    if (avatar) avatar.innerHTML = '<img loading="lazy" decoding="async" alt="Profile" src="' + r.result + '">';
     const p = getProfileData();
     p.avatar = r.result;
     localStorage.setItem(getProfileStorageKey(), JSON.stringify(p));
@@ -2225,7 +2284,7 @@ function copyIfsc(){
 }
 
 function demoWithdraw(){const a=document.getElementById('withdrawAmount')?.value||'';if(!a||Number(a)<1000)return toast('Minimum withdrawal amount is ₹1,000');toast('Withdrawal request prepared for ₹'+Number(a).toFixed(2))}
-(function init(){const id=getMemberId();const name=localStorage.getItem('sonaMemberName')||'Member Name';document.getElementById('memberNameSide').textContent=name;document.getElementById('nameInput').value=name;setMemberId(id);const avatar=localStorage.getItem('sonaAvatar');if(avatar)document.getElementById('avatarPreview').innerHTML='<img alt="Profile" src="'+avatar+'">';loadEngagement()})()
+(function init(){const id=getMemberId();const name=localStorage.getItem('sonaMemberName')||'Member Name';document.getElementById('memberNameSide').textContent=name;document.getElementById('nameInput').value=name;setMemberId(id);const avatar=localStorage.getItem('sonaAvatar');if(avatar)document.getElementById('avatarPreview').innerHTML='<img loading="lazy" decoding="async" alt="Profile" src="'+avatar+'">';loadEngagement()})()
 
 const leaderData=[['PM002','Member Two',920,12.4],['PM014','Member Fourteen',810,10.8],['PM031','Member Thirty-One',760,9.6],['PM007','Member Seven',690,8.7],['PM001','You',0,0]];
 let sessionStart=Date.now(); let lastTick=Date.now();
@@ -2930,7 +2989,7 @@ function handleSignup(e) {
     reader.onload = function () {
       const src = reader.result;
       const avatar = document.getElementById('avatarPreview');
-      if (avatar) avatar.innerHTML = '<img alt="Profile" src="' + src + '">';
+      if (avatar) avatar.innerHTML = '<img loading="lazy" decoding="async" alt="Profile" src="' + src + '">';
 
       const p = typeof getProfileData === 'function' ? getProfileData() : {};
       p.avatar = src;
@@ -3060,7 +3119,7 @@ function handleSignup(e) {
 
     const avatarSrc = p.avatar || localStorage.getItem('sonaAvatar') || '';
     const avatar = document.getElementById('avatarPreview');
-    if (avatarSrc && avatar) avatar.innerHTML = '<img alt="Profile" src="' + avatarSrc + '">';
+    if (avatarSrc && avatar) avatar.innerHTML = '<img loading="lazy" decoding="async" alt="Profile" src="' + avatarSrc + '">';
     window.updateBrandLogo(avatarSrc);
 
     if (typeof updateWithdrawalGate === 'function') updateWithdrawalGate();
@@ -3154,7 +3213,7 @@ function handleSignup(e) {
     if (avatarPreview) {
       if (avatar) {
         avatarPreview.innerHTML =
-          '<img alt="Profile picture" src="' + avatar +
+          '<img loading="lazy" decoding="async" alt="Profile picture" src="' + avatar +
           '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;">';
       } else {
         avatarPreview.innerHTML = '👤';
@@ -4115,7 +4174,7 @@ html.dark-mode input:-webkit-autofill:focus{
     <h2 id="sonaWorkspaceTitle">SONA DAILY LIFE HUB</h2>
     <p id="sonaWorkspaceMessage" class="muted">Loading…</p>
     <div id="sonaWorkspaceFrameWrap" class="sona-workspace-frame-wrap">
-      <iframe id="sonaWorkspaceFrame" title="In-page partner workspace" src="about:blank" allow="autoplay; encrypted-media; picture-in-picture; fullscreen"></iframe>
+      <iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" id="sonaWorkspaceFrame" title="In-page partner workspace" src="about:blank" allow="autoplay; encrypted-media; picture-in-picture; fullscreen"></iframe>
     </div>
     <div class="workspace-fallback">
       <b id="sonaWorkspaceFallbackTitle">Partner website controls its own security.</b>
@@ -4565,7 +4624,7 @@ document.addEventListener('keydown',function(e){
     Object.entries(map).forEach(([id,v])=>{ if($(id) && v!=null) $(id).value=v; });
 
     if($('avatarPreview')){
-      if(p.avatar_url) $('avatarPreview').innerHTML='<img alt="Profile" src="'+escapeHtmlAttr(p.avatar_url)+'">';
+      if(p.avatar_url) $('avatarPreview').innerHTML='<img loading="lazy" decoding="async" alt="Profile" src="'+escapeHtmlAttr(p.avatar_url)+'">';
       else $('avatarPreview').innerHTML='👤';
     }
     if(typeof window.updateBrandLogo==='function') window.updateBrandLogo(p.avatar_url || '');
@@ -4949,7 +5008,7 @@ document.addEventListener('keydown',function(e){
         // move this to a private Supabase Storage bucket with per-user paths.
         const {error}=await db.from('profiles').update({avatar_url:dataUrl,updated_at:new Date().toISOString()}).eq('id',user.id);
         if(error)throw error;
-        if($('avatarPreview')) $('avatarPreview').innerHTML='<img alt="Profile" src="'+escapeHtmlAttr(dataUrl)+'">';
+        if($('avatarPreview')) $('avatarPreview').innerHTML='<img loading="lazy" decoding="async" alt="Profile" src="'+escapeHtmlAttr(dataUrl)+'">';
         if(typeof window.updateBrandLogo==='function') window.updateBrandLogo(dataUrl);
         toastSafe('Profile picture updated.');
       }catch(err){console.error(err);toastSafe(err?.message || 'Could not update profile picture.');}
@@ -4987,5 +5046,21 @@ document.addEventListener('keydown',function(e){
 })();
 </script>
 
+
+<script id="sona-mobile-navigation">
+(function(){
+  function initMobileNav(){
+    var btn=document.getElementById('mobileMenuButton'), side=document.getElementById('sonaSidebar'), overlay=document.getElementById('mobileNavOverlay');
+    if(!btn||!side||!overlay)return;
+    function close(){side.classList.remove('mobile-open');overlay.classList.remove('active');overlay.setAttribute('aria-hidden','true');document.body.classList.remove('menu-open')}
+    function open(){side.classList.add('mobile-open');overlay.classList.add('active');overlay.setAttribute('aria-hidden','false');document.body.classList.add('menu-open')}
+    btn.addEventListener('click',function(){side.classList.contains('mobile-open')?close():open()});
+    overlay.addEventListener('click',close);
+    side.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){if(window.innerWidth<=700)close()})});
+    window.addEventListener('resize',function(){if(window.innerWidth>700)close()},{passive:true});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initMobileNav,{once:true});else initMobileNav();
+})();
+</script>
 </body>
 </html>
