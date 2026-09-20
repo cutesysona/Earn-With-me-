@@ -427,6 +427,127 @@ html.dark-mode .sona-theme-btn.active{
 }
 </style>
 
+<style id="sona-sidebar-referral-fix">
+/* ===== SONA sidebar bottom controls + referral visibility ===== */
+.dashboard-shell .sidebar{
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+.dashboard-shell .sidebar-scroll-nav{
+  flex:1 1 auto;
+  min-height:0;
+  overflow-y:auto;
+  overflow-x:hidden;
+  scrollbar-width:thin;
+}
+.dashboard-shell .sidebar-bottom-controls{
+  flex:0 0 auto;
+  margin-top:8px;
+  padding:8px 4px 4px;
+  border-top:1px solid #e2e8f0;
+  background:#fff;
+}
+.dashboard-shell .sidebar-bottom-controls .nav-title{
+  margin-top:4px;
+}
+.dashboard-shell .sidebar-account-title{
+  margin-top:8px !important;
+}
+.dashboard-shell .sidebar-account-nav{
+  overflow:visible;
+}
+.dashboard-shell .sidebar-logout-btn{
+  font-weight:800 !important;
+}
+html.dark-mode .dashboard-shell .sidebar-bottom-controls{
+  background:#0d1727;
+  border-top-color:#263449;
+}
+html.dark-mode .dashboard-shell .sidebar-bottom-controls .nav-title{
+  color:#94a3b8;
+}
+#sonaThemeToggle{
+  position:static !important;
+  left:auto !important;
+  bottom:auto !important;
+  width:100% !important;
+  padding:5px !important;
+  border-radius:12px !important;
+  box-shadow:none !important;
+  border:1px solid #dbe2ea !important;
+  background:#f8fafc !important;
+}
+html.dark-mode #sonaThemeToggle{
+  background:#111827 !important;
+  border-color:#33445f !important;
+}
+.referral-sponsor-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin:12px 0;
+}
+.referral-sponsor-item{
+  border:1px solid #e2e8f0;
+  border-radius:12px;
+  padding:10px 12px;
+  background:#f8fafc;
+}
+.referral-sponsor-item strong{
+  display:block;
+  margin-top:4px;
+  color:#172033;
+  font-size:15px;
+  word-break:break-word;
+}
+.referral-label{
+  font-size:12px;
+  font-weight:800;
+  color:#667085;
+}
+.referral-link-label{
+  display:block;
+  margin:8px 0 6px;
+}
+.referral-share-preview{
+  margin-top:10px;
+  padding:11px 12px;
+  border-radius:10px;
+  background:#fff7e6;
+  border:1px solid #f3d48b;
+  color:#172033;
+  line-height:1.7;
+}
+html.dark-mode .referral-sponsor-item{
+  background:#111827;
+  border-color:#30415d;
+}
+html.dark-mode .referral-sponsor-item strong{
+  color:#f3f6fb;
+}
+html.dark-mode .referral-label{
+  color:#a8b4c7;
+}
+html.dark-mode .referral-share-preview{
+  background:#131d2d;
+  border-color:#30415d;
+  color:#f3f6fb;
+}
+@media(max-width:800px){
+  .dashboard-shell .sidebar{
+    overflow:auto;
+  }
+  .dashboard-shell .sidebar-scroll-nav{
+    flex:none;
+    overflow:visible;
+  }
+  .referral-sponsor-grid{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+
 
 <style id="sona-tasks-media-ui">
 /* Tasks */
@@ -1170,7 +1291,7 @@ html.dark-mode .sona-workspace-frame-wrap{
 <aside class="sidebar">
   <div class="brand"><div class="logo" id="brandLogo"><span id="brandLogoFallback">₹</span><img id="brandLogoImage" alt="Profile" style="display:none;width:100%;height:100%;object-fit:cover;border-radius:15px;"></div><div><b>SONA DAILY<br><span>LIFE HUB</span></b></div></div>
   <div class="member"><strong id="memberNameSide">Member Name</strong><small>ID: <span id="memberIdSide">PM001</span></small></div>
-  <nav class="nav">
+  <nav class="nav sidebar-scroll-nav">
     <div class="nav-title">Main</div>
     <button class="active" onclick="showPage('home',this)">🏠 <span>Home</span></button>
     <button onclick="showPage('income',this)">💰 <span>My Income</span></button>
@@ -1193,16 +1314,23 @@ html.dark-mode .sona-workspace-frame-wrap{
     <button onclick="showPage('fund',this)">💵 <span>Fund Management</span> ›</button>
     <button onclick="showPage('settings',this)">⚙️ <span>Settings</span> ›</button>
   </nav>
-  <div class="nav-title">Account</div>
-  <nav class="nav"><button onclick="logout()">↪️ <span>Log Out</span></button></nav>
+  <div class="sidebar-bottom-controls">
+    <div class="nav-title">Appearance</div>
+    <div id="sonaThemeToggle" aria-label="Theme switcher">
+      <button id="sonaLightBtn" class="sona-theme-btn" type="button" onclick="setSonaTheme('light')">☀️ Light</button>
+      <button id="sonaDarkBtn" class="sona-theme-btn" type="button" onclick="setSonaTheme('dark')">🌙 Dark</button>
+    </div>
+    <div class="nav-title sidebar-account-title">Account</div>
+    <nav class="nav sidebar-account-nav">
+      <button class="sidebar-logout-btn" onclick="logout()">↪️ <span>Log Out</span></button>
+    </nav>
+  </div>
 </aside>
 <main class="main">
 <header class="topbar">
   <h2 id="pageTitle">Dashboard Overview</h2>
   <div class="top-actions">
     <button class="btn hub-live-chip" type="button" onclick="showPage('tasks')" title="Open SONA DAILY CHALLENGE">⏱️ <span id="hubLiveTimeTop">00:00:00</span></button>
-    <button class="btn theme-top-btn" type="button" onclick="setSonaTheme('light')">☀️ Light</button>
-    <button class="btn theme-top-btn" type="button" onclick="setSonaTheme('dark')">🌙 Dark</button>
     <button class="btn" onclick="showPage('income')">💰 My Income</button>
     <button class="btn primary" onclick="showPage('deposit')">💳 Deposit</button>
     <button class="btn" onclick="copyReferral()">🔗 Referral Link</button>
@@ -1714,12 +1842,37 @@ html.dark-mode .sona-workspace-frame-wrap{
     <div class="field"><label>Bank Branch</label><input id="bankBranch" placeholder="Branch name"></div>
     <div class="field"><label>IFSC Code</label><input id="ifsc" maxlength="11" style="text-transform:uppercase" placeholder="IFSC code" oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,11)"></div>
     <div class="field"><label>PAN Number</label><input id="pan" maxlength="10" style="text-transform:uppercase" placeholder="PAN number" oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,10)"></div>
-    <div class="field"><label>Member ID</label><input id="memberIdInput" value="PM001" readonly></div>
+    <div class="field"><label>Member ID</label><input id="memberIdInput" value="" readonly></div>
     <div class="field full"><label>USDT (BEP20) / Wallet Address <span class="optional-label">(Optional)</span></label><input id="walletAddress" placeholder="Enter BEP20 wallet address (optional)"><div class="form-note">Optional: If you have a USDT BEP20 wallet, you can enter it here. If you do not have one, leave this field empty.</div></div>
     <div class="field full"><button class="btn primary" onclick="saveProfile()">Save Profile & Unlock Withdrawal</button><div id="profileSaveMessage" class="small-muted" style="margin-top:8px;"></div></div>
   </div>
 </div>
-<div class="two" style="margin-top:16px"><div class="card"><h3>🔗 My Referral Link</h3><input id="refBox" style="width:100%;background:#0c1626;border:1px solid #2b3c58;color:#fff;padding:12px;border-radius:9px" readonly><p class="footer-note">Real referral tracking must be implemented on your server.</p></div><div class="card"><h3>▶️ YouTube Account</h3><p id="ytStatus"><span class="pill">Not connected</span></p><p class="muted">Connect through official Google OAuth. Never enter your Google password here.</p><button class="btn primary" onclick="connectYouTube()">Connect YouTube</button></div></div>
+<div class="two" style="margin-top:16px">
+  <div class="card referral-card">
+    <h3>🔗 My Referral Link</h3>
+    <div class="referral-sponsor-grid">
+      <div class="referral-sponsor-item">
+        <span class="referral-label"><u>Sponsor ID</u></span>
+        <strong id="shareSponsorId">Loading…</strong>
+      </div>
+      <div class="referral-sponsor-item">
+        <span class="referral-label"><u>Sponsor Name</u></span>
+        <strong id="shareSponsorName">Member Name</strong>
+      </div>
+    </div>
+    <label class="referral-label referral-link-label"><u>Referral Link</u></label>
+    <input id="refBox" style="width:100%;background:#0c1626;border:1px solid #2b3c58;color:#fff;padding:12px;border-radius:9px;font-weight:700" readonly>
+    <div class="referral-share-preview">
+      <b><u>Sponsor Name:</u></b> <span id="shareSponsorNamePreview">Member Name</span><br>
+      <b><u>Sponsor ID:</u></b> <span id="shareSponsorIdPreview">Loading…</span>
+    </div>
+    <div class="mini-actions">
+      <button class="btn" type="button" onclick="copyReferral()">🔗 Copy Referral</button>
+      <button class="btn green" type="button" onclick="shareLink()">🟢 Share Referral</button>
+    </div>
+    <p class="footer-note">The shared referral URL carries both the Sponsor ID and Sponsor Name so the signup form can display the upline/sponsor details.</p>
+  </div>
+  <div class="card"><h3>▶️ YouTube Account</h3><p id="ytStatus"><span class="pill">Not connected</span></p><p class="muted">Connect through official Google OAuth. Never enter your Google password here.</p><button class="btn primary" onclick="connectYouTube()">Connect YouTube</button></div></div>
 </section>
 <section id="leaderboard" class="page"><div class="hero"><div class="kicker">SONA COMMUNITY</div><h1>🏆 Leaderboard</h1><p>See community rankings based on Hub Points and time spent actively using SONA Daily Life Hub.</p></div>
 <div class="two"><div class="metric-card"><span class="muted">Your Hub Points</span><strong id="myPoints">0</strong><div class="progress"><span id="myPointsBar" style="width:0%"></span></div><p class="footer-note">Points are a demo engagement score. They are not automatically cash and should not be tied to ad clicks.</p></div><div class="metric-card"><span class="muted">Active Hub Time</span><strong id="myHours">0h 00m</strong><p class="footer-note">Time is counted only while this page is open and active. A real system should verify active sessions on the server.</p></div></div>
@@ -1907,19 +2060,35 @@ const REF_BASE='';
 const INSTAGRAM_URL='https://www.instagram.com/';
 const AMAZON_URL='https://www.amazon.in/';
 const FLIPKART_URL='https://www.flipkart.com/';
-function getMemberId(){return localStorage.getItem('sonaMemberId')||'PM001'}
+function getMemberId(){
+  return (localStorage.getItem('sonaMemberId') || '').trim();
+}
+function getReferralSponsorName(){
+  const el=document.getElementById('memberNameSide');
+  const name=(el?.textContent || localStorage.getItem('sonaMemberName') || '').trim();
+  return name || 'SONA DAILY LIFE HUB Member';
+}
 function getReferralLink(memberId){
   const id=String(memberId||getMemberId()).trim();
+  const sponsorName=getReferralSponsorName();
   try{
     const u=new URL(window.location.href);
     u.search='';
     u.hash='';
     if(window.location.protocol==='file:') return '';
     u.searchParams.set('ref',id);
+    if(sponsorName) u.searchParams.set('refName',sponsorName);
     return u.toString();
   }catch(e){ return ''; }
 }
-function setMemberId(id){localStorage.setItem('sonaMemberId',id);const a=document.getElementById('memberIdSide');const b=document.getElementById('memberIdInput');const c=document.getElementById('refBox');if(a)a.textContent=id;if(b)b.value=id;if(c)c.value=getReferralLink(id)||'Deploy this website to generate a shareable referral link.'}
+function setMemberId(id){
+  localStorage.setItem('sonaMemberId',id);
+  const a=document.getElementById('memberIdSide');
+  const b=document.getElementById('memberIdInput');
+  if(a)a.textContent=id;
+  if(b)b.value=id;
+  if(typeof updateReferralBox==='function') updateReferralBox();
+}
 function showPage(id,btn){
   const target=document.getElementById(id);
   if(!target){toast('Page is not available: '+id);return;}
@@ -1953,8 +2122,47 @@ function openAmazon(){openPartnerWorkspace('amazon')}
 function openFlipkart(){openPartnerWorkspace('flipkart')}
 function openKick(){showPage('meeting')}
 function openMyYouTubeChannel(){showPage('my-youtube');loadMyYouTubeWorkspace()}
-function copyReferral(){const ref=getReferralLink();if(!ref)return toast('Referral links work after the website is hosted on HTTPS.');navigator.clipboard?.writeText(ref).then(()=>toast('Referral link copied')).catch(()=>toast(ref))}
-function shareLink(){const ref=getReferralLink();if(!ref)return toast('Referral links work after the website is hosted on HTTPS.');if(navigator.share){navigator.share({title:'SONA Daily Life Hub',text:'Join SONA Daily Life Hub',url:ref}).catch(()=>{})}else copyReferral()}
+function getReferralShareText(){
+  const id=getMemberId();
+  const name=getReferralSponsorName();
+  const ref=getReferralLink(id);
+  return [
+    'Join SONA DAILY LIFE HUB',
+    '',
+    '*Sponsor Name:* '+name,
+    '*Sponsor ID:* '+id,
+    '',
+    'Referral Link:',
+    ref
+  ].join('\\n');
+}
+function copyReferral(){
+  const ref=getReferralLink();
+  if(!ref)return toast('Referral links work after the website is hosted on HTTPS.');
+  const text=getReferralShareText();
+  navigator.clipboard?.writeText(text).then(()=>toast('Referral message copied with Sponsor Name and Sponsor ID')).catch(()=>toast(text));
+}
+function shareLink(){
+  const ref=getReferralLink();
+  if(!ref)return toast('Referral links work after the website is hosted on HTTPS.');
+  const name=getReferralSponsorName();
+  const id=getMemberId();
+  const text=getReferralShareText();
+  if(navigator.share){
+    navigator.share({
+      title:'SONA Daily Life Hub Referral',
+      text:[
+        'Join SONA DAILY LIFE HUB',
+        '',
+        '*Sponsor Name:* '+name,
+        '*Sponsor ID:* '+id
+      ].join('\\n'),
+      url:ref
+    }).catch(()=>{});
+  }else{
+    copyReferral();
+  }
+}
 function connectYouTube(){toast('Real YouTube connection requires Google OAuth + backend. This demo does not collect passwords.');showPage('account')}
 function logout(){toast('Demo logout — connect this to your real authentication system.')}
 function getProfileStorageKey() {
@@ -2654,7 +2862,15 @@ function handleSignup(e) {
     }
   };
 
-  window.logout = function () {
+  window.logout = async function () {
+    try {
+      if (window.db && db.auth && typeof db.auth.signOut === 'function') {
+        await db.auth.signOut({ scope: 'local' });
+      }
+    } catch (e) {
+      console.error('SONA logout:', e);
+    }
+
     try {
       sessionStorage.removeItem('sona_logged_in');
       localStorage.removeItem('sona_logged_in');
@@ -3806,12 +4022,6 @@ html.dark-mode #dashboardShell.active .hub-live-chip{background:#102a25 !importa
   setInterval(refreshIncome,5000);
 })();
 </script>\n
-<!-- SONA Theme Switcher -->
-<div id="sonaThemeToggle" aria-label="Theme switcher">
-  <button id="sonaLightBtn" class="sona-theme-btn" type="button" onclick="setSonaTheme('light')">☀️ Light</button>
-  <button id="sonaDarkBtn" class="sona-theme-btn" type="button" onclick="setSonaTheme('dark')">🌙 Dark</button>
-</div>
-
 
 
 <style id="sona-inpage-media-css">
@@ -4555,11 +4765,19 @@ document.addEventListener('keydown',function(e){
   function applyPendingReferral(){
     const ref=getPendingReferral();
     if(!ref) return '';
-    try{sessionStorage.setItem('sona_pending_referral',ref);}catch(e){}
+    let refName='';
+    try{
+      const u=new URL(window.location.href);
+      refName=(u.searchParams.get('refName')||'').trim();
+    }catch(e){}
+    try{
+      sessionStorage.setItem('sona_pending_referral',ref);
+      if(refName) sessionStorage.setItem('sona_pending_referral_name',refName);
+    }catch(e){}
     const sponsor=$('sponsorIdInput');
     if(sponsor) sponsor.value=ref;
     const sponsorName=$('sponsorNameInput');
-    if(sponsorName) sponsorName.value='Referred Member';
+    if(sponsorName) sponsorName.value=refName || 'Referred Member';
     return ref;
   }
 
@@ -4569,9 +4787,14 @@ document.addEventListener('keydown',function(e){
 
   function updateReferralBox(){
     const box=$('refBox');
-    if(!box) return;
-    const link=typeof window.getReferralLink==='function' ? window.getReferralLink() : '';
-    box.value=link || 'Deploy this website to generate a shareable referral link.';
+    const id=(typeof getMemberId==='function' ? getMemberId() : (localStorage.getItem('sonaMemberId')||'SONA001'));
+    const name=(typeof getReferralSponsorName==='function' ? getReferralSponsorName() : (localStorage.getItem('sonaMemberName')||'Member Name'));
+    const link=typeof window.getReferralLink==='function' ? window.getReferralLink(id) : '';
+    if(box) box.value=link || 'Deploy this website to generate a shareable referral link.';
+    if($('shareSponsorId')) $('shareSponsorId').textContent=id;
+    if($('shareSponsorName')) $('shareSponsorName').textContent=name;
+    if($('shareSponsorIdPreview')) $('shareSponsorIdPreview').textContent=id;
+    if($('shareSponsorNamePreview')) $('shareSponsorNamePreview').textContent=name;
   }
 
   window.addEventListener('DOMContentLoaded',function(){
@@ -4589,8 +4812,15 @@ document.addEventListener('keydown',function(e){
     const confirm=$('signupConfirmPasswordInput')?.value || '';
     const mobile=(document.querySelector('#signupFormContainer input[type="tel"]')?.value || '').replace(/\D/g,'');
     const referralCode=getStoredReferral();
-    const sponsorId=referralCode || val('sponsorIdInput') || 'SONA001';
-    const sponsorName=referralCode ? 'Referred Member' : (val('sponsorNameInput') || 'Sona Verma');
+    // sponsor_id is ONLY the ID of the person who referred this new user.
+    // It must not be used as the new user's own ID.
+    const sponsorId=referralCode || (val('sponsorIdInput') || '').trim().toUpperCase() || null;
+
+    let sponsorName='';
+    try{
+      sponsorName=(sessionStorage.getItem('sona_pending_referral_name') || '').trim();
+    }catch(e){}
+    sponsorName=sponsorName || (val('sponsorNameInput') || '').trim() || null;
 
     if(!fullName) return alert('Please enter your full name.');
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return alert('Please enter a valid email address.');
@@ -4935,6 +5165,61 @@ document.addEventListener('keydown',function(e){
    * Existing 10-minute website ad-break system is intentionally retained.
    * It is a site overlay, not a way to suppress or replace YouTube's own ads.
    */
+})();
+</script>
+
+
+<script id="sona-unique-referral-sync">
+(function(){
+  async function syncUniqueReferralIdentity(){
+    try{
+      if(typeof db==='undefined' || !db?.auth) return;
+
+      const {data:{user}} = await db.auth.getUser();
+      if(!user) return;
+
+      const {data:profile,error} = await db
+        .from('profiles')
+        .select('id,member_id,full_name,sponsor_id,sponsor_name')
+        .eq('id',user.id)
+        .maybeSingle();
+
+      if(error){
+        console.warn('SONA referral identity sync:', error.message || error);
+        return;
+      }
+      if(!profile?.member_id) return;
+
+      // member_id is the NEW USER'S unique ID.
+      // sponsor_id is the REFERRER'S ID and may be shared by many users.
+      localStorage.setItem('sonaMemberId', profile.member_id);
+      localStorage.setItem('sonaMemberName', profile.full_name || '');
+
+      const sideId=document.getElementById('memberIdSide');
+      const memberInput=document.getElementById('memberIdInput');
+      if(sideId) sideId.textContent=profile.member_id;
+      if(memberInput) memberInput.value=profile.member_id;
+
+      if(typeof updateReferralBox==='function') updateReferralBox();
+    }catch(err){
+      console.warn('SONA referral identity sync failed:',err);
+    }
+  }
+
+  window.__sonaSyncUniqueReferralIdentity = syncUniqueReferralIdentity;
+
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(syncUniqueReferralIdentity, 300);
+  });
+
+  if(typeof window.getReferralLink === 'function'){
+    const originalGetReferralLink=window.getReferralLink;
+    window.getReferralLink=function(memberId){
+      const id=String(memberId || localStorage.getItem('sonaMemberId') || '').trim();
+      if(!id) return '';
+      return originalGetReferralLink(id);
+    };
+  }
 })();
 </script>
 
