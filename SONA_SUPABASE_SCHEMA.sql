@@ -1,6 +1,7 @@
--- SONA DAILY LIFE HUB — Supabase database setup
--- Run this in Supabase Dashboard -> SQL Editor.
--- RLS is enabled so an authenticated user can only access rows where user_id/id = auth.uid().
+-- SONA DAILY LIFE HUB — Supabase repair script
+-- Run this entire script in the SQL Editor of the SAME Supabase project
+-- used by index.html:
+-- https://auwcmybncaaavpwdgkgh.supabase.co
 
 create extension if not exists pgcrypto;
 
@@ -28,7 +29,8 @@ create table if not exists public.profiles (
   updated_at timestamptz not null default now()
 );
 
-create index if not exists profiles_sponsor_id_idx on public.profiles(sponsor_id);
+create index if not exists profiles_sponsor_id_idx
+  on public.profiles(sponsor_id);
 
 create table if not exists public.payment_history (
   id uuid primary key default gen_random_uuid(),
@@ -53,7 +55,6 @@ create table if not exists public.creator_media (
   updated_at timestamptz not null default now()
 );
 
--- Create a profile automatically when Supabase Auth creates a user.
 create or replace function public.handle_new_user()
 returns trigger
 language plpgsql
@@ -69,12 +70,18 @@ begin
     new.raw_user_meta_data->>'full_name',
     new.raw_user_meta_data->>'mobile',
     case
-      when exists (select 1 from public.profiles p where upper(p.member_id) = upper(new.raw_user_meta_data->>'sponsor_id'))
+      when exists (
+        select 1 from public.profiles p
+        where upper(p.member_id) = upper(new.raw_user_meta_data->>'sponsor_id')
+      )
       then upper(new.raw_user_meta_data->>'sponsor_id')
       else null
     end,
     case
-      when exists (select 1 from public.profiles p where upper(p.member_id) = upper(new.raw_user_meta_data->>'sponsor_id'))
+      when exists (
+        select 1 from public.profiles p
+        where upper(p.member_id) = upper(new.raw_user_meta_data->>'sponsor_id')
+      )
       then new.raw_user_meta_data->>'sponsor_name'
       else null
     end,
@@ -87,11 +94,12 @@ end;
 $$;
 
 drop trigger if exists on_auth_user_created on auth.users;
+
 create trigger on_auth_user_created
 after insert on auth.users
-for each row execute procedure public.handle_new_user();
+for each row
+execute procedure public.handle_new_user();
 
--- RLS
 alter table public.profiles enable row level security;
 alter table public.payment_history enable row level security;
 alter table public.creator_media enable row level security;
@@ -159,6 +167,5 @@ create policy "creator_media_delete_own"
 on public.creator_media for delete to authenticated
 using (user_id = auth.uid());
 
--- IMPORTANT:
--- Do not create policies for anonymous users that expose profiles/payment data.
--- Do not put a service_role/secret key in frontend code.
+-- Refresh PostgREST's schema cache immediately.
+notify pgrst, 'reload schema';
