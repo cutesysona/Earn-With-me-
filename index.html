@@ -4,17 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SONA DAILY LIFE HUB | Daily Life, Learning, Videos & Community</title>
-<meta name="description" content="SONA DAILY LIFE HUB brings daily-life resources, learning videos, creator tools, shopping resources, community features and member account services together in one responsive web portal.">
+<meta name="description" content="SONA DAILY LIFE HUB is a friendly mobile-first daily-life portal for learning videos, Instagram content, shopping resources, creator tools, referrals, member services and community features.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta name="author" content="SONA DAILY LIFE HUB">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#0b1220"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="color-scheme" content="light">
 <meta name="format-detection" content="telephone=no">
 <meta name="application-name" content="SONA DAILY LIFE HUB">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://cutesysona.shop/">
-<link rel="preload" as="image" href="/Red-YouTube-logo.png" fetchpriority="high">
 <link rel="alternate" hreflang="en" href="https://cutesysona.shop/">
 <meta property="og:locale" content="en_IN">
 <meta property="og:type" content="website">
@@ -55,7 +54,7 @@
   ]
 }</script>
 <script src="https://cdn.tailwindcss.com" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 <style>
 
         body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
@@ -932,6 +931,278 @@ button,a,input,select{touch-action:manipulation}
 }
 </style>
 
+
+<style id="sona-pro-v7">
+:root{
+  --pro-ink:#0b1220;
+  --pro-muted:#64748b;
+  --pro-line:#e5e7eb;
+  --pro-card:#ffffff;
+  --pro-accent:#ff4d7d;
+  --pro-accent2:#ff9d22;
+  --pro-green:#10b981;
+  --pro-blue:#2563eb;
+  --pro-shadow:0 10px 35px rgba(15,23,42,.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,a{ -webkit-tap-highlight-color:transparent }
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{
+  outline:3px solid rgba(255,77,125,.28);outline-offset:2px;
+}
+#landingRoot .max-w-7xl{max-width:1240px}
+#landingRoot section{scroll-margin-top:82px}
+#landingRoot .shadow-2xl{box-shadow:0 24px 70px rgba(15,23,42,.12)}
+#landingRoot .hero-pro-glow{pointer-events:none}
+#landingRoot .pro-feature-card{
+  border:1px solid #e8edf5!important;
+  background:rgba(255,255,255,.94)!important;
+  box-shadow:var(--pro-shadow);
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+}
+#landingRoot .pro-feature-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 20px 45px rgba(15,23,42,.12);
+  border-color:#f4c8d5!important;
+}
+#landingRoot .pro-pill{
+  display:inline-flex;align-items:center;gap:7px;
+  border:1px solid #f3d6df;background:#fff7fa;color:#d92e60;
+  padding:7px 11px;border-radius:999px;font-size:12px;font-weight:800;
+}
+#landingRoot .pro-pill-dot{width:7px;height:7px;border-radius:50%;background:#10b981;box-shadow:0 0 0 4px #d1fae5}
+#landingRoot .pro-stat{
+  display:flex;align-items:center;gap:12px;padding:13px 15px;
+  border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);
+  border-radius:16px;
+}
+#landingRoot .pro-stat-icon{
+  width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
+  background:linear-gradient(135deg,rgba(255,77,125,.25),rgba(255,173,45,.22));
+}
+#landingRoot .pro-mobile-nav{display:none}
+
+/* Dashboard polish */
+.dashboard-shell .topbar{
+  position:sticky;top:0;z-index:40;
+  backdrop-filter:blur(16px);
+  background:rgba(7,13,25,.86);
+}
+.dashboard-shell .topbar h2{letter-spacing:-.02em}
+.dashboard-shell .top-actions{gap:8px;flex-wrap:wrap}
+.dashboard-shell .btn{
+  min-height:42px;border-radius:12px;
+  transition:transform .16s ease,box-shadow .16s ease,background .16s ease;
+}
+.dashboard-shell .btn:hover{transform:translateY(-1px)}
+.dashboard-shell .hero{
+  border-radius:22px;
+  box-shadow:0 16px 45px rgba(0,0,0,.12);
+}
+.dashboard-shell .card,.dashboard-shell .stat,.dashboard-shell .dept{
+  border-radius:18px;
+  border-color:rgba(92,116,150,.25);
+}
+.dashboard-shell .dept{
+  cursor:pointer;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+}
+.dashboard-shell .dept:hover{
+  transform:translateY(-3px);
+  box-shadow:0 18px 42px rgba(0,0,0,.14);
+}
+.dashboard-shell .nav button{border-radius:12px;margin:2px 0}
+.dashboard-shell .nav button:hover{transform:translateX(2px)}
+.dashboard-shell .member{
+  border-radius:16px!important;
+  box-shadow:0 12px 30px rgba(0,0,0,.08);
+}
+.dashboard-shell .page{animation:sonaPageIn .22s ease both}
+@keyframes sonaPageIn{from{opacity:.25;transform:translateY(5px)}to{opacity:1;transform:none}}
+.dashboard-shell .money-grid,.dashboard-shell .grid,.dashboard-shell .three{
+  gap:18px;
+}
+.dashboard-shell input,.dashboard-shell select,.dashboard-shell textarea{
+  min-height:46px;border-radius:12px;
+}
+.dashboard-shell .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+/* Friendly empty/loading states */
+.sona-friendly-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:11px 14px;margin:0 0 16px;border-radius:14px;
+  background:linear-gradient(90deg,rgba(255,77,125,.10),rgba(255,173,45,.08));
+  border:1px solid rgba(255,77,125,.18);font-size:13px;
+}
+.sona-friendly-bar strong{color:#e13a6c}
+.sona-quick-search{
+  width:min(420px,100%);min-height:42px;padding:0 14px;border-radius:12px;
+  border:1px solid #33445f;background:#0c1626;color:#fff;
+}
+.sona-quick-search::placeholder{color:#7e90aa}
+.sona-hidden-by-search{display:none!important}
+
+/* Mobile */
+@media(max-width:800px){
+  #landingRoot header .h-20{height:68px}
+  #landingRoot header nav{display:none}
+  #landingRoot header .max-w-7xl{padding-left:14px;padding-right:14px}
+  #landingRoot header .flex.items-center.gap-3{gap:7px}
+  #landingRoot header .text-xl{font-size:15px}
+  #landingRoot header .text-\[10px\]{font-size:8px}
+  #landingRoot .hero-pro-glow{display:none}
+  #landingRoot section.py-20{padding-top:54px;padding-bottom:54px}
+  #landingRoot h1{font-size:clamp(2.15rem,10vw,3.4rem)!important;line-height:1.03!important}
+  #landingRoot h2{letter-spacing:-.03em}
+  #landingRoot .grid{gap:16px}
+  #landingRoot .pro-feature-card:hover{transform:none}
+  #landingRoot .shadow-2xl{box-shadow:0 16px 40px rgba(15,23,42,.12)}
+  #landingRoot .pro-mobile-nav{
+    display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:90;
+    padding:7px;background:rgba(15,23,42,.94);backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.12);border-radius:20px;
+    box-shadow:0 20px 50px rgba(15,23,42,.25);
+  }
+  #landingRoot .pro-mobile-nav a{
+    flex:1;text-align:center;color:#cbd5e1;font-size:10px;font-weight:800;padding:7px 3px;border-radius:13px;
+  }
+  #landingRoot .pro-mobile-nav a span{display:block;font-size:17px;margin-bottom:2px}
+  #landingRoot .pro-mobile-nav a:active{background:rgba(255,255,255,.09)}
+  .dashboard-shell .topbar{
+    padding:10px 12px!important;min-height:64px;
+  }
+  .dashboard-shell .topbar h2{
+    font-size:18px!important;max-width:43vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .dashboard-shell .top-actions .theme-top-btn,
+  .dashboard-shell .top-actions .hub-live-chip,
+  .dashboard-shell .top-actions .btn:not(.primary){
+    display:none!important;
+  }
+  .dashboard-shell .top-actions{margin-left:auto}
+  .dashboard-shell .top-actions .primary{
+    display:inline-flex!important;min-height:40px;padding:0 12px;
+  }
+  .dashboard-shell .main{padding-bottom:82px!important}
+  .dashboard-shell .page{padding:12px!important}
+  .dashboard-shell .hero{padding:20px!important;border-radius:18px}
+  .dashboard-shell .hero h1,.dashboard-shell .hero h2{font-size:25px!important}
+  .dashboard-shell .card,.dashboard-shell .stat{padding:16px!important}
+  .dashboard-shell .money-grid,
+  .dashboard-shell .grid,
+  .dashboard-shell .three,
+  .dashboard-shell .two-col,
+  .dashboard-shell .task-grid{
+    grid-template-columns:1fr!important;
+  }
+  .dashboard-shell .stat{min-height:96px}
+  .dashboard-shell .mini-actions{display:grid;grid-template-columns:1fr;gap:9px}
+  .dashboard-shell .mini-actions .btn{width:100%}
+  .dashboard-shell .mobile-bottom-nav{
+    display:grid!important;
+    grid-template-columns:repeat(5,1fr);
+    position:fixed;left:10px;right:10px;bottom:10px;z-index:1000;
+    padding:6px;border-radius:19px;background:rgba(12,22,38,.96);
+    border:1px solid rgba(148,163,184,.2);box-shadow:0 20px 50px rgba(0,0,0,.3);
+    backdrop-filter:blur(18px);
+  }
+  .dashboard-shell .mobile-bottom-nav button{
+    min-height:52px;border:0;background:transparent;color:#9eb0c8;border-radius:14px;font-size:10px;font-weight:800;
+  }
+  .dashboard-shell .mobile-bottom-nav button.active{
+    color:#fff;background:linear-gradient(135deg,rgba(255,77,125,.24),rgba(255,157,34,.18));
+  }
+  .dashboard-shell .mobile-bottom-nav .mb-icon{display:block;font-size:18px;line-height:20px}
+  .dashboard-shell .mobile-bottom-nav .mb-label{display:block;margin-top:2px}
+}
+@media(min-width:801px){
+  .dashboard-shell .mobile-bottom-nav{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .dashboard-shell .page{animation:none}
+  #landingRoot .pro-feature-card,.dashboard-shell .btn,.dashboard-shell .dept{transition:none}
+}
+</style>
+
+
+<style id="sona-fixed-theme-switch-v8">
+/* Fixed Light / Dark control: stays attached to the viewport, never scrolls away. */
+#sonaThemeSwitch{
+  position:fixed !important;
+  left:24px !important;
+  bottom:24px !important;
+  top:auto !important;
+  right:auto !important;
+  z-index:2147483000 !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:4px !important;
+  width:max-content !important;
+  min-width:154px !important;
+  height:54px !important;
+  padding:5px !important;
+  box-sizing:border-box !important;
+  border:1px solid rgba(148,163,184,.35) !important;
+  border-radius:18px !important;
+  background:rgba(15,23,42,.96) !important;
+  box-shadow:0 14px 38px rgba(2,6,23,.28) !important;
+  backdrop-filter:blur(16px) !important;
+  -webkit-backdrop-filter:blur(16px) !important;
+}
+#sonaThemeSwitch button{
+  height:44px !important;
+  min-width:68px !important;
+  padding:0 11px !important;
+  border:0 !important;
+  border-radius:13px !important;
+  cursor:pointer !important;
+  font-weight:800 !important;
+  font-size:13px !important;
+  line-height:1 !important;
+  transition:transform .15s ease,background .15s ease,color .15s ease !important;
+}
+#sonaThemeSwitch button:active{transform:scale(.97) !important}
+#sonaThemeSwitch .theme-light-btn{
+  background:#f8fafc !important;
+  color:#172033 !important;
+}
+#sonaThemeSwitch .theme-dark-btn{
+  background:transparent !important;
+  color:#aab8cc !important;
+}
+html.dark-mode #sonaThemeSwitch{
+  background:rgba(7,12,22,.97) !important;
+  border-color:#2a3952 !important;
+}
+html.dark-mode #sonaThemeSwitch .theme-light-btn{
+  background:transparent !important;
+  color:#9aaac0 !important;
+}
+html.dark-mode #sonaThemeSwitch .theme-dark-btn{
+  background:#18243a !important;
+  color:#fff !important;
+}
+@media(max-width:800px){
+  #sonaThemeSwitch{
+    left:12px !important;
+    bottom:88px !important; /* above the mobile bottom navigation */
+    min-width:138px !important;
+    height:48px !important;
+    border-radius:16px !important;
+  }
+  #sonaThemeSwitch button{
+    min-width:60px !important;
+    height:38px !important;
+    font-size:12px !important;
+    padding:0 8px !important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  #sonaThemeSwitch button{transition:none !important}
+}
+</style>
+
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-rose-500 selection:text-white">
 
@@ -1269,6 +1540,15 @@ button,a,input,select{touch-action:manipulation}
 
     <!-- JavaScript Handling Sequential Sponsor IDs & Success Workflow -->
     
+
+<nav class="pro-mobile-nav" aria-label="Quick navigation">
+  <a href="#features"><span>✨</span>Features</a>
+  <a href="#income-streams"><span>💰</span>Income</a>
+  <a href="#channels"><span>▶️</span>Watch</a>
+  <a href="#contact"><span>💬</span>Help</a>
+  <a href="#" onclick="openModal('signup');return false;"><span>🚀</span>Join</a>
+</nav>
+
 </div>
 
 <div id="dashboardShell" class="dashboard-shell">
@@ -1305,9 +1585,17 @@ button,a,input,select{touch-action:manipulation}
 </aside>
 <div id="mobileNavOverlay" class="mobile-nav-overlay" aria-hidden="true"></div>
 <main class="main">
+<nav class="mobile-bottom-nav" aria-label="Mobile dashboard navigation">
+  <button type="button" data-mb-page="home" onclick="showPage('home')"><span class="mb-icon">🏠</span><span class="mb-label">Home</span></button>
+  <button type="button" data-mb-page="income" onclick="showPage('income')"><span class="mb-icon">💰</span><span class="mb-label">Income</span></button>
+  <button type="button" data-mb-page="tasks" onclick="showPage('tasks')"><span class="mb-icon">🎯</span><span class="mb-label">Tasks</span></button>
+  <button type="button" data-mb-page="watch" onclick="showPage('watch')"><span class="mb-icon">▶️</span><span class="mb-label">Watch</span></button>
+  <button type="button" data-mb-page="account" onclick="showPage('account')"><span class="mb-icon">👤</span><span class="mb-label">Profile</span></button>
+</nav>
+
 <header class="topbar"><button id="mobileMenuButton" class="mobile-menu-btn" type="button" aria-label="Open menu" aria-controls="sonaSidebar">☰</button>
   <h2 id="pageTitle">Dashboard Overview</h2>
-  <div class="top-actions">
+  <div class="top-actions"><input id="sonaQuickSearch" class="sona-quick-search" type="search" placeholder="Search your dashboard..." aria-label="Search dashboard sections">
     <button class="btn hub-live-chip" type="button" onclick="showPage('tasks')" title="Open SONA DAILY CHALLENGE">⏱️ <span id="hubLiveTimeTop">00:00:00</span></button>
     <button class="btn theme-top-btn" type="button" onclick="setSonaTheme('light')">☀️ Light</button>
     <button class="btn theme-top-btn" type="button" onclick="setSonaTheme('dark')">🌙 Dark</button>
@@ -5062,5 +5350,129 @@ document.addEventListener('keydown',function(e){
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initMobileNav,{once:true});else initMobileNav();
 })();
 </script>
+
+<script id="sona-pro-v7-js">
+(function(){
+  'use strict';
+
+  function byId(id){return document.getElementById(id)}
+
+  // Mobile dashboard drawer
+  function closeMobileMenu(){
+    var side=byId('sonaSidebar'), overlay=byId('mobileNavOverlay');
+    if(side) side.classList.remove('mobile-open');
+    if(overlay){overlay.classList.remove('active');overlay.setAttribute('aria-hidden','true')}
+  }
+  function openMobileMenu(){
+    var side=byId('sonaSidebar'), overlay=byId('mobileNavOverlay');
+    if(side) side.classList.add('mobile-open');
+    if(overlay){overlay.classList.add('active');overlay.setAttribute('aria-hidden','false')}
+  }
+  window.closeMobileMenu=closeMobileMenu;
+  window.openMobileMenu=openMobileMenu;
+
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('#mobileMenuButton');
+    if(b){openMobileMenu();return}
+    if(e.target.closest('#mobileNavOverlay')){closeMobileMenu();return}
+    if(e.target.closest('#sonaSidebar .nav button')) closeMobileMenu();
+  });
+
+  // Dashboard bottom navigation follows the currently opened page.
+  var oldShow=window.showPage;
+  if(typeof oldShow==='function'){
+    window.showPage=function(id,btn){
+      var result=oldShow.apply(this,arguments);
+      document.querySelectorAll('.mobile-bottom-nav [data-mb-page]').forEach(function(x){
+        x.classList.toggle('active',x.getAttribute('data-mb-page')===id);
+      });
+      closeMobileMenu();
+      return result;
+    };
+  }
+
+  // Friendly dashboard search: jumps to the first matching page/button.
+  var qs=byId('sonaQuickSearch');
+  if(qs){
+    var map=[
+      ['income','income','My Income'],['wallet','income','My Income'],['money','income','My Income'],
+      ['watch','watch','Watch & Learn'],['youtube','watch','Watch & Learn'],
+      ['instagram','instagram','Instagram Reels'],['reels','instagram','Instagram Reels'],
+      ['shop','shop','Shop & Earn'],['amazon','shop','Shop & Earn'],['flipkart','shop','Shop & Earn'],
+      ['creator','creator','Become a Creator'],['live','meeting','Meeting / KICK Live'],
+      ['profile','account','Profile & Wallet'],['account','account','Profile & Wallet'],
+      ['leaderboard','leaderboard','Leaderboard'],['investor','investors','Top Investors'],
+      ['task','tasks','SONA Daily Challenge'],['challenge','tasks','SONA Daily Challenge'],
+      ['deposit','deposit','Deposit'],['payout','payout','Payout Reports'],
+      ['fund','fund','Fund Management'],['setting','settings','Settings']
+    ];
+    qs.addEventListener('keydown',function(e){
+      if(e.key!=='Enter')return;
+      var q=qs.value.trim().toLowerCase();
+      if(!q)return;
+      var hit=map.find(function(x){return q.includes(x[0])});
+      if(hit && typeof window.showPage==='function'){
+        window.showPage(hit[1]);
+        qs.value='';
+        if(typeof window.toast==='function')window.toast('Opened '+hit[2]);
+      }else if(typeof window.toast==='function'){
+        window.toast('Try: income, watch, shop, creator, tasks, deposit or profile');
+      }
+    });
+  }
+
+  // Lazy-load heavy YouTube embeds when they get close to the viewport.
+  if('IntersectionObserver' in window){
+    var embeds=document.querySelectorAll('iframe[src*="youtube-nocookie.com/embed/"]:not([data-pro-lazy])');
+    embeds.forEach(function(frame){
+      var src=frame.getAttribute('src');
+      if(!src || src==='about:blank')return;
+      frame.setAttribute('data-pro-src',src);
+      frame.setAttribute('data-pro-lazy','1');
+      frame.setAttribute('src','about:blank');
+      var load=function(){
+        if(frame.getAttribute('data-pro-loaded'))return;
+        frame.setAttribute('data-pro-loaded','1');
+        frame.setAttribute('src',frame.getAttribute('data-pro-src'));
+        obs.unobserve(frame);
+      };
+      var obs=new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){if(entry.isIntersecting)load()});
+      },{rootMargin:'500px 0px'});
+      obs.observe(frame);
+    });
+  }
+
+  // Avoid accidental form submission from Enter in simple search fields.
+  document.addEventListener('submit',function(){},true);
+
+  // Mark initial mobile tab.
+  document.querySelectorAll('.mobile-bottom-nav [data-mb-page]').forEach(function(x){
+    x.classList.toggle('active',x.getAttribute('data-mb-page')==='home');
+  });
+})();
+</script>
+
+
+<script id="sona-fixed-theme-switch-v8-js">
+(function(){
+  function pinThemeSwitch(){
+    var el=document.getElementById('sonaThemeSwitch');
+    if(!el) return;
+    if(el.parentElement !== document.body) document.body.appendChild(el);
+    el.style.position='fixed';
+    el.style.left=window.innerWidth<=800?'12px':'24px';
+    el.style.right='auto';
+    el.style.top='auto';
+    el.style.bottom=window.innerWidth<=800?'88px':'24px';
+    el.style.zIndex='2147483000';
+  }
+  function run(){pinThemeSwitch();setTimeout(pinThemeSwitch,50);setTimeout(pinThemeSwitch,500);}
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+  window.addEventListener('resize',pinThemeSwitch,{passive:true});
+})();
+</script>
+
 </body>
 </html>
