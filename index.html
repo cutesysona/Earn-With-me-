@@ -16,7 +16,7 @@
 <style>
 
 :root{--bg:#070d19;--side:#0d1727;--panel:#111d31;--panel2:#15243b;--line:#263754;--text:#f5f7fb;--muted:#93a4bd;--gold:#ff9f00;--gold2:#ffb52e;--green:#18c77a;--blue:#2d70ff;--purple:#8d4dff;--danger:#ff5f6d}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0}button,input,select{font:inherit}.app{display:flex;min-height:100vh}.sidebar{width:302px;background:var(--side);border-right:1px solid #1c2b43;padding:16px 12px;position:fixed;left:0;top:0;bottom:0;overflow:auto}.brand{display:flex;gap:12px;align-items:center;padding:10px 10px 22px}.logo{width:52px;height:52px;border-radius:15px;background:linear-gradient(135deg,#ffb21c,#ff8b00);display:grid;place-items:center;font-size:27px;font-weight:900;box-shadow:0 8px 25px #ff9f0033}.brand b{font-size:20px;line-height:1.05}.brand span{color:#ffb52e}.member{background:#111d30;border:1px solid #253550;border-radius:16px;padding:16px;margin:0 4px 18px}.member strong{display:block;font-size:16px}.member small{color:var(--gold);font-size:14px}.nav-title{font-size:11px;color:#667893;margin:18px 8px 7px;text-transform:uppercase;letter-spacing:1px}.nav button{width:100%;border:0;background:transparent;color:#a9b8ce;text-align:left;padding:11px 12px;border-radius:10px;cursor:pointer;margin:2px 0;font-weight:500}.nav button:hover,.nav button.active{background:#17253a;color:#fff}.nav button.active{box-shadow:inset 3px 0 var(--gold)}.nav .sub{padding-left:34px;font-size:13px}.nav .group{color:#a9b8ce}.main{margin-left:302px;width:calc(100% - 302px);min-height:100vh}.topbar{height:70px;border-bottom:1px solid #1c2b43;background:#0d1727;display:flex;align-items:center;justify-content:space-between;padding:0 30px;position:sticky;top:0;z-index:5}.topbar h2{margin:0;font-size:21px}.top-actions{display:flex;gap:8px}.btn{border:1px solid #30415e;background:#15243a;color:#fff;border-radius:11px;padding:10px 15px;cursor:pointer}.btn:hover{filter:brightness(1.08)}.btn.primary{background:linear-gradient(135deg,#ffb21c,#f58a00);border:0}.btn.green{background:#0e6d4b;border-color:#158a60}.btn.purple{background:#5d35b8;border-color:#7e56df}.btn.danger{background:#5d1f2b;border-color:#8e3445}.page{display:none;padding:28px 30px;max-width:1500px;margin:auto}.page.active{display:block}.hero{background:linear-gradient(110deg,#332719,#111b31 60%);border:1px solid #4a3a21;border-radius:18px;padding:30px 32px;margin-bottom:24px}.hero h1{margin:0 0 8px;font-size:30px}.hero p{color:#9cadc5;margin:0;font-size:16px;line-height:1.5}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{background:var(--panel);border:1px solid #243550;border-radius:16px;padding:20px}.card h3{margin:8px 0}.card p{color:var(--muted);line-height:1.5}.dept{cursor:pointer;transition:.2s}.dept:hover{transform:translateY(-3px);border-color:#425a7e}.icon{font-size:27px}.money-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.stat{background:var(--panel);border:1px solid #243550;border-radius:16px;padding:18px 20px;min-height:112px;display:flex;align-items:center;gap:18px;position:relative;overflow:hidden}.stat small{color:#91a7c5;font-size:14px;line-height:1.25;display:block}.stat strong{display:block;font-size:24px;margin-top:8px;color:#f5f7fb}.stat-icon{width:68px;height:68px;min-width:68px;border-radius:15px;display:grid;place-items:center;color:#fff;box-shadow:0 8px 20px rgba(0,0,0,.18)}.stat-icon svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.icon-green{background:linear-gradient(135deg,#12c98a,#08a978)}.icon-purple{background:linear-gradient(135deg,#9752ff,#7139e8)}.icon-orange{background:linear-gradient(135deg,#ffad13,#ed8500)}.icon-blue{background:linear-gradient(135deg,#2f70ef,#1954d8)}.icon-teal{background:linear-gradient(135deg,#17b8a7,#07998e)}.stat:nth-child(3n){border-top:3px solid var(--gold)}.stat:nth-child(3n){border-top:3px solid var(--gold)}.section-title{margin:30px 0 14px}.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.adbox{min-height:120px;border:1px dashed #435575;border-radius:14px;background:repeating-linear-gradient(45deg,#0e1a2c,#0e1a2c 10px,#101f34 10px,#101f34 20px);display:grid;place-items:center;text-align:center;color:#8ea0b9;padding:20px}.adbox b{color:#ffb52e;display:block;margin-bottom:5px}.video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.video{background:var(--panel);border:1px solid #243550;border-radius:16px;overflow:hidden}.video iframe{width:100%;aspect-ratio:16/9;border:0;display:block}.video-body{padding:14px}.search{display:flex;gap:10px;margin:15px 0}.search input{flex:1;background:#0d1727;border:1px solid #2b3d59;color:#fff;border-radius:10px;padding:12px}.pill{display:inline-block;padding:5px 9px;border-radius:999px;background:#1a2a42;color:#b9c7db;font-size:12px}.creator-grid,.shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.creator-card{background:var(--panel);border:1px solid #2c3c59;border-radius:16px;padding:20px}.creator-card .big{font-size:36px}.notice{padding:14px 16px;border-radius:12px;background:#102b3c;border:1px solid #20546e;color:#b7d8e9;margin:15px 0}.warning{background:#3a2810;border-color:#6e4c17;color:#f2d19b}.profile{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{margin:10px 0}.field label{display:block;color:#91a3bd;font-size:13px;margin-bottom:6px}.field input,.field select{width:100%;background:#0c1626;border:1px solid #2b3c58;color:#fff;padding:11px;border-radius:9px}.table-wrap{overflow:auto;background:var(--panel);border:1px solid #243550;border-radius:15px}.table{width:100%;border-collapse:collapse;min-width:700px}.table th,.table td{padding:13px 15px;border-bottom:1px solid #243550;text-align:left}.table th{color:#a9b9d0;background:#15243b}.table td{color:#dce4ef}.empty{padding:30px;text-align:center;color:#8192aa}.toast{position:fixed;right:25px;bottom:25px;background:#12243a;border:1px solid #385170;padding:14px 18px;border-radius:10px;display:none;z-index:20;max-width:360px}.footer-note{font-size:12px;color:#6e819d;margin-top:18px;line-height:1.5}.kicker{color:var(--gold);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.8px}.income-actions .card{min-height:205px}.mini-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.success{color:#66e2aa}.creator-kick{border:1px solid #2f8b72;background:linear-gradient(135deg,#0e2d29,#12243a)}.creator-kick h3{color:#79e7bd}.id-box{font-size:30px;font-weight:800;color:var(--gold);letter-spacing:1px}.hidden{display:none!important}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0}button,input,select{font:inherit}.app{display:flex;min-height:100vh}.sidebar{width:302px;background:var(--side);border-right:1px solid #1c2b43;padding:16px 12px;position:fixed;left:0;top:0;bottom:0;overflow:auto}.brand{display:flex;gap:12px;align-items:center;padding:10px 10px 22px}.logo{width:52px;height:52px;border-radius:15px;background:linear-gradient(135deg,#ffb21c,#ff8b00);display:grid;place-items:center;font-size:27px;font-weight:900;box-shadow:0 8px 25px #ff9f0033}.brand b{font-size:20px;line-height:1.05}.brand span{color:#ffb52e}.member{background:#111d30;border:1px solid #253550;border-radius:16px;padding:16px;margin:0 4px 18px}.member strong{display:block;font-size:16px}.member small{color:var(--gold);font-size:14px}.nav-title{font-size:11px;color:#667893;margin:18px 8px 7px;text-transform:uppercase;letter-spacing:1px}.nav button{width:100%;border:0;background:transparent;color:#a9b8ce;text-align:left;padding:11px 12px;border-radius:10px;cursor:pointer;margin:2px 0;font-weight:500}.nav button:hover,.nav button.active{background:#17253a;color:#fff}.nav button.active{box-shadow:inset 3px 0 var(--gold)}.nav .sub{padding-left:34px;font-size:13px}.nav .group{color:#a9b8ce}.main{margin-left:302px;width:calc(100% - 302px);min-height:100vh}.topbar{height:70px;border-bottom:1px solid #1c2b43;background:#0d1727;display:flex;align-items:center;justify-content:space-between;padding:0 30px;position:sticky;top:0;z-index:5}.topbar h2{margin:0;font-size:21px}.top-actions{display:flex;gap:8px}.btn{border:1px solid #30415e;background:#15243a;color:#fff;border-radius:11px;padding:10px 15px;cursor:pointer}.btn:hover{filter:brightness(1.08)}.btn.primary{background:linear-gradient(135deg,#ffb21c,#f58a00);border:0}.btn.green{background:#0e6d4b;border-color:#158a60}.btn.purple{background:#5d35b8;border-color:#7e56df}.btn.danger{background:#5d1f2b;border-color:#8e3445}.page{display:none;padding:28px 30px;max-width:1500px;margin:auto}.page.active{display:block}.hero{background:linear-gradient(110deg,#332719,#111b31 60%);border:1px solid #4a3a21;border-radius:18px;padding:30px 32px;margin-bottom:24px}.hero h1{margin:0 0 8px;font-size:30px}.hero p{color:#9cadc5;margin:0;font-size:16px;line-height:1.5}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{background:var(--panel);border:1px solid #243550;border-radius:16px;padding:20px}.card h3{margin:8px 0}.card p{color:var(--muted);line-height:1.5}.dept{cursor:pointer;transition:.2s}.dept:hover{transform:translateY(-3px);border-color:#425a7e}.icon{font-size:27px}.money-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.stat{background:var(--panel);border:1px solid #243550;border-radius:16px;padding:18px 20px;min-height:112px;display:flex;align-items:center;gap:18px;position:relative;overflow:hidden}.stat small{color:#91a7c5;font-size:14px;line-height:1.25;display:block}.stat strong{display:block;font-size:24px;margin-top:8px;color:#f5f7fb}.stat-icon{width:68px;height:68px;min-width:68px;border-radius:15px;display:grid;place-items:center;color:#fff;box-shadow:0 8px 20px rgba(0,0,0,.18)}.stat-icon svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.icon-green{background:linear-gradient(135deg,#12c98a,#08a978)}.icon-purple{background:linear-gradient(135deg,#9752ff,#7139e8)}.icon-orange{background:linear-gradient(135deg,#ffad13,#ed8500)}.icon-blue{background:linear-gradient(135deg,#2f70ef,#1954d8)}.icon-teal{background:linear-gradient(135deg,#17b8a7,#07998e)}.stat:nth-child(3n){border-top:3px solid var(--gold)}.stat:nth-child(3n){border-top:3px solid var(--gold)}.section-title{margin:30px 0 14px}.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.adbox{min-height:120px;border:1px dashed #435575;border-radius:14px;background:repeating-linear-gradient(45deg,#0e1a2c,#0e1a2c 10px,#101f34 10px,#101f34 20px);display:grid;place-items:center;text-align:center;color:#8ea0b9;padding:20px}.adbox b{color:#ffb52e;display:block;margin-bottom:5px}.video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.video{background:var(--panel);border:1px solid #243550;border-radius:16px;overflow:hidden}.video iframe{width:100%;aspect-ratio:16/9;border:0;display:block}.video-body{padding:14px}.search{display:flex;gap:10px;margin:15px 0}.search input{flex:1;background:#0d1727;border:1px solid #2b3d59;color:#fff;border-radius:10px;padding:12px}.pill{display:inline-block;padding:5px 9px;border-radius:999px;background:#1a2a42;color:#b9c7db;font-size:12px}.creator-grid,.shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.creator-card{background:var(--panel);border:1px solid #2c3c59;border-radius:16px;padding:20px}.creator-card .big{font-size:36px}.notice{padding:14px 16px;border-radius:12px;background:#102b3c;border:1px solid #20546e;color:#b7d8e9;margin:15px 0}.warning{background:#3a2810;border-color:#6e4c17;color:#f2d19b}.profile{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{margin:10px 0}.field label{display:block;color:#91a3bd;font-size:13px;margin-bottom:6px}.field input,.field select{width:100%;background:#0c1626;border:1px solid #2b3c58;color:#fff;padding:11px;border-radius:9px}.table-wrap{overflow:auto;background:var(--panel);border:1px solid #243550;border-radius:15px}.table{width:100%;border-collapse:collapse;min-width:700px}.table th,.table td{padding:13px 15px;border-bottom:1px solid #243550;text-align:left}.table th{color:#a9b9d0;background:#15243b}.table td{color:#dce4ef}.empty{padding:30px;text-align:center;color:#8192aa}.toast{position:fixed;right:25px;bottom:25px;background:#12243a;border:1px solid #4f6788;color:#ffffff;padding:14px 18px;border-radius:12px;display:none;z-index:99999;max-width:420px;font-weight:700;line-height:1.45;box-shadow:0 12px 35px rgba(0,0,0,.35)}.footer-note{font-size:12px;color:#6e819d;margin-top:18px;line-height:1.5}.kicker{color:var(--gold);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.8px}.income-actions .card{min-height:205px}.mini-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.success{color:#66e2aa}.creator-kick{border:1px solid #2f8b72;background:linear-gradient(135deg,#0e2d29,#12243a)}.creator-kick h3{color:#79e7bd}.id-box{font-size:30px;font-weight:800;color:var(--gold);letter-spacing:1px}.hidden{display:none!important}
 .leader-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}.leader-row{display:grid;grid-template-columns:58px 1fr 120px 120px;gap:10px;align-items:center;padding:14px 12px;border-bottom:1px solid #243550}.leader-row:last-child{border-bottom:0}.rank-badge{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:#1b2c47;font-weight:800;color:#fff}.rank-badge.top{background:linear-gradient(135deg,#ffb21c,#f58a00);color:#111}.progress{height:8px;background:#0b1525;border-radius:999px;overflow:hidden;margin-top:7px}.progress span{display:block;height:100%;background:linear-gradient(90deg,#ffb21c,#ff7f00);border-radius:999px}.profile-head{display:flex;gap:18px;align-items:center;padding-bottom:18px;border-bottom:1px solid #263754;margin-bottom:18px}.avatar{width:78px;height:78px;border-radius:50%;border:3px solid var(--gold);display:grid;place-items:center;background:#0c1626;font-size:32px;overflow:hidden}.avatar img{width:100%;height:100%;object-fit:cover}.profile-form{display:grid;grid-template-columns:1fr 1fr;gap:2px 20px}.profile-form .full{grid-column:1/-1}.subnav-card{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}.subnav-card .btn{padding:9px 12px}.metric-card{background:var(--panel);border:1px solid #243550;border-radius:16px;padding:18px}.metric-card strong{font-size:26px;display:block;margin-top:7px}.investor-row{display:grid;grid-template-columns:50px 1fr 140px 130px;gap:10px;align-items:center;padding:14px;border-bottom:1px solid #243550}.investor-row:last-child{border-bottom:0}.muted{color:var(--muted)}
 @media(max-width:1150px){.leader-grid{grid-template-columns:1fr}.profile-form{grid-template-columns:1fr}.profile-form .full{grid-column:auto}.leader-row,.investor-row{grid-template-columns:48px 1fr 100px}}
 @media(max-width:1150px){.grid,.money-grid{grid-template-columns:repeat(2,1fr)}.creator-grid,.shop-grid,.three{grid-template-columns:1fr 1fr}}@media(max-width:800px){.sidebar{width:76px;padding:10px}.brand div:last-child,.member,.nav-title,.nav button span{display:none}.brand{padding:8px 4px 18px}.nav button{text-align:center;font-size:0}.nav button::first-letter{font-size:20px}.main{margin-left:76px;width:calc(100% - 76px)}.page{padding:18px}.topbar{padding:0 15px}.top-actions{display:none}.grid,.money-grid,.two,.three,.video-grid,.creator-grid,.shop-grid,.profile{grid-template-columns:1fr}.hero{padding:23px}.hero h1{font-size:25px}}
@@ -1254,13 +1254,26 @@ html.dark-mode .sona-workspace-frame-wrap{
 
             <!-- Congratulations / Success Screen (Hidden by Default) -->
             <div id="congratsScreenContainer" class="p-8 text-center space-y-6 hidden">
+                <div class="w-20 h-20 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-3xl mx-auto shadow-inner">📧</div>
+                <div class="space-y-2">
+                    <h3 class="text-2xl font-extrabold text-slate-900">Verify your Gmail</h3>
+                    <p class="text-sm font-semibold text-blue-600">One more step before you can log in.</p>
+                    <p class="text-xs text-slate-500">We sent a verification email to <b id="verifyEmailAddress">your Gmail address</b>. Open Gmail and click <b>Confirm your email address</b>. Then return here and log in.</p>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-2xl border border-blue-200 text-left text-xs text-slate-700">
+                    <b>Didn't receive it?</b><br>Check Spam / Promotions, wait a minute, or use the button below to resend the verification email.
+                </div>
+                <div class="flex gap-2">
+                    <button type="button" onclick="openGmail()" class="flex-1 py-3 rounded-xl bg-white border border-slate-300 text-slate-800 font-bold text-sm">Open Gmail</button>
+                    <button type="button" onclick="resendSignupVerification()" class="flex-1 py-3 rounded-xl bg-blue-600 text-white font-bold text-sm">Resend Email</button>
+                </div>
                 <div class="w-20 h-20 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto shadow-inner animate-bounce">
                     <i class="fa-solid fa-party-horn">🎉</i>
                 </div>
                 <div class="space-y-2">
-                    <h3 class="text-2xl font-extrabold text-slate-900">Congratulations!</h3>
-                    <p class="text-sm font-semibold text-rose-600">Thanks for being part of the Sona Family! ❤️</p>
-                    <p class="text-xs text-slate-500">Your account has been created successfully. Your sequential ID and credentials are saved.</p>
+                    <h3 class="text-2xl font-extrabold text-slate-900">Account Created!</h3>
+                    <p class="text-sm font-semibold text-rose-600">Thanks for joining SONA DAILY LIFE HUB! ❤️</p>
+                    <p class="text-xs text-slate-500">Your account and unique Member ID are saved. Please verify your Gmail before logging in.</p>
                 </div>
                 
                 <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-left space-y-2 text-xs">
@@ -1275,7 +1288,7 @@ html.dark-mode .sona-workspace-frame-wrap{
                 </div>
 
                 <button onclick="switchTab('login')" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-rose-600 to-amber-500 text-white font-bold text-sm shadow-lg shadow-rose-500/25 hover:opacity-95 transition flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-right-to-bracket"></i> Login to Your Page
+                    <i class="fa-solid fa-right-to-bracket"></i> I Verified — Login
                 </button>
             </div>
         </div>
@@ -2071,11 +2084,12 @@ function getReferralSponsorName(){
 function getReferralLink(memberId){
   const id=String(memberId||getMemberId()).trim();
   const sponsorName=getReferralSponsorName();
+  if(!id) return '';
   try{
-    const u=new URL(window.location.href);
-    u.search='';
-    u.hash='';
     if(window.location.protocol==='file:') return '';
+    // Always create a clean public signup URL. Never copy the current dashboard
+    // page/query string into the referral link.
+    const u=new URL(window.location.origin + '/');
     u.searchParams.set('ref',id);
     if(sponsorName) u.searchParams.set('refName',sponsorName);
     return u.toString();
@@ -2136,11 +2150,39 @@ function getReferralShareText(){
     ref
   ].join('\\n');
 }
-function copyReferral(){
+async function copyReferral(){
   const ref=getReferralLink();
-  if(!ref)return toast('Referral links work after the website is hosted on HTTPS.');
+  if(!ref) return toast('Your unique Member ID is not loaded yet. Please refresh the page and try again.');
   const text=getReferralShareText();
-  navigator.clipboard?.writeText(text).then(()=>toast('Referral message copied with Sponsor Name and Sponsor ID')).catch(()=>toast(text));
+
+  try{
+    if(navigator.clipboard && window.isSecureContext){
+      await navigator.clipboard.writeText(text);
+    }else{
+      const ta=document.createElement('textarea');
+      ta.value=text;
+      ta.setAttribute('readonly','');
+      ta.style.position='fixed';
+      ta.style.left='-9999px';
+      ta.style.top='0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      const ok=document.execCommand('copy');
+      ta.remove();
+      if(!ok) throw new Error('Clipboard copy was blocked');
+    }
+    toast('✓ Referral link copied. Sponsor Name and Sponsor ID are included.');
+  }catch(err){
+    console.error('Referral copy failed:',err);
+    // Last fallback: select the actual referral field so Ctrl+C works immediately.
+    const box=document.getElementById('refBox');
+    if(box){
+      box.focus();
+      box.select();
+    }
+    toast('Copy was blocked by the browser. The referral link is selected — press Ctrl+C.');
+  }
 }
 function shareLink(){
   const ref=getReferralLink();
@@ -4832,10 +4874,14 @@ document.addEventListener('keydown',function(e){
     if(button){button.disabled=true;button.dataset.oldText=button.textContent;button.textContent='Creating account…';}
 
     try{
+      const emailRedirectTo = getEmailRedirectUrl();
       const {data,error}=await db.auth.signUp({
         email,
         password,
-        options:{data:{full_name:fullName,mobile,sponsor_id:sponsorId,sponsor_name:sponsorName,referral_code:referralCode}}
+        options:{
+          emailRedirectTo,
+          data:{full_name:fullName,mobile,sponsor_id:sponsorId,sponsor_name:sponsorName,referral_code:referralCode}
+        }
       });
       if(error) throw error;
 
@@ -4852,8 +4898,9 @@ document.addEventListener('keydown',function(e){
           if(typeof window.loadSavedProfile==='function') window.loadSavedProfile();
           toastSafe('Account created successfully.');
         }else{
+          if($('verifyEmailAddress')) $('verifyEmailAddress').textContent=email;
           switchTab('congrats');
-          toastSafe('Account created. Check your email to confirm the account, then log in.');
+          toastSafe('✓ Verification email sent. Check your Gmail and click Confirm your email address.');
         }
       }
     }catch(err){
@@ -4889,7 +4936,14 @@ document.addEventListener('keydown',function(e){
       toastSafe('Welcome back!');
     }catch(err){
       console.error('Supabase login:',err);
-      alert(err?.message || 'Login failed.');
+      const msg=String(err?.message || 'Login failed.');
+      if(/email.*not.*confirm|confirm.*email/i.test(msg)){
+        if($('verifyEmailAddress')) $('verifyEmailAddress').textContent=identifier;
+        switchTab('congrats');
+        toastSafe('Please verify your Gmail first. You can resend the verification email from this screen.');
+      }else{
+        alert(msg);
+      }
     }finally{
       if(button){button.disabled=false;button.textContent=button.dataset.oldText || 'Log In to Dashboard';}
     }
@@ -4919,6 +4973,48 @@ document.addEventListener('keydown',function(e){
     }catch(err){
       console.error('Dashboard load:',err);
       showLanding();
+    }
+  };
+
+
+  db.auth.onAuthStateChange(async function(event, session){
+    if(event === 'SIGNED_IN' && session?.user){
+      try{
+        await loadProfile();
+        showDashboard();
+      }catch(err){
+        console.error('Auth state profile load:',err);
+      }
+    }
+  });
+
+  // ---------------- EMAIL VERIFICATION ----------------
+  function getEmailRedirectUrl(){
+    try{
+      return new URL(window.location.origin + window.location.pathname).toString();
+    }catch(e){
+      return window.location.origin + '/';
+    }
+  }
+
+  window.openGmail=function(){
+    window.open('https://mail.google.com/mail/u/0/#inbox','_blank','noopener,noreferrer');
+  };
+
+  window.resendSignupVerification=async function(){
+    const email=(document.getElementById('verifyEmailAddress')?.textContent || document.getElementById('signupEmailInput')?.value || '').trim();
+    if(!email || !email.includes('@')) return toastSafe('Please enter your Gmail address again.');
+    try{
+      const {error}=await db.auth.resend({
+        type:'signup',
+        email,
+        options:{emailRedirectTo:getEmailRedirectUrl()}
+      });
+      if(error) throw error;
+      toastSafe('✓ Verification email resent. Please check Gmail, Spam and Promotions.');
+    }catch(err){
+      console.error('Resend verification:',err);
+      toastSafe(err?.message || 'Could not resend the verification email. Please wait a little and try again.');
     }
   };
 
