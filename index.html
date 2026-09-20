@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4452420538906749"
+     crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- AdSense verification: publisher ca-pub-4452420538906749 -->
 <title>SONA DAILY LIFE HUB - Complete Website</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -4845,17 +4848,46 @@ document.addEventListener('keydown',function(e){
   });
 
   // ---------------- AUTH ----------------
+  const SIGNUP_COOLDOWN_MS = 65000;
+  const RESEND_COOLDOWN_MS = 65000;
+
+  function authCooldownRemaining(key, ms){
+    const now = Date.now();
+    const last = Number(sessionStorage.getItem(key) || 0);
+    const left = ms - (now - last);
+    return left > 0 ? Math.ceil(left / 1000) : 0;
+  }
+
+  function markAuthRequest(key){
+    try{ sessionStorage.setItem(key, String(Date.now())); }catch(e){}
+  }
+
+  function friendlyAuthError(err, fallback){
+    const msg = String(err?.message || fallback || 'Authentication failed.');
+    if(/rate.?limit|too many requests|429|email.*limit/i.test(msg)){
+      return 'Supabase email rate limit reached. Please wait about 1 minute before trying again. If you have already requested several emails, wait longer for the project email quota to refill, then use Resend Email once.';
+    }
+    if(/invalid login credentials/i.test(msg)){
+      return 'Invalid login credentials. If this account was deleted from Supabase Authentication, the old password will no longer work. Create the account again after the email rate limit clears.';
+    }
+    if(/already registered|user already exists/i.test(msg)){
+      return 'This email is already registered. If you have not verified it yet, use the Resend Email button instead of registering again.';
+    }
+    return msg;
+  }
+
   window.handleSignup=async function(e){
     e.preventDefault();
 
+    const cooldown = authCooldownRemaining('sona_signup_last_request', SIGNUP_COOLDOWN_MS);
+    if(cooldown) return toastSafe('Please wait '+cooldown+' seconds before trying registration again.');
+
     const fullName=val('fullNameInput');
-    const email=val('signupEmailInput');
+    const email=val('signupEmailInput').trim().toLowerCase();
     const password=$('signupPasswordInput')?.value || '';
     const confirm=$('signupConfirmPasswordInput')?.value || '';
     const mobile=(document.querySelector('#signupFormContainer input[type="tel"]')?.value || '').replace(/\D/g,'');
     const referralCode=getStoredReferral();
-    // sponsor_id is ONLY the ID of the person who referred this new user.
-    // It must not be used as the new user's own ID.
     const sponsorId=referralCode || (val('sponsorIdInput') || '').trim().toUpperCase() || null;
 
     let sponsorName='';
@@ -4872,6 +4904,7 @@ document.addEventListener('keydown',function(e){
 
     const button=e.submitter;
     if(button){button.disabled=true;button.dataset.oldText=button.textContent;button.textContent='Creating account…';}
+    markAuthRequest('sona_signup_last_request');
 
     try{
       const emailRedirectTo = getEmailRedirectUrl();
@@ -4880,13 +4913,18 @@ document.addEventListener('keydown',function(e){
         password,
         options:{
           emailRedirectTo,
-          data:{full_name:fullName,mobile,sponsor_id:sponsorId,sponsor_name:sponsorName,referral_code:referralCode}
+          data:{
+            full_name:fullName,
+            mobile,
+            sponsor_id:sponsorId,
+            sponsor_name:sponsorName,
+            referral_code:referralCode
+          }
         }
       });
       if(error) throw error;
 
       if(data.user){
-        // The DB trigger creates the user's profile and assigns the member ID.
         const displayEmail=$('displayNewEmail'), displayId=$('displayNewId');
         if(displayEmail) displayEmail.textContent=email;
         if(displayId) displayId.textContent='Assigned after account creation';
@@ -4900,12 +4938,12 @@ document.addEventListener('keydown',function(e){
         }else{
           if($('verifyEmailAddress')) $('verifyEmailAddress').textContent=email;
           switchTab('congrats');
-          toastSafe('✓ Verification email sent. Check your Gmail and click Confirm your email address.');
+          toastSafe('✓ Verification email sent. Check Gmail, Spam and Promotions, then click Confirm your email address.');
         }
       }
     }catch(err){
       console.error('Supabase signup:',err);
-      alert(err?.message || 'Could not create the account.');
+      alert(friendlyAuthError(err,'Could not create the account.'));
     }finally{
       if(button){button.disabled=false;button.textContent=button.dataset.oldText || 'Register Account';}
     }
@@ -4942,7 +4980,7 @@ document.addEventListener('keydown',function(e){
         switchTab('congrats');
         toastSafe('Please verify your Gmail first. You can resend the verification email from this screen.');
       }else{
-        alert(msg);
+        alert(friendlyAuthError(err,msg));
       }
     }finally{
       if(button){button.disabled=false;button.textContent=button.dataset.oldText || 'Log In to Dashboard';}
@@ -5002,8 +5040,13 @@ document.addEventListener('keydown',function(e){
   };
 
   window.resendSignupVerification=async function(){
-    const email=(document.getElementById('verifyEmailAddress')?.textContent || document.getElementById('signupEmailInput')?.value || '').trim();
+    const cooldown = authCooldownRemaining('sona_resend_last_request', RESEND_COOLDOWN_MS);
+    if(cooldown) return toastSafe('Please wait '+cooldown+' seconds before requesting another verification email.');
+
+    const email=(document.getElementById('verifyEmailAddress')?.textContent || document.getElementById('signupEmailInput')?.value || '').trim().toLowerCase();
     if(!email || !email.includes('@')) return toastSafe('Please enter your Gmail address again.');
+
+    markAuthRequest('sona_resend_last_request');
     try{
       const {error}=await db.auth.resend({
         type:'signup',
@@ -5014,7 +5057,7 @@ document.addEventListener('keydown',function(e){
       toastSafe('✓ Verification email resent. Please check Gmail, Spam and Promotions.');
     }catch(err){
       console.error('Resend verification:',err);
-      toastSafe(err?.message || 'Could not resend the verification email. Please wait a little and try again.');
+      alert(friendlyAuthError(err,'Could not resend the verification email. Please wait a little and try again.'));
     }
   };
 
