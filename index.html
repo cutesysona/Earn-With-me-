@@ -4555,6 +4555,39 @@ document.addEventListener('keydown',function(e){
   const normalize = v => String(v || '').trim().toLowerCase();
   const toastSafe = msg => typeof window.toast === 'function' ? window.toast(msg) : alert(msg);
 
+  // Convert Supabase email errors into clear instructions for the user.
+  function friendlyAuthError(err, fallback){
+    const raw = String((err && (err.message || err.error_description || err.error)) || fallback || 'Authentication failed.');
+    const msg = raw.toLowerCase();
+    if(/rate.?limit|too many requests|429|email.*limit|over_email_send_rate_limit/.test(msg)){
+      return 'Supabase email limit reached. Do not press Sign Up or Resend repeatedly. Wait for the limit to reset, or configure Custom SMTP in Supabase Authentication → SMTP Settings.';
+    }
+    if(/error sending confirmation email|sending confirmation email|smtp|mail provider|email service/.test(msg)){
+      return 'Supabase could not send the confirmation email. Check Authentication → SMTP Settings, Email Provider settings, and the exact Site URL/Redirect URL. The website code cannot send email without a working Supabase email provider.';
+    }
+    if(/already registered|user already exists/.test(msg)){
+      return 'This email is already registered. Use Login, or use Resend Email for the existing unverified account.';
+    }
+    if(/email not confirmed|email not verified/.test(msg)){
+      return 'Your Gmail is not verified yet. Open the confirmation email and click the verification link.';
+    }
+    if(/invalid login credentials/.test(msg)){
+      return 'The Gmail or password is incorrect. Check your details and try again.';
+    }
+    return raw;
+  }
+
+  function authCooldownLeft(key, seconds){
+    try{
+      const last=Number(sessionStorage.getItem(key)||0);
+      const left=seconds-Math.floor((Date.now()-last)/1000);
+      return left>0?left:0;
+    }catch(_e){return 0;}
+  }
+  function markAuthCooldown(key){
+    try{sessionStorage.setItem(key,String(Date.now()));}catch(_e){}
+  }
+
   // ---------------- PUBLIC COMMUNITY STATS ----------------
   // These are aggregate counts only; no private member rows are exposed.
   window.loadPublicSiteStats = async function(){
@@ -4775,6 +4808,9 @@ document.addEventListener('keydown',function(e){
     const target=(email || pendingVerificationEmail || '').trim();
     if(!target) return toastSafe('Please enter your registered Gmail address first.');
     if(verifyResendTimer) return;
+    const resendLeft=authCooldownLeft('sona_resend_email_cooldown',60);
+    if(resendLeft) return toastSafe('Please wait '+resendLeft+' seconds before requesting another email.');
+    markAuthCooldown('sona_resend_email_cooldown');
 
     const button = source === 'signup' ? $('resendSignupVerificationBtn') : $('resendLoginVerificationBtn');
     const status = source === 'signup' ? $('signupVerifyStatus') : $('verifyModalStatus');
@@ -4800,7 +4836,9 @@ document.addEventListener('keydown',function(e){
       },1000);
     }catch(err){
       console.error('Resend verification:',err);
-      if(status) status.textContent=err?.message || 'Could not resend the verification email. Please try again.';
+      const friendly=friendlyAuthError(err,'Could not resend the verification email.');
+      if(status) status.textContent=friendly;
+      alert(friendly);
       if(button){button.disabled=false;button.classList.remove('sona-resend-wait');}
     }
   }
@@ -4815,6 +4853,8 @@ document.addEventListener('keydown',function(e){
 
   window.handleSignup=async function(e){
     e.preventDefault();
+    const signupLeft=authCooldownLeft('sona_signup_email_cooldown',60);
+    if(signupLeft) return alert('Please wait '+signupLeft+' seconds before trying Sign Up again.');
 
     const fullName=val('fullNameInput');
     const email=val('signupEmailInput');
@@ -4833,6 +4873,7 @@ document.addEventListener('keydown',function(e){
 
     const button=e.submitter;
     if(button){button.disabled=true;button.dataset.oldText=button.textContent;button.textContent='Creating account…';}
+    markAuthCooldown('sona_signup_email_cooldown');
 
     try{
       const redirectTo = window.location.origin + window.location.pathname;
@@ -4868,7 +4909,7 @@ document.addEventListener('keydown',function(e){
       }
     }catch(err){
       console.error('Supabase signup:',err);
-      alert(err?.message || 'Could not create the account.');
+      alert(friendlyAuthError(err,'Could not create the account.'));
     }finally{
       if(button){button.disabled=false;button.textContent=button.dataset.oldText || 'Register Account';}
     }
@@ -4918,7 +4959,7 @@ document.addEventListener('keydown',function(e){
       if(msg.includes('email not confirmed') || msg.includes('email not verified')){
         showEmailVerificationModal(identifier,'Please verify your Gmail first.');
       }else{
-        alert(err?.message || 'Login failed. Please check your Gmail and password.');
+        alert(friendlyAuthError(err,'Login failed. Please check your Gmail and password.'));
       }
     }finally{
       if(button){button.disabled=false;button.textContent=button.dataset.oldText || 'Log In to Dashboard';}
@@ -5269,6 +5310,26 @@ document.addEventListener('keydown',function(e){
   @keyframes sonaPulse{0%,100%{opacity:1}50%{opacity:.55}}
   .sona-resend-wait{animation:sonaPulse 1.2s ease-in-out infinite}
 </style>
+
+
+<style id="sona-email-help-style">
+  .sona-email-help{margin:12px 0;padding:12px 14px;border:1px solid #f59e0b;border-radius:12px;background:#fff8e6;color:#704b00;font-size:13px;line-height:1.5}
+</style>
+<div id="sona-email-help" class="sona-email-help" hidden>
+  <strong>Email verification help:</strong><br>
+  If the confirmation email fails, configure Supabase Custom SMTP and add this exact redirect URL to Supabase Authentication → URL Configuration:<br>
+  <code id="sona-current-redirect-url"></code>
+</div>
+<script>
+(function(){
+  function showEmailHelp(){
+    var box=document.getElementById('sona-email-help');
+    var url=document.getElementById('sona-current-redirect-url');
+    if(box && url){url.textContent=window.location.origin+window.location.pathname;}
+  }
+  window.sonaShowEmailHelp=showEmailHelp;
+})();
+</script>
 
 </body>
 </html>
