@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="google-adsense-account" content="ca-pub-4452420538906749">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4452420538906749"
+     crossorigin="anonymous"></script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SONA DAILY LIFE HUB | Daily Life, Learning, Rewards & Community</title>
@@ -875,6 +879,66 @@ html.dark-mode .sona-workspace-frame-wrap{
 }
 </style>
 
+
+<style>
+/* SONA celebration enhancements */
+  .sona-congrats-shell {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(16,185,129,.16), transparent 34%),
+      radial-gradient(circle at 90% 0%, rgba(34,197,94,.12), transparent 32%),
+      #ffffff;
+  }
+  .sona-success-badge {
+    background: linear-gradient(135deg,#dcfce7,#bbf7d0);
+    border: 1px solid #86efac;
+    color: #15803d;
+    box-shadow: 0 12px 30px rgba(22,163,74,.18);
+    animation: sona-pop-in .55s cubic-bezier(.2,1.5,.4,1) both;
+  }
+  .sona-success-title {
+    background: linear-gradient(90deg,#15803d,#16a34a,#65a30d);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .sona-publisher-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .35rem .7rem;
+    border-radius: 999px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+    font-size: .72rem;
+    font-weight: 800;
+  }
+  .sona-confetti-piece {
+    position: absolute;
+    top: -18px;
+    width: 8px;
+    height: 14px;
+    border-radius: 3px;
+    pointer-events: none;
+    animation: sona-confetti-fall 1.8s ease-out forwards;
+    z-index: 20;
+  }
+  @keyframes sona-pop-in {
+    0% { transform: scale(.55) rotate(-10deg); opacity: 0; }
+    70% { transform: scale(1.12) rotate(3deg); opacity: 1; }
+    100% { transform: scale(1) rotate(0); opacity: 1; }
+  }
+  @keyframes sona-confetti-fall {
+    0% { transform: translate3d(0,0,0) rotate(0deg); opacity: 1; }
+    100% { transform: translate3d(var(--sona-x), 420px, 0) rotate(var(--sona-r)); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sona-success-badge, .sona-confetti-piece { animation: none !important; }
+  }
+</style>
+
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-rose-500 selection:text-white">
 
@@ -1221,14 +1285,16 @@ html.dark-mode .sona-workspace-frame-wrap{
             </div>
 
             <!-- Congratulations / Email Verification Screen -->
-            <div id="congratsScreenContainer" class="p-6 sm:p-8 text-center space-y-5 hidden">
-                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-rose-50 to-amber-50 text-rose-600 flex items-center justify-center text-3xl mx-auto shadow-inner">
+            <div id="congratsScreenContainer" class="sona-congrats-shell p-6 sm:p-8 text-center space-y-5 hidden">
+                <div class="sona-success-badge w-24 h-24 rounded-full flex items-center justify-center text-4xl mx-auto">
                     <span aria-hidden="true">🎉</span>
                 </div>
                 <div class="space-y-2">
-                    <h3 class="text-2xl font-extrabold text-slate-900">Congratulations!</h3>
-                    <p class="text-sm font-bold text-rose-600">Your SONA account was created successfully.</p>
-                    <p class="text-xs leading-5 text-slate-500">Please verify your Gmail before logging in. We have sent a verification email to your registered address.</p>
+                    <div class="sona-publisher-chip mx-auto"><span aria-hidden="true">✓</span> SONA ACCOUNT CREATED</div>
+<h3 class="sona-success-title text-3xl font-extrabold">Congratulations, Welcome to SONA!</h3>
+                    <p class="text-lg font-extrabold text-emerald-600">Please Verify Your Gmail ✨</p>
+                    <p class="text-sm font-bold text-slate-700">Your SONA account was created successfully.</p>
+                    <p class="text-xs leading-5 text-slate-500">We sent a verification email to your registered Gmail. You must click the verification link before you can log in and open the dashboard.</p>
                 </div>
 
                 <div class="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-left">
@@ -1236,7 +1302,7 @@ html.dark-mode .sona-workspace-frame-wrap{
                         <div class="mt-0.5 text-lg">✉️</div>
                         <div>
                             <p class="text-sm font-extrabold text-slate-900">Verify your Gmail</p>
-                            <p class="mt-1 text-xs leading-5 text-slate-600">Open your inbox (also check Spam/Promotions), find the SONA verification email, and click <b>Verify Email</b>.</p>
+                            <p class="mt-1 text-xs leading-5 text-slate-600">Open your Gmail Inbox, Spam, or Promotions folder. Find the SONA verification email and click <b>Verify Email</b>. After verification, return here and use Login.</p>
                         </div>
                     </div>
                 </div>
@@ -1250,6 +1316,18 @@ html.dark-mode .sona-workspace-frame-wrap{
                         <span class="text-slate-500">Registered Gmail:</span>
                         <span id="displayNewEmail" class="font-bold text-slate-900 text-right break-all">user@gmail.com</span>
                     </div>
+                </div>
+
+                <div class="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-left">
+                    <p class="text-xs font-extrabold text-rose-700">Did not receive the email?</p>
+                    <p class="mt-1 text-xs leading-5 text-rose-600">Click the button below to send the verification email again. Wait for the cooldown before requesting another email.</p>
+                </div>
+
+
+                <div class="text-center">
+                    <span class="sona-publisher-chip">
+                        <span aria-hidden="true">✦</span> Pradip Mandal Publisher
+                    </span>
                 </div>
 
                 <div id="signupVerifyStatus" class="text-xs font-semibold text-slate-500 min-h-[18px]"></div>
@@ -2497,6 +2575,63 @@ function closeModal() {
   if (modal) modal.classList.add('hidden');
 }
 
+
+/* SONA celebration sound and visual effects */
+function playSonaCelebrationSound() {
+  try {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+    const ctx = new AudioContextClass();
+    const now = ctx.currentTime;
+
+    const master = ctx.createGain();
+    master.gain.setValueAtTime(0.0001, now);
+    master.gain.exponentialRampToValueAtTime(0.22, now + 0.02);
+    master.gain.exponentialRampToValueAtTime(0.0001, now + 0.75);
+    master.connect(ctx.destination);
+
+    const pop = ctx.createOscillator();
+    pop.type = 'sine';
+    pop.frequency.setValueAtTime(180, now);
+    pop.frequency.exponentialRampToValueAtTime(720, now + 0.12);
+    pop.frequency.exponentialRampToValueAtTime(120, now + 0.48);
+    pop.connect(master);
+    pop.start(now);
+    pop.stop(now + 0.5);
+
+    const sparkle = ctx.createOscillator();
+    sparkle.type = 'triangle';
+    sparkle.frequency.setValueAtTime(880, now + 0.08);
+    sparkle.frequency.exponentialRampToValueAtTime(1320, now + 0.3);
+    sparkle.connect(master);
+    sparkle.start(now + 0.08);
+    sparkle.stop(now + 0.38);
+
+    window.setTimeout(() => {
+      try { ctx.close(); } catch (_) {}
+    }, 1000);
+  } catch (_) {}
+}
+
+function launchSonaConfetti() {
+  const host = document.getElementById('congratsScreenContainer');
+  if (!host || host.dataset.confettiShown === '1') return;
+  host.dataset.confettiShown = '1';
+
+  const colors = ['#16a34a', '#22c55e', '#84cc16', '#f59e0b', '#ec4899', '#3b82f6'];
+  for (let i = 0; i < 42; i++) {
+    const piece = document.createElement('span');
+    piece.className = 'sona-confetti-piece';
+    piece.style.left = `${Math.random() * 100}%`;
+    piece.style.background = colors[i % colors.length];
+    piece.style.setProperty('--sona-x', `${(Math.random() - 0.5) * 260}px`);
+    piece.style.setProperty('--sona-r', `${Math.round((Math.random() - 0.5) * 900)}deg`);
+    piece.style.animationDelay = `${Math.random() * 0.35}s`;
+    host.appendChild(piece);
+    window.setTimeout(() => piece.remove(), 2600);
+  }
+}
+
 function switchTab(type) {
   const loginBtn = document.getElementById('tabLoginBtn');
   const signupBtn = document.getElementById('tabSignupBtn');
@@ -2526,6 +2661,9 @@ function switchTab(type) {
     loginContainer.classList.add('hidden');
     signupContainer.classList.add('hidden');
     congratsContainer.classList.remove('hidden');
+    congratsContainer.dataset.confettiShown = '0';
+    playSonaCelebrationSound();
+    launchSonaConfetti();
   }
 }
 
@@ -4555,39 +4693,6 @@ document.addEventListener('keydown',function(e){
   const normalize = v => String(v || '').trim().toLowerCase();
   const toastSafe = msg => typeof window.toast === 'function' ? window.toast(msg) : alert(msg);
 
-  // Convert Supabase email errors into clear instructions for the user.
-  function friendlyAuthError(err, fallback){
-    const raw = String((err && (err.message || err.error_description || err.error)) || fallback || 'Authentication failed.');
-    const msg = raw.toLowerCase();
-    if(/rate.?limit|too many requests|429|email.*limit|over_email_send_rate_limit/.test(msg)){
-      return 'Supabase email limit reached. Do not press Sign Up or Resend repeatedly. Wait for the limit to reset, or configure Custom SMTP in Supabase Authentication → SMTP Settings.';
-    }
-    if(/error sending confirmation email|sending confirmation email|smtp|mail provider|email service/.test(msg)){
-      return 'Supabase could not send the confirmation email. Check Authentication → SMTP Settings, Email Provider settings, and the exact Site URL/Redirect URL. The website code cannot send email without a working Supabase email provider.';
-    }
-    if(/already registered|user already exists/.test(msg)){
-      return 'This email is already registered. Use Login, or use Resend Email for the existing unverified account.';
-    }
-    if(/email not confirmed|email not verified/.test(msg)){
-      return 'Your Gmail is not verified yet. Open the confirmation email and click the verification link.';
-    }
-    if(/invalid login credentials/.test(msg)){
-      return 'The Gmail or password is incorrect. Check your details and try again.';
-    }
-    return raw;
-  }
-
-  function authCooldownLeft(key, seconds){
-    try{
-      const last=Number(sessionStorage.getItem(key)||0);
-      const left=seconds-Math.floor((Date.now()-last)/1000);
-      return left>0?left:0;
-    }catch(_e){return 0;}
-  }
-  function markAuthCooldown(key){
-    try{sessionStorage.setItem(key,String(Date.now()));}catch(_e){}
-  }
-
   // ---------------- PUBLIC COMMUNITY STATS ----------------
   // These are aggregate counts only; no private member rows are exposed.
   window.loadPublicSiteStats = async function(){
@@ -4808,9 +4913,6 @@ document.addEventListener('keydown',function(e){
     const target=(email || pendingVerificationEmail || '').trim();
     if(!target) return toastSafe('Please enter your registered Gmail address first.');
     if(verifyResendTimer) return;
-    const resendLeft=authCooldownLeft('sona_resend_email_cooldown',60);
-    if(resendLeft) return toastSafe('Please wait '+resendLeft+' seconds before requesting another email.');
-    markAuthCooldown('sona_resend_email_cooldown');
 
     const button = source === 'signup' ? $('resendSignupVerificationBtn') : $('resendLoginVerificationBtn');
     const status = source === 'signup' ? $('signupVerifyStatus') : $('verifyModalStatus');
@@ -4836,9 +4938,7 @@ document.addEventListener('keydown',function(e){
       },1000);
     }catch(err){
       console.error('Resend verification:',err);
-      const friendly=friendlyAuthError(err,'Could not resend the verification email.');
-      if(status) status.textContent=friendly;
-      alert(friendly);
+      if(status) status.textContent=err?.message || 'Could not resend the verification email. Please try again.';
       if(button){button.disabled=false;button.classList.remove('sona-resend-wait');}
     }
   }
@@ -4853,8 +4953,6 @@ document.addEventListener('keydown',function(e){
 
   window.handleSignup=async function(e){
     e.preventDefault();
-    const signupLeft=authCooldownLeft('sona_signup_email_cooldown',60);
-    if(signupLeft) return alert('Please wait '+signupLeft+' seconds before trying Sign Up again.');
 
     const fullName=val('fullNameInput');
     const email=val('signupEmailInput');
@@ -4873,7 +4971,6 @@ document.addEventListener('keydown',function(e){
 
     const button=e.submitter;
     if(button){button.disabled=true;button.dataset.oldText=button.textContent;button.textContent='Creating account…';}
-    markAuthCooldown('sona_signup_email_cooldown');
 
     try{
       const redirectTo = window.location.origin + window.location.pathname;
@@ -4909,7 +5006,7 @@ document.addEventListener('keydown',function(e){
       }
     }catch(err){
       console.error('Supabase signup:',err);
-      alert(friendlyAuthError(err,'Could not create the account.'));
+      alert(err?.message || 'Could not create the account.');
     }finally{
       if(button){button.disabled=false;button.textContent=button.dataset.oldText || 'Register Account';}
     }
@@ -4959,7 +5056,7 @@ document.addEventListener('keydown',function(e){
       if(msg.includes('email not confirmed') || msg.includes('email not verified')){
         showEmailVerificationModal(identifier,'Please verify your Gmail first.');
       }else{
-        alert(friendlyAuthError(err,'Login failed. Please check your Gmail and password.'));
+        alert(err?.message || 'Login failed. Please check your Gmail and password.');
       }
     }finally{
       if(button){button.disabled=false;button.textContent=button.dataset.oldText || 'Log In to Dashboard';}
@@ -5310,26 +5407,6 @@ document.addEventListener('keydown',function(e){
   @keyframes sonaPulse{0%,100%{opacity:1}50%{opacity:.55}}
   .sona-resend-wait{animation:sonaPulse 1.2s ease-in-out infinite}
 </style>
-
-
-<style id="sona-email-help-style">
-  .sona-email-help{margin:12px 0;padding:12px 14px;border:1px solid #f59e0b;border-radius:12px;background:#fff8e6;color:#704b00;font-size:13px;line-height:1.5}
-</style>
-<div id="sona-email-help" class="sona-email-help" hidden>
-  <strong>Email verification help:</strong><br>
-  If the confirmation email fails, configure Supabase Custom SMTP and add this exact redirect URL to Supabase Authentication → URL Configuration:<br>
-  <code id="sona-current-redirect-url"></code>
-</div>
-<script>
-(function(){
-  function showEmailHelp(){
-    var box=document.getElementById('sona-email-help');
-    var url=document.getElementById('sona-current-redirect-url');
-    if(box && url){url.textContent=window.location.origin+window.location.pathname;}
-  }
-  window.sonaShowEmailHelp=showEmailHelp;
-})();
-</script>
 
 </body>
 </html>
