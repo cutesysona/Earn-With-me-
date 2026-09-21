@@ -64,10 +64,10 @@
 <style>
 
 :root{--bg:#070d19;--side:#0d1727;--panel:#111d31;--panel2:#15243b;--line:#263754;--text:#f5f7fb;--muted:#93a4bd;--gold:#ff9f00;--gold2:#ffb52e;--green:#18c77a;--blue:#2d70ff;--purple:#8d4dff;--danger:#ff5f6d}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0}button,input,select{font:inherit}.app{display:flex;min-height:100vh}.sidebar{width:302px;background:var(--side);border-right:1px solid #1c2b43;padding:16px 12px;position:fixed;left:0;top:0;bottom:0;overflow:auto}.brand{display:flex;gap:12px;align-items:center;padding:10px 10px 22px}.logo{width:52px;height:52px;border-radius:15px;background:linear-gradient(135deg,#ffb21c,#ff8b00);display:grid;place-items:center;font-size:27px;font-weight:900;box-shadow:0 8px 25px #ff9f0033}.brand b{font-size:20px;line-height:1.05}.brand span{color:#ffb52e}.member{background:#111d30;border:1px solid #253550;border-radius:16px;padding:16px;margin:0 4px 18px}.member strong{display:block;font-size:16px}.member small{color:var(--gold);font-size:14px}.nav-title{font-size:11px;color:#667893;margin:18px 8px 7px;text-transform:uppercase;letter-spacing:1px}.nav button{width:100%;border:0;background:transparent;color:#a9b8ce;text-align:left;padding:11px 12px;border-radius:10px;cursor:pointer;margin:2px 0;font-weight:500}.nav button:hover,.nav button.active{background:#17253a;color:#fff}.nav button.active{box-shadow:inset 3px 0 var(--gold)}.nav .sub{padding-left:34px;font-size:13px}.nav .group{color:#a9b8ce}.main{margin-left:302px;width:calc(100% - 302px);min-height:100vh}.topbar{height:70px;border-bottom:1px solid #1c2b43;background:#0d1727;display:flex;align-items:center;justify-content:space-between;padding:0 30px;position:sticky;top:0;z-index:5}.topbar h2{margin:0;font-size:21px}.top-actions{display:flex;gap:8px}.btn{border:1px solid #30415e;background:#15243a;color:#fff;border-radius:11px;padding:10px 15px;cursor:pointer}.btn:hover{filter:brightness(1.08)}.btn.primary{background:linear-gradient(135deg,#ffb21c,#f58a00);border:0}.btn.green{background:#0e6d4b;border-color:#158a60}.btn.purple{background:#5d35b8;border-color:#7e56df}.btn.danger{background:#5d1f2b;border-color:#8e3445}.page{display:none;padding:28px 30px;max-width:1500px;margin:auto}.page.active{display:block}.hero{background:linear-gradient(110deg,#332719,#111b31 60%);border:1px solid #4a3a21;border-radius:18px;padding:30px 32px;margin-bottom:24px}.hero h1{margin:0 0 8px;font-size:30px}.hero p{color:#9cadc5;margin:0;font-size:16px;line-height:1.5}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{background:var(--panel);border:1px solid #243550;border-radius:16px;padding:20px}.card h3{margin:8px 0}.card p{color:var(--muted);line-height:1.5}.dept{cursor:pointer;transition:.2s}.dept:hover{transform:translateY(-3px);border-color:#425a7e}.icon{font-size:27px}.money-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.stat{background:var(--panel);border:1px solid #243550;border-radius:16px;padding:18px 20px;min-height:112px;display:flex;align-items:center;gap:18px;position:relative;overflow:hidden}.stat small{color:#91a7c5;font-size:14px;line-height:1.25;display:block}.stat strong{display:block;font-size:24px;margin-top:8px;color:#f5f7fb}.stat-icon{width:68px;height:68px;min-width:68px;border-radius:15px;display:grid;place-items:center;color:#fff;box-shadow:0 8px 20px rgba(0,0,0,.18)}.stat-icon svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.icon-green{background:linear-gradient(135deg,#12c98a,#08a978)}.icon-purple{background:linear-gradient(135deg,#9752ff,#7139e8)}.icon-orange{background:linear-gradient(135deg,#ffad13,#ed8500)}.icon-blue{background:linear-gradient(135deg,#2f70ef,#1954d8)}.icon-teal{background:linear-gradient(135deg,#17b8a7,#07998e)}.stat:nth-child(3n){border-top:3px solid var(--gold)}.stat:nth-child(3n){border-top:3px solid var(--gold)}.section-title{margin:30px 0 14px}.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.adbox{min-height:120px;border:1px dashed #435575;border-radius:14px;background:repeating-linear-gradient(45deg,#0e1a2c,#0e1a2c 10px,#101f34 10px,#101f34 20px);display:grid;place-items:center;text-align:center;color:#8ea0b9;padding:20px}.adbox b{color:#ffb52e;display:block;margin-bottom:5px}.video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.video{background:var(--panel);border:1px solid #243550;border-radius:16px;overflow:hidden}.video iframe{width:100%;aspect-ratio:16/9;border:0;display:block}.video-body{padding:14px}.search{display:flex;gap:10px;margin:15px 0}.search input{flex:1;background:#0d1727;border:1px solid #2b3d59;color:#fff;border-radius:10px;padding:12px}.pill{display:inline-block;padding:5px 9px;border-radius:999px;background:#1a2a42;color:#b9c7db;font-size:12px}.creator-grid,.shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.creator-card{background:var(--panel);border:1px solid #2c3c59;border-radius:16px;padding:20px}.creator-card .big{font-size:36px}.notice{padding:14px 16px;border-radius:12px;background:#102b3c;border:1px solid #20546e;color:#b7d8e9;margin:15px 0}.warning{background:#3a2810;border-color:#6e4c17;color:#f2d19b}.profile{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{margin:10px 0}.field label{display:block;color:#91a3bd;font-size:13px;margin-bottom:6px}.field input,.field select{width:100%;background:#0c1626;border:1px solid #2b3c58;color:#fff;padding:11px;border-radius:9px}.table-wrap{overflow:auto;background:var(--panel);border:1px solid #243550;border-radius:15px}.table{width:100%;border-collapse:collapse;min-width:700px}.table th,.table td{padding:13px 15px;border-bottom:1px solid #243550;text-align:left}.table th{color:#a9b9d0;background:#15243b}.table td{color:#dce4ef}.empty{padding:30px;text-align:center;color:#8192aa}.toast{position:fixed;right:25px;bottom:25px;background:#12243a;border:1px solid #385170;padding:14px 18px;border-radius:10px;display:none;z-index:20;max-width:360px}.footer-note{font-size:12px;color:#6e819d;margin-top:18px;line-height:1.5}.kicker{color:var(--gold);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.8px}.income-actions .card{min-height:205px}.mini-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.success{color:#66e2aa}.creator-kick{border:1px solid #2f8b72;background:linear-gradient(135deg,#0e2d29,#12243a)}.creator-kick h3{color:#79e7bd}.id-box{font-size:30px;font-weight:800;color:var(--gold);letter-spacing:1px}.hidden{display:none!important}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0}button,input,select{font:inherit}.app{display:flex;min-height:100vh}.sidebar{width:302px;background:var(--side);border-right:1px solid #1c2b43;padding:16px 12px;position:fixed;left:0;top:0;bottom:0;overflow:auto}.brand{display:flex;gap:12px;align-items:center;padding:10px 10px 22px}.logo{width:52px;height:52px;border-radius:15px;background:linear-gradient(135deg,#ffb21c,#ff8b00);display:grid;place-items:center;font-size:27px;font-weight:900;box-shadow:0 8px 25px #ff9f0033}.brand b{font-size:20px;line-height:1.05}.brand span{color:#ffb52e}.member{background:#111d30;border:1px solid #253550;border-radius:16px;padding:16px;margin:0 4px 18px}.member strong{display:block;font-size:16px}.member small{color:var(--gold);font-size:14px}.nav-title{font-size:11px;color:#667893;margin:18px 8px 7px;text-transform:uppercase;letter-spacing:1px}.nav button{width:100%;border:0;background:transparent;color:#a9b8ce;text-align:left;padding:11px 12px;border-radius:10px;cursor:pointer;margin:2px 0;font-weight:500}.nav button:hover,.nav button.active{background:#17253a;color:#fff}.nav button.active{box-shadow:inset 3px 0 var(--gold)}.nav .sub{padding-left:34px;font-size:13px}.nav .group{color:#a9b8ce}.main{margin-left:302px;width:calc(100% - 302px);min-height:100vh}.topbar{height:70px;border-bottom:1px solid #1c2b43;background:#0d1727;display:flex;align-items:center;justify-content:space-between;padding:0 30px;position:sticky;top:0;z-index:5}.topbar h2{margin:0;font-size:21px}.top-actions{display:flex;gap:8px}.btn{border:1px solid #30415e;background:#15243a;color:#fff;border-radius:11px;padding:10px 15px;cursor:pointer}.btn:hover{filter:brightness(1.08)}.btn.primary{background:linear-gradient(135deg,#ffb21c,#f58a00);border:0}.btn.green{background:#0e6d4b;border-color:#158a60}.btn.purple{background:#5d35b8;border-color:#7e56df}.btn.danger{background:#5d1f2b;border-color:#8e3445}.page{display:none;padding:28px 30px;max-width:1500px;margin:auto}.page.active{display:block}.hero{background:linear-gradient(110deg,#332719,#111b31 60%);border:1px solid #4a3a21;border-radius:18px;padding:30px 32px;margin-bottom:24px}.hero h1{margin:0 0 8px;font-size:30px}.hero p{color:#9cadc5;margin:0;font-size:16px;line-height:1.5}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.public-dashboard-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:0 0 24px}.public-dashboard-stats .stat{min-height:104px}.public-dashboard-stats .stat-foot{display:block;margin-top:5px;font-size:11px;color:var(--muted)}.public-dashboard-stats .live-now{border-top:3px solid #22c55e}.public-dashboard-stats .today-joined{border-top:3px solid #f59e0b}.public-dashboard-stats .total-users{border-top:3px solid #3b82f6}.card{background:var(--panel);border:1px solid #243550;border-radius:16px;padding:20px}.card h3{margin:8px 0}.card p{color:var(--muted);line-height:1.5}.dept{cursor:pointer;transition:.2s}.dept:hover{transform:translateY(-3px);border-color:#425a7e}.icon{font-size:27px}.money-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.stat{background:var(--panel);border:1px solid #243550;border-radius:16px;padding:18px 20px;min-height:112px;display:flex;align-items:center;gap:18px;position:relative;overflow:hidden}.stat small{color:#91a7c5;font-size:14px;line-height:1.25;display:block}.stat strong{display:block;font-size:24px;margin-top:8px;color:#f5f7fb}.stat-icon{width:68px;height:68px;min-width:68px;border-radius:15px;display:grid;place-items:center;color:#fff;box-shadow:0 8px 20px rgba(0,0,0,.18)}.stat-icon svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.icon-green{background:linear-gradient(135deg,#12c98a,#08a978)}.icon-purple{background:linear-gradient(135deg,#9752ff,#7139e8)}.icon-orange{background:linear-gradient(135deg,#ffad13,#ed8500)}.icon-blue{background:linear-gradient(135deg,#2f70ef,#1954d8)}.icon-teal{background:linear-gradient(135deg,#17b8a7,#07998e)}.stat:nth-child(3n){border-top:3px solid var(--gold)}.stat:nth-child(3n){border-top:3px solid var(--gold)}.section-title{margin:30px 0 14px}.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.adbox{min-height:120px;border:1px dashed #435575;border-radius:14px;background:repeating-linear-gradient(45deg,#0e1a2c,#0e1a2c 10px,#101f34 10px,#101f34 20px);display:grid;place-items:center;text-align:center;color:#8ea0b9;padding:20px}.adbox b{color:#ffb52e;display:block;margin-bottom:5px}.video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.video{background:var(--panel);border:1px solid #243550;border-radius:16px;overflow:hidden}.video iframe{width:100%;aspect-ratio:16/9;border:0;display:block}.video-body{padding:14px}.search{display:flex;gap:10px;margin:15px 0}.search input{flex:1;background:#0d1727;border:1px solid #2b3d59;color:#fff;border-radius:10px;padding:12px}.pill{display:inline-block;padding:5px 9px;border-radius:999px;background:#1a2a42;color:#b9c7db;font-size:12px}.creator-grid,.shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.creator-card{background:var(--panel);border:1px solid #2c3c59;border-radius:16px;padding:20px}.creator-card .big{font-size:36px}.notice{padding:14px 16px;border-radius:12px;background:#102b3c;border:1px solid #20546e;color:#b7d8e9;margin:15px 0}.warning{background:#3a2810;border-color:#6e4c17;color:#f2d19b}.profile{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{margin:10px 0}.field label{display:block;color:#91a3bd;font-size:13px;margin-bottom:6px}.field input,.field select{width:100%;background:#0c1626;border:1px solid #2b3c58;color:#fff;padding:11px;border-radius:9px}.table-wrap{overflow:auto;background:var(--panel);border:1px solid #243550;border-radius:15px}.table{width:100%;border-collapse:collapse;min-width:700px}.table th,.table td{padding:13px 15px;border-bottom:1px solid #243550;text-align:left}.table th{color:#a9b9d0;background:#15243b}.table td{color:#dce4ef}.empty{padding:30px;text-align:center;color:#8192aa}.toast{position:fixed;right:25px;bottom:25px;background:#12243a;border:1px solid #385170;padding:14px 18px;border-radius:10px;display:none;z-index:20;max-width:360px}.footer-note{font-size:12px;color:#6e819d;margin-top:18px;line-height:1.5}.kicker{color:var(--gold);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.8px}.income-actions .card{min-height:205px}.mini-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.success{color:#66e2aa}.creator-kick{border:1px solid #2f8b72;background:linear-gradient(135deg,#0e2d29,#12243a)}.creator-kick h3{color:#79e7bd}.id-box{font-size:30px;font-weight:800;color:var(--gold);letter-spacing:1px}.hidden{display:none!important}
 .leader-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}.leader-row{display:grid;grid-template-columns:58px 1fr 120px 120px;gap:10px;align-items:center;padding:14px 12px;border-bottom:1px solid #243550}.leader-row:last-child{border-bottom:0}.rank-badge{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:#1b2c47;font-weight:800;color:#fff}.rank-badge.top{background:linear-gradient(135deg,#ffb21c,#f58a00);color:#111}.progress{height:8px;background:#0b1525;border-radius:999px;overflow:hidden;margin-top:7px}.progress span{display:block;height:100%;background:linear-gradient(90deg,#ffb21c,#ff7f00);border-radius:999px}.profile-head{display:flex;gap:18px;align-items:center;padding-bottom:18px;border-bottom:1px solid #263754;margin-bottom:18px}.avatar{width:78px;height:78px;border-radius:50%;border:3px solid var(--gold);display:grid;place-items:center;background:#0c1626;font-size:32px;overflow:hidden}.avatar img{width:100%;height:100%;object-fit:cover}.profile-form{display:grid;grid-template-columns:1fr 1fr;gap:2px 20px}.profile-form .full{grid-column:1/-1}.subnav-card{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}.subnav-card .btn{padding:9px 12px}.metric-card{background:var(--panel);border:1px solid #243550;border-radius:16px;padding:18px}.metric-card strong{font-size:26px;display:block;margin-top:7px}.investor-row{display:grid;grid-template-columns:50px 1fr 140px 130px;gap:10px;align-items:center;padding:14px;border-bottom:1px solid #243550}.investor-row:last-child{border-bottom:0}.muted{color:var(--muted)}
 @media(max-width:1150px){.leader-grid{grid-template-columns:1fr}.profile-form{grid-template-columns:1fr}.profile-form .full{grid-column:auto}.leader-row,.investor-row{grid-template-columns:48px 1fr 100px}}
-@media(max-width:1150px){.grid,.money-grid{grid-template-columns:repeat(2,1fr)}.creator-grid,.shop-grid,.three{grid-template-columns:1fr 1fr}}@media(max-width:800px){.sidebar{width:76px;padding:10px}.brand div:last-child,.member,.nav-title,.nav button span{display:none}.brand{padding:8px 4px 18px}.nav button{text-align:center;font-size:0}.nav button::first-letter{font-size:20px}.main{margin-left:76px;width:calc(100% - 76px)}.page{padding:18px}.topbar{padding:0 15px}.top-actions{display:none}.grid,.money-grid,.two,.three,.video-grid,.creator-grid,.shop-grid,.profile{grid-template-columns:1fr}.hero{padding:23px}.hero h1{font-size:25px}}
+@media(max-width:1150px){.grid,.money-grid{grid-template-columns:repeat(2,1fr)}.public-dashboard-stats{grid-template-columns:1fr}.creator-grid,.shop-grid,.three{grid-template-columns:1fr 1fr}}@media(max-width:800px){.sidebar{width:76px;padding:10px}.brand div:last-child,.member,.nav-title,.nav button span{display:none}.brand{padding:8px 4px 18px}.nav button{text-align:center;font-size:0}.nav button::first-letter{font-size:20px}.main{margin-left:76px;width:calc(100% - 76px)}.page{padding:18px}.topbar{padding:0 15px}.top-actions{display:none}.grid,.money-grid,.two,.three,.video-grid,.creator-grid,.shop-grid,.profile{grid-template-columns:1fr}.hero{padding:23px}.hero h1{font-size:25px}}
 
 .deposit-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}
 .payment-details{background:linear-gradient(135deg,#13213a,#0f1b2d);border:1px solid #31506f;border-radius:16px;padding:22px}
@@ -990,6 +990,40 @@ html.dark-mode .sona-workspace-frame-wrap{
         </div>
     </section>
 
+    <!-- Live Community Statistics -->
+    <section id="communityStats" class="py-10 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-5">
+                <div>
+                    <span class="text-rose-600 text-xs font-extrabold uppercase tracking-widest">Live Community</span>
+                    <h2 class="text-2xl font-extrabold text-slate-900 mt-1">SONA DAILY LIFE HUB Members</h2>
+                    <p class="text-slate-500 text-sm mt-1">Live website statistics • automatically refreshed every 30 seconds</p>
+                </div>
+                <div class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold w-fit">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span id="landingStatsStatus">Live</span>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="rounded-2xl p-5 bg-slate-900 text-white shadow-lg">
+                    <div class="text-xs uppercase tracking-widest text-slate-400 font-bold">Active Users Now</div>
+                    <div id="landingActiveUsers" class="text-3xl font-extrabold mt-2">0</div>
+                    <div class="text-xs text-emerald-400 mt-1">Online within the last 5 minutes</div>
+                </div>
+                <div class="rounded-2xl p-5 bg-gradient-to-br from-rose-600 to-amber-500 text-white shadow-lg">
+                    <div class="text-xs uppercase tracking-widest text-white/80 font-bold">Joined Today</div>
+                    <div id="landingTodayJoined" class="text-3xl font-extrabold mt-2">0</div>
+                    <div class="text-xs text-white/90 mt-1">New members registered today</div>
+                </div>
+                <div class="rounded-2xl p-5 bg-white border border-slate-200 shadow-lg">
+                    <div class="text-xs uppercase tracking-widest text-slate-500 font-bold">Total Users</div>
+                    <div id="landingTotalUsers" class="text-3xl font-extrabold mt-2 text-slate-900">0</div>
+                    <div class="text-xs text-slate-500 mt-1">Total registered SONA members</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- My Channels & Social Section -->
     <section id="channels" class="py-20 bg-slate-100 border-y border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1114,6 +1148,12 @@ html.dark-mode .sona-workspace-frame-wrap{
                     <h3 class="text-2xl font-extrabold text-slate-900">Welcome Back</h3>
                     <p class="text-xs text-slate-500 mt-1">Access your Sona Daily Life Hub Dashboard</p>
                 </div>
+                <div class="grid grid-cols-3 gap-2 rounded-2xl bg-slate-50 border border-slate-200 p-3 text-center">
+                    <div><div class="text-[10px] uppercase tracking-wide font-bold text-slate-400">Active</div><div id="loginActiveUsers" class="text-lg font-extrabold text-emerald-600">0</div></div>
+                    <div><div class="text-[10px] uppercase tracking-wide font-bold text-slate-400">Joined Today</div><div id="loginTodayJoined" class="text-lg font-extrabold text-rose-600">0</div></div>
+                    <div><div class="text-[10px] uppercase tracking-wide font-bold text-slate-400">Total Users</div><div id="loginTotalUsers" class="text-lg font-extrabold text-slate-900">0</div></div>
+                </div>
+                <div class="text-center text-[10px] font-semibold text-slate-400">Live member count • refreshes automatically</div>
                 <form onsubmit="handleLogin(event)" class="space-y-4">
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Gmail or Username</label>
@@ -1180,30 +1220,48 @@ html.dark-mode .sona-workspace-frame-wrap{
                 </form>
             </div>
 
-            <!-- Congratulations / Success Screen (Hidden by Default) -->
-            <div id="congratsScreenContainer" class="p-8 text-center space-y-6 hidden">
-                <div class="w-20 h-20 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto shadow-inner animate-bounce">
-                    <i class="fa-solid fa-party-horn">🎉</i>
+            <!-- Congratulations / Email Verification Screen -->
+            <div id="congratsScreenContainer" class="p-6 sm:p-8 text-center space-y-5 hidden">
+                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-rose-50 to-amber-50 text-rose-600 flex items-center justify-center text-3xl mx-auto shadow-inner">
+                    <span aria-hidden="true">🎉</span>
                 </div>
                 <div class="space-y-2">
                     <h3 class="text-2xl font-extrabold text-slate-900">Congratulations!</h3>
-                    <p class="text-sm font-semibold text-rose-600">Thanks for being part of the Sona Family! ❤️</p>
-                    <p class="text-xs text-slate-500">Your account has been created successfully. Your sequential ID and credentials are saved.</p>
+                    <p class="text-sm font-bold text-rose-600">Your SONA account was created successfully.</p>
+                    <p class="text-xs leading-5 text-slate-500">Please verify your Gmail before logging in. We have sent a verification email to your registered address.</p>
                 </div>
-                
-                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-left space-y-2 text-xs">
-                    <div class="flex justify-between">
-                        <span class="text-slate-500">Your Assigned ID:</span>
-                        <span id="displayNewId" class="font-bold text-slate-900">SONA001</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="text-slate-500">Registered Gmail:</span>
-                        <span id="displayNewEmail" class="font-bold text-slate-900">user@gmail.com</span>
+
+                <div class="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-left">
+                    <div class="flex items-start gap-3">
+                        <div class="mt-0.5 text-lg">✉️</div>
+                        <div>
+                            <p class="text-sm font-extrabold text-slate-900">Verify your Gmail</p>
+                            <p class="mt-1 text-xs leading-5 text-slate-600">Open your inbox (also check Spam/Promotions), find the SONA verification email, and click <b>Verify Email</b>.</p>
+                        </div>
                     </div>
                 </div>
 
-                <button onclick="switchTab('login')" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-rose-600 to-amber-500 text-white font-bold text-sm shadow-lg shadow-rose-500/25 hover:opacity-95 transition flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-right-to-bracket"></i> Login to Your Page
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-left space-y-2 text-xs">
+                    <div class="flex justify-between gap-4">
+                        <span class="text-slate-500">Your Assigned ID:</span>
+                        <span id="displayNewId" class="font-bold text-slate-900 text-right">SONA001</span>
+                    </div>
+                    <div class="flex justify-between gap-4">
+                        <span class="text-slate-500">Registered Gmail:</span>
+                        <span id="displayNewEmail" class="font-bold text-slate-900 text-right break-all">user@gmail.com</span>
+                    </div>
+                </div>
+
+                <div id="signupVerifyStatus" class="text-xs font-semibold text-slate-500 min-h-[18px]"></div>
+
+                <button id="resendSignupVerificationBtn" onclick="resendSignupVerification()" class="w-full py-3.5 rounded-xl border border-slate-300 bg-white text-slate-800 font-bold text-sm hover:bg-slate-50 transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-rotate-right"></i> Resend Verification Email
+                </button>
+                <button onclick="openGmail();" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-rose-600 to-amber-500 text-white font-bold text-sm shadow-lg shadow-rose-500/20 hover:opacity-95 transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-envelope-open-text"></i> Open Gmail
+                </button>
+                <button onclick="switchTab('login')" class="w-full py-3 text-slate-500 hover:text-slate-800 font-bold text-sm transition">
+                    Back to Login
                 </button>
             </div>
         </div>
@@ -1261,6 +1319,11 @@ html.dark-mode .sona-workspace-frame-wrap{
 
 <section id="home" class="page active">
  <div class="hero"><div class="kicker">SONA DAILY LIFE HUB</div><h1>One Place for Your Daily Life</h1><p>Watch & Learn, Instagram Reels, Shopping, Creator tools and your complete personal income account.</p><div class="mini-actions"><button class="btn primary" onclick="showPage('watch')">▶ Watch & Learn</button><button class="btn" onclick="showPage('creator')">🎥 Become a Creator & Make Money</button></div></div>
+ <div class="public-dashboard-stats">
+   <div class="stat live-now"><div class="stat-icon icon-green">🟢</div><div><small>Active Users Now</small><strong id="dashActiveUsers">0</strong><span class="stat-foot">Active within 5 minutes</span></div></div>
+   <div class="stat today-joined"><div class="stat-icon icon-orange">👋</div><div><small>Joined Today</small><strong id="dashTodayJoined">0</strong><span class="stat-foot">New members today</span></div></div>
+   <div class="stat total-users"><div class="stat-icon icon-blue">👥</div><div><small>Total Users</small><strong id="dashTotalUsers">0</strong><span class="stat-foot">Registered SONA members</span></div></div>
+ </div>
  <div class="grid">
   <div class="card dept" onclick="showPage('income')"><div class="icon">💰</div><h3>My Income</h3><p>All deposits, wallet balances, payouts, referrals and creator/shopping income.</p></div>
   <div class="card dept" onclick="showPage('watch')"><div class="icon">▶️</div><h3>Watch & Learn</h3><p>Search and watch YouTube content. Website ads can appear around the player.</p></div>
@@ -1978,6 +2041,7 @@ function showPage(id,btn){
   document.getElementById('pageTitle').textContent=pages[id]||'SONA DAILY LIFE HUB';
   document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
   if(btn)btn.classList.add('active');
+  if(id==='home'&&typeof window.loadPublicSiteStats==='function') window.loadPublicSiteStats();
   if(id==='income'&&typeof refreshIncome==='function')refreshIncome();
   if(id==='payment-history'&&typeof renderPaymentHistory==='function')renderPaymentHistory();
   if((id==='withdrawal-panel'||id==='account')&&typeof updateWithdrawalGate==='function')updateWithdrawalGate();
@@ -4491,6 +4555,55 @@ document.addEventListener('keydown',function(e){
   const normalize = v => String(v || '').trim().toLowerCase();
   const toastSafe = msg => typeof window.toast === 'function' ? window.toast(msg) : alert(msg);
 
+  // ---------------- PUBLIC COMMUNITY STATS ----------------
+  // These are aggregate counts only; no private member rows are exposed.
+  window.loadPublicSiteStats = async function(){
+    try{
+      const {data,error}=await db.rpc('get_public_site_stats');
+      if(error) throw error;
+      const row=Array.isArray(data) ? (data[0] || {}) : (data || {});
+      const active=Number(row.active_users || 0);
+      const today=Number(row.today_joined || 0);
+      const total=Number(row.total_users || 0);
+      ['landingActiveUsers','loginActiveUsers','dashActiveUsers'].forEach(id=>{if($(id)) $(id).textContent=active.toLocaleString('en-IN');});
+      ['landingTodayJoined','loginTodayJoined','dashTodayJoined'].forEach(id=>{if($(id)) $(id).textContent=today.toLocaleString('en-IN');});
+      ['landingTotalUsers','loginTotalUsers','dashTotalUsers'].forEach(id=>{if($(id)) $(id).textContent=total.toLocaleString('en-IN');});
+      if($('landingStatsStatus')) $('landingStatsStatus').textContent='Live • updated just now';
+    }catch(err){
+      console.warn('Community stats:',err?.message || err);
+      if($('landingStatsStatus')) $('landingStatsStatus').textContent='Live stats temporarily unavailable';
+    }
+  };
+
+  window.touchUserPresence = async function(){
+    try{
+      const {error}=await db.rpc('touch_user_presence');
+      if(error) console.warn('Presence update:',error.message);
+    }catch(err){
+      console.warn('Presence update:',err?.message || err);
+    }
+  };
+
+  // Public stats are safe to show on the landing/login page because the SQL
+  // RPC returns aggregate counts only.
+  window.loadPublicSiteStats();
+  setInterval(function(){
+    if(typeof window.loadPublicSiteStats==='function') window.loadPublicSiteStats();
+  },30000);
+
+  // Heartbeat: a logged-in account is considered active when it sends a
+  // presence update. The database counts a user active for 5 minutes.
+  setInterval(async function(){
+    if(document.hidden) return;
+    try{
+      const {data:{session}}=await db.auth.getSession();
+      if(session?.user && typeof window.touchUserPresence==='function'){
+        await window.touchUserPresence();
+        if(typeof window.loadPublicSiteStats==='function') window.loadPublicSiteStats();
+      }
+    }catch(err){ console.warn('Presence heartbeat:',err?.message || err); }
+  },60000);
+
   async function currentUser(){
     const {data:{user},error}=await db.auth.getUser();
     if(error) throw error;
@@ -4629,6 +4742,77 @@ document.addEventListener('keydown',function(e){
   });
 
   // ---------------- AUTH ----------------
+  let pendingVerificationEmail = '';
+  let verifyResendTimer = null;
+
+  function isEmailVerified(user){
+    return !!(user && (user.email_confirmed_at || user.confirmed_at));
+  }
+
+  function showEmailVerificationModal(email, message){
+    pendingVerificationEmail = (email || '').trim();
+    const modal = $('emailVerificationModal');
+    const emailEl = $('verifyModalEmail');
+    const statusEl = $('verifyModalStatus');
+    if(emailEl) emailEl.textContent = pendingVerificationEmail || 'your registered email';
+    if(statusEl) statusEl.textContent = message || 'Please verify your Gmail before logging in.';
+    if(modal){
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+  }
+
+  window.closeEmailVerificationModal=function(){
+    const modal=$('emailVerificationModal');
+    if(modal){modal.classList.add('hidden');modal.classList.remove('flex');}
+  };
+
+  window.openGmail=function(){
+    window.open('https://mail.google.com/mail/u/0/#inbox','_blank','noopener');
+  };
+
+  async function resendVerification(email, source){
+    const target=(email || pendingVerificationEmail || '').trim();
+    if(!target) return toastSafe('Please enter your registered Gmail address first.');
+    if(verifyResendTimer) return;
+
+    const button = source === 'signup' ? $('resendSignupVerificationBtn') : $('resendLoginVerificationBtn');
+    const status = source === 'signup' ? $('signupVerifyStatus') : $('verifyModalStatus');
+    if(button){button.disabled=true;button.classList.add('sona-resend-wait');}
+    if(status) status.textContent='Sending a new verification email…';
+
+    try{
+      const {error}=await db.auth.resend({type:'signup',email:target});
+      if(error) throw error;
+      if(status) status.textContent='Verification email sent. Please check your Inbox, Spam, and Promotions.';
+      toastSafe('Verification email sent successfully.');
+
+      let seconds=30;
+      const original = button ? (source === 'signup' ? '↻ Resend Verification Email' : '↻ Resend Email') : '';
+      if(button) button.innerHTML = '<i class="fa-solid fa-clock"></i> Resend available in 30s';
+      verifyResendTimer=setInterval(function(){
+        seconds -= 1;
+        if(button) button.innerHTML='<i class="fa-solid fa-clock"></i> Resend available in '+seconds+'s';
+        if(seconds<=0){
+          clearInterval(verifyResendTimer); verifyResendTimer=null;
+          if(button){button.disabled=false;button.classList.remove('sona-resend-wait');button.innerHTML=source==='signup'?'<i class="fa-solid fa-rotate-right"></i> Resend Verification Email':'<i class="fa-solid fa-rotate-right mr-1"></i> Resend Email';}
+        }
+      },1000);
+    }catch(err){
+      console.error('Resend verification:',err);
+      if(status) status.textContent=err?.message || 'Could not resend the verification email. Please try again.';
+      if(button){button.disabled=false;button.classList.remove('sona-resend-wait');}
+    }
+  }
+
+  window.resendSignupVerification=function(){
+    resendVerification($('displayNewEmail')?.textContent || '', 'signup');
+  };
+
+  window.resendLoginVerification=function(){
+    resendVerification($('loginEmail')?.value || pendingVerificationEmail || '', 'login');
+  };
+
   window.handleSignup=async function(e){
     e.preventDefault();
 
@@ -4651,29 +4835,36 @@ document.addEventListener('keydown',function(e){
     if(button){button.disabled=true;button.dataset.oldText=button.textContent;button.textContent='Creating account…';}
 
     try{
+      const redirectTo = window.location.origin + window.location.pathname;
       const {data,error}=await db.auth.signUp({
         email,
         password,
-        options:{data:{full_name:fullName,mobile,sponsor_id:sponsorId,sponsor_name:sponsorName,referral_code:referralCode}}
+        options:{
+          data:{full_name:fullName,mobile,sponsor_id:sponsorId,sponsor_name:sponsorName,referral_code:referralCode},
+          emailRedirectTo: redirectTo
+        }
       });
       if(error) throw error;
+      if(!data.user) throw new Error('Account could not be created.');
 
-      if(data.user){
-        // The DB trigger creates the user's profile and assigns the member ID.
-        const displayEmail=$('displayNewEmail'), displayId=$('displayNewId');
-        if(displayEmail) displayEmail.textContent=email;
-        if(displayId) displayId.textContent='Assigned after account creation';
+      pendingVerificationEmail=email;
+      const displayEmail=$('displayNewEmail'), displayId=$('displayNewId');
+      if(displayEmail) displayEmail.textContent=email;
+      if(displayId) displayId.textContent='Assigned after account creation';
 
-        if(data.session){
-          const p=await loadProfile();
-          if(p?.member_id && displayId) displayId.textContent=p.member_id;
-          showDashboard();
-          if(typeof window.loadSavedProfile==='function') window.loadSavedProfile();
-          toastSafe('Account created successfully.');
-        }else{
-          switchTab('congrats');
-          toastSafe('Account created. Check your email to confirm the account, then log in.');
-        }
+      // If email confirmation is disabled in Supabase, continue directly.
+      if(data.session && isEmailVerified(data.user)){
+        const p=await loadProfile();
+        if(typeof window.touchUserPresence==='function') await window.touchUserPresence();
+        if(typeof window.loadPublicSiteStats==='function') await window.loadPublicSiteStats();
+        if(p?.member_id && displayId) displayId.textContent=p.member_id;
+        showDashboard();
+        if(typeof window.loadSavedProfile==='function') window.loadSavedProfile();
+        toastSafe('Account created successfully.');
+      }else{
+        switchTab('congrats');
+        const status=$('signupVerifyStatus');
+        if(status) status.textContent='Verification email sent. Please confirm your Gmail before logging in.';
       }
     }catch(err){
       console.error('Supabase signup:',err);
@@ -4688,18 +4879,33 @@ document.addEventListener('keydown',function(e){
     const identifier=val('loginEmail');
     const password=$('loginPassword')?.value || '';
 
-    if(!identifier || !password) return alert('Please enter your registered email and password.');
-    if(!identifier.includes('@')) return alert('Supabase login uses your registered email address.');
+    if(!identifier || !password) return alert('Please enter your registered Gmail and password.');
+    if(!identifier.includes('@')) return alert('Please use your registered Gmail address to log in.');
 
     const button=e.submitter;
     if(button){button.disabled=true;button.dataset.oldText=button.textContent;button.textContent='Signing in…';}
 
     try{
       const {data,error}=await db.auth.signInWithPassword({email:identifier,password});
-      if(error) throw error;
+      if(error){
+        const msg=String(error.message||'').toLowerCase();
+        if(msg.includes('email not confirmed') || msg.includes('email not verified')){
+          showEmailVerificationModal(identifier,'Your password is correct, but your Gmail is not verified yet.');
+          return;
+        }
+        throw error;
+      }
       if(!data.user) throw new Error('No authenticated user returned.');
 
+      if(!isEmailVerified(data.user)){
+        try{ await db.auth.signOut(); }catch(_e){}
+        showEmailVerificationModal(identifier,'Your account still needs Gmail verification before dashboard access.');
+        return;
+      }
+
       await loadProfile();
+      if(typeof window.touchUserPresence==='function') await window.touchUserPresence();
+      if(typeof window.loadPublicSiteStats==='function') await window.loadPublicSiteStats();
       showDashboard();
       if(typeof window.loadSavedProfile==='function') window.loadSavedProfile();
       if(typeof window.updateWithdrawalGate==='function') window.updateWithdrawalGate();
@@ -4708,7 +4914,12 @@ document.addEventListener('keydown',function(e){
       toastSafe('Welcome back!');
     }catch(err){
       console.error('Supabase login:',err);
-      alert(err?.message || 'Login failed.');
+      const msg=String(err?.message||'').toLowerCase();
+      if(msg.includes('email not confirmed') || msg.includes('email not verified')){
+        showEmailVerificationModal(identifier,'Please verify your Gmail first.');
+      }else{
+        alert(err?.message || 'Login failed. Please check your Gmail and password.');
+      }
     }finally{
       if(button){button.disabled=false;button.textContent=button.dataset.oldText || 'Log In to Dashboard';}
     }
@@ -4730,6 +4941,13 @@ document.addEventListener('keydown',function(e){
     try{
       const user=await currentUser();
       if(!user){showLanding();return;}
+      if(!isEmailVerified(user)){
+        try{ await db.auth.signOut(); }catch(_e){}
+        showLanding();
+        openModal('login');
+        showEmailVerificationModal(user.email || val('loginEmail'),'Please verify your Gmail before dashboard access.');
+        return;
+      }
       await loadProfile();
       showDashboard();
       if(typeof window.updateWithdrawalGate==='function') window.updateWithdrawalGate();
@@ -4960,7 +5178,18 @@ document.addEventListener('keydown',function(e){
   // ---------------- AUTH STATE ----------------
   db.auth.onAuthStateChange(function(event,session){
     if(session?.user){
-      setTimeout(function(){window.enterDashboard();},0);
+      window.loadPublicSiteStats?.();
+      if(isEmailVerified(session.user)){
+        window.touchUserPresence?.();
+        setTimeout(function(){window.enterDashboard();},0);
+      }else{
+        setTimeout(function(){
+          showLanding();
+          openModal('login');
+          showEmailVerificationModal(session.user.email || '', 'Please verify your Gmail before dashboard access.');
+          db.auth.signOut().catch(function(){});
+        },0);
+      }
     }else if(event==='SIGNED_OUT'){
       showLanding();
     }
@@ -4970,7 +5199,16 @@ document.addEventListener('keydown',function(e){
     try{
       const user=await currentUser();
       if(user){
-        await window.enterDashboard();
+        if(isEmailVerified(user)){
+          if(typeof window.touchUserPresence==='function') await window.touchUserPresence();
+          if(typeof window.loadPublicSiteStats==='function') await window.loadPublicSiteStats();
+          await window.enterDashboard();
+        }else{
+          showLanding();
+          openModal('login');
+          showEmailVerificationModal(user.email || '', 'Please verify your Gmail before dashboard access.');
+          try{ await db.auth.signOut(); }catch(_e){}
+        }
       }else{
         showLanding();
       }
@@ -4986,6 +5224,51 @@ document.addEventListener('keydown',function(e){
    */
 })();
 </script>
+
+
+<!-- PROFESSIONAL EMAIL VERIFICATION MODAL -->
+<div id="emailVerificationModal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-slate-950/60 backdrop-blur-md p-4" role="dialog" aria-modal="true" aria-labelledby="verifyModalTitle">
+  <div class="w-full max-w-md overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl">
+    <div class="bg-gradient-to-r from-rose-600 to-amber-500 px-6 py-5 text-white">
+      <div class="flex items-center gap-3">
+        <div class="grid h-12 w-12 place-items-center rounded-2xl bg-white/15 text-2xl">✉️</div>
+        <div>
+          <h3 id="verifyModalTitle" class="text-lg font-extrabold">Please verify your account</h3>
+          <p class="text-xs text-white/85">Email verification is required before dashboard access.</p>
+        </div>
+      </div>
+    </div>
+    <div class="p-6 sm:p-7">
+      <div class="rounded-2xl border border-amber-200 bg-amber-50 p-4">
+        <p class="text-sm font-extrabold text-slate-900">Check your Gmail inbox</p>
+        <p class="mt-1 text-xs leading-5 text-slate-600">We sent a new verification link to:</p>
+        <p id="verifyModalEmail" class="mt-2 break-all text-sm font-bold text-rose-600">your-email@gmail.com</p>
+      </div>
+      <ol class="mt-5 space-y-3 text-xs text-slate-600">
+        <li><span class="mr-2 inline-grid h-6 w-6 place-items-center rounded-full bg-slate-100 font-bold text-slate-700">1</span> Open Gmail and check Inbox, Spam, and Promotions.</li>
+        <li><span class="mr-2 inline-grid h-6 w-6 place-items-center rounded-full bg-slate-100 font-bold text-slate-700">2</span> Open the SONA verification email.</li>
+        <li><span class="mr-2 inline-grid h-6 w-6 place-items-center rounded-full bg-slate-100 font-bold text-slate-700">3</span> Click <b>Verify Email</b>, then return here and log in.</li>
+      </ol>
+      <div id="verifyModalStatus" class="mt-4 min-h-[20px] text-center text-xs font-semibold text-slate-500"></div>
+      <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <button id="resendLoginVerificationBtn" onclick="resendLoginVerification()" class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-800 hover:bg-slate-50 transition">
+          <i class="fa-solid fa-rotate-right mr-1"></i> Resend Email
+        </button>
+        <button onclick="openGmail()" class="rounded-xl bg-slate-900 px-4 py-3 text-sm font-bold text-white hover:bg-slate-800 transition">
+          <i class="fa-solid fa-envelope mr-1"></i> Open Gmail
+        </button>
+      </div>
+      <button onclick="closeEmailVerificationModal()" class="mt-3 w-full rounded-xl px-4 py-3 text-sm font-bold text-slate-500 hover:bg-slate-50 transition">Close</button>
+    </div>
+  </div>
+</div>
+
+<style id="sona-email-verification-professional">
+  #emailVerificationModal.flex{display:flex!important}
+  #congratsScreenContainer .fa-rotate-right{animation:none}
+  @keyframes sonaPulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .sona-resend-wait{animation:sonaPulse 1.2s ease-in-out infinite}
+</style>
 
 </body>
 </html>
