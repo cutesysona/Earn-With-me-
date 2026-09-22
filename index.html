@@ -880,63 +880,210 @@ html.dark-mode .sona-workspace-frame-wrap{
 </style>
 
 
-<style>
-/* SONA celebration enhancements */
-  .sona-congrats-shell {
-    position: relative;
-    overflow: hidden;
-    background:
-      radial-gradient(circle at 15% 10%, rgba(16,185,129,.16), transparent 34%),
-      radial-gradient(circle at 90% 0%, rgba(34,197,94,.12), transparent 32%),
-      #ffffff;
+<style id="sona-mobile-light-fix">
+/* SONA final usability patch: light theme + phone support */
+:root{
+  --bg:#f4f7fb!important;--side:#ffffff!important;--panel:#ffffff!important;
+  --panel2:#f8fafc!important;--line:#dbe4ef!important;--text:#162033!important;
+  --muted:#64748b!important;--gold:#f59e0b!important;--gold2:#fbbf24!important;
+  --green:#16a34a!important;--blue:#2563eb!important;--purple:#7c3aed!important;
+  --danger:#dc2626!important;
+}
+html,body{background:#f4f7fb!important;color:#162033!important;overflow-x:hidden!important;min-width:0!important}
+body{touch-action:pan-y;overscroll-behavior-x:none}
+.sidebar{background:#fff!important;color:#334155!important;border-right:1px solid #e2e8f0!important;z-index:1000!important;box-shadow:4px 0 24px rgba(15,23,42,.06)!important}
+.sidebar .member{background:#f8fafc!important;border-color:#e2e8f0!important}
+.sidebar .nav button,.sidebar .nav .group{color:#475569!important}
+.sidebar .nav button:hover,.sidebar .nav button.active{background:#fff7ed!important;color:#9a3412!important}
+.sidebar .nav button.active{box-shadow:inset 3px 0 #f59e0b!important}
+.main{background:#f4f7fb!important;min-width:0!important}
+.topbar{background:#fff!important;color:#172033!important;border-bottom:1px solid #e2e8f0!important;z-index:900!important}
+.topbar h2{color:#172033!important}
+.page{min-width:0!important}
+.card,.stat,.metric-card,.creator-card,.video,.table-wrap,.profile-card{background:#fff!important;color:#172033!important;border-color:#e2e8f0!important;box-shadow:0 8px 25px rgba(15,23,42,.04)!important}
+.card p,.muted,.footer-note{color:#64748b!important}
+.hero{background:linear-gradient(135deg,#fff7ed,#eff6ff)!important;border-color:#fed7aa!important;color:#172033!important}
+.hero h1,.hero p{color:#172033!important}
+.field label{color:#64748b!important}
+.field input,.field select,.search input{background:#fff!important;color:#172033!important;border-color:#cbd5e1!important}
+.table th{background:#f8fafc!important;color:#475569!important;border-color:#e2e8f0!important}
+.table td{color:#334155!important;border-color:#e2e8f0!important}
+.adbox{background:repeating-linear-gradient(45deg,#f8fafc,#f8fafc 10px,#f1f5f9 10px,#f1f5f9 20px)!important;color:#64748b!important;border-color:#cbd5e1!important}
+.notice{background:#eff6ff!important;color:#1e40af!important;border-color:#bfdbfe!important}
+.warning{background:#fffbeb!important;color:#92400e!important;border-color:#fde68a!important}
+.pill{background:#f1f5f9!important;color:#475569!important}
+#dashboardShell{background:#f4f7fb!important}
+#authModal,#emailVerificationModal{overflow-y:auto!important;overscroll-behavior:contain!important;align-items:flex-start!important;padding:14px!important}
+#authModal>div,#emailVerificationModal>div{max-height:calc(100dvh - 28px)!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch!important;margin:auto!important}
+#signupFormContainer{max-height:none!important;overflow:visible!important}
+button,a,input,select,textarea{touch-action:manipulation}
+.sona-mobile-menu{display:none;position:fixed;left:12px;top:12px;z-index:1200;width:44px;height:44px;border:1px solid #fed7aa;border-radius:12px;background:#fff7ed;color:#9a3412;font-size:21px;box-shadow:0 5px 20px rgba(15,23,42,.12)}
+.sona-sidebar-backdrop{display:none;position:fixed;inset:0;background:rgba(15,23,42,.42);z-index:990}
+@media(max-width:800px){
+  .sona-mobile-menu{display:block}
+  .sona-sidebar-backdrop.is-open{display:block}
+  .sidebar{width:280px!important;max-width:88vw!important;transform:translateX(-105%);transition:transform .22s ease!important;padding:14px!important}
+  .sidebar.is-open{transform:translateX(0)!important}
+  .brand div:last-child,.member,.nav-title,.nav button span{display:block!important}
+  .brand{padding:8px 8px 18px!important}
+  .nav button{text-align:left!important;font-size:14px!important;padding:12px!important}
+  .nav button::first-letter{font-size:inherit!important}
+  .main{margin-left:0!important;width:100%!important}
+  .topbar{padding:0 14px 0 68px!important;min-height:64px;height:auto!important;gap:8px}
+  .topbar h2{font-size:17px!important;line-height:1.25!important}
+  .page{padding:14px!important}
+  .hero{padding:20px!important}
+  .hero h1{font-size:24px!important}
+  .grid,.money-grid,.two,.three,.video-grid,.creator-grid,.shop-grid,.profile,.profile-form,.leader-grid{grid-template-columns:1fr!important}
+  .leader-row,.investor-row{grid-template-columns:40px minmax(0,1fr)!important}
+  .leader-row>*,.investor-row>*{min-width:0}
+  .table-wrap{max-width:100%;overflow-x:auto!important}
+  .table{min-width:620px}
+  .btn{min-height:42px}
+  .search{flex-direction:column!important}
+  .search .btn{width:100%!important}
+  .toast{left:12px!important;right:12px!important;bottom:14px!important;max-width:none!important}
+}
+@media(max-width:420px){
+  .page{padding:10px!important}
+  .card,.stat,.metric-card,.creator-card{padding:14px!important}
+  .hero h1{font-size:21px!important}
+  #authModal,#emailVerificationModal{padding:8px!important}
+  #authModal>div,#emailVerificationModal>div{width:100%!important;max-height:calc(100dvh - 16px)!important;border-radius:20px!important}
+}
+</style>
+
+
+<style id="sona-mobile-verification-fix">
+/* Mobile verification modal: full-height, scrollable, touch-friendly */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+body {
+  -webkit-text-size-adjust: 100%;
+}
+#authModal {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  height: 100dvh !important;
+  padding: max(10px, env(safe-area-inset-top))
+           max(10px, env(safe-area-inset-right))
+           max(10px, env(safe-area-inset-bottom))
+           max(10px, env(safe-area-inset-left)) !important;
+  display: flex;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  z-index: 99999 !important;
+}
+#authModal > div {
+  width: min(100%, 520px) !important;
+  max-width: 520px !important;
+  max-height: calc(100dvh - 20px) !important;
+  margin: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  flex: 0 0 auto;
+}
+#congratsScreenContainer {
+  min-width: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+  padding: 22px 18px 26px !important;
+}
+#congratsScreenContainer button,
+#resendSignupVerificationBtn {
+  min-height: 48px !important;
+  touch-action: manipulation;
+  position: relative;
+  z-index: 2;
+  pointer-events: auto !important;
+}
+#congratsScreenContainer .flex.justify-between {
+  align-items: flex-start !important;
+  flex-wrap: wrap !important;
+}
+#displayNewEmail, #displayNewId {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+#signupVerifyStatus {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  line-height: 1.55;
+}
+@media (max-width: 600px) {
+  #authModal {
+    padding: 8px !important;
+    align-items: flex-start !important;
   }
-  .sona-success-badge {
-    background: linear-gradient(135deg,#dcfce7,#bbf7d0);
-    border: 1px solid #86efac;
-    color: #15803d;
-    box-shadow: 0 12px 30px rgba(22,163,74,.18);
-    animation: sona-pop-in .55s cubic-bezier(.2,1.5,.4,1) both;
+  #authModal > div {
+    width: 100% !important;
+    max-height: calc(100dvh - 16px) !important;
+    border-radius: 20px !important;
   }
-  .sona-success-title {
-    background: linear-gradient(90deg,#15803d,#16a34a,#65a30d);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  #modalHeaderTabs button {
+    min-height: 50px;
   }
-  .sona-publisher-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: .45rem;
-    padding: .35rem .7rem;
-    border-radius: 999px;
-    background: #f0fdf4;
-    border: 1px solid #bbf7d0;
-    color: #166534;
-    font-size: .72rem;
-    font-weight: 800;
+  #congratsScreenContainer {
+    padding: 18px 14px 22px !important;
+    gap: 14px !important;
   }
-  .sona-confetti-piece {
-    position: absolute;
-    top: -18px;
-    width: 8px;
-    height: 14px;
-    border-radius: 3px;
-    pointer-events: none;
-    animation: sona-confetti-fall 1.8s ease-out forwards;
-    z-index: 20;
+  #congratsScreenContainer h3 {
+    font-size: 1.55rem !important;
+    line-height: 1.2 !important;
   }
-  @keyframes sona-pop-in {
-    0% { transform: scale(.55) rotate(-10deg); opacity: 0; }
-    70% { transform: scale(1.12) rotate(3deg); opacity: 1; }
-    100% { transform: scale(1) rotate(0); opacity: 1; }
+  #congratsScreenContainer p {
+    line-height: 1.55 !important;
   }
-  @keyframes sona-confetti-fall {
-    0% { transform: translate3d(0,0,0) rotate(0deg); opacity: 1; }
-    100% { transform: translate3d(var(--sona-x), 420px, 0) rotate(var(--sona-r)); opacity: 0; }
+  #congratsScreenContainer .rounded-2xl,
+  #congratsScreenContainer .rounded-xl {
+    padding: 13px !important;
   }
-  @media (prefers-reduced-motion: reduce) {
-    .sona-success-badge, .sona-confetti-piece { animation: none !important; }
+  #congratsScreenContainer .flex.justify-between {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 4px !important;
   }
+  #congratsScreenContainer .text-right {
+    text-align: left !important;
+  }
+  #resendSignupVerificationBtn,
+  #congratsScreenContainer button {
+    width: 100% !important;
+    font-size: 14px !important;
+    white-space: normal !important;
+    line-height: 1.35 !important;
+  }
+  #congratsScreenContainer .w-20 {
+    width: 64px !important;
+    height: 64px !important;
+    font-size: 26px !important;
+  }
+}
+@media (max-width: 380px) {
+  #congratsScreenContainer {
+    padding-left: 11px !important;
+    padding-right: 11px !important;
+  }
+  #congratsScreenContainer h3 {
+    font-size: 1.35rem !important;
+  }
+}
+</style>
+
+
+<style id="sona-modal-scroll-lock">
+html.sona-modal-open, body.sona-modal-open {
+  overflow: hidden !important;
+}
 </style>
 
 </head>
@@ -1285,14 +1432,13 @@ html.dark-mode .sona-workspace-frame-wrap{
             </div>
 
             <!-- Congratulations / Email Verification Screen -->
-            <div id="congratsScreenContainer" class="sona-congrats-shell p-6 sm:p-8 text-center space-y-5 hidden">
-                <div class="sona-success-badge w-24 h-24 rounded-full flex items-center justify-center text-4xl mx-auto">
+            <div id="congratsScreenContainer" class="p-6 sm:p-8 text-center space-y-5 hidden">
+                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-rose-50 to-amber-50 text-rose-600 flex items-center justify-center text-3xl mx-auto shadow-inner">
                     <span aria-hidden="true">🎉</span>
                 </div>
                 <div class="space-y-2">
-                    <div class="sona-publisher-chip mx-auto"><span aria-hidden="true">✓</span> SONA ACCOUNT CREATED</div>
-<h3 class="sona-success-title text-3xl font-extrabold">Congratulations, Welcome to SONA!</h3>
-                    <p class="text-lg font-extrabold text-emerald-600">Please Verify Your Gmail ✨</p>
+                    <h3 class="text-2xl font-extrabold text-slate-900">Congratulations!</h3>
+                    <p class="text-lg font-extrabold text-rose-600">Please Verify Your Gmail</p>
                     <p class="text-sm font-bold text-slate-700">Your SONA account was created successfully.</p>
                     <p class="text-xs leading-5 text-slate-500">We sent a verification email to your registered Gmail. You must click the verification link before you can log in and open the dashboard.</p>
                 </div>
@@ -1321,13 +1467,6 @@ html.dark-mode .sona-workspace-frame-wrap{
                 <div class="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-left">
                     <p class="text-xs font-extrabold text-rose-700">Did not receive the email?</p>
                     <p class="mt-1 text-xs leading-5 text-rose-600">Click the button below to send the verification email again. Wait for the cooldown before requesting another email.</p>
-                </div>
-
-
-                <div class="text-center">
-                    <span class="sona-publisher-chip">
-                        <span aria-hidden="true">✦</span> Pradip Mandal Publisher
-                    </span>
                 </div>
 
                 <div id="signupVerifyStatus" class="text-xs font-semibold text-slate-500 min-h-[18px]"></div>
@@ -2575,63 +2714,6 @@ function closeModal() {
   if (modal) modal.classList.add('hidden');
 }
 
-
-/* SONA celebration sound and visual effects */
-function playSonaCelebrationSound() {
-  try {
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContextClass) return;
-    const ctx = new AudioContextClass();
-    const now = ctx.currentTime;
-
-    const master = ctx.createGain();
-    master.gain.setValueAtTime(0.0001, now);
-    master.gain.exponentialRampToValueAtTime(0.22, now + 0.02);
-    master.gain.exponentialRampToValueAtTime(0.0001, now + 0.75);
-    master.connect(ctx.destination);
-
-    const pop = ctx.createOscillator();
-    pop.type = 'sine';
-    pop.frequency.setValueAtTime(180, now);
-    pop.frequency.exponentialRampToValueAtTime(720, now + 0.12);
-    pop.frequency.exponentialRampToValueAtTime(120, now + 0.48);
-    pop.connect(master);
-    pop.start(now);
-    pop.stop(now + 0.5);
-
-    const sparkle = ctx.createOscillator();
-    sparkle.type = 'triangle';
-    sparkle.frequency.setValueAtTime(880, now + 0.08);
-    sparkle.frequency.exponentialRampToValueAtTime(1320, now + 0.3);
-    sparkle.connect(master);
-    sparkle.start(now + 0.08);
-    sparkle.stop(now + 0.38);
-
-    window.setTimeout(() => {
-      try { ctx.close(); } catch (_) {}
-    }, 1000);
-  } catch (_) {}
-}
-
-function launchSonaConfetti() {
-  const host = document.getElementById('congratsScreenContainer');
-  if (!host || host.dataset.confettiShown === '1') return;
-  host.dataset.confettiShown = '1';
-
-  const colors = ['#16a34a', '#22c55e', '#84cc16', '#f59e0b', '#ec4899', '#3b82f6'];
-  for (let i = 0; i < 42; i++) {
-    const piece = document.createElement('span');
-    piece.className = 'sona-confetti-piece';
-    piece.style.left = `${Math.random() * 100}%`;
-    piece.style.background = colors[i % colors.length];
-    piece.style.setProperty('--sona-x', `${(Math.random() - 0.5) * 260}px`);
-    piece.style.setProperty('--sona-r', `${Math.round((Math.random() - 0.5) * 900)}deg`);
-    piece.style.animationDelay = `${Math.random() * 0.35}s`;
-    host.appendChild(piece);
-    window.setTimeout(() => piece.remove(), 2600);
-  }
-}
-
 function switchTab(type) {
   const loginBtn = document.getElementById('tabLoginBtn');
   const signupBtn = document.getElementById('tabSignupBtn');
@@ -2661,9 +2743,6 @@ function switchTab(type) {
     loginContainer.classList.add('hidden');
     signupContainer.classList.add('hidden');
     congratsContainer.classList.remove('hidden');
-    congratsContainer.dataset.confettiShown = '0';
-    playSonaCelebrationSound();
-    launchSonaConfetti();
   }
 }
 
@@ -5006,7 +5085,7 @@ document.addEventListener('keydown',function(e){
       }
     }catch(err){
       console.error('Supabase signup:',err);
-      alert(err?.message || 'Could not create the account.');
+      alert(typeof window.sonaFriendlyEmailError === 'function' ? window.sonaFriendlyEmailError(err) : (err?.message || 'Could not create the account.'));
     }finally{
       if(button){button.disabled=false;button.textContent=button.dataset.oldText || 'Register Account';}
     }
@@ -5056,7 +5135,7 @@ document.addEventListener('keydown',function(e){
       if(msg.includes('email not confirmed') || msg.includes('email not verified')){
         showEmailVerificationModal(identifier,'Please verify your Gmail first.');
       }else{
-        alert(err?.message || 'Login failed. Please check your Gmail and password.');
+        alert(typeof window.sonaFriendlyEmailError === 'function' ? window.sonaFriendlyEmailError(err) : (err?.message || 'Login failed. Please check your Gmail and password.'));
       }
     }finally{
       if(button){button.disabled=false;button.textContent=button.dataset.oldText || 'Log In to Dashboard';}
@@ -5407,6 +5486,132 @@ document.addEventListener('keydown',function(e){
   @keyframes sonaPulse{0%,100%{opacity:1}50%{opacity:.55}}
   .sona-resend-wait{animation:sonaPulse 1.2s ease-in-out infinite}
 </style>
+
+
+<script id="sona-final-mobile-light-js">
+(function(){
+  'use strict';
+  function forceLight(){
+    try{localStorage.setItem('sonaTheme','light');}catch(e){}
+    document.documentElement.classList.remove('dark-mode');
+    if(typeof window.setSonaTheme==='function'){
+      try{window.setSonaTheme('light');}catch(e){}
+    }
+  }
+  forceLight();
+  document.addEventListener('DOMContentLoaded',forceLight);
+
+  function installMobileMenu(){
+    if(document.querySelector('.sona-mobile-menu')) return;
+    var sidebar=document.querySelector('.sidebar');
+    if(!sidebar) return;
+    var btn=document.createElement('button');
+    btn.className='sona-mobile-menu';
+    btn.type='button';
+    btn.setAttribute('aria-label','Open navigation menu');
+    btn.innerHTML='☰';
+    var backdrop=document.createElement('div');
+    backdrop.className='sona-sidebar-backdrop';
+    document.body.appendChild(btn);
+    document.body.appendChild(backdrop);
+    function close(){sidebar.classList.remove('is-open');backdrop.classList.remove('is-open');btn.innerHTML='☰';}
+    function open(){sidebar.classList.add('is-open');backdrop.classList.add('is-open');btn.innerHTML='✕';}
+    btn.addEventListener('click',function(){sidebar.classList.contains('is-open')?close():open();});
+    backdrop.addEventListener('click',close);
+    sidebar.addEventListener('click',function(e){
+      if(e.target.closest('button,a')){
+        if(window.matchMedia && window.matchMedia('(max-width:800px)').matches) close();
+      }
+    });
+    window.addEventListener('resize',function(){if(window.innerWidth>800) close();});
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',installMobileMenu); else installMobileMenu();
+
+  // Make the email error understandable instead of showing an unhelpful generic alert.
+  window.sonaFriendlyEmailError=function(err){
+    var raw=String(err && (err.message||err.error_description||err.error) || '');
+    var low=raw.toLowerCase();
+    if(/rate.?limit|too many requests|429|over_email_send_rate_limit/.test(low))
+      return 'Email sending limit reached. Wait before trying again, or configure Custom SMTP in Supabase Authentication → SMTP Settings.';
+    if(/error sending confirmation email|sending confirmation email|smtp|mail provider|email service/.test(low))
+      return 'Supabase could not send the verification email. Configure and verify Custom SMTP in Supabase, then check Authentication → URL Configuration and Email Templates.';
+    if(/already registered|user already exists/.test(low))
+      return 'This email is already registered. Use Login, then select Resend Verification Email if the account is not verified.';
+    return raw || 'Could not complete the request. Please try again.';
+  };
+})();
+</script>
+
+
+<script id="sona-mobile-verification-behavior">
+(function () {
+  "use strict";
+
+  function isMobileViewport() {
+    return window.matchMedia && window.matchMedia("(max-width: 600px)").matches;
+  }
+
+  function setBodyModalState() {
+    var modal = document.getElementById("authModal");
+    var isVisible = modal && !modal.classList.contains("hidden");
+    document.documentElement.classList.toggle("sona-modal-open", !!isVisible);
+    document.body.classList.toggle("sona-modal-open", !!isVisible);
+  }
+
+  function scrollVerificationIntoView() {
+    var modal = document.getElementById("authModal");
+    var panel = document.getElementById("congratsScreenContainer");
+    if (!modal || !panel || panel.classList.contains("hidden")) return;
+
+    setTimeout(function () {
+      var scrollBox = modal.querySelector(":scope > div");
+      if (scrollBox) scrollBox.scrollTop = 0;
+      if (isMobileViewport()) {
+        panel.scrollIntoView({ block: "start", behavior: "auto" });
+      }
+    }, 80);
+  }
+
+  var authModal = document.getElementById("authModal");
+  if (authModal) {
+    var observer = new MutationObserver(function () {
+      setBodyModalState();
+      scrollVerificationIntoView();
+    });
+    observer.observe(authModal, { attributes: true, attributeFilter: ["class"] });
+  }
+
+  document.addEventListener("click", function (event) {
+    var target = event.target.closest && event.target.closest(
+      "#resendSignupVerificationBtn, #congratsScreenContainer button"
+    );
+    if (target) {
+      target.style.touchAction = "manipulation";
+    }
+  }, { passive: true });
+
+  /* Avoid popup blockers on mobile when opening Gmail from a user tap. */
+  window.openGmail = function () {
+    var gmailUrl = "https://mail.google.com/mail/u/0/#inbox";
+    if (isMobileViewport()) {
+      window.location.href = gmailUrl;
+      return;
+    }
+    var opened = window.open(gmailUrl, "_blank", "noopener,noreferrer");
+    if (!opened) window.location.href = gmailUrl;
+  };
+
+  window.addEventListener("resize", setBodyModalState, { passive: true });
+  window.addEventListener("orientationchange", function () {
+    setTimeout(function () {
+      setBodyModalState();
+      scrollVerificationIntoView();
+    }, 250);
+  }, { passive: true });
+
+  setBodyModalState();
+})();
+</script>
 
 </body>
 </html>
