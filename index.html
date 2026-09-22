@@ -6403,5 +6403,279 @@ document.addEventListener('keydown',function(e){
 
 })();
 </script>
+
+<!-- SONA FINAL MOBILE / AUTH / SUCCESS-SOUND PATCH -->
+<style id="sona-final-mobile-fix">
+  html, body { min-height: 100%; overflow-x: hidden; overflow-y: auto !important; }
+  body { -webkit-text-size-adjust: 100%; }
+  #authModal, #emailVerificationModal {
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  #authModal > div, #emailVerificationModal > div {
+    max-height: calc(100dvh - 24px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  #loginFormContainer, #signupFormContainer, #congratsScreenContainer {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  #loginFormContainer input, #signupFormContainer input,
+  #loginFormContainer button, #signupFormContainer button,
+  #congratsScreenContainer button, #emailVerificationModal button {
+    min-height: 44px;
+  }
+  #sonaAuthStatus {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+  .sona-verification-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 0 auto 12px;
+    padding: 8px 12px;
+    border: 1px solid #bbf7d0;
+    border-radius: 999px;
+    background: #f0fdf4;
+    color: #166534;
+    font-size: 12px;
+    font-weight: 800;
+  }
+  @media (max-width: 640px) {
+    #authModal, #emailVerificationModal { padding: 8px !important; align-items: flex-start !important; }
+    #authModal > div, #emailVerificationModal > div {
+      width: 100% !important;
+      max-width: 100% !important;
+      max-height: calc(100dvh - 16px);
+      margin: 0 auto;
+      border-radius: 22px !important;
+    }
+    #congratsScreenContainer { padding: 20px 16px !important; }
+    #congratsScreenContainer h3 { font-size: 24px !important; line-height: 1.2 !important; }
+    #congratsScreenContainer p { line-height: 1.55 !important; }
+    #congratsScreenContainer .flex.justify-between {
+      flex-direction: column !important;
+      gap: 8px !important;
+      align-items: flex-start !important;
+    }
+    #congratsScreenContainer .text-right {
+      width: 100% !important;
+      text-align: left !important;
+      overflow-wrap: anywhere;
+    }
+    #resendSignupVerificationBtn, #congratsScreenContainer button {
+      width: 100% !important;
+      white-space: normal !important;
+    }
+    .topbar { padding: 0 14px !important; }
+    .page { padding: 18px 14px !important; }
+    .grid, .money-grid, .public-dashboard-stats, .two, .three,
+    .profile, .creator-grid, .shop-grid, .video-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .sidebar { width: 270px !important; }
+    .main { margin-left: 0 !important; width: 100% !important; }
+  }
+</style>
+
+<script id="sona-final-functional-patch">
+(function () {
+  'use strict';
+
+  function successPopBlast() {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      const now = ctx.currentTime;
+      const master = ctx.createGain();
+      master.gain.setValueAtTime(0.0001, now);
+      master.gain.exponentialRampToValueAtTime(0.22, now + 0.02);
+      master.gain.exponentialRampToValueAtTime(0.0001, now + 0.65);
+      master.connect(ctx.destination);
+
+      const notes = [523.25, 659.25, 783.99, 1046.5];
+      notes.forEach(function (freq, index) {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = index === 0 ? 'sine' : 'triangle';
+        osc.frequency.setValueAtTime(freq, now + index * 0.045);
+        gain.gain.setValueAtTime(0.0001, now + index * 0.045);
+        gain.gain.exponentialRampToValueAtTime(0.18, now + index * 0.045 + 0.025);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + index * 0.045 + 0.42);
+        osc.connect(gain);
+        gain.connect(master);
+        osc.start(now + index * 0.045);
+        osc.stop(now + index * 0.045 + 0.45);
+      });
+
+      const pop = ctx.createOscillator();
+      const popGain = ctx.createGain();
+      pop.type = 'square';
+      pop.frequency.setValueAtTime(180, now);
+      pop.frequency.exponentialRampToValueAtTime(55, now + 0.12);
+      popGain.gain.setValueAtTime(0.0001, now);
+      popGain.gain.exponentialRampToValueAtTime(0.12, now + 0.01);
+      popGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.16);
+      pop.connect(popGain);
+      popGain.connect(master);
+      pop.start(now);
+      pop.stop(now + 0.18);
+
+      setTimeout(function () { try { ctx.close(); } catch (_) {} }, 1100);
+    } catch (_) {}
+  }
+
+  function authMessage(text, isError) {
+    let box = document.getElementById('sonaAuthStatus');
+    if (!box) {
+      box = document.createElement('div');
+      box.id = 'sonaAuthStatus';
+      const form = document.getElementById('loginEmail')?.closest('form');
+      if (form) form.appendChild(box);
+    }
+    if (!box) return;
+    box.textContent = text;
+    box.style.display = 'block';
+    box.style.color = isError ? '#b91c1c' : '#166534';
+    box.style.background = isError ? '#fef2f2' : '#f0fdf4';
+    box.style.border = '1px solid ' + (isError ? '#fecaca' : '#bbf7d0');
+  }
+
+  function friendlyLoginError(error) {
+    const text = String(error?.message || error || 'Login failed.');
+    const lower = text.toLowerCase();
+    if (lower.includes('invalid login credentials')) {
+      return 'Incorrect Gmail or password. Please check both fields.';
+    }
+    if (lower.includes('email not confirmed') || lower.includes('not verified') ||
+        lower.includes('confirm your email')) {
+      return 'Your Gmail is not verified yet. Use the verification screen to resend the email.';
+    }
+    if (lower.includes('rate limit') || lower.includes('too many requests') || lower.includes('429')) {
+      return 'Email rate limit reached. Please wait before requesting another email.';
+    }
+    if (lower.includes('failed to fetch') || lower.includes('network')) {
+      return 'Network connection problem. Check your internet and try again.';
+    }
+    return text;
+  }
+
+  function isVerified(user) {
+    return !!(user && (user.email_confirmed_at || user.confirmed_at));
+  }
+
+  function getClient() {
+    return window.sonaSupabase || window.db || null;
+  }
+
+  // Final login handler: clear inline feedback, show exact errors, and block unverified users.
+  window.handleLogin = async function (event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    const client = getClient();
+    const email = (document.getElementById('loginEmail')?.value || '').trim().toLowerCase();
+    const password = document.getElementById('loginPassword')?.value || '';
+    const button = event?.submitter;
+
+    if (!client?.auth) {
+      authMessage('Authentication service is not loaded. Please refresh the page.', true);
+      return;
+    }
+    if (!email || !password) {
+      authMessage('Please enter your Gmail and password.', true);
+      return;
+    }
+    if (!email.includes('@')) {
+      authMessage('Please use your registered Gmail address.', true);
+      return;
+    }
+
+    if (button) {
+      button.disabled = true;
+      button.dataset.oldText = button.textContent;
+      button.textContent = 'Checking account…';
+    }
+
+    try {
+      const result = await client.auth.signInWithPassword({ email, password });
+      if (result.error) throw result.error;
+      const user = result.data?.user;
+      if (!user) throw new Error('No authenticated user was returned.');
+
+      if (!isVerified(user)) {
+        await client.auth.signOut().catch(function () {});
+        if (typeof window.showEmailVerificationModal === 'function') {
+          window.showEmailVerificationModal(
+            email,
+            'Your password is correct, but your Gmail is not verified. Resend the verification email below.'
+          );
+        } else if (typeof window.switchTab === 'function') {
+          window.switchTab('congrats');
+        }
+        return;
+      }
+
+      if (typeof window.enterDashboard === 'function') {
+        await window.enterDashboard();
+      } else {
+        throw new Error('Dashboard function was not found.');
+      }
+      authMessage('Login successful. Welcome back!', false);
+    } catch (error) {
+      console.error('SONA login error:', error);
+      const message = friendlyLoginError(error);
+      if (/not confirmed|not verified|confirm your email/i.test(message) &&
+          typeof window.showEmailVerificationModal === 'function') {
+        window.showEmailVerificationModal(email, message);
+      } else {
+        authMessage(message, true);
+      }
+    } finally {
+      if (button) {
+        button.disabled = false;
+        button.textContent = button.dataset.oldText || 'Log In to Dashboard';
+      }
+    }
+  };
+
+  // Preserve the existing Supabase signup logic but add a celebratory sound only after success.
+  const originalSignup = window.handleSignup;
+  if (typeof originalSignup === 'function' && !window.__sonaSignupSoundWrapped) {
+    window.__sonaSignupSoundWrapped = true;
+    window.handleSignup = async function (event) {
+      const result = await originalSignup.call(this, event);
+      const screen = document.getElementById('congratsScreenContainer');
+      if (screen && !screen.classList.contains('hidden')) {
+        successPopBlast();
+      }
+      return result;
+    };
+  }
+
+  // Add a clear online indicator without inventing a count. The count is supplied by the SQL RPC.
+  function markStatsLoading() {
+    ['landingActiveUsers', 'loginActiveUsers', 'dashActiveUsers'].forEach(function (id) {
+      const el = document.getElementById(id);
+      if (el && el.textContent.trim() === '') el.textContent = '—';
+    });
+  }
+  markStatsLoading();
+})();
+</script>
+
 </body>
 </html>
