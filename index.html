@@ -6057,8 +6057,351 @@ document.addEventListener('keydown',function(e){
   );
 
 })();
+
+<style>
+#sonaAuthStatus {
+  display: none;
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+#sonaForgotPassword {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  background: transparent;
+  color: #e11d48;
+  font-weight: 700;
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+</style>
+
+<script>
+(function () {
+  "use strict";
+
+  const $ = (id) => document.getElementById(id);
+
+  function getSupabase() {
+    return window.db ||
+           window.sonaSupabase ||
+           null;
+  }
+
+  function showAuthMessage(text, error = false) {
+    let box = $("sonaAuthStatus");
+
+    if (!box) {
+      box = document.createElement("div");
+      box.id = "sonaAuthStatus";
+
+      const form = $("loginEmail")?.closest("form");
+
+      if (form) {
+        form.appendChild(box);
+      }
+    }
+
+    box.textContent = text;
+    box.style.display = "block";
+    box.style.color = error ? "#b91c1c" : "#166534";
+    box.style.background = error ? "#fef2f2" : "#f0fdf4";
+    box.style.borderColor = error ? "#fecaca" : "#bbf7d0";
+  }
+
+  function isEmailVerified(user) {
+    return Boolean(
+      user &&
+      (user.email_confirmed_at || user.confirmed_at)
+    );
+  }
+
+  function displayVerificationScreen(email, message) {
+    if ($("verifyEmailAddress")) {
+      $("verifyEmailAddress").textContent = email;
+    }
+
+    if ($("displayNewEmail")) {
+      $("displayNewEmail").textContent = email;
+    }
+
+    if (typeof window.showEmailVerificationModal === "function") {
+      window.showEmailVerificationModal(email, message);
+      return;
+    }
+
+    if (typeof window.switchTab === "function") {
+      window.switchTab("congrats");
+    }
+
+    showAuthMessage(message, true);
+  }
+
+  function friendlyError(error) {
+    const text = String(
+      error?.message || error || "Something went wrong."
+    );
+
+    const lower = text.toLowerCase();
+
+    if (lower.includes("invalid login credentials")) {
+      return "Incorrect Gmail or password. Please check your details.";
+    }
+
+    if (
+      lower.includes("email not confirmed") ||
+      lower.includes("email not verified")
+    ) {
+      return "Your Gmail is not verified. Please verify it before logging in.";
+    }
+
+    if (
+      lower.includes("rate limit") ||
+      lower.includes("too many requests") ||
+      lower.includes("429")
+    ) {
+      return "Email rate limit reached. Please wait and try again later.";
+    }
+
+    return text;
+  }
+
+  /*
+   * FINAL SUPABASE LOGIN HANDLER
+   * This must be placed after older handleLogin functions.
+   */
+  window.handleLogin = async function (event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    const supabase = getSupabase();
+
+    const email = (
+      $("loginEmail")?.value || ""
+    ).trim().toLowerCase();
+
+    const password = $("loginPassword")?.value || "";
+
+    const button = event?.submitter;
+
+    if (!supabase || !supabase.auth) {
+      showAuthMessage(
+        "Authentication service is not loaded. Please refresh the page.",
+        true
+      );
+      return;
+    }
+
+    if (!email || !password) {
+      showAuthMessage(
+        "Please enter your Gmail and password.",
+        true
+      );
+      return;
+    }
+
+    if (!email.includes("@")) {
+      showAuthMessage(
+        "Please use your registered Gmail address.",
+        true
+      );
+      return;
+    }
+
+    if (button) {
+      button.disabled = true;
+      button.dataset.oldText = button.textContent;
+      button.textContent = "Checking account...";
+    }
+
+    try {
+      const { data, error } =
+        await supabase.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
+
+      if (error) {
+        throw error;
+      }
+
+      const user = data?.user;
+
+      if (!user) {
+        throw new Error(
+          "Supabase did not return an authenticated user."
+        );
+      }
+
+      if (!isEmailVerified(user)) {
+        await supabase.auth.signOut().catch(() => {});
+
+        displayVerificationScreen(
+          email,
+          "Please verify your Gmail before opening the dashboard. You can resend the verification email."
+        );
+
+        return;
+      }
+
+      showAuthMessage(
+        "Login successful. Opening your dashboard..."
+      );
+
+      if (typeof window.enterDashboard === "function") {
+        await window.enterDashboard();
+      } else if (typeof window.showDashboard === "function") {
+        await window.showDashboard();
+      } else {
+        throw new Error(
+          "Dashboard function was not found."
+        );
+      }
+
+    } catch (error) {
+      console.error("SONA login error:", error);
+
+      const text = friendlyError(error);
+
+      if (
+        text.toLowerCase().includes("not confirmed") ||
+        text.toLowerCase().includes("not verified")
+      ) {
+        try {
+          await supabase.auth.signOut();
+        } catch (_) {}
+
+        displayVerificationScreen(email, text);
+      } else {
+        showAuthMessage(text, true);
+      }
+
+    } finally {
+      if (button) {
+        button.disabled = false;
+        button.textContent =
+          button.dataset.oldText || "Log In to Dashboard";
+      }
+    }
+  };
+
+  /*
+   * PASSWORD RESET
+   */
+  async function sendPasswordReset() {
+    const supabase = getSupabase();
+
+    const email = (
+      $("loginEmail")?.value || ""
+    ).trim().toLowerCase();
+
+    if (!supabase || !supabase.auth) {
+      showAuthMessage(
+        "Authentication service is not loaded.",
+        true
+      );
+      return;
+    }
+
+    if (!email || !email.includes("@")) {
+      showAuthMessage(
+        "Enter your registered Gmail in the login field first.",
+        true
+      );
+
+      $("loginEmail")?.focus();
+      return;
+    }
+
+    try {
+      const redirectUrl =
+        window.location.origin +
+        window.location.pathname;
+
+      const { error } =
+        await supabase.auth.resetPasswordForEmail(
+          email,
+          {
+            redirectTo: redirectUrl
+          }
+        );
+
+      if (error) {
+        throw error;
+      }
+
+      showAuthMessage(
+        "Password reset email sent. Check Gmail Inbox, Spam, and Promotions."
+      );
+
+    } catch (error) {
+      console.error("Password reset error:", error);
+
+      showAuthMessage(
+        friendlyError(error),
+        true
+      );
+    }
+  }
+
+  /*
+   * ADD FORGOT PASSWORD BUTTON
+   */
+  function addForgotPasswordButton() {
+    const form = $("loginEmail")?.closest("form");
+
+    if (!form || $("sonaForgotPassword")) {
+      return;
+    }
+
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.id = "sonaForgotPassword";
+    button.textContent =
+      "Forgot Password? Send Reset Email";
+
+    button.addEventListener(
+      "click",
+      sendPasswordReset
+    );
+
+    const submitButton =
+      form.querySelector('button[type="submit"]');
+
+    if (submitButton) {
+      submitButton.insertAdjacentElement(
+        "afterend",
+        button
+      );
+    } else {
+      form.appendChild(button);
+    }
+  }
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    addForgotPasswordButton
+  );
+
+  window.addEventListener(
+    "load",
+    addForgotPasswordButton
+  );
+
+})();
 </script>
-</body>
-</html>
 </body>
 </html>
