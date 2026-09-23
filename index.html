@@ -6083,7 +6083,6 @@ document.addEventListener('keydown',function(e){
 })();
 
 </script>
-
 <style>
 #sonaAuthStatus {
   display: none;
@@ -7705,271 +7704,414 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 
 
-<!-- FINAL PROFILE SYNC + TOAST VISIBILITY FIX -->
-<style id="sona-final-profile-sync-fix">
-  /* Bottom popup/toast: always readable in both Light and Dark mode. */
-  #toast {
-    position: fixed !important;
-    left: 50% !important;
-    bottom: 24px !important;
-    transform: translateX(-50%) translateY(12px) !important;
-    z-index: 2147483647 !important;
-    min-width: min(340px, calc(100vw - 32px)) !important;
-    max-width: min(560px, calc(100vw - 32px)) !important;
-    padding: 14px 18px !important;
-    border-radius: 14px !important;
-    background: #111827 !important;
-    color: #ffffff !important;
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    line-height: 1.45 !important;
-    text-align: center !important;
-    box-shadow: 0 14px 40px rgba(15,23,42,.28) !important;
-    border: 1px solid rgba(255,255,255,.14) !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-    transition: opacity .2s ease, transform .2s ease, visibility .2s ease !important;
+<!-- SONA FINAL RESPONSIVE + PROFILE SYNC PATCH -->
+<style id="sona-final-responsive-fix">
+  /* Toast: always readable, especially in Light mode */
+  #toast,
+  .toast {
+    color:#fff !important;
+    background:#0f1b2d !important;
+    border:1px solid #334a68 !important;
+    font-weight:700 !important;
+    line-height:1.45 !important;
+    letter-spacing:.01em;
+    box-shadow:0 12px 32px rgba(15,23,42,.22) !important;
+    text-shadow:none !important;
+    opacity:1 !important;
+    visibility:visible;
+    pointer-events:none;
   }
-  #toast.sona-toast-visible {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translateX(-50%) translateY(0) !important;
+  #toast::selection,
+  .toast::selection { color:#fff !important; background:#334a68 !important; }
+  html:not(.dark-mode) #dashboardShell.active #toast,
+  html:not(.dark-mode) #dashboardShell.active .toast {
+    color:#fff !important;
+    background:#0f1b2d !important;
+    border-color:#334a68 !important;
   }
-  #toast.sona-toast-success { background:#0f172a !important; color:#ffffff !important; }
-  #toast.sona-toast-error { background:#7f1d1d !important; color:#ffffff !important; }
 
-  /* Make profile image containers visually consistent. */
-  #avatarPreview {
-    overflow: hidden !important;
-    background: #f1f5f9 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+  /* Profile/avatar consistency */
+  #avatarPreview,
+  #brandLogo,
+  #brandLogoImage {
+    overflow:hidden !important;
   }
   #avatarPreview img,
   #brandLogoImage {
-    image-rendering: auto !important;
+    display:block !important;
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+  }
+  #brandLogo { position:relative; }
+  #brandLogoImage { border-radius:15px !important; }
+
+  /* Prevent desktop content from creating accidental horizontal overflow */
+  #dashboardShell.active,
+  #dashboardShell.active .app,
+  #dashboardShell.active .main,
+  #dashboardShell.active .page {
+    min-width:0;
+  }
+  #dashboardShell.active .page {
+    width:100%;
+    overflow-wrap:anywhere;
+  }
+  #dashboardShell.active img,
+  #dashboardShell.active iframe,
+  #dashboardShell.active video {
+    max-width:100%;
+  }
+  #dashboardShell.active .card,
+  #dashboardShell.active .stat,
+  #dashboardShell.active .metric-card,
+  #dashboardShell.active .creator-card,
+  #dashboardShell.active .hero,
+  #dashboardShell.active .video,
+  #dashboardShell.active .table-wrap {
+    min-width:0;
   }
 
-  @media (max-width: 640px) {
-    #toast { bottom: 18px !important; font-size: 13px !important; }
+  /* Cleaner medium-screen layout without changing the existing mobile navigation */
+  @media (max-width:1100px) {
+    #dashboardShell.active .page { padding-left:22px; padding-right:22px; }
+    #dashboardShell.active .grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    #dashboardShell.active .money-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    #dashboardShell.active .income-summary-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    #dashboardShell.active .profile-form { grid-template-columns:1fr; }
+    #dashboardShell.active .profile-form .full { grid-column:auto; }
+  }
+
+  @media (max-width:800px) {
+    #dashboardShell.active .page {
+      padding:16px 14px 92px !important;
+    }
+    #dashboardShell.active .hero {
+      padding:20px !important;
+      border-radius:16px !important;
+    }
+    #dashboardShell.active .hero h1 {
+      font-size:24px !important;
+      line-height:1.2;
+    }
+    #dashboardShell.active .topbar {
+      min-height:64px;
+      height:auto;
+      padding:10px 12px !important;
+    }
+    #dashboardShell.active .topbar h2 {
+      font-size:18px !important;
+      line-height:1.25;
+    }
+    #dashboardShell.active .grid,
+    #dashboardShell.active .money-grid,
+    #dashboardShell.active .two,
+    #dashboardShell.active .three,
+    #dashboardShell.active .video-grid,
+    #dashboardShell.active .creator-grid,
+    #dashboardShell.active .shop-grid,
+    #dashboardShell.active .profile,
+    #dashboardShell.active .income-summary-grid,
+    #dashboardShell.active .income-bottom-grid,
+    #dashboardShell.active .deposit-grid,
+    #dashboardShell.active .security-grid,
+    #dashboardShell.active .creator-youtube-grid {
+      grid-template-columns:1fr !important;
+    }
+    #dashboardShell.active .profile-head {
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+    #dashboardShell.active .action-row,
+    #dashboardShell.active .mini-actions,
+    #dashboardShell.active .subnav-card {
+      width:100%;
+    }
+    #dashboardShell.active .action-row .btn {
+      min-width:0 !important;
+      width:100%;
+    }
+    #dashboardShell.active .search {
+      flex-direction:column;
+    }
+    #dashboardShell.active .search .btn {
+      width:100%;
+    }
+    #dashboardShell.active .bank-detail {
+      grid-template-columns:1fr !important;
+    }
+    #dashboardShell.active .table-wrap {
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+    }
+    #dashboardShell.active .toast,
+    #dashboardShell.active #toast {
+      left:12px !important;
+      right:12px !important;
+      bottom:78px !important;
+      width:auto !important;
+      max-width:none !important;
+      text-align:center;
+      z-index:99999 !important;
+    }
+    #dashboardShell.active .stat {
+      padding:16px !important;
+    }
+    #dashboardShell.active .stat-icon {
+      width:56px;
+      min-width:56px;
+      height:56px;
+    }
+  }
+
+  @media (max-width:480px) {
+    #dashboardShell.active .sidebar {
+      width:68px !important;
+      padding-left:7px !important;
+      padding-right:7px !important;
+    }
+    #dashboardShell.active .main {
+      margin-left:68px !important;
+      width:calc(100% - 68px) !important;
+    }
+    #dashboardShell.active .page {
+      padding-left:10px !important;
+      padding-right:10px !important;
+    }
+    #dashboardShell.active .card {
+      padding:15px !important;
+      border-radius:14px !important;
+    }
+    #dashboardShell.active .profile-head {
+      gap:12px;
+    }
+    #dashboardShell.active #avatarPreview {
+      width:68px !important;
+      height:68px !important;
+      flex:0 0 68px;
+    }
+    #dashboardShell.active .btn {
+      min-height:42px;
+    }
   }
 </style>
-<script id="sona-final-profile-sync-js">
-(function () {
+
+<script id="sona-final-profile-sync">
+(function(){
   'use strict';
 
-  const client = () => window.sonaSupabase || null;
-  const $ = (id) => document.getElementById(id);
+  const MAX_AVATAR_BYTES = 2 * 1024 * 1024;
 
-  function showToast(message, type) {
-    const t = $('toast');
-    if (!t) { alert(message); return; }
-    t.textContent = String(message || '');
-    t.classList.remove('sona-toast-success', 'sona-toast-error');
-    t.classList.add(type === 'error' ? 'sona-toast-error' : 'sona-toast-success', 'sona-toast-visible');
-    clearTimeout(window.__sonaFinalToastTimer);
-    window.__sonaFinalToastTimer = setTimeout(() => {
-      t.classList.remove('sona-toast-visible');
-    }, 3200);
+  function supabaseClient(){
+    return window.sonaSupabase || null;
   }
 
-  function safeSrc(src) {
-    return String(src || '').trim();
+  function currentProfileKey(memberId){
+    const id = String(memberId || localStorage.getItem('sonaMemberId') || 'PM001').trim();
+    return 'sonaProfile_' + id.toUpperCase();
   }
 
-  function applyAvatar(src) {
-    src = safeSrc(src);
-    const preview = $('avatarPreview');
-    if (preview) {
-      if (src) {
-        preview.innerHTML = '';
-        const img = document.createElement('img');
-        img.alt = 'Profile picture';
-        img.src = src;
-        img.style.cssText = 'width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;';
-        preview.appendChild(img);
-      } else {
-        preview.textContent = '👤';
-      }
+  function escapeAttr(value){
+    return String(value || '')
+      .replace(/&/g,'&amp;')
+      .replace(/"/g,'&quot;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;');
+  }
+
+  function applyAvatar(src){
+    const value = String(src || '').trim();
+    const avatar = document.getElementById('avatarPreview');
+    const logo = document.getElementById('brandLogoImage');
+    const fallback = document.getElementById('brandLogoFallback');
+
+    if(avatar){
+      avatar.innerHTML = value
+        ? '<img alt="Profile picture" src="' + escapeAttr(value) + '">'
+        : '👤';
     }
 
-    const logo = $('brandLogoImage');
-    const fallback = $('brandLogoFallback');
-    if (logo) {
-      if (src) {
-        logo.src = src;
+    if(logo){
+      if(value){
+        logo.src = value;
         logo.style.display = 'block';
         logo.style.width = '100%';
         logo.style.height = '100%';
         logo.style.objectFit = 'cover';
         logo.style.borderRadius = '15px';
-        if (fallback) fallback.style.display = 'none';
-      } else {
+        if(fallback) fallback.style.display = 'none';
+      }else{
         logo.removeAttribute('src');
         logo.style.display = 'none';
-        if (fallback) fallback.style.display = '';
+        if(fallback) fallback.style.display = '';
       }
     }
 
-    // Keep any other avatar image used by the dashboard in sync.
-    document.querySelectorAll('[data-profile-avatar], .profile-avatar-image').forEach(function (el) {
-      if (el.tagName === 'IMG') {
-        if (src) { el.src = src; el.style.display = 'block'; }
-        else { el.removeAttribute('src'); el.style.display = 'none'; }
+    // Keep any additional profile/logo images synchronized if the page contains them.
+    document.querySelectorAll('[data-sona-profile-avatar]').forEach(function(el){
+      if(value){
+        el.innerHTML = '<img alt="Profile picture" src="' + escapeAttr(value) + '">';
+      }else{
+        el.textContent = '👤';
       }
     });
   }
 
-  async function getUser() {
-    const db = client();
-    if (!db) return null;
-    const result = await db.auth.getUser();
-    if (result.error) throw result.error;
-    return result.data && result.data.user ? result.data.user : null;
+  function saveAvatarCompatibility(src, memberId){
+    const key = currentProfileKey(memberId);
+    let profile = {};
+    try{
+      profile = JSON.parse(localStorage.getItem(key) || '{}');
+    }catch(_e){ profile = {}; }
+    profile.avatar = src;
+    profile.updatedAt = new Date().toISOString();
+    localStorage.setItem(key, JSON.stringify(profile));
+    localStorage.setItem('sonaAvatar', src);
   }
 
-  async function loadAvatarFromSupabase() {
-    const db = client();
-    if (!db) return '';
-    const user = await getUser();
-    if (!user) return '';
+  async function syncRemoteAvatar(){
+    const db = supabaseClient();
+    if(!db) return;
 
-    const { data, error } = await db
-      .from('profiles')
-      .select('avatar_url,full_name,member_id')
-      .eq('id', user.id)
-      .maybeSingle();
+    try{
+      const {data:{user}} = await db.auth.getUser();
+      if(!user) return;
 
-    if (error) throw error;
+      const {data,error} = await db
+        .from('profiles')
+        .select('id,member_id,avatar_url')
+        .eq('id',user.id)
+        .maybeSingle();
 
-    const avatar = safeSrc(data && data.avatar_url);
-    applyAvatar(avatar);
+      if(error) throw error;
 
-    if (data && data.full_name && $('memberNameSide')) $('memberNameSide').textContent = data.full_name;
-    if (data && data.member_id && $('memberIdSide')) $('memberIdSide').textContent = data.member_id;
-    return avatar;
+      const avatar = data?.avatar_url || '';
+      const memberId = data?.member_id || localStorage.getItem('sonaMemberId') || 'PM001';
+
+      localStorage.setItem('sonaMemberId', memberId);
+      saveAvatarCompatibility(avatar, memberId);
+      applyAvatar(avatar);
+    }catch(err){
+      console.warn('SONA avatar sync:', err?.message || err);
+    }
   }
 
-  // IMPORTANT: this overrides the older localStorage-only helper.
-  // Supabase is now the source of truth, so the same profile picture appears
-  // on another browser/device after login.
-  window.updateBrandLogo = function (src) {
-    applyAvatar(src || '');
-  };
+  window.sonaSyncProfileAvatar = syncRemoteAvatar;
 
-  // Replace every previous profile-picture handler with the database-backed one.
-  window.previewProfile = async function (event) {
+  window.previewProfile = async function(event){
     const input = event && event.target;
     const file = input && input.files ? input.files[0] : null;
-    if (!file) return;
+    if(!file) return;
 
-    if (!file.type || !file.type.startsWith('image/')) {
-      if (input) input.value = '';
-      showToast('Please select a valid image file.', 'error');
+    if(!file.type || !file.type.startsWith('image/')){
+      input.value = '';
+      if(typeof window.toast === 'function') window.toast('Please select a valid image file.');
       return;
     }
 
-    if (file.size > 2 * 1024 * 1024) {
-      if (input) input.value = '';
-      showToast('Profile picture must be 2 MB or smaller.', 'error');
+    if(file.size > MAX_AVATAR_BYTES){
+      input.value = '';
+      if(typeof window.toast === 'function') window.toast('Profile picture must be 2 MB or smaller.');
       return;
     }
 
-    try {
-      const user = await getUser();
-      const db = client();
-      if (!user || !db) {
-        showToast('Please log in before changing your profile picture.', 'error');
-        return;
-      }
+    const db = supabaseClient();
+    if(!db){
+      if(typeof window.toast === 'function') window.toast('Secure profile service is not loaded. Please refresh the page.');
+      return;
+    }
 
-      const dataUrl = await new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(String(reader.result || ''));
-        reader.onerror = () => reject(new Error('Could not read the selected image.'));
-        reader.readAsDataURL(file);
-      });
+    let user;
+    try{
+      const result = await db.auth.getUser();
+      user = result.data && result.data.user;
+    }catch(err){
+      console.error('SONA current user:',err);
+    }
 
-      // Update the UI immediately so the user sees the change without waiting.
+    if(!user){
+      if(typeof window.openModal === 'function') window.openModal('login');
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = async function(){
+      const dataUrl = String(reader.result || '');
+
+      // Show it immediately while the database update is in progress.
       applyAvatar(dataUrl);
 
-      // Persist to the authenticated user's Supabase profile row.
-      const { error } = await db.from('profiles').upsert({
-        id: user.id,
-        avatar_url: dataUrl,
-        updated_at: new Date().toISOString()
-      }, { onConflict: 'id' });
+      try{
+        const {error} = await db
+          .from('profiles')
+          .update({
+            avatar_url:dataUrl,
+            updated_at:new Date().toISOString()
+          })
+          .eq('id',user.id);
 
-      if (error) throw error;
+        if(error) throw error;
 
-      // Re-read from the database. This is what makes the change reliable
-      // across mobile, Chrome, Edge, and other browsers/devices.
-      await loadAvatarFromSupabase();
-      showToast('Profile picture updated successfully.', 'success');
-    } catch (error) {
-      console.error('Final profile picture sync:', error);
-      showToast(error && error.message ? error.message : 'Could not update profile picture.', 'error');
-    }
-  };
+        // Read the member ID from the same profile row so the browser-local
+        // compatibility cache is tied to the correct account.
+        let memberId = localStorage.getItem('sonaMemberId') || 'PM001';
+        try{
+          const {data:profileRow} = await db
+            .from('profiles')
+            .select('member_id')
+            .eq('id',user.id)
+            .maybeSingle();
+          memberId = profileRow?.member_id || memberId;
+        }catch(_e){}
 
-  // Prevent the old localStorage loadSavedProfile() from overwriting the
-  // database avatar when login/dashboard initialization runs.
-  window.loadSavedProfile = async function () {
-    try {
-      const db = client();
-      const user = db ? await getUser() : null;
-      if (user) {
-        await loadAvatarFromSupabase();
+        saveAvatarCompatibility(dataUrl, memberId);
+        applyAvatar(dataUrl);
+
+        if(typeof window.toast === 'function'){
+          window.toast('Profile picture updated successfully.');
+        }
+      }catch(err){
+        console.error('SONA profile picture update:',err);
+        // Restore the server version if the update failed.
+        await syncRemoteAvatar();
+        if(typeof window.toast === 'function'){
+          window.toast(err?.message || 'Could not update profile picture.');
+        }
       }
-    } catch (error) {
-      console.warn('Supabase profile avatar reload:', error);
-    }
+    };
 
-    if (typeof window.updateWithdrawalGate === 'function') {
-      try { window.updateWithdrawalGate(); } catch (_) {}
-    }
+    reader.readAsDataURL(file);
   };
 
-  // Make the existing dashboard entry point refresh the real profile from DB.
-  const previousEnterDashboard = window.enterDashboard;
-  if (typeof previousEnterDashboard === 'function' && !window.__sonaFinalDashboardWrapped) {
-    window.__sonaFinalDashboardWrapped = true;
-    window.enterDashboard = async function () {
-      const result = await previousEnterDashboard.apply(this, arguments);
-      try { await loadAvatarFromSupabase(); } catch (error) { console.warn('Avatar dashboard refresh:', error); }
+  // Ensure desktop/new browsers get the same server-side avatar after login.
+  const oldEnterDashboard = window.enterDashboard;
+  if(typeof oldEnterDashboard === 'function'){
+    window.enterDashboard = async function(){
+      const result = await oldEnterDashboard.apply(this, arguments);
+      await syncRemoteAvatar();
       return result;
     };
   }
 
-  // On refresh/navigation, always restore the server-side avatar.
-  async function bootProfileSync() {
-    try {
-      const user = await getUser();
-      if (user) await loadAvatarFromSupabase();
-    } catch (error) {
-      console.warn('Profile sync boot:', error);
-    }
+  // Refresh when the account page is opened.
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === 'function'){
+    window.showPage = function(id,btn){
+      const result = oldShowPage.apply(this, arguments);
+      if(id === 'account') setTimeout(syncRemoteAvatar, 80);
+      return result;
+    };
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', bootProfileSync, { once: true });
-  } else {
-    bootProfileSync();
-  }
-
-  // Re-fetch after tab/window becomes active, which helps when the same account
-  // was edited from another browser/device.
-  document.addEventListener('visibilitychange', function () {
-    if (!document.hidden) bootProfileSync();
+  document.addEventListener('DOMContentLoaded',function(){
+    setTimeout(syncRemoteAvatar,350);
+    setTimeout(syncRemoteAvatar,1200);
   });
 
-  // Replace the old toast function only for visual presentation; all existing
-  // calls such as toast('Profile saved successfully.') continue to work.
-  window.toast = function (message) {
-    showToast(message, /failed|error|could not|invalid|required|locked/i.test(String(message || '')) ? 'error' : 'success');
-  };
+  window.addEventListener('load',function(){
+    setTimeout(syncRemoteAvatar,300);
+  });
 })();
 </script>
 
