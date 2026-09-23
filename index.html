@@ -13,6 +13,9 @@
 <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta name="author" content="SONA DAILY LIFE HUB">
 <meta name="theme-color" content="#ffffff">
+<link rel="icon" type="image/png" href="https://cutesysona.shop/Red-YouTube-logo.png">
+<link rel="shortcut icon" href="https://cutesysona.shop/Red-YouTube-logo.png">
+<link rel="apple-touch-icon" href="https://cutesysona.shop/Red-YouTube-logo.png">
 <meta name="application-name" content="SONA DAILY LIFE HUB">
 <link rel="canonical" href="https://cutesysona.shop/">
 <link rel="alternate" hreflang="en" href="https://cutesysona.shop/">
@@ -1110,8 +1113,163 @@ html.dark-mode #sonaOwnerDashboard{background:#070b14;color:#f7f9fc}.owner-dark 
 @media(max-width:800px){.sona-owner-side{width:76px;flex-basis:76px;padding:10px 8px}.sona-owner-brand{justify-content:center;padding:8px 0 16px}.sona-owner-brand>div:last-child,.sona-owner-role,.sona-owner-nav-title{display:none}.sona-owner-nav button{font-size:0;text-align:center}.sona-owner-nav button::first-letter{font-size:20px}.sona-owner-top{height:auto;min-height:64px;padding:10px 14px}.sona-owner-top h1{font-size:17px}.sona-owner-content{padding:14px}.sona-owner-stats{grid-template-columns:1fr}.sona-owner-form{grid-template-columns:1fr}.sona-owner-form .full{grid-column:auto}.sona-owner-mobile{display:inline-flex}.sona-owner-desktop{display:none}}
 </style>
 
+
+<style id="sona-owner-final-polish">
+/* ============================================================
+   SONA FINAL POLISH / OWNER / RESPONSIVE PATCH
+   - No password is stored in this HTML.
+   - Owner authentication is delegated to Supabase Auth + RPC.
+   ============================================================ */
+
+/* Bounded global loader */
+#sonaPageLoader{
+  position:fixed;inset:0;z-index:2147483647;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#07101f,#101a2d 58%,#18243a);
+  color:#fff;opacity:1;visibility:visible;
+  transition:opacity .25s ease,visibility .25s ease;
+}
+#sonaPageLoader.sona-loader-hidden{opacity:0;visibility:hidden;pointer-events:none}
+.sona-loader-card{
+  width:min(360px,calc(100vw - 36px));padding:28px 24px;
+  border:1px solid rgba(255,255,255,.12);border-radius:24px;
+  background:rgba(15,27,45,.94);box-shadow:0 28px 90px rgba(0,0,0,.38);
+  display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;
+  backdrop-filter:blur(16px);
+}
+.sona-loader-logo{width:64px;height:64px;border-radius:17px;overflow:hidden;background:#fff;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.sona-loader-logo img{width:100%;height:100%;object-fit:cover}
+.sona-loader-spinner{
+  width:28px;height:28px;border:3px solid rgba(255,255,255,.22);
+  border-top-color:#ffb21c;border-radius:50%;animation:sonaLoaderSpin .7s linear infinite;
+  margin-top:4px;
+}
+.sona-loader-card strong{font-size:16px;letter-spacing:.02em}
+.sona-loader-card span{font-size:12px;color:#b8c4d6}
+@keyframes sonaLoaderSpin{to{transform:rotate(360deg)}}
+
+/* Theme switcher: reserve sidebar space so it never covers Log Out */
+#sonaThemeToggle{
+  bottom:18px!important;
+  left:18px!important;
+  width:176px!important;
+  z-index:1100!important;
+}
+#dashboardShell.active .sidebar{
+  padding-bottom:125px!important;
+}
+#dashboardShell.active .sidebar .nav:last-of-type{
+  margin-bottom:18px;
+}
+@media(max-width:800px){
+  #sonaThemeToggle{
+    left:10px!important;
+    bottom:10px!important;
+    width:156px!important;
+  }
+  #dashboardShell.active .sidebar{padding-bottom:120px!important}
+}
+
+/* Toast is always readable */
+#toast,.toast,.notification,.snackbar{
+  color:#fff!important;
+  background:#0f1b2d!important;
+  border:1px solid #385170!important;
+  font-weight:700!important;
+  line-height:1.45!important;
+  box-shadow:0 12px 32px rgba(15,23,42,.28)!important;
+  text-shadow:none!important;
+  z-index:2147480000!important;
+}
+html:not(.dark-mode) #dashboardShell.active #toast,
+html:not(.dark-mode) #dashboardShell.active .toast{
+  color:#fff!important;background:#0f1b2d!important;border-color:#385170!important;
+}
+@media(max-width:800px){
+  #dashboardShell.active #toast,
+  #dashboardShell.active .toast{
+    left:12px!important;right:12px!important;bottom:82px!important;
+    width:auto!important;max-width:none!important;text-align:center!important;
+  }
+}
+
+/* Owner portal: responsive desktop/tablet/mobile */
+#sonaOwnerLoginModal{overflow:auto!important}
+.sona-owner-login-card{max-height:calc(100dvh - 36px);overflow:auto}
+#sonaOwnerDashboard{overflow:hidden}
+.sona-owner-content{min-width:0}
+.sona-owner-table-wrap{max-width:100%}
+@media(max-width:1050px){
+  .sona-owner-side{width:230px;flex-basis:230px}
+  .sona-owner-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .sona-owner-grid-2,.sona-owner-grid-3{grid-template-columns:1fr!important}
+}
+@media(max-width:800px){
+  #sonaOwnerDashboard{overflow:hidden}
+  .sona-owner-shell{display:block;overflow:hidden}
+  .sona-owner-side{
+    position:absolute;left:0;top:0;bottom:0;width:min(286px,88vw);
+    z-index:20;transform:translateX(-105%);transition:transform .22s ease;
+    box-shadow:16px 0 40px rgba(0,0,0,.25);
+  }
+  .sona-owner-side.owner-mobile-open{transform:translateX(0)}
+  .sona-owner-main{height:100dvh}
+  .sona-owner-top{
+    height:auto;min-height:64px;padding:10px 14px;
+    padding-left:58px;align-items:center;
+  }
+  .sona-owner-top h1{font-size:18px}
+  .sona-owner-top .sona-owner-desktop{display:none}
+  .sona-owner-content{padding:14px 12px 28px}
+  .sona-owner-stats{grid-template-columns:1fr!important}
+  .sona-owner-form{grid-template-columns:1fr!important}
+  .sona-owner-form .full{grid-column:auto}
+  .sona-owner-table{min-width:720px}
+  .sona-owner-login-card{border-radius:18px}
+  .sona-owner-actions button{width:100%;min-width:0}
+  #sonaOwnerMobileMenu{
+    display:grid!important;
+    position:absolute;left:12px;top:12px;z-index:30;
+    width:38px;height:38px;border-radius:10px;border:1px solid #cbd5e1;
+    background:#fff;color:#172033;place-items:center;cursor:pointer;
+  }
+}
+#sonaOwnerMobileMenu{display:none}
+
+/* Profile picture: all known avatar surfaces */
+#avatarPreview img,#brandLogoImage,
+.avatar img,[data-sona-profile-avatar] img{
+  width:100%!important;height:100%!important;object-fit:cover!important;
+  display:block!important;
+}
+#avatarPreview,#brandLogo,.avatar,[data-sona-profile-avatar]{
+  overflow:hidden!important;
+}
+
+/* Prevent accidental desktop overflow */
+#dashboardShell.active,#dashboardShell.active .app,#dashboardShell.active .main,
+#dashboardShell.active .page{min-width:0}
+#dashboardShell.active img,#dashboardShell.active iframe,#dashboardShell.active video{max-width:100%}
+@media(max-width:1200px){
+  #dashboardShell.active .page{padding-left:22px;padding-right:22px}
+}
+</style>
+
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-rose-500 selection:text-white">
+
+<!-- SONA GLOBAL PAGE LOADER: bounded so it can never remain stuck -->
+<div id="sonaPageLoader" aria-hidden="false">
+  <div class="sona-loader-card" role="status" aria-live="polite">
+    <div class="sona-loader-logo" aria-hidden="true">
+      <img src="https://cutesysona.shop/Red-YouTube-logo.png" alt="">
+    </div>
+    <div class="sona-loader-spinner" aria-hidden="true"></div>
+    <strong>SONA DAILY LIFE HUB</strong>
+    <span>Loading your dashboard…</span>
+  </div>
+</div>
+
 
 <div id="landingRoot">
 
@@ -7118,7 +7276,7 @@ document.addEventListener('keydown',function(e){
       <p>This login is separate from the normal member dashboard. Only an account authorized in Supabase can enter.</p>
     </div>
     <div class="sona-owner-login-body">
-      <div class="sona-owner-field"><label for="sonaOwnerEmail">Owner Email</label><input id="sonaOwnerEmail" type="email" autocomplete="username" placeholder="owner@example.com"></div>
+      <div class="sona-owner-field"><label for="sonaOwnerEmail">Owner Email</label><input id="sonaOwnerEmail" type="email" autocomplete="username" value="piyushmandal27753@gmail.com" placeholder="owner@example.com"></div>
       <div class="sona-owner-field"><label for="sonaOwnerPassword">Password</label><input id="sonaOwnerPassword" type="password" autocomplete="current-password" placeholder="Enter owner password"></div>
       <div id="sonaOwnerLoginStatus" class="sona-owner-status" role="alert"></div>
       <div class="sona-owner-actions"><button class="btn primary" type="button" onclick="sonaOwnerLogin()">🔐 Sign In to Owner Dashboard</button><button class="btn" type="button" onclick="closeSonaOwnerLogin()">Cancel</button></div>
@@ -7149,7 +7307,8 @@ document.addEventListener('keydown',function(e){
         <button type="button" class="danger" onclick="sonaOwnerLogout()">🚪 Logout</button>
       </nav>
     </aside>
-    <section class="sona-owner-main">
+    <button id="sonaOwnerMobileMenu" type="button" aria-label="Open owner menu">☰</button>
+<section class="sona-owner-main">
       <header class="sona-owner-top">
         <div><h1 id="sonaOwnerPageTitle">Owner Overview</h1><small id="sonaOwnerLastUpdated">Waiting for data…</small></div>
         <div style="display:flex;gap:8px;align-items:center"><button class="btn sona-owner-desktop" onclick="sonaOwnerRefreshAll()">↻ Refresh</button><button class="btn danger" onclick="sonaOwnerLogout()">Logout</button></div>
@@ -8112,6 +8271,119 @@ document.addEventListener('DOMContentLoaded',function(){
   window.addEventListener('load',function(){
     setTimeout(syncRemoteAvatar,300);
   });
+})();
+</script>
+
+
+<script id="sona-final-owner-runtime">
+(function(){
+  'use strict';
+
+  /* Loader: hide quickly, and always force-hide after a hard timeout. */
+  function hideLoader(){
+    var el=document.getElementById('sonaPageLoader');
+    if(el) el.classList.add('sona-loader-hidden');
+  }
+  window.sonaHideLoader=hideLoader;
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){
+      setTimeout(hideLoader,700);
+    },{once:true});
+  }else{
+    setTimeout(hideLoader,300);
+  }
+  window.addEventListener('load',function(){setTimeout(hideLoader,150);},{once:true});
+  setTimeout(hideLoader,5000);
+
+  /* Owner portal mobile drawer */
+  document.addEventListener('click',function(e){
+    var menu=e.target.closest && e.target.closest('#sonaOwnerMobileMenu');
+    if(menu){
+      var side=document.querySelector('.sona-owner-side');
+      if(side) side.classList.toggle('owner-mobile-open');
+      return;
+    }
+    var nav=e.target.closest && e.target.closest('#sonaOwnerNav button[data-owner-page]');
+    if(nav){
+      var side2=document.querySelector('.sona-owner-side');
+      if(side2) side2.classList.remove('owner-mobile-open');
+    }
+  });
+
+  /* Keep owner email prefilled, while password always stays in Supabase Auth. */
+  function seedOwnerEmail(){
+    var input=document.getElementById('sonaOwnerEmail');
+    if(input && !input.value) input.value='piyushmandal27753@gmail.com';
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',seedOwnerEmail,{once:true});
+  else seedOwnerEmail();
+
+  /*
+   * Final avatar sync:
+   * Supabase is the source of truth. Do not let a stale localStorage image
+   * replace the server avatar on desktop.
+   */
+  async function finalAvatarSync(){
+    try{
+      var db=window.sonaSupabase;
+      if(!db) return;
+      var userRes=await db.auth.getUser();
+      var user=userRes && userRes.data && userRes.data.user;
+      if(!user) return;
+      var result=await db.from('profiles').select('avatar_url,member_id').eq('id',user.id).maybeSingle();
+      if(result.error) return;
+      var avatar=(result.data && result.data.avatar_url) || '';
+      var memberId=(result.data && result.data.member_id) || localStorage.getItem('sonaMemberId') || '';
+      if(memberId) localStorage.setItem('sonaMemberId',memberId);
+
+      var esc=function(v){return String(v||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
+
+      var preview=document.getElementById('avatarPreview');
+      if(preview) preview.innerHTML=avatar ? '<img alt="Profile picture" src="'+esc(avatar)+'">' : '👤';
+
+      var brand=document.getElementById('brandLogoImage');
+      var fallback=document.getElementById('brandLogoFallback');
+      if(brand){
+        if(avatar){
+          brand.src=avatar;
+          brand.style.display='block';
+          if(fallback) fallback.style.display='none';
+        }else{
+          brand.removeAttribute('src');
+          brand.style.display='none';
+          if(fallback) fallback.style.display='';
+        }
+      }
+
+      document.querySelectorAll('.avatar').forEach(function(el){
+        if(el.id==='avatarPreview') return;
+        if(avatar) el.innerHTML='<img alt="Profile picture" src="'+esc(avatar)+'">';
+      });
+      document.querySelectorAll('[data-sona-profile-avatar]').forEach(function(el){
+        if(avatar) el.innerHTML='<img alt="Profile picture" src="'+esc(avatar)+'">';
+      });
+    }catch(err){
+      console.debug('Final avatar sync:',err);
+    }
+  }
+
+  window.sonaFinalAvatarSync=finalAvatarSync;
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){
+      setTimeout(finalAvatarSync,500);
+      setTimeout(finalAvatarSync,1500);
+    },{once:true});
+  }else{
+    setTimeout(finalAvatarSync,500);
+  }
+  window.addEventListener('load',function(){setTimeout(finalAvatarSync,500);},{once:true});
+
+  if(window.sonaSupabase && window.sonaSupabase.auth){
+    window.sonaSupabase.auth.onAuthStateChange(function(event,session){
+      if(session && session.user) setTimeout(finalAvatarSync,250);
+    });
+  }
 })();
 </script>
 
