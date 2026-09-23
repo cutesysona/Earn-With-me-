@@ -7,25 +7,28 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SONA DAILY LIFE HUB | Daily Life, Learning, Rewards & Community</title>
-<meta name="description" content="SONA DAILY LIFE HUB is a daily life and community portal for learning, YouTube videos, social content, referrals, rewards, shopping resources, member tools and secure account services.">
+<title>SONA DAILY LIFE HUB | Videos, Learning, Shopping & Creator Tools</title>
+<meta name="description" content="SONA DAILY LIFE HUB brings videos, learning, Instagram Reels, shopping resources, creator tools and secure member account services together in one place.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta name="author" content="SONA DAILY LIFE HUB">
 <meta name="theme-color" content="#ffffff">
 <meta name="application-name" content="SONA DAILY LIFE HUB">
 <link rel="canonical" href="https://cutesysona.shop/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="msapplication-TileColor" content="#0f172a">
 <link rel="alternate" hreflang="en" href="https://cutesysona.shop/">
 <meta property="og:locale" content="en_IN">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SONA DAILY LIFE HUB">
-<meta property="og:title" content="SONA DAILY LIFE HUB | Daily Life, Learning, Rewards & Community">
-<meta property="og:description" content="Explore SONA DAILY LIFE HUB for learning, YouTube videos, social content, member tools, referrals, rewards and daily-life resources.">
+<meta property="og:title" content="SONA DAILY LIFE HUB | Videos, Learning, Shopping & Creator Tools">
+<meta property="og:description" content="Explore SONA DAILY LIFE HUB for videos, learning, Instagram Reels, shopping resources, creator tools and member account services.">
 <meta property="og:url" content="https://cutesysona.shop/">
 <meta property="og:image" content="https://cutesysona.shop/Red-YouTube-logo.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="SONA DAILY LIFE HUB | Daily Life, Learning, Rewards & Community">
-<meta name="twitter:description" content="Learning, YouTube, community, member tools, referrals, rewards and daily-life resources in one hub.">
+<meta name="twitter:title" content="SONA DAILY LIFE HUB | Videos, Learning, Shopping & Creator Tools">
+<meta name="twitter:description" content="Videos, learning, Instagram Reels, shopping resources, creator tools and member account services in one hub.">
 <meta name="twitter:image" content="https://cutesysona.shop/Red-YouTube-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +43,7 @@
       "@id":"https://cutesysona.shop/#website",
       "url":"https://cutesysona.shop/",
       "name":"SONA DAILY LIFE HUB",
-      "description":"Daily life, learning, community, member tools, rewards and lifestyle resources.",
+      "description":"Videos, learning, Instagram Reels, shopping resources, creator tools and member account services.",
       "inLanguage":"en-IN"
     },
     {
@@ -1087,27 +1090,172 @@ html.sona-modal-open, body.sona-modal-open {
 </style>
 
 
-<style id="sona-owner-admin-ui">
-/* ============================================================
-   SONA OWNER / ADMIN PORTAL
-   Separate frontend surface; security comes from Supabase RLS/RPC.
-   ============================================================ */
-.owner-hidden{display:none!important}
-#sonaOwnerLoginModal{position:fixed;inset:0;z-index:2147482000;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(2,6,23,.76);backdrop-filter:blur(10px)}
-#sonaOwnerLoginModal.show{display:flex}
-.sona-owner-login-card{width:min(470px,100%);background:#fff;color:#172033;border:1px solid #e2e8f0;border-radius:24px;box-shadow:0 28px 100px rgba(0,0,0,.35);overflow:hidden}
-.sona-owner-login-head{padding:24px 24px 18px;background:linear-gradient(135deg,#fff7ed,#eef2ff);border-bottom:1px solid #e2e8f0}
-.sona-owner-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border-radius:999px;background:#fff;border:1px solid #fed7aa;color:#9a3412;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
-.sona-owner-login-head h2{margin:14px 0 6px;font-size:28px}.sona-owner-login-head p{margin:0;color:#64748b;line-height:1.5}
-.sona-owner-login-body{padding:22px}.sona-owner-field{margin:12px 0}.sona-owner-field label{display:block;font-size:13px;font-weight:800;color:#526174;margin-bottom:6px}.sona-owner-field input{width:100%;padding:13px 14px;border:1px solid #cbd5e1;border-radius:12px;background:#fff;color:#172033;outline:none}.sona-owner-field input:focus{border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,.11)}
-.sona-owner-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.sona-owner-actions button{min-width:150px}.sona-owner-status{margin-top:12px;padding:12px 13px;border-radius:12px;font-size:13px;font-weight:700;display:none}.sona-owner-status.show{display:block}.sona-owner-status.error{background:#fff1f2;color:#991b1b;border:1px solid #fecdd3}.sona-owner-status.success{background:#ecfdf5;color:#166534;border:1px solid #bbf7d0}
-#sonaOwnerDashboard{position:fixed;inset:0;z-index:2147481000;background:#f4f7fb;color:#172033;display:none;overflow:hidden}
-#sonaOwnerDashboard.show{display:flex}
-.sona-owner-shell{display:flex;width:100%;height:100%}.sona-owner-side{width:260px;flex:0 0 260px;background:#0b1120;color:#fff;padding:16px 12px;border-right:1px solid #1f2937;overflow:auto}.sona-owner-brand{display:flex;gap:10px;align-items:center;padding:6px 8px 18px}.sona-owner-brand-icon{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#ff4f81,#6366f1);display:grid;place-items:center;font-weight:900}.sona-owner-brand b{font-size:15px;line-height:1.15}.sona-owner-brand span{display:block;color:#aebad0;font-size:10px;margin-top:4px}.sona-owner-role{margin:0 4px 16px;padding:12px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.04)}.sona-owner-role strong{display:block}.sona-owner-role small{color:#93a4bd}.sona-owner-nav-title{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:#6f7c91;padding:8px}.sona-owner-nav button{width:100%;border:1px solid transparent;background:transparent;color:#b9c4d5;text-align:left;padding:10px 12px;border-radius:11px;margin:2px 0;font-weight:700;cursor:pointer}.sona-owner-nav button:hover,.sona-owner-nav button.active{background:rgba(255,79,129,.12);color:#fff;border-color:rgba(255,79,129,.18)}.sona-owner-nav button.danger{color:#ffb4c4}
-.sona-owner-main{flex:1;min-width:0;display:flex;flex-direction:column}.sona-owner-top{height:70px;flex:0 0 70px;background:rgba(255,255,255,.95);border-bottom:1px solid #e2e8f0;display:flex;align-items:center;justify-content:space-between;padding:0 22px;gap:12px}.sona-owner-top h1{margin:0;font-size:22px}.sona-owner-top small{color:#64748b}.sona-owner-content{overflow:auto;padding:22px}.sona-owner-page{display:none;max-width:1500px;margin:0 auto}.sona-owner-page.active{display:block}.sona-owner-hero{padding:22px;border-radius:18px;background:linear-gradient(135deg,#fff7ed,#eef2ff);border:1px solid #fed7aa;margin-bottom:16px}.sona-owner-hero h2{margin:0 0 6px}.sona-owner-hero p{margin:0;color:#667085;line-height:1.5}.sona-owner-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.sona-owner-card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:17px;box-shadow:0 5px 22px rgba(15,23,42,.04)}.sona-owner-card h3{margin:0 0 12px}.sona-owner-stat small{display:block;color:#667085;font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:.05em}.sona-owner-stat strong{display:block;font-size:28px;margin-top:6px}.sona-owner-stat .sub{font-size:12px;color:#98a2b3;margin-top:4px}.sona-owner-grid-2{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-top:14px}.sona-owner-grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}.sona-owner-table-wrap{overflow:auto;border:1px solid #e2e8f0;border-radius:14px}.sona-owner-table{width:100%;border-collapse:collapse;min-width:760px}.sona-owner-table th,.sona-owner-table td{padding:11px 12px;border-bottom:1px solid #e2e8f0;text-align:left;font-size:12px}.sona-owner-table th{background:#f8fafc;color:#526174}.sona-owner-table td{color:#344054}.sona-owner-chip{display:inline-flex;padding:4px 8px;border-radius:999px;background:#f1f5f9;color:#475467;font-size:11px;font-weight:800}.sona-owner-chip.green{background:#dcfce7;color:#166534}.sona-owner-chip.orange{background:#ffedd5;color:#9a3412}.sona-owner-form{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px}.sona-owner-form .full{grid-column:1/-1}.sona-owner-form label{display:block;font-size:12px;font-weight:800;color:#526174;margin-bottom:5px}.sona-owner-form input,.sona-owner-form select,.sona-owner-form textarea{width:100%;padding:11px 12px;border:1px solid #cbd5e1;border-radius:10px;background:#fff;color:#172033}.sona-owner-form textarea{min-height:88px;resize:vertical}.sona-owner-form-actions{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}.sona-owner-kpi-list{display:grid;gap:9px}.sona-owner-kpi-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #edf0f5}.sona-owner-kpi-row:last-child{border-bottom:0}.sona-owner-kpi-row span{color:#667085;font-size:12px}.sona-owner-kpi-row strong{font-size:14px}.sona-owner-empty{padding:22px;text-align:center;color:#7a879a}.sona-owner-note{font-size:12px;color:#667085;line-height:1.5;margin-top:10px}.sona-owner-mobile{display:none}
-html.dark-mode #sonaOwnerDashboard{background:#070b14;color:#f7f9fc}.owner-dark html.dark-mode #sonaOwnerDashboard{background:#070b14}.dark-mode .sona-owner-main{background:#070b14}.dark-mode .sona-owner-top{background:rgba(7,11,20,.92);border-color:#1f2937;color:#f7f9fc}.dark-mode .sona-owner-top small{color:#94a3b8}.dark-mode .sona-owner-content{background:#070b14}.dark-mode .sona-owner-page .sona-owner-card{background:#111827;border-color:#263449;color:#f7f9fc}.dark-mode .sona-owner-page .sona-owner-card h3{color:#f7f9fc}.dark-mode .sona-owner-hero{background:linear-gradient(135deg,#15120d,#0f172a);border-color:#59451e}.dark-mode .sona-owner-hero p,.dark-mode .sona-owner-note,.dark-mode .sona-owner-stat small,.dark-mode .sona-owner-stat .sub{color:#94a3b8}.dark-mode .sona-owner-table-wrap{border-color:#263449}.dark-mode .sona-owner-table th{background:#0b1220;color:#cbd5e1;border-color:#263449}.dark-mode .sona-owner-table td{color:#e2e8f0;border-color:#263449}.dark-mode .sona-owner-form label{color:#aebad0}.dark-mode .sona-owner-form input,.dark-mode .sona-owner-form select,.dark-mode .sona-owner-form textarea{background:#0f172a;color:#f8fafc;border-color:#334155}.dark-mode .sona-owner-kpi-row{border-color:#263449}.dark-mode .sona-owner-kpi-row span{color:#94a3b8}.dark-mode .sona-owner-empty{color:#94a3b8}
-@media(max-width:1050px){.sona-owner-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.sona-owner-grid-2,.sona-owner-grid-3{grid-template-columns:1fr}}
-@media(max-width:800px){.sona-owner-side{width:76px;flex-basis:76px;padding:10px 8px}.sona-owner-brand{justify-content:center;padding:8px 0 16px}.sona-owner-brand>div:last-child,.sona-owner-role,.sona-owner-nav-title{display:none}.sona-owner-nav button{font-size:0;text-align:center}.sona-owner-nav button::first-letter{font-size:20px}.sona-owner-top{height:auto;min-height:64px;padding:10px 14px}.sona-owner-top h1{font-size:17px}.sona-owner-content{padding:14px}.sona-owner-stats{grid-template-columns:1fr}.sona-owner-form{grid-template-columns:1fr}.sona-owner-form .full{grid-column:auto}.sona-owner-mobile{display:inline-flex}.sona-owner-desktop{display:none}}
+<style id="sona-final-ux-seo-fixes">
+/* ==========================================================
+   SONA FINAL UX: SIDEBAR THEME + FORGOT PASSWORD + READABILITY
+   ========================================================== */
+.sona-sidebar-theme-slot{
+  position:sticky;
+  bottom:0;
+  margin-top:8px;
+  padding:10px 4px 4px;
+  background:linear-gradient(to top,#ffffff 72%,rgba(255,255,255,.72),transparent);
+  z-index:8;
+}
+#sonaThemeToggle{
+  position:static!important;
+  left:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:100%!important;
+  max-width:none!important;
+  padding:6px!important;
+  border:1px solid #dbe2ea!important;
+  border-radius:16px!important;
+  background:rgba(255,255,255,.98)!important;
+  box-shadow:0 8px 24px rgba(15,23,42,.12)!important;
+  display:flex!important;
+  align-items:center;
+  gap:5px;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+.sona-theme-btn{
+  flex:1!important;
+  min-width:0;
+  height:38px!important;
+  border:0!important;
+  border-radius:10px!important;
+  font-size:12px!important;
+  font-weight:800!important;
+  white-space:nowrap;
+  cursor:pointer;
+  background:transparent!important;
+  color:#64748b!important;
+}
+.sona-theme-btn.active{background:#172033!important;color:#fff!important}
+.sona-theme-btn:hover{background:#f1f5f9!important;color:#172033!important}
+html.dark-mode .sona-sidebar-theme-slot{
+  background:linear-gradient(to top,#0a0f1c 72%,rgba(10,15,28,.74),transparent)!important;
+}
+html.dark-mode #sonaThemeToggle{
+  background:rgba(15,23,42,.98)!important;
+  border-color:#334155!important;
+  box-shadow:0 8px 24px rgba(0,0,0,.34)!important;
+}
+html.dark-mode .sona-theme-btn{color:#94a3b8!important}
+html.dark-mode .sona-theme-btn:hover{background:#1e293b!important;color:#fff!important}
+html.dark-mode .sona-theme-btn.active{background:#f8fafc!important;color:#0f172a!important}
+
+/* Login reset link */
+.sona-forgot-password{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:#e11d48;
+  font-size:13px;
+  font-weight:800;
+  padding:4px 2px 2px;
+  text-align:right;
+  cursor:pointer;
+  transition:color .2s ease,transform .2s ease;
+}
+.sona-forgot-password:hover{color:#be123c;transform:translateY(-1px)}
+.sona-auth-status{
+  display:none;
+  width:100%;
+  padding:11px 13px;
+  border-radius:12px;
+  border:1px solid #dbe4ef;
+  background:#f8fafc;
+  color:#475467;
+  font-size:12px;
+  line-height:1.5;
+  overflow-wrap:anywhere;
+}
+html.dark-mode .sona-auth-status{
+  background:#0f172a!important;
+  border-color:#334155!important;
+  color:#cbd5e1!important;
+}
+
+/* Password reset modal */
+#sonaPasswordResetModal{
+  position:fixed;
+  inset:0;
+  z-index:120000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+  background:rgba(15,23,42,.66);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+#sonaPasswordResetModal.show{display:flex}
+.sona-reset-card{
+  width:min(460px,100%);
+  max-height:calc(100dvh - 32px);
+  overflow:auto;
+  background:#fff;
+  color:#172033;
+  border:1px solid #e2e8f0;
+  border-radius:24px;
+  box-shadow:0 30px 90px rgba(15,23,42,.30);
+  padding:28px;
+}
+.sona-reset-icon{
+  width:58px;height:58px;border-radius:18px;
+  display:grid;place-items:center;
+  margin-bottom:16px;
+  background:linear-gradient(135deg,#ffe4e6,#ffedd5);
+  color:#e11d48;font-size:23px;
+}
+.sona-reset-card h3{margin:0;font-size:24px;font-weight:900}
+.sona-reset-card .subtitle{margin:7px 0 20px;color:#667085;font-size:13px;line-height:1.55}
+.sona-reset-label{display:block;margin:13px 0 6px;font-size:12px;font-weight:800;color:#475467;text-transform:uppercase;letter-spacing:.03em}
+.sona-reset-input-wrap{position:relative}
+.sona-reset-input{
+  width:100%;padding:12px 46px 12px 13px;border:1px solid #cbd5e1;border-radius:12px;
+  outline:none;background:#fff;color:#172033;
+}
+.sona-reset-input:focus{border-color:#e11d48;box-shadow:0 0 0 3px rgba(225,29,72,.10)}
+.sona-reset-eye{
+  position:absolute;right:7px;top:50%;transform:translateY(-50%);border:0;background:transparent;
+  width:36px;height:36px;border-radius:9px;color:#64748b;cursor:pointer;
+}
+.sona-reset-actions{display:flex;gap:9px;margin-top:20px}
+.sona-reset-actions button{flex:1;min-height:46px;border-radius:12px;font-weight:800;cursor:pointer}
+.sona-reset-primary{border:0;background:linear-gradient(135deg,#e11d48,#f97316);color:#fff}
+.sona-reset-secondary{border:1px solid #cbd5e1;background:#fff;color:#344054}
+.sona-reset-status{margin-top:12px;padding:11px 13px;border-radius:11px;font-size:12px;line-height:1.5;display:none;overflow-wrap:anywhere}
+.sona-reset-status.success{background:#ecfdf3;border:1px solid #86efac;color:#166534;display:block}
+.sona-reset-status.error{background:#fff1f2;border:1px solid #fda4af;color:#991b1b;display:block}
+.sona-reset-note{font-size:11px;color:#98a2b3;line-height:1.45;margin-top:10px}
+html.dark-mode #sonaPasswordResetModal{background:rgba(2,6,23,.78)}
+html.dark-mode .sona-reset-card{background:#111827!important;color:#f8fafc!important;border-color:#334155!important;box-shadow:0 30px 90px rgba(0,0,0,.55)}
+html.dark-mode .sona-reset-card .subtitle,.dark-mode .sona-reset-card .subtitle{color:#94a3b8!important}
+html.dark-mode .sona-reset-label{color:#cbd5e1!important}
+html.dark-mode .sona-reset-input{background:#0b1220!important;color:#f8fafc!important;border-color:#334155!important}
+html.dark-mode .sona-reset-input::placeholder{color:#64748b!important}
+html.dark-mode .sona-reset-secondary{background:#172033!important;color:#e2e8f0!important;border-color:#334155!important}
+html.dark-mode .sona-reset-note{color:#7f8da3!important}
+
+/* Ensure profile/sidebar text stays high-contrast after the new theme placement. */
+.sidebar .nav button,
+.sidebar .nav-title,
+.sidebar .member,
+.sidebar .brand b,
+.sidebar .brand span{opacity:1!important}
+
+@media(max-width:800px){
+  .sona-sidebar-theme-slot{padding-left:0;padding-right:0}
+  #sonaThemeToggle{width:100%!important}
+  .sona-theme-btn{height:40px!important;font-size:12px!important}
+  .sona-reset-card{padding:22px;border-radius:20px}
+  .sona-reset-actions{flex-direction:column}
+  .sona-reset-actions button{width:100%}
+}
 </style>
 
 </head>
@@ -1284,12 +1432,12 @@ html.dark-mode #sonaOwnerDashboard{background:#070b14;color:#f7f9fc}.owner-dark 
                 <!-- Instagram Card -->
                 <div class="bg-white rounded-3xl p-8 shadow-xl border border-slate-200 hover:shadow-2xl transition flex flex-col items-center text-center group">
                     <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-amber-100 via-rose-100 to-purple-100 flex items-center justify-center mb-6 group-hover:scale-110 transition shadow-inner p-3">
-                        <img src="instagram.avif" class="w-full h-full object-cover rounded-xl" alt="Instagram Logo">
+                        <img src="instagram.svg" class="w-full h-full object-contain rounded-xl" alt="Instagram Logo" width="64" height="64" loading="lazy">
                     </div>
                     <h3 class="text-xl font-bold text-slate-900">Instagram Handle</h3>
                     <p class="text-slate-500 text-xs mt-1 mb-6">@cutesysonaff - Reels, Lifestyle & Updates</p>
                     <a href="https://www.instagram.com/cutesysonaff/" target="_blank" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-purple-600 via-rose-600 to-amber-500 hover:opacity-95 text-white font-bold text-sm shadow-lg shadow-rose-500/25 transition flex items-center justify-center gap-2">
-                        <img src="instagram.avif" class="w-5 h-5 object-cover rounded-full" alt="Instagram" width="20" height="20"> Follow on Instagram
+                        <img src="instagram.svg" class="w-5 h-5 object-contain rounded-full" alt="Instagram" width="20" height="20" loading="lazy"> Follow on Instagram
                     </a>
                 </div>
             </div>
@@ -1349,7 +1497,7 @@ html.dark-mode #sonaOwnerDashboard{background:#070b14;color:#f7f9fc}.owner-dark 
                 <h5 class="text-white font-bold text-sm mb-4 uppercase tracking-wider">Quick Links</h5>
                 <ul class="space-y-2.5 text-sm">
                     <li><a href="#channels" class="hover:text-white transition flex items-center gap-2"><img src="Red-YouTube-logo.png" class="w-4 h-4 object-contain" alt="YouTube"> YouTube Channel</a></li>
-                    <li><a href="https://www.instagram.com/cutesysonaff/" target="_blank" class="hover:text-white transition flex items-center gap-2"><img src="instagram.avif" class="w-4 h-4 object-cover rounded-full" alt="Instagram"> Instagram Handle</a></li>
+                    <li><a href="https://www.instagram.com/cutesysonaff/" target="_blank" class="hover:text-white transition flex items-center gap-2"><img src="instagram.svg" class="w-4 h-4 object-cover rounded-full" alt="Instagram"> Instagram Handle</a></li>
                     <li><a href="#" onclick="openModal('login')" class="hover:text-white transition">Member Login</a></li>
                     <li><a href="#" onclick="openModal('signup')" class="hover:text-white transition">Sign Up / Register</a></li>
                 </ul>
@@ -1401,6 +1549,10 @@ html.dark-mode #sonaOwnerDashboard{background:#070b14;color:#f7f9fc}.owner-dark 
                             <button type="button" class="password-eye" onclick="togglePasswordVisibility('loginPassword',this)" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
                         </div>
                     </div>
+                    <button id="sonaForgotPassword" type="button" class="sona-forgot-password" aria-label="Forgot your password? Reset it by email">
+                        <i class="fa-solid fa-key" aria-hidden="true"></i> Forgot Password?
+                    </button>
+                    <div id="sonaAuthStatus" class="sona-auth-status" role="status" aria-live="polite"></div>
                     <button type="submit" class="w-full py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm shadow-lg transition">Log In to Dashboard</button>
                 </form>
             </div>
@@ -1543,14 +1695,18 @@ html.dark-mode #sonaOwnerDashboard{background:#070b14;color:#f7f9fc}.owner-dark 
   </nav>
   <div class="nav-title">Account</div>
   <nav class="nav"><button onclick="logout()">↪️ <span>Log Out</span></button></nav>
+  <div class="sona-sidebar-theme-slot">
+    <div id="sonaThemeToggle" aria-label="Theme switcher">
+      <button id="sonaLightBtn" class="sona-theme-btn" type="button" onclick="setSonaTheme('light')">☀️ Light</button>
+      <button id="sonaDarkBtn" class="sona-theme-btn" type="button" onclick="setSonaTheme('dark')">🌙 Dark</button>
+    </div>
+  </div>
 </aside>
 <main class="main">
 <header class="topbar">
   <h2 id="pageTitle">Dashboard Overview</h2>
   <div class="top-actions">
     <button class="btn hub-live-chip" type="button" onclick="showPage('tasks')" title="Open SONA DAILY CHALLENGE">⏱️ <span id="hubLiveTimeTop">00:00:00</span></button>
-    <button class="btn theme-top-btn" type="button" onclick="setSonaTheme('light')">☀️ Light</button>
-    <button class="btn theme-top-btn" type="button" onclick="setSonaTheme('dark')">🌙 Dark</button>
     <button class="btn" onclick="showPage('income')">💰 My Income</button>
     <button class="btn primary" onclick="showPage('deposit')">💳 Deposit</button>
     <button class="btn" onclick="copyReferral()">🔗 Referral Link</button>
@@ -4160,11 +4316,7 @@ html.dark-mode #dashboardShell.active .hub-live-chip{background:#102a25 !importa
   setInterval(refreshIncome,5000);
 })();
 </script>\n
-<!-- SONA Theme Switcher -->
-<div id="sonaThemeToggle" aria-label="Theme switcher">
-  <button id="sonaLightBtn" class="sona-theme-btn" type="button" onclick="setSonaTheme('light')">☀️ Light</button>
-  <button id="sonaDarkBtn" class="sona-theme-btn" type="button" onclick="setSonaTheme('dark')">🌙 Dark</button>
-</div>
+
 
 
 
@@ -6384,11 +6536,10 @@ document.addEventListener('keydown',function(e){
    * ADD FORGOT PASSWORD BUTTON
    */
   function addForgotPasswordButton() {
+    /* Final forgot-password button is rendered in the login form HTML. */
+    if ($("sonaForgotPassword")) return;
     const form = $("loginEmail")?.closest("form");
-
-    if (!form || $("sonaForgotPassword")) {
-      return;
-    }
+    if (!form) return;
 
     const button = document.createElement("button");
 
@@ -6702,1005 +6853,198 @@ document.addEventListener('keydown',function(e){
 </script>
 
 
+<!-- ==========================================================
+     SONA SECURE PASSWORD RESET MODAL
+     Supabase email link establishes recovery session.
+     ========================================================== -->
+<div id="sonaPasswordResetModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="sonaResetTitle">
+  <div class="sona-reset-card">
+    <div class="sona-reset-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+    <h3 id="sonaResetTitle">Create a new password</h3>
+    <p class="subtitle">Your secure password-reset link has been verified. Choose a new password for your SONA DAILY LIFE HUB account.</p>
 
-<!-- SONA LOGIN RESEND VERIFICATION PATCH v2 -->
-<style id="sona-login-resend-verification-v2">
-/* ================================
-   LOGIN RESEND VERIFICATION BUTTON
-================================ */
-#sonaLoginResendVerification {
-    display: none;
-    width: 100%;
-    min-height: 48px;
-    margin-top: 12px;
-    padding: 13px 16px;
-    border: 1px solid #f59e0b;
-    border-radius: 14px;
-    background: linear-gradient(135deg, #fff7ed, #fffbeb);
-    color: #9a3412;
-    font-family: Inter, Arial, sans-serif;
-    font-size: 15px;
-    font-weight: 800;
-    line-height: 1.4;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-#sonaLoginResendVerification:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(245, 158, 11, 0.2);
-}
-#sonaLoginResendVerification:disabled { opacity: 0.6; cursor: wait; transform:none; }
-#sonaLoginResendStatus {
-    display: none;
-    width: 100%;
-    margin-top: 8px;
-    padding: 11px 13px;
-    border-radius: 10px;
-    font-family: Inter, Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1.5;
-    overflow-wrap: anywhere;
-}
-#sonaAuthStatus {
-    display: none;
-    width: 100%;
-    margin-top: 12px;
-    padding: 12px 13px;
-    border-radius: 12px;
-    font-family: Inter, Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1.5;
-    overflow-wrap: anywhere;
-}
-/* ================================
-   PROFILE ERROR / SUCCESS TOAST
-================================ */
-.sona-readable-toast {
-    z-index: 2147483000 !important;
-    max-width: min(92vw, 480px) !important;
-    min-width: 280px !important;
-    padding: 18px 22px !important;
-    border-radius: 16px !important;
-    font-family: Inter, Arial, sans-serif !important;
-    font-size: 18px !important;
-    font-weight: 800 !important;
-    line-height: 1.55 !important;
-    text-align: left !important;
-    overflow-wrap: anywhere !important;
-    box-shadow: 0 14px 38px rgba(15, 23, 42, 0.3) !important;
-}
-.sona-toast-error { color:#7f1d1d !important; background:#fff1f2 !important; border:2px solid #fda4af !important; }
-.sona-toast-success { color:#14532d !important; background:#f0fdf4 !important; border:2px solid #86efac !important; }
-@media (max-width: 640px) {
-    #sonaLoginResendVerification { font-size:14px; padding:13px 12px; }
-    .sona-readable-toast {
-        left:12px !important; right:12px !important; bottom:12px !important;
-        width:auto !important; max-width:none !important; min-width:0 !important;
-        padding:15px 16px !important; font-size:16px !important;
-    }
-}
-</style>
-
-<script id="sona-login-resend-verification-v2-js">
-(function () {
-    "use strict";
-
-    const $ = (id) => document.getElementById(id);
-    let resendBusy = false;
-    let resendTimer = null;
-
-    function getSupabaseClient() {
-        return window.sonaSupabase || window.db || window.supabaseClient || null;
-    }
-
-    function getLoginEmail() {
-        return (($('loginEmail') && $('loginEmail').value) || '').trim().toLowerCase();
-    }
-
-    function setAuthStatus(message, isError) {
-        let box = $('sonaAuthStatus');
-        const form = $('loginEmail')?.closest('form');
-
-        if (!box && form) {
-            box = document.createElement('div');
-            box.id = 'sonaAuthStatus';
-            box.setAttribute('role', 'alert');
-            box.setAttribute('aria-live', 'polite');
-            form.appendChild(box);
-        }
-
-        if (!box) return;
-
-        box.textContent = message || '';
-        box.style.display = message ? 'block' : 'none';
-        box.style.color = isError ? '#991b1b' : '#166534';
-        box.style.background = isError ? '#fff1f2' : '#f0fdf4';
-        box.style.border = isError ? '1px solid #fda4af' : '1px solid #86efac';
-    }
-
-    // Make this helper available to the existing page code too.
-    window.showAuthMessage = function (message, error) {
-        setAuthStatus(message, !!error);
-    };
-
-    function showLoginResend(message, isError) {
-        const button = $('sonaLoginResendVerification');
-        const status = $('sonaLoginResendStatus');
-        if (button) button.style.display = 'block';
-        if (status) {
-            status.textContent = message || '';
-            status.style.display = message ? 'block' : 'none';
-            status.style.color = isError ? '#991b1b' : '#166534';
-            status.style.background = isError ? '#fff1f2' : '#f0fdf4';
-            status.style.border = isError ? '1px solid #fda4af' : '1px solid #86efac';
-        }
-    }
-
-    function hideLoginResend() {
-        const button = $('sonaLoginResendVerification');
-        const status = $('sonaLoginResendStatus');
-        if (button && !resendBusy) button.style.display = 'none';
-        if (status && !resendBusy) status.style.display = 'none';
-    }
-
-    function installResendButton() {
-        const form = $('loginEmail')?.closest('form');
-        if (!form) return false;
-        if ($('sonaLoginResendVerification')) return true;
-
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.id = 'sonaLoginResendVerification';
-        button.setAttribute('aria-controls', 'sonaLoginResendStatus');
-        button.textContent = '↻  Resend Verification Email';
-
-        const status = document.createElement('div');
-        status.id = 'sonaLoginResendStatus';
-        status.setAttribute('role', 'status');
-        status.setAttribute('aria-live', 'polite');
-
-        button.addEventListener('click', resendVerificationEmail);
-        form.appendChild(button);
-        form.appendChild(status);
-        return true;
-    }
-
-    async function resendVerificationEmail() {
-        if (resendBusy) return;
-
-        const email = getLoginEmail();
-        const supabase = getSupabaseClient();
-
-        if (!email || !email.includes('@')) {
-            showLoginResend('Please enter your registered Gmail address first.', true);
-            setAuthStatus('Please enter your registered Gmail address first.', true);
-            $('loginEmail')?.focus();
-            return;
-        }
-
-        if (!supabase?.auth?.resend) {
-            showLoginResend('Verification service is unavailable. Please refresh the page.', true);
-            return;
-        }
-
-        const button = $('sonaLoginResendVerification');
-        resendBusy = true;
-        if (button) {
-            button.disabled = true;
-            button.textContent = 'Sending verification email...';
-        }
-        showLoginResend('Sending a new verification email. Please wait...', false);
-
-        try {
-            const redirectUrl = window.location.origin + window.location.pathname;
-            const result = await supabase.auth.resend({
-                type: 'signup',
-                email,
-                options: { emailRedirectTo: redirectUrl }
-            });
-
-            if (result.error) throw result.error;
-
-            showLoginResend(
-                'Verification email requested successfully. Check your Gmail Inbox, Spam, and Promotions folders.',
-                false
-            );
-
-            let seconds = 30;
-            if (button) button.textContent = `Resend available in ${seconds}s`;
-
-            clearInterval(resendTimer);
-            resendTimer = setInterval(function () {
-                seconds -= 1;
-                if (button) button.textContent = `Resend available in ${seconds}s`;
-                if (seconds <= 0) {
-                    clearInterval(resendTimer);
-                    resendTimer = null;
-                    resendBusy = false;
-                    if (button) {
-                        button.disabled = false;
-                        button.textContent = '↻  Resend Verification Email';
-                    }
-                }
-            }, 1000);
-        } catch (error) {
-            console.error('SONA resend verification error:', error);
-            let message = String(error?.message || 'Unable to resend verification email.');
-            if (/rate limit|too many requests|429/i.test(message)) {
-                message = 'Email rate limit reached. Please wait before requesting another email.';
-            }
-            showLoginResend(message, true);
-            resendBusy = false;
-            if (button) {
-                button.disabled = false;
-                button.textContent = '↻  Resend Verification Email';
-            }
-        }
-    }
-
-    function verifiedUser(user) {
-        return !!(user && (user.email_confirmed_at || user.confirmed_at));
-    }
-
-    function friendlyLoginError(error) {
-        const text = String(error?.message || error || 'Login failed. Please try again.');
-        const lower = text.toLowerCase();
-        if (lower.includes('email not confirmed') || lower.includes('email not verified') || lower.includes('confirm your email')) {
-            return 'Your Gmail is not verified yet. Please verify your account and use the resend button below.';
-        }
-        if (lower.includes('invalid login credentials')) {
-            return 'Incorrect Gmail or password. Please check your login details.';
-        }
-        if (lower.includes('rate limit') || lower.includes('too many requests') || lower.includes('429')) {
-            return 'Too many requests. Please wait a moment and try again.';
-        }
-        return text;
-    }
-
-    function displayVerificationPopup(email, message) {
-        showLoginResend(message || 'Your Gmail is not verified yet. Please verify your account and resend the email if needed.', true);
-        setAuthStatus('Your Gmail is not verified. Please verify your account and try again.', true);
-
-        if (typeof window.showEmailVerificationModal === 'function') {
-            window.showEmailVerificationModal(email, message || 'Please verify your Gmail before opening the dashboard.');
-        }
-    }
-
-    /* Final login handler. This deliberately replaces older duplicate login handlers
-       so one consistent verification flow controls the page. */
-    window.handleLogin = async function (event) {
-        if (event) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-
-        installResendButton();
-        const supabase = getSupabaseClient();
-        const email = getLoginEmail();
-        const password = $('loginPassword')?.value || '';
-        const button = event?.submitter;
-
-        hideLoginResend();
-        setAuthStatus('', false);
-
-        if (!supabase?.auth) {
-            setAuthStatus('Authentication service is not loaded. Please refresh the page.', true);
-            return;
-        }
-        if (!email || !password) {
-            setAuthStatus('Please enter your Gmail and password.', true);
-            return;
-        }
-        if (!email.includes('@')) {
-            setAuthStatus('Please use your registered Gmail address.', true);
-            return;
-        }
-
-        if (button) {
-            button.disabled = true;
-            button.dataset.oldText = button.textContent;
-            button.textContent = 'Checking account...';
-        }
-
-        try {
-            const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-
-            if (error) {
-                const lower = String(error.message || '').toLowerCase();
-                if (lower.includes('email not confirmed') || lower.includes('email not verified') || lower.includes('confirm your email')) {
-                    await supabase.auth.signOut().catch(() => {});
-                    displayVerificationPopup(email, 'Your password is correct, but your Gmail is not verified yet.');
-                    return;
-                }
-                throw error;
-            }
-
-            const user = data?.user;
-            if (!user) throw new Error('Supabase did not return an authenticated user.');
-
-            if (!verifiedUser(user)) {
-                await supabase.auth.signOut().catch(() => {});
-                displayVerificationPopup(email, 'Your account still needs Gmail verification before dashboard access.');
-                return;
-            }
-
-            // Verified user: continue with the existing dashboard entry point.
-            if (typeof window.touchUserPresence === 'function') {
-                try { await window.touchUserPresence(); } catch (_) {}
-            }
-            if (typeof window.loadPublicSiteStats === 'function') {
-                try { await window.loadPublicSiteStats(); } catch (_) {}
-            }
-
-            if (typeof window.enterDashboard === 'function') {
-                await window.enterDashboard();
-            } else if (typeof window.showDashboard === 'function') {
-                await window.showDashboard();
-            } else {
-                throw new Error('Dashboard function was not found.');
-            }
-        } catch (error) {
-            console.error('SONA login error:', error);
-            const message = friendlyLoginError(error);
-            const lower = message.toLowerCase();
-            if (lower.includes('not verified') || lower.includes('not confirmed') || lower.includes('verify')) {
-                await supabase.auth.signOut().catch(() => {});
-                displayVerificationPopup(email, message);
-            } else {
-                setAuthStatus(message, true);
-            }
-        } finally {
-            if (button) {
-                button.disabled = false;
-                button.textContent = button.dataset.oldText || 'Log In to Dashboard';
-            }
-        }
-    };
-
-    function improveProfileToasts() {
-        const elements = document.querySelectorAll('#toast, .toast, .notification, .alert, .snackbar, [role="alert"]');
-        elements.forEach(function (element) {
-            const text = (element.textContent || '').trim();
-            if (!text) return;
-            const relatedToProfile = /profile|wallet|withdrawal|save|unlock|required|complete|locked/i.test(text);
-            if (!relatedToProfile) return;
-            element.classList.add('sona-readable-toast');
-            const isError = /error|failed|required|unable|locked|invalid|missing|complete/i.test(text);
-            element.classList.add(isError ? 'sona-toast-error' : 'sona-toast-success');
-        });
-    }
-
-    function watchAuthStatus() {
-        const status = $('sonaAuthStatus');
-        if (!status) return;
-        const check = function () {
-            const message = (status.textContent || '').toLowerCase();
-            if (/not verified|not confirmed|confirm your email|verification/.test(message)) {
-                installResendButton();
-                const button = $('sonaLoginResendVerification');
-                if (button) button.style.display = 'block';
-            }
-        };
-        check();
-        const observer = new MutationObserver(check);
-        observer.observe(status, { childList:true, subtree:true, characterData:true });
-    }
-
-    function initialize() {
-        installResendButton();
-        watchAuthStatus();
-        improveProfileToasts();
-        setTimeout(installResendButton, 500);
-        setTimeout(installResendButton, 1500);
-        setTimeout(installResendButton, 3000);
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initialize);
-    } else {
-        initialize();
-    }
-})();
-</script>
-
-
-<!-- ============================================================
-     SONA OWNER / ADMIN LOGIN + PRIVATE DASHBOARD
-     ============================================================ -->
-<div id="sonaOwnerLoginModal" aria-hidden="true">
-  <div class="sona-owner-login-card" role="dialog" aria-modal="true" aria-labelledby="sonaOwnerLoginTitle">
-    <div class="sona-owner-login-head">
-      <span class="sona-owner-badge">🔐 Private owner portal</span>
-      <h2 id="sonaOwnerLoginTitle">Owner / Admin Login</h2>
-      <p>This login is separate from the normal member dashboard. Only an account authorized in Supabase can enter.</p>
+    <label class="sona-reset-label" for="sonaResetPassword">New password</label>
+    <div class="sona-reset-input-wrap">
+      <input id="sonaResetPassword" class="sona-reset-input" type="password" minlength="6" autocomplete="new-password" placeholder="Enter your new password">
+      <button type="button" class="sona-reset-eye" onclick="sonaToggleResetPassword('sonaResetPassword',this)" aria-label="Show new password"><i class="fa-solid fa-eye"></i></button>
     </div>
-    <div class="sona-owner-login-body">
-      <div class="sona-owner-field"><label for="sonaOwnerEmail">Owner Email</label><input id="sonaOwnerEmail" type="email" autocomplete="username" placeholder="owner@example.com"></div>
-      <div class="sona-owner-field"><label for="sonaOwnerPassword">Password</label><input id="sonaOwnerPassword" type="password" autocomplete="current-password" placeholder="Enter owner password"></div>
-      <div id="sonaOwnerLoginStatus" class="sona-owner-status" role="alert"></div>
-      <div class="sona-owner-actions"><button class="btn primary" type="button" onclick="sonaOwnerLogin()">🔐 Sign In to Owner Dashboard</button><button class="btn" type="button" onclick="closeSonaOwnerLogin()">Cancel</button></div>
-      <p class="sona-owner-note">Security: the password is checked by Supabase Auth. The browser does not contain an owner password or service-role key.</p>
+
+    <label class="sona-reset-label" for="sonaResetPasswordConfirm">Confirm new password</label>
+    <div class="sona-reset-input-wrap">
+      <input id="sonaResetPasswordConfirm" class="sona-reset-input" type="password" minlength="6" autocomplete="new-password" placeholder="Re-enter your new password">
+      <button type="button" class="sona-reset-eye" onclick="sonaToggleResetPassword('sonaResetPasswordConfirm',this)" aria-label="Show password confirmation"><i class="fa-solid fa-eye"></i></button>
     </div>
+
+    <div id="sonaPasswordResetStatus" class="sona-reset-status" role="status" aria-live="polite"></div>
+    <div class="sona-reset-actions">
+      <button type="button" class="sona-reset-secondary" onclick="closeSonaPasswordReset()">Cancel</button>
+      <button id="sonaResetSaveBtn" type="button" class="sona-reset-primary" onclick="updateSonaPassword()">Update Password</button>
+    </div>
+    <div class="sona-reset-note">For security, SONA does not display or store your new password. Supabase securely handles password authentication.</div>
   </div>
 </div>
 
-<div id="sonaOwnerDashboard" aria-hidden="true">
-  <div class="sona-owner-shell">
-    <aside class="sona-owner-side">
-      <div class="sona-owner-brand"><div class="sona-owner-brand-icon">S</div><div><b>SONA OWNER<br>CONTROL</b><span>Private management portal</span></div></div>
-      <div class="sona-owner-role"><strong id="sonaOwnerRoleLabel">Owner</strong><small id="sonaOwnerEmailLabel">—</small></div>
-      <div class="sona-owner-nav-title">Management</div>
-      <nav class="sona-owner-nav" id="sonaOwnerNav">
-        <button data-owner-page="overview" class="active">📊 Overview</button>
-        <button data-owner-page="users">👥 Users</button>
-        <button data-owner-page="activity">🕒 User Activity</button>
-        <button data-owner-page="youtube">▶️ YouTube</button>
-        <button data-owner-page="instagram">📸 Instagram / Reels</button>
-        <button data-owner-page="shopping">🛍️ Shopping</button>
-        <button data-owner-page="products">📦 Products</button>
-        <button data-owner-page="revenue">💰 Revenue</button>
-        <button data-owner-page="investments">📈 Investments</button>
-        <button data-owner-page="notifications">🔔 Notifications</button>
-        <button data-owner-page="settings">⚙️ Website Settings</button>
-        <button data-owner-page="security">🛡️ Security</button>
-        <button type="button" class="danger" onclick="sonaOwnerLogout()">🚪 Logout</button>
-      </nav>
-    </aside>
-    <section class="sona-owner-main">
-      <header class="sona-owner-top">
-        <div><h1 id="sonaOwnerPageTitle">Owner Overview</h1><small id="sonaOwnerLastUpdated">Waiting for data…</small></div>
-        <div style="display:flex;gap:8px;align-items:center"><button class="btn sona-owner-desktop" onclick="sonaOwnerRefreshAll()">↻ Refresh</button><button class="btn danger" onclick="sonaOwnerLogout()">Logout</button></div>
-      </header>
-      <div class="sona-owner-content">
-        <section id="sonaOwnerPage-overview" class="sona-owner-page active">
-          <div class="sona-owner-hero"><h2>SONA DAILY LIFE HUB — Owner Control Center</h2><p>Real website metrics are loaded from Supabase. Empty revenue/investment areas stay at zero until you enter confirmed records.</p></div>
-          <div class="sona-owner-stats">
-            <div class="sona-owner-card sona-owner-stat"><small>Total Users</small><strong id="ownerKpiTotalUsers">0</strong><div class="sub">Registered Supabase users</div></div>
-            <div class="sona-owner-card sona-owner-stat"><small>Active Now</small><strong id="ownerKpiActiveNow">0</strong><div class="sub">Presence in last 5 minutes</div></div>
-            <div class="sona-owner-card sona-owner-stat"><small>New Users Today</small><strong id="ownerKpiNewToday">0</strong><div class="sub">India calendar day</div></div>
-            <div class="sona-owner-card sona-owner-stat"><small>Daily Active Users</small><strong id="ownerKpiDau">0</strong><div class="sub">Unique active users today</div></div>
-          </div>
-          <div class="sona-owner-grid-2">
-            <div class="sona-owner-card"><h3>Today's Activity</h3><div class="sona-owner-kpi-list">
-              <div class="sona-owner-kpi-row"><span>▶️ YouTube activity</span><strong id="ownerKpiYouTube">0</strong></div>
-              <div class="sona-owner-kpi-row"><span>📸 Instagram / Reels</span><strong id="ownerKpiInstagram">0</strong></div>
-              <div class="sona-owner-kpi-row"><span>🛍️ Shopping clicks</span><strong id="ownerKpiShopping">0</strong></div>
-              <div class="sona-owner-kpi-row"><span>📦 Product views</span><strong id="ownerKpiProducts">0</strong></div>
-              <div class="sona-owner-kpi-row"><span>🕒 All tracked events</span><strong id="ownerKpiEvents">0</strong></div>
-            </div></div>
-            <div class="sona-owner-card"><h3>Finance Snapshot</h3><div class="sona-owner-kpi-list">
-              <div class="sona-owner-kpi-row"><span>Pending deposits</span><strong id="ownerKpiPendingDeposits">₹0</strong></div>
-              <div class="sona-owner-kpi-row"><span>Pending withdrawals</span><strong id="ownerKpiPendingWithdrawals">₹0</strong></div>
-              <div class="sona-owner-kpi-row"><span>Confirmed revenue today</span><strong id="ownerKpiRevenueToday">₹0</strong></div>
-              <div class="sona-owner-kpi-row"><span>Confirmed revenue all time</span><strong id="ownerKpiRevenueAll">₹0</strong></div>
-              <div class="sona-owner-kpi-row"><span>Investment current value</span><strong id="ownerKpiInvestmentValue">₹0</strong></div>
-            </div></div>
-          </div>
-          <div class="sona-owner-card" style="margin-top:14px"><h3>Latest User Activity</h3><div id="ownerOverviewActivity"><div class="sona-owner-empty">Loading activity…</div></div></div>
-        </section>
-
-        <section id="sonaOwnerPage-users" class="sona-owner-page">
-          <div class="sona-owner-hero"><h2>Users</h2><p>Owner view exposes only operational fields needed for management. Banking/PAN secrets are not shown here.</p></div>
-          <div class="sona-owner-card"><div class="sona-owner-table-wrap"><table class="sona-owner-table"><thead><tr><th>Member</th><th>Name</th><th>Email</th><th>Joined</th><th>Package</th><th>Deposit Wallet</th><th>Withdraw Balance</th><th>Points</th></tr></thead><tbody id="ownerUsersRows"><tr><td colspan="8" class="sona-owner-empty">Loading…</td></tr></tbody></table></div></div>
-        </section>
-
-        <section id="sonaOwnerPage-activity" class="sona-owner-page">
-          <div class="sona-owner-hero"><h2>User Activity</h2><p>Legitimate on-site navigation and interaction events only. This does not simulate or count Google/YouTube ad clicks or impressions.</p></div>
-          <div class="sona-owner-grid-2"><div class="sona-owner-card"><h3>Activity Breakdown — 7 Days</h3><div id="ownerActivityBreakdown"><div class="sona-owner-empty">Loading…</div></div></div><div class="sona-owner-card"><h3>Activity Notes</h3><p class="sona-owner-note">Active Now is based on the user-presence heartbeat. Daily Active Users count unique users with at least one tracked website event during the current India calendar day.</p></div></div>
-          <div class="sona-owner-card" style="margin-top:14px"><h3>Recent Activity</h3><div class="sona-owner-table-wrap"><table class="sona-owner-table"><thead><tr><th>Time</th><th>Member</th><th>User</th><th>Activity</th><th>Page</th></tr></thead><tbody id="ownerActivityRows"><tr><td colspan="5" class="sona-owner-empty">Loading…</td></tr></tbody></table></div></div>
-        </section>
-
-        <section id="sonaOwnerPage-youtube" class="sona-owner-page">
-          <div class="sona-owner-hero"><h2>YouTube Management</h2><p>Configure public channel/video/playlist information. No Google password is stored here.</p></div>
-          <div class="sona-owner-card"><form id="ownerYoutubeForm" class="sona-owner-form"><div class="full"><label>Channel URL</label><input id="ownerYoutubeChannelUrl" type="url" placeholder="https://www.youtube.com/@YourChannel"></div><div><label>Featured Video ID</label><input id="ownerYoutubeVideoId" placeholder="YouTube video ID"></div><div><label>Playlist ID</label><input id="ownerYoutubePlaylistId" placeholder="YouTube playlist ID"></div></form><div class="sona-owner-form-actions"><button class="btn primary" onclick="sonaSaveMediaSettings('youtube')">Save YouTube Settings</button><button class="btn" onclick="sonaOwnerOpenYoutubePreview()">Preview</button></div></div>
-          <div class="sona-owner-card" style="margin-top:14px"><h3>User Videos Page</h3><p class="sona-owner-note">Users continue using the existing separate Watch & Learn / My YouTube pages. This owner section controls the public URLs used by those pages; authentication remains through official platform systems.</p></div>
-        </section>
-
-        <section id="sonaOwnerPage-instagram" class="sona-owner-page">
-          <div class="sona-owner-hero"><h2>Instagram / Reels</h2><p>Configure public profile and public Reel URLs. No Instagram password is stored.</p></div>
-          <div class="sona-owner-card"><div class="sona-owner-form"><div><label>Instagram Profile URL</label><input id="ownerInstagramProfileUrl" type="url" placeholder="https://www.instagram.com/yourpage/"></div><div><label>Public Reel URL</label><input id="ownerInstagramReelUrl" type="url" placeholder="https://www.instagram.com/reel/.../"></div></div><div class="sona-owner-form-actions"><button class="btn primary" onclick="sonaSaveMediaSettings('instagram')">Save Instagram Settings</button><button class="btn" onclick="sonaOwnerOpenInstagramPreview()">Open Preview</button></div></div>
-        </section>
-
-        <section id="sonaOwnerPage-shopping" class="sona-owner-page">
-          <div class="sona-owner-hero"><h2>Shopping</h2><p>Website-level partner configuration and analytics. Users keep their own Amazon/Flipkart accounts; the owner dashboard never accesses their private shopping accounts.</p></div>
-          <div class="sona-owner-card"><div class="sona-owner-form"><div><label>Amazon Approved Affiliate URL</label><input id="ownerAmazonUrl" type="url" placeholder="Your approved tracking URL"></div><div><label>Flipkart Approved Affiliate URL</label><input id="ownerFlipkartUrl" type="url" placeholder="Your approved tracking URL"></div></div><div class="sona-owner-form-actions"><button class="btn primary" onclick="sonaSaveMediaSettings('shopping')">Save Shopping Settings</button></div></div>
-          <div class="sona-owner-card" style="margin-top:14px"><h3>Shopping Analytics</h3><p class="sona-owner-note">The dashboard counts website shopping interactions such as partner clicks and product views. Affiliate commission amounts must be entered/imported from confirmed partner reports rather than guessed.</p></div>
-        </section>
-
-        <section id="sonaOwnerPage-products" class="sona-owner-page">
-          <div class="sona-owner-hero"><h2>Products</h2><p>Create product/deal cards that users can see on the shopping page. Only owner-authorized accounts can manage these records.</p></div>
-          <div class="sona-owner-card"><div class="sona-owner-form"><div><label>Product Name</label><input id="ownerProductName" placeholder="Product or deal name"></div><div><label>Category</label><input id="ownerProductCategory" placeholder="Category"></div><div class="full"><label>Description</label><textarea id="ownerProductDescription" placeholder="Short product description"></textarea></div><div class="full"><label>Approved Affiliate URL</label><input id="ownerProductUrl" type="url" placeholder="https://..."></div><div class="full"><label>Image URL (optional)</label><input id="ownerProductImage" type="url" placeholder="https://..."></div></div><div class="sona-owner-form-actions"><button class="btn primary" onclick="sonaAddProduct()">+ Add Product</button></div></div>
-          <div class="sona-owner-card" style="margin-top:14px"><h3>Current Products</h3><div class="sona-owner-table-wrap"><table class="sona-owner-table"><thead><tr><th>Name</th><th>Category</th><th>Status</th><th>URL</th><th>Created</th><th>Action</th></tr></thead><tbody id="ownerProductRows"><tr><td colspan="6" class="sona-owner-empty">Loading…</td></tr></tbody></table></div></div>
-        </section>
-
-        <section id="sonaOwnerPage-revenue" class="sona-owner-page">
-          <div class="sona-owner-hero"><h2>Revenue</h2><p>Track confirmed website/affiliate/sponsorship revenue only. There are no hard-coded commission rates.</p></div>
-          <div class="sona-owner-card"><div class="sona-owner-form"><div><label>Source</label><input id="ownerRevenueSource" placeholder="Affiliate / Sponsor / Creator / Other"></div><div><label>Amount (INR)</label><input id="ownerRevenueAmount" type="number" min="0" step="0.01" placeholder="0.00"></div><div><label>Status</label><select id="ownerRevenueStatus"><option value="confirmed">Confirmed</option><option value="pending">Pending</option><option value="reversed">Reversed</option></select></div><div><label>Date</label><input id="ownerRevenueDate" type="date"></div><div class="full"><label>Reference</label><input id="ownerRevenueReference" placeholder="Partner report / invoice reference"></div></div><div class="sona-owner-form-actions"><button class="btn primary" onclick="sonaAddRevenue()">+ Add Revenue Record</button></div></div>
-          <div class="sona-owner-card" style="margin-top:14px"><h3>Revenue Records</h3><div class="sona-owner-table-wrap"><table class="sona-owner-table"><thead><tr><th>Date</th><th>Source</th><th>Amount</th><th>Status</th><th>Reference</th></tr></thead><tbody id="ownerRevenueRows"><tr><td colspan="5" class="sona-owner-empty">Loading…</td></tr></tbody></table></div></div>
-        </section>
-
-        <section id="sonaOwnerPage-investments" class="sona-owner-page">
-          <div class="sona-owner-hero"><h2>Investments</h2><p>Record real investment positions only. Values remain zero until the owner enters actual records.</p></div>
-          <div class="sona-owner-card"><div class="sona-owner-form"><div><label>Title</label><input id="ownerInvestmentTitle" placeholder="Investment title"></div><div><label>Provider</label><input id="ownerInvestmentProvider" placeholder="Provider / institution"></div><div><label>Principal (INR)</label><input id="ownerInvestmentPrincipal" type="number" min="0" step="0.01" placeholder="0.00"></div><div><label>Current Value (INR)</label><input id="ownerInvestmentValue" type="number" min="0" step="0.01" placeholder="0.00"></div><div><label>Status</label><select id="ownerInvestmentStatus"><option value="active">Active</option><option value="planned">Planned</option><option value="matured">Matured</option><option value="closed">Closed</option></select></div><div><label>Investment Date</label><input id="ownerInvestmentDate" type="date"></div><div class="full"><label>Reference / Note</label><textarea id="ownerInvestmentNotes" placeholder="Reference, account/report note, etc."></textarea></div></div><div class="sona-owner-form-actions"><button class="btn primary" onclick="sonaAddInvestment()">+ Add Investment</button></div></div>
-          <div class="sona-owner-card" style="margin-top:14px"><h3>Investment Records</h3><div class="sona-owner-table-wrap"><table class="sona-owner-table"><thead><tr><th>Date</th><th>Title</th><th>Provider</th><th>Principal</th><th>Current Value</th><th>Status</th></tr></thead><tbody id="ownerInvestmentRows"><tr><td colspan="6" class="sona-owner-empty">Loading…</td></tr></tbody></table></div></div>
-        </section>
-
-        <section id="sonaOwnerPage-notifications" class="sona-owner-page">
-          <div class="sona-owner-hero"><h2>Notifications</h2><p>Manage owner-side notices. User-facing notifications can be connected later without exposing private owner data.</p></div>
-          <div class="sona-owner-card"><div class="sona-owner-form"><div class="full"><label>Title</label><input id="ownerNotificationTitle" placeholder="Notification title"></div><div class="full"><label>Message</label><textarea id="ownerNotificationMessage" placeholder="Notification message"></textarea></div><div><label>Publish</label><select id="ownerNotificationPublished"><option value="true">Yes</option><option value="false">No</option></select></div></div><div class="sona-owner-form-actions"><button class="btn primary" onclick="sonaAddNotification()">+ Add Notification</button></div></div>
-          <div class="sona-owner-card" style="margin-top:14px"><h3>Recent Notifications</h3><div class="sona-owner-table-wrap"><table class="sona-owner-table"><thead><tr><th>Created</th><th>Title</th><th>Message</th><th>Published</th></tr></thead><tbody id="ownerNotificationRows"><tr><td colspan="4" class="sona-owner-empty">Loading…</td></tr></tbody></table></div></div>
-        </section>
-
-        <section id="sonaOwnerPage-settings" class="sona-owner-page">
-          <div class="sona-owner-hero"><h2>Website Settings</h2><p>Configure safe public content shown on the user-facing website.</p></div>
-          <div class="sona-owner-card"><div class="sona-owner-form"><div><label>Site Name</label><input id="ownerSiteName" placeholder="SONA DAILY LIFE HUB"></div><div><label>Support Email</label><input id="ownerSupportEmail" type="email" placeholder="support@example.com"></div><div><label>Website Ads Enabled</label><select id="ownerAdsEnabled"><option value="true">Enabled</option><option value="false">Disabled</option></select></div><div><label>Creator / Reward Policy JSON</label><input id="ownerRewardPolicy" placeholder='{"youtube":"verified","affiliate":"confirmed"}'></div></div><div class="sona-owner-form-actions"><button class="btn primary" onclick="sonaSaveGeneralSettings()">Save Website Settings</button></div></div>
-        </section>
-
-        <section id="sonaOwnerPage-security" class="sona-owner-page">
-          <div class="sona-owner-hero"><h2>Security</h2><p>The owner portal is protected by Supabase Auth plus the owner/admin role in the database. Frontend hiding is not used as the security boundary.</p></div>
-          <div class="sona-owner-grid-3"><div class="sona-owner-card"><h3>Authentication</h3><div class="sona-owner-kpi-list"><div class="sona-owner-kpi-row"><span>Signed-in owner</span><strong id="ownerSecurityEmail">—</strong></div><div class="sona-owner-kpi-row"><span>Role</span><strong id="ownerSecurityRole">—</strong></div></div></div><div class="sona-owner-card"><h3>Database</h3><p class="sona-owner-note">Owner RPCs re-check authorization server-side. Sensitive user bank/PAN fields are not part of the owner user-list RPC.</p></div><div class="sona-owner-card"><h3>Frontend secrets</h3><p class="sona-owner-note">Only the Supabase public key belongs in the browser. Never paste a service-role key or third-party password here.</p></div></div>
-          <div class="sona-owner-card" style="margin-top:14px"><h3>Recent Audit Logs</h3><div class="sona-owner-table-wrap"><table class="sona-owner-table"><thead><tr><th>Time</th><th>Action</th><th>Target</th></tr></thead><tbody id="ownerAuditRows"><tr><td colspan="3" class="sona-owner-empty">Loading…</td></tr></tbody></table></div></div>
-        </section>
-      </div>
-    </section>
-  </div>
-</div>
-
-
-<script id="sona-owner-admin-system">
+<script id="sona-final-password-reset-runtime">
 (function(){
   'use strict';
-  const USER_URL = 'https://auwcmybncaaavpwdgkgh.supabase.co';
-  const USER_PUBLIC_KEY = 'sb_publishable_XgnOoQVEf9yDbXT5tJoTIg_3bU6V_8g';
-  let ownerClient = null;
-  let ownerSession = null;
 
-  const $id = id => document.getElementById(id);
-  const money = v => '₹' + Number(v || 0).toLocaleString('en-IN',{maximumFractionDigits:2});
-  const esc = v => String(v ?? '').replace(/[&<>\'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+  function qs(id){ return document.getElementById(id); }
+  function getDb(){ return window.sonaSupabase || window.db || null; }
 
-  function ownerStatus(msg, type=''){
-    const el=$id('sonaOwnerLoginStatus');
+  function status(text, kind){
+    const el=qs('sonaPasswordResetStatus');
     if(!el) return;
-    el.textContent=msg || '';
-    el.className='sona-owner-status' + (msg ? ' show ' + type : '');
+    el.className='sona-reset-status ' + (kind==='error'?'error':'success');
+    el.textContent=text;
   }
 
-  function ensureOwnerClient(){
-    if(ownerClient) return ownerClient;
-    if(!window.supabase?.createClient) return null;
-    ownerClient=window.supabase.createClient(USER_URL,USER_PUBLIC_KEY,{auth:{
-      persistSession:true,
-      autoRefreshToken:true,
-      detectSessionInUrl:true,
-      storageKey:'sona-owner-auth'
-    }});
-    return ownerClient;
-  }
-
-  function openOwnerLogin(){
-    const modal=$id('sonaOwnerLoginModal');
+  function showResetModal(){
+    const modal=qs('sonaPasswordResetModal');
     if(!modal) return;
+    const landing=qs('landingRoot');
+    const dashboard=qs('dashboardShell');
+    if(landing) landing.style.display='';
+    if(dashboard){dashboard.classList.remove('active');dashboard.style.display='none';}
+    if(typeof window.closeEmailVerificationModal==='function') window.closeEmailVerificationModal();
+    if(typeof window.closeModal==='function') window.closeModal();
     modal.classList.add('show');
     modal.setAttribute('aria-hidden','false');
-    setTimeout(()=>{ $id('sonaOwnerEmail')?.focus(); },50);
+    document.documentElement.classList.add('sona-modal-open');
+    document.body.classList.add('sona-modal-open');
+    setTimeout(function(){ qs('sonaResetPassword')?.focus(); },40);
   }
-  window.openSonaOwnerLogin=openOwnerLogin;
 
-  window.closeSonaOwnerLogin=function(){
-    const modal=$id('sonaOwnerLoginModal');
+  window.closeSonaPasswordReset=function(){
+    const modal=qs('sonaPasswordResetModal');
     if(modal){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); }
-    ownerStatus('');
+    document.documentElement.classList.remove('sona-modal-open');
+    document.body.classList.remove('sona-modal-open');
+    sessionStorage.removeItem('sona_password_reset_pending');
   };
 
-  function installOwnerButton(){
-    if($id('sonaOwnerHeaderBtn')) return;
-    const header=document.querySelector('header');
-    const wrap=header?.querySelector('div.max-w-7xl > div:last-child');
-    if(!wrap) return;
-    const btn=document.createElement('button');
-    btn.id='sonaOwnerHeaderBtn';
-    btn.type='button';
-    btn.textContent='🔐 Owner Login';
-    btn.className='inline-flex px-3 py-2.5 rounded-xl border border-indigo-300 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs sm:text-sm font-bold transition';
-    btn.addEventListener('click',openOwnerLogin);
-    wrap.insertBefore(btn,wrap.firstChild);
-  }
-
-  function pageTitle(page){
-    return ({overview:'Owner Overview',users:'Users',activity:'User Activity',youtube:'YouTube Management',instagram:'Instagram / Reels',shopping:'Shopping Analytics',products:'Products',revenue:'Revenue',investments:'Investments',notifications:'Notifications',settings:'Website Settings',security:'Security'})[page] || 'Owner Overview';
-  }
-
-  function ownerShowPage(page){
-    document.querySelectorAll('.sona-owner-page').forEach(el=>el.classList.toggle('active',el.id==='sonaOwnerPage-'+page));
-    document.querySelectorAll('#sonaOwnerNav button[data-owner-page]').forEach(btn=>btn.classList.toggle('active',btn.dataset.ownerPage===page));
-    if($id('sonaOwnerPageTitle')) $id('sonaOwnerPageTitle').textContent=pageTitle(page);
-    if(page==='overview') loadOwnerSummary();
-    if(page==='users') loadOwnerUsers();
-    if(page==='activity') loadOwnerActivity();
-    if(['youtube','instagram','shopping','settings'].includes(page)) loadOwnerSettings();
-    if(page==='products') loadOwnerProducts();
-    if(page==='revenue') loadOwnerRevenue();
-    if(page==='investments') loadOwnerInvestments();
-    if(page==='notifications') loadOwnerNotifications();
-    if(page==='security') loadOwnerSecurity();
-  }
-  window.sonaOwnerShowPage=ownerShowPage;
-
-  document.addEventListener('click',function(e){
-    const navBtn=e.target.closest('#sonaOwnerNav button[data-owner-page]');
-    if(navBtn) ownerShowPage(navBtn.dataset.ownerPage);
-  });
-
-  async function requireOwner(){
-    const client=ensureOwnerClient();
-    if(!client) throw new Error('Supabase is not available. Please refresh the page.');
-    if(!ownerSession){
-      const {data,error}=await client.auth.getSession();
-      if(error) throw error;
-      ownerSession=data.session;
+  window.sonaToggleResetPassword=function(id,button){
+    const input=qs(id); if(!input) return;
+    input.type=input.type==='password'?'text':'password';
+    if(button){
+      const icon=button.querySelector('i');
+      if(icon) icon.className=input.type==='password'?'fa-solid fa-eye':'fa-solid fa-eye-slash';
     }
-    if(!ownerSession?.user) throw new Error('Owner session not found.');
-    const {data:role,error}=await client.rpc('get_my_owner_role');
-    if(error) throw error;
-    if(!role) throw new Error('This account is not authorized for the Owner/Admin portal.');
-    return {client,user:ownerSession.user,role};
-  }
+  };
 
-  function showOwnerDashboard(user,role){
-    const landing=$id('landingRoot');
-    const userDash=$id('dashboardShell');
-    const dash=$id('sonaOwnerDashboard');
-    if(landing) landing.style.display='none';
-    if(userDash){ userDash.classList.remove('active'); userDash.style.display='none'; }
-    if(dash){ dash.classList.add('show'); dash.setAttribute('aria-hidden','false'); }
-    if($id('sonaOwnerRoleLabel')) $id('sonaOwnerRoleLabel').textContent=String(role||'owner').toUpperCase();
-    if($id('sonaOwnerEmailLabel')) $id('sonaOwnerEmailLabel').textContent=user?.email || '—';
-    if($id('ownerSecurityEmail')) $id('ownerSecurityEmail').textContent=user?.email || '—';
-    if($id('ownerSecurityRole')) $id('ownerSecurityRole').textContent=role || 'owner';
-    document.body.classList.add('sona-owner-active');
-    ownerShowPage('overview');
-  }
+  window.sendSonaForgotPassword=function(){
+    const db=getDb();
+    const email=(qs('loginEmail')?.value||'').trim().toLowerCase();
+    if(!db?.auth?.resetPasswordForEmail){
+      if(typeof window.showAuthMessage==='function') window.showAuthMessage('Password reset service is unavailable. Please refresh the page.',true);
+      return;
+    }
+    if(!email || !email.includes('@')){
+      if(typeof window.showAuthMessage==='function') window.showAuthMessage('Enter your registered Gmail address first.',true);
+      qs('loginEmail')?.focus();
+      return;
+    }
 
-  function hideOwnerDashboard(){
-    const dash=$id('sonaOwnerDashboard');
-    if(dash){ dash.classList.remove('show'); dash.setAttribute('aria-hidden','true'); }
-    document.body.classList.remove('sona-owner-active');
-  }
+    const btn=qs('sonaForgotPassword');
+    if(btn){btn.disabled=true;btn.textContent='Sending reset email…';}
 
-  window.sonaOwnerLogin=async function(){
-    const client=ensureOwnerClient();
-    if(!client) return ownerStatus('Authentication service is not loaded. Please refresh the page.','error');
-    const email=($id('sonaOwnerEmail')?.value || '').trim().toLowerCase();
-    const password=$id('sonaOwnerPassword')?.value || '';
-    if(!email || !email.includes('@')) return ownerStatus('Enter a valid owner email address.','error');
-    if(!password) return ownerStatus('Enter your owner password.','error');
-
-    ownerStatus('Checking owner authorization…');
-    const button=document.querySelector('#sonaOwnerLoginModal .btn.primary');
-    if(button){ button.disabled=true; button.dataset.oldText=button.textContent; button.textContent='Signing in…'; }
-    try{
-      const {data,error}=await client.auth.signInWithPassword({email,password});
-      if(error) throw error;
-      ownerSession=data.session;
-      const {data:role,error:roleError}=await client.rpc('get_my_owner_role');
-      if(roleError) throw roleError;
-      if(!role){
-        await client.auth.signOut().catch(()=>{});
-        ownerSession=null;
-        throw new Error('This account is not authorized as an Owner/Admin.');
+    db.auth.resetPasswordForEmail(email,{
+      redirectTo:window.location.origin+window.location.pathname
+    }).then(function(result){
+      if(result.error) throw result.error;
+      if(typeof window.showAuthMessage==='function'){
+        window.showAuthMessage('Password reset email sent. Open your Gmail and use the secure reset link. Check Spam or Promotions if needed.',false);
       }
-      await client.rpc('owner_log_action',{p_action:'owner_login'}).catch(()=>{});
-      ownerStatus('Authorization confirmed. Opening Owner Dashboard…','success');
-      setTimeout(()=>{ closeSonaOwnerLogin(); showOwnerDashboard(data.user,role); loadOwnerAll(); },250);
+    }).catch(function(err){
+      console.error('SONA password reset request:',err);
+      if(typeof window.showAuthMessage==='function') window.showAuthMessage(err?.message||'Unable to send the password reset email.',true);
+    }).finally(function(){
+      if(btn){btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-key" aria-hidden="true"></i> Forgot Password?';}
+    });
+  };
+
+  window.updateSonaPassword=async function(){
+    const db=getDb();
+    if(!db?.auth?.updateUser){ status('Authentication service is unavailable. Please refresh and use the reset link again.','error'); return; }
+    const p=qs('sonaResetPassword')?.value||'';
+    const c=qs('sonaResetPasswordConfirm')?.value||'';
+    const btn=qs('sonaResetSaveBtn');
+
+    if(p.length<6){status('Your new password must contain at least 6 characters.','error');return;}
+    if(p!==c){status('The two passwords do not match.','error');return;}
+
+    if(btn){btn.disabled=true;btn.textContent='Updating…';}
+    try{
+      const {error}=await db.auth.updateUser({password:p});
+      if(error) throw error;
+      status('Password updated successfully. Please continue to Login with your new password.','success');
+      sessionStorage.removeItem('sona_password_reset_pending');
+      setTimeout(async function(){
+        try{await db.auth.signOut();}catch(_e){}
+        closeSonaPasswordReset();
+        if(typeof window.openModal==='function') window.openModal('login');
+        if(typeof window.showAuthMessage==='function') window.showAuthMessage('Your password has been reset successfully. You can now log in with the new password.',false);
+      },900);
     }catch(err){
-      console.error('Owner login:',err);
-      ownerStatus(err?.message || 'Owner login failed.','error');
+      console.error('SONA update password:',err);
+      status(err?.message||'Unable to update the password. Please request a new reset link.','error');
     }finally{
-      if(button){ button.disabled=false; button.textContent=button.dataset.oldText || '🔐 Sign In to Owner Dashboard'; }
+      if(btn){btn.disabled=false;btn.textContent='Update Password';}
     }
   };
 
-  window.sonaOwnerLogout=async function(){
-    try{ if(ownerClient) await ownerClient.rpc('owner_log_action',{p_action:'owner_logout'}).catch(()=>{}); }catch(_){}
-    try{ if(ownerClient) await ownerClient.auth.signOut(); }catch(_){}
-    ownerSession=null;
-    hideOwnerDashboard();
-    const landing=$id('landingRoot');
-    if(landing) landing.style.display='';
-    window.scrollTo(0,0);
-  };
+  function hasRecoveryUrl(){
+    const hash=window.location.hash||'';
+    const search=window.location.search||'';
+    return /(?:type=recovery|access_token=|refresh_token=)/i.test(hash) || /[?&]type=recovery/i.test(search);
+  }
 
-  async function loadOwnerSummary(){
-    try{
-      const {client}=await requireOwner();
-      const {data,error}=await client.rpc('owner_dashboard_summary');
-      if(error) throw error;
-      const r=Array.isArray(data) ? (data[0]||{}) : (data||{});
-      const values={
-        ownerKpiTotalUsers:r.total_users,
-        ownerKpiActiveNow:r.active_users_now,
-        ownerKpiNewToday:r.new_users_today,
-        ownerKpiDau:r.daily_active_users,
-        ownerKpiYouTube:r.youtube_activity_today,
-        ownerKpiInstagram:r.instagram_activity_today,
-        ownerKpiShopping:r.shopping_activity_today,
-        ownerKpiProducts:r.product_activity_today,
-        ownerKpiEvents:r.activity_events_today,
-        ownerKpiPendingDeposits:money(r.pending_deposits),
-        ownerKpiPendingWithdrawals:money(r.pending_withdrawals),
-        ownerKpiRevenueToday:money(r.confirmed_revenue_today),
-        ownerKpiRevenueAll:money(r.confirmed_revenue_all_time),
-        ownerKpiInvestmentValue:money(r.investment_current_value_total)
-      };
-      Object.entries(values).forEach(([id,v])=>{ if($id(id)) $id(id).textContent = typeof v==='number' ? v.toLocaleString('en-IN') : v; });
-      if($id('sonaOwnerLastUpdated')) $id('sonaOwnerLastUpdated').textContent='Updated '+new Date().toLocaleTimeString();
-      const {data:act,error:ae}=await client.rpc('owner_recent_activity',{p_limit:8});
-      if(!ae){
-        $id('ownerOverviewActivity').innerHTML=(act||[]).map(a=>`<div class="sona-owner-kpi-row"><span>${esc(a.member_id||'Member')} · ${esc(a.activity_type)} · ${esc(a.page||'')}</span><strong>${new Date(a.occurred_at).toLocaleTimeString()}</strong></div>`).join('') || '<div class="sona-owner-empty">No activity recorded yet.</div>';
+  // If the existing page tries to send a recovery session to the dashboard,
+  // keep the user in the secure reset screen instead.
+  const oldEnter=window.enterDashboard;
+  if(typeof oldEnter==='function' && !window.__sonaResetEnterGuard){
+    window.__sonaResetEnterGuard=true;
+    window.enterDashboard=function(){
+      if(sessionStorage.getItem('sona_password_reset_pending')==='1'){
+        showResetModal();
+        return;
       }
-    }catch(err){ console.warn('Owner summary',err); }
-  }
-
-  async function loadOwnerUsers(){
-    try{
-      const {client}=await requireOwner();
-      const {data,error}=await client.rpc('owner_list_users',{p_limit:200});
-      if(error) throw error;
-      $id('ownerUsersRows').innerHTML=(data||[]).map(u=>`<tr><td><b>${esc(u.member_id||'—')}</b></td><td>${esc(u.full_name||'—')}</td><td>${esc(u.email||'—')}</td><td>${new Date(u.created_at).toLocaleDateString()}</td><td>${money(u.package_amount)}</td><td>${money(u.deposit_wallet)}</td><td>${money(u.withdrawal_balance)}</td><td>${Number(u.points||0).toLocaleString('en-IN')}</td></tr>`).join('') || '<tr><td colspan="8" class="sona-owner-empty">No users found.</td></tr>';
-    }catch(err){ ownerTableError('ownerUsersRows',8,err); }
-  }
-
-  async function loadOwnerActivity(){
-    try{
-      const {client}=await requireOwner();
-      const [recent,breakdown]=await Promise.all([
-        client.rpc('owner_recent_activity',{p_limit:250}),
-        client.rpc('owner_activity_breakdown',{p_days:7})
-      ]);
-      if(recent.error) throw recent.error;
-      if(breakdown.error) throw breakdown.error;
-      $id('ownerActivityRows').innerHTML=(recent.data||[]).map(a=>`<tr><td>${new Date(a.occurred_at).toLocaleString()}</td><td>${esc(a.member_id||'—')}</td><td>${esc(a.email||'—')}</td><td><span class="sona-owner-chip">${esc(a.activity_type)}</span></td><td>${esc(a.page||'—')}</td></tr>`).join('') || '<tr><td colspan="5" class="sona-owner-empty">No tracked activity.</td></tr>';
-      $id('ownerActivityBreakdown').innerHTML=(breakdown.data||[]).map(a=>`<div class="sona-owner-kpi-row"><span>${esc(a.activity_type)}</span><strong>${Number(a.event_count||0).toLocaleString('en-IN')} events / ${Number(a.unique_users||0).toLocaleString('en-IN')} users</strong></div>`).join('') || '<div class="sona-owner-empty">No activity yet.</div>';
-    }catch(err){ ownerTableError('ownerActivityRows',5,err); }
-  }
-
-  async function loadOwnerSettings(){
-    try{
-      const {client}=await requireOwner();
-      const {data,error}=await client.from('owner_site_settings').select('*').eq('settings_id',true).maybeSingle();
-      if(error) throw error;
-      if(!data) return;
-      const set=(id,val)=>{ if($id(id)) $id(id).value=val ?? ''; };
-      set('ownerYoutubeChannelUrl',data.youtube_channel_url); set('ownerYoutubeVideoId',data.youtube_default_video_id); set('ownerYoutubePlaylistId',data.youtube_playlist_id);
-      set('ownerInstagramProfileUrl',data.instagram_profile_url); set('ownerInstagramReelUrl',data.instagram_reel_url);
-      set('ownerAmazonUrl',data.amazon_affiliate_url); set('ownerFlipkartUrl',data.flipkart_affiliate_url);
-      set('ownerSiteName',data.site_name); set('ownerSupportEmail',data.support_email); set('ownerAdsEnabled',String(!!data.website_ads_enabled)); set('ownerRewardPolicy',JSON.stringify(data.reward_policy||{}));
-    }catch(err){ console.warn('Owner settings',err); }
-  }
-
-  window.sonaSaveMediaSettings=async function(section){
-    try{
-      const {client,user}=await requireOwner();
-      const payload={settings_id:true,updated_by:user.id,updated_at:new Date().toISOString()};
-      if(section==='youtube'){ payload.youtube_channel_url=($id('ownerYoutubeChannelUrl')?.value||'').trim()||null; payload.youtube_default_video_id=($id('ownerYoutubeVideoId')?.value||'').trim()||null; payload.youtube_playlist_id=($id('ownerYoutubePlaylistId')?.value||'').trim()||null; }
-      if(section==='instagram'){ payload.instagram_profile_url=($id('ownerInstagramProfileUrl')?.value||'').trim()||null; payload.instagram_reel_url=($id('ownerInstagramReelUrl')?.value||'').trim()||null; }
-      if(section==='shopping'){ payload.amazon_affiliate_url=($id('ownerAmazonUrl')?.value||'').trim()||null; payload.flipkart_affiliate_url=($id('ownerFlipkartUrl')?.value||'').trim()||null; }
-      const {error}=await client.from('owner_site_settings').update(payload).eq('settings_id',true);
-      if(error) throw error;
-      await client.rpc('owner_log_action',{p_action:'update_site_media_settings',p_metadata:{section}}).catch(()=>{});
-      await loadPublicConfig();
-      alert('Settings saved.');
-    }catch(err){ alert(err?.message||'Could not save settings.'); }
-  };
-
-  window.sonaSaveGeneralSettings=async function(){
-    try{
-      const {client,user}=await requireOwner();
-      let policy={};
-      try{ policy=JSON.parse($id('ownerRewardPolicy')?.value||'{}'); }catch(_){ return alert('Reward policy must contain valid JSON.'); }
-      const payload={settings_id:true,site_name:($id('ownerSiteName')?.value||'').trim()||'SONA DAILY LIFE HUB',support_email:($id('ownerSupportEmail')?.value||'').trim()||null,website_ads_enabled:$id('ownerAdsEnabled')?.value==='true',reward_policy:policy,updated_by:user.id,updated_at:new Date().toISOString()};
-      const {error}=await client.from('owner_site_settings').update(payload).eq('settings_id',true);
-      if(error) throw error;
-      await client.rpc('owner_log_action',{p_action:'update_site_settings'}).catch(()=>{});
-      await loadPublicConfig();
-      alert('Website settings saved.');
-    }catch(err){ alert(err?.message||'Could not save settings.'); }
-  };
-
-  async function loadOwnerProducts(){
-    try{
-      const {client}=await requireOwner();
-      const {data,error}=await client.from('owner_products').select('*').order('created_at',{ascending:false});
-      if(error) throw error;
-      $id('ownerProductRows').innerHTML=(data||[]).map(p=>`<tr><td>${esc(p.name)}</td><td>${esc(p.category||'—')}</td><td><span class="sona-owner-chip ${p.is_active?'green':'orange'}">${p.is_active?'Active':'Hidden'}</span></td><td>${esc(p.affiliate_url)}</td><td>${new Date(p.created_at).toLocaleDateString()}</td><td><button class="btn" onclick="sonaToggleProduct('${esc(p.id)}',${!p.is_active})">${p.is_active?'Hide':'Show'}</button></td></tr>`).join('') || '<tr><td colspan="6" class="sona-owner-empty">No products yet.</td></tr>';
-    }catch(err){ ownerTableError('ownerProductRows',6,err); }
-  }
-
-  window.sonaAddProduct=async function(){
-    try{
-      const {client,user}=await requireOwner();
-      const name=($id('ownerProductName')?.value||'').trim();
-      const url=($id('ownerProductUrl')?.value||'').trim();
-      if(!name||!url) return alert('Enter product name and approved affiliate URL.');
-      const {error}=await client.from('owner_products').insert({name,description:($id('ownerProductDescription')?.value||'').trim()||null,category:($id('ownerProductCategory')?.value||'').trim()||null,affiliate_url:url,image_url:($id('ownerProductImage')?.value||'').trim()||null,created_by:user.id,created_at:new Date().toISOString(),updated_at:new Date().toISOString()});
-      if(error) throw error;
-      await client.rpc('owner_log_action',{p_action:'add_product',p_metadata:{name}}).catch(()=>{});
-      ['ownerProductName','ownerProductUrl','ownerProductImage','ownerProductDescription','ownerProductCategory'].forEach(id=>{if($id(id))$id(id).value='';});
-      await loadOwnerProducts(); await loadPublicProducts();
-      alert('Product added.');
-    }catch(err){ alert(err?.message||'Could not add product.'); }
-  };
-
-  window.sonaToggleProduct=async function(id,isActive){
-    try{ const {client}=await requireOwner(); const {error}=await client.from('owner_products').update({is_active:isActive,updated_at:new Date().toISOString()}).eq('id',id); if(error)throw error; await loadOwnerProducts(); await loadPublicProducts(); }
-    catch(err){ alert(err?.message||'Could not update product.'); }
-  };
-
-  async function loadOwnerRevenue(){
-    try{ const {client}=await requireOwner(); const {data,error}=await client.from('owner_revenue_entries').select('*').order('revenue_date',{ascending:false}).order('created_at',{ascending:false}).limit(500); if(error)throw error; $id('ownerRevenueRows').innerHTML=(data||[]).map(r=>`<tr><td>${esc(r.revenue_date)}</td><td>${esc(r.source)}</td><td>${money(r.amount)}</td><td><span class="sona-owner-chip ${r.status==='confirmed'?'green':r.status==='reversed'?'orange':''}">${esc(r.status)}</span></td><td>${esc(r.reference||'—')}</td></tr>`).join('')||'<tr><td colspan="5" class="sona-owner-empty">No revenue records.</td></tr>'; }
-    catch(err){ ownerTableError('ownerRevenueRows',5,err); }
-  }
-
-  window.sonaAddRevenue=async function(){
-    try{ const {client,user}=await requireOwner(); const source=($id('ownerRevenueSource')?.value||'').trim(); const amount=Number($id('ownerRevenueAmount')?.value||0); if(!source||!Number.isFinite(amount)||amount<0)return alert('Enter a revenue source and valid amount.'); const {error}=await client.from('owner_revenue_entries').insert({source,amount,status:$id('ownerRevenueStatus')?.value||'pending',revenue_date:$id('ownerRevenueDate')?.value||new Date().toISOString().slice(0,10),reference:($id('ownerRevenueReference')?.value||'').trim()||null,created_by:user.id,created_at:new Date().toISOString(),updated_at:new Date().toISOString()}); if(error)throw error; await client.rpc('owner_log_action',{p_action:'add_revenue_record',p_metadata:{source,amount}}).catch(()=>{}); ['ownerRevenueSource','ownerRevenueAmount','ownerRevenueReference'].forEach(id=>{if($id(id))$id(id).value='';}); await loadOwnerRevenue(); await loadOwnerSummary(); alert('Revenue record saved.'); }
-    catch(err){ alert(err?.message||'Could not save revenue.'); }
-  };
-
-  async function loadOwnerInvestments(){
-    try{ const {client}=await requireOwner(); const {data,error}=await client.from('owner_investments').select('*').order('investment_date',{ascending:false}); if(error)throw error; $id('ownerInvestmentRows').innerHTML=(data||[]).map(r=>`<tr><td>${esc(r.investment_date)}</td><td>${esc(r.title)}</td><td>${esc(r.provider||'—')}</td><td>${money(r.principal_amount)}</td><td>${money(r.current_value)}</td><td><span class="sona-owner-chip">${esc(r.status)}</span></td></tr>`).join('')||'<tr><td colspan="6" class="sona-owner-empty">No investment records.</td></tr>'; }
-    catch(err){ ownerTableError('ownerInvestmentRows',6,err); }
-  }
-
-  window.sonaAddInvestment=async function(){
-    try{ const {client,user}=await requireOwner(); const title=($id('ownerInvestmentTitle')?.value||'').trim(); if(!title)return alert('Enter an investment title.'); const principal=Number($id('ownerInvestmentPrincipal')?.value||0); const currentValue=Number($id('ownerInvestmentValue')?.value||0); if(!Number.isFinite(principal)||principal<0||!Number.isFinite(currentValue)||currentValue<0)return alert('Enter valid investment amounts.'); const {error}=await client.from('owner_investments').insert({title,provider:($id('ownerInvestmentProvider')?.value||'').trim()||null,principal_amount:principal,current_value:currentValue,status:$id('ownerInvestmentStatus')?.value||'active',investment_date:$id('ownerInvestmentDate')?.value||new Date().toISOString().slice(0,10),notes:($id('ownerInvestmentNotes')?.value||'').trim()||null,created_by:user.id,created_at:new Date().toISOString(),updated_at:new Date().toISOString()}); if(error)throw error; await client.rpc('owner_log_action',{p_action:'add_investment_record',p_metadata:{title}}).catch(()=>{}); ['ownerInvestmentTitle','ownerInvestmentProvider','ownerInvestmentPrincipal','ownerInvestmentValue','ownerInvestmentNotes'].forEach(id=>{if($id(id))$id(id).value='';}); await loadOwnerInvestments(); await loadOwnerSummary(); alert('Investment record saved.'); }
-    catch(err){ alert(err?.message||'Could not save investment.'); }
-  };
-
-  async function loadOwnerNotifications(){
-    try{ const {client}=await requireOwner(); const {data,error}=await client.from('owner_notifications').select('*').order('created_at',{ascending:false}).limit(200); if(error)throw error; $id('ownerNotificationRows').innerHTML=(data||[]).map(r=>`<tr><td>${new Date(r.created_at).toLocaleString()}</td><td>${esc(r.title)}</td><td>${esc(r.message)}</td><td><span class="sona-owner-chip ${r.is_published?'green':'orange'}">${r.is_published?'Yes':'No'}</span></td></tr>`).join('')||'<tr><td colspan="4" class="sona-owner-empty">No notifications.</td></tr>'; }
-    catch(err){ ownerTableError('ownerNotificationRows',4,err); }
-  }
-
-  window.sonaAddNotification=async function(){
-    try{ const {client,user}=await requireOwner(); const title=($id('ownerNotificationTitle')?.value||'').trim(); const message=($id('ownerNotificationMessage')?.value||'').trim(); if(!title||!message)return alert('Enter notification title and message.'); const {error}=await client.from('owner_notifications').insert({title,message,is_published:$id('ownerNotificationPublished')?.value==='true',created_by:user.id}); if(error)throw error; await client.rpc('owner_log_action',{p_action:'add_notification',p_metadata:{title}}).catch(()=>{}); ['ownerNotificationTitle','ownerNotificationMessage'].forEach(id=>{if($id(id))$id(id).value='';}); await loadOwnerNotifications(); alert('Notification saved.'); }
-    catch(err){ alert(err?.message||'Could not save notification.'); }
-  };
-
-  async function loadOwnerSecurity(){
-    try{ const {client,user,role}=await requireOwner(); if($id('ownerSecurityEmail'))$id('ownerSecurityEmail').textContent=user.email||'—'; if($id('ownerSecurityRole'))$id('ownerSecurityRole').textContent=role; const {data,error}=await client.from('owner_audit_logs').select('created_at,action,target_user_id').order('created_at',{ascending:false}).limit(100); if(error)throw error; $id('ownerAuditRows').innerHTML=(data||[]).map(a=>`<tr><td>${new Date(a.created_at).toLocaleString()}</td><td>${esc(a.action)}</td><td>${esc(a.target_user_id||'—')}</td></tr>`).join('')||'<tr><td colspan="3" class="sona-owner-empty">No audit logs.</td></tr>'; }
-    catch(err){ ownerTableError('ownerAuditRows',3,err); }
-  }
-
-  function ownerTableError(id,col,err){ const el=$id(id); if(el) el.innerHTML=`<tr><td colspan="${col}" class="sona-owner-empty">${esc(err?.message||'Could not load data.')}</td></tr>`; }
-
-  async function loadOwnerAll(){
-    if(!ownerSession) return;
-    await Promise.allSettled([loadOwnerSummary(),loadOwnerUsers(),loadOwnerActivity(),loadOwnerSettings(),loadOwnerProducts(),loadOwnerRevenue(),loadOwnerInvestments(),loadOwnerNotifications(),loadOwnerSecurity()]);
-  }
-
-  function installUserActivityTracking(){
-    if(window.__sonaActivityTrackingInstalled) return;
-    window.__sonaActivityTrackingInstalled=true;
-    window.sonaTrackWebsiteActivity=async function(type,page,metadata){
-      try{ const c=window.sonaSupabase; if(!c?.rpc)return; await c.rpc('record_site_activity',{p_activity_type:type,p_page:page||null,p_metadata:metadata||{}}); }
-      catch(err){ console.debug('SONA activity tracking',err?.message||err); }
+      return oldEnter.apply(this,arguments);
     };
+  }
 
-    const originalShowPage=window.showPage;
-    if(typeof originalShowPage==='function'){
-      window.showPage=function(id,btn){
-        const result=originalShowPage.apply(this,arguments);
-        const map={home:'dashboard_view',watch:'youtube_view',instagram:'instagram_view',shop:'shopping_view','my-youtube':'youtube_view',creator:'creator_view',tasks:'task_view','payment-history':'payment_history_view','withdrawal-panel':'withdrawal_view',account:'profile_view'};
-        if(map[id]) window.sonaTrackWebsiteActivity(map[id],id,{});
-        return result;
-      };
+  function bind(){
+    const btn=qs('sonaForgotPassword');
+    if(btn && !btn.dataset.bound){
+      btn.dataset.bound='1';
+      btn.addEventListener('click',window.sendSonaForgotPassword);
     }
 
-    const wrappers={
-      openInstagram:'instagram_view', openAmazon:'shopping_click', openFlipkart:'shopping_click',
-      openMyYouTubeChannel:'youtube_view', searchYouTube:'youtube_search',
-      connectYouTube:'creator_youtube', openKick:'creator_kick'
-    };
-    Object.entries(wrappers).forEach(([name,type])=>{
-      const original=window[name];
-      if(typeof original!=='function' || original.__sonaActivityWrapped) return;
-      const wrapped=function(){ window.sonaTrackWebsiteActivity(type,null,{source:name}); return original.apply(this,arguments); };
-      wrapped.__sonaActivityWrapped=true;
-      window[name]=wrapped;
-    });
-
-    document.addEventListener('click',function(e){
-      const product=e.target.closest('[data-product-id]');
-      if(product) window.sonaTrackWebsiteActivity('product_view','shop',{product_id:product.getAttribute('data-product-id')||'',name:product.getAttribute('data-product-name')||''});
-      else if(e.target.closest('#shop a,#shop button')) window.sonaTrackWebsiteActivity('shopping_click','shop',{label:(e.target.closest('#shop a,#shop button').textContent||'').trim().slice(0,100)});
-    });
-
-    if(window.sonaSupabase?.auth){
-      window.sonaSupabase.auth.onAuthStateChange((event,session)=>{
-        if(event==='SIGNED_IN' && session?.user) window.sonaTrackWebsiteActivity('session_start','auth',{});
-      });
-    }
-  }
-
-  async function loadPublicProducts(){
-    const shop=$id('shop');
-    const c=window.sonaSupabase;
-    if(!shop || !c?.rpc) return;
-    try{
-      const {data,error}=await c.rpc('get_public_products');
-      if(error) throw error;
-      let box=$id('sonaPublicProducts');
-      if(!box){ box=document.createElement('div'); box.id='sonaPublicProducts'; box.className='sona-owner-card'; box.style.marginTop='16px'; shop.appendChild(box); }
-      const products=data||[];
-      let html='<h3 style="margin-top:0">📦 Products & Deals</h3><p class="muted">Offers published by SONA DAILY LIFE HUB. Affiliate disclosure applies where relevant.</p>';
-      if(products.length){
-        html+='<div class="shop-grid">';
-        html+=products.map(p=>`<div class="card"><h3>${esc(p.name)}</h3><p class="muted">${esc(p.description||'')}</p><div class="mini-actions"><a class="btn primary" href="${esc(p.affiliate_url)}" target="_blank" rel="noopener nofollow" data-product-id="${esc(p.id)}" data-product-name="${esc(p.name)}">View Product</a></div></div>`).join('');
-        html+='</div>';
-      }else{
-        html+='<div class="sona-owner-empty">No products published yet.</div>';
-      }
-      box.innerHTML=html;
-    }catch(err){ console.debug('Public products',err?.message||err); }
-  }
-
-  async function loadPublicConfig(){
-    try{
-      const c=window.sonaSupabase;
-      if(!c?.rpc)return;
-      const {data,error}=await c.rpc('get_public_site_config');
-      if(error)throw error;
-      const x=Array.isArray(data)?data[0]:data;
-      if(!x)return;
-      if(x.youtube_default_video_id){ const p=$id('watchPlayer1'); if(p)p.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(x.youtube_default_video_id); }
-      if(x.youtube_playlist_id){ const p=$id('myYoutubePlayer'); if(p)p.src='https://www.youtube-nocookie.com/embed/videoseries?list='+encodeURIComponent(x.youtube_playlist_id); }
-      if(x.youtube_channel_url){ const s=$id('myYoutubeChannelStatus'); if(s)s.textContent='Channel: '+x.youtube_channel_url; }
-      if(x.amazon_affiliate_url){ document.querySelectorAll('#shop button[onclick*="amazon"]').forEach(b=>b.dataset.ownerUrl=x.amazon_affiliate_url); }
-      if(x.flipkart_affiliate_url){ document.querySelectorAll('#shop button[onclick*="flipkart"]').forEach(b=>b.dataset.ownerUrl=x.flipkart_affiliate_url); }
-    }catch(err){ console.debug('Public site config',err?.message||err); }
-  }
-
-  window.sonaOwnerOpenYoutubePreview=function(){ const id=($id('ownerYoutubeVideoId')?.value||'').trim(); if(!id)return alert('Enter a YouTube video ID first.'); window.open('https://www.youtube.com/watch?v='+encodeURIComponent(id),'_blank','noopener'); };
-  window.sonaOwnerOpenInstagramPreview=function(){ const url=($id('ownerInstagramReelUrl')?.value||'').trim(); if(!url)return alert('Enter a public Reel URL first.'); window.open(url,'_blank','noopener'); };
-
-  function boot(){
-    installOwnerButton();
-    installUserActivityTracking();
-    loadPublicProducts();
-    loadPublicConfig();
-    if($id('sonaOwnerLoginModal')) $id('sonaOwnerLoginModal').addEventListener('click',e=>{if(e.target===$id('sonaOwnerLoginModal'))window.closeSonaOwnerLogin();});
-    const c=ensureOwnerClient();
-    if(c){
-      c.auth.getSession().then(async ({data})=>{
-        ownerSession=data.session;
-        if(ownerSession?.user){
-          try{ const {data:role}=await c.rpc('get_my_owner_role'); if(role){ showOwnerDashboard(ownerSession.user,role); loadOwnerAll(); } }
-          catch(err){ console.warn('Owner session check',err); }
+    const db=getDb();
+    if(db?.auth?.onAuthStateChange && !window.__sonaPasswordRecoveryListener){
+      window.__sonaPasswordRecoveryListener=true;
+      db.auth.onAuthStateChange(function(event,session){
+        if(event==='PASSWORD_RECOVERY' && session?.user){
+          sessionStorage.setItem('sona_password_reset_pending','1');
+          showResetModal();
         }
       });
-      c.auth.onAuthStateChange((_event,session)=>{ ownerSession=session; });
+    }
+
+    if(hasRecoveryUrl()){
+      sessionStorage.setItem('sona_password_reset_pending','1');
+      // Supabase will normally establish the recovery session from the link.
+      setTimeout(async function(){
+        try{
+          const {data}=await db?.auth?.getSession();
+          if(data?.session) showResetModal();
+        }catch(err){ console.error('Recovery session check:',err); }
+      },500);
     }
   }
 
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true});
-  else boot();
+  document.addEventListener('DOMContentLoaded',bind,{once:false});
+  window.addEventListener('load',bind,{once:false});
 })();
 </script>
-
-
-<script>
-document.addEventListener('DOMContentLoaded',function(){
-  if(document.getElementById('sonaOwnerFooterLink')) return;
-  const footer=document.querySelector('footer');
-  if(!footer) return;
-  const a=document.createElement('button'); a.id='sonaOwnerFooterLink'; a.type='button'; a.textContent='🔐 Owner Login';
-  a.className='text-xs text-slate-400 hover:text-white transition'; a.onclick=()=>window.openSonaOwnerLogin&&window.openSonaOwnerLogin();
-  footer.appendChild(a);
-});
-</script>
-
 </body>
 </html>
