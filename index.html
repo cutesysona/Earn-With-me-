@@ -13,9 +13,9 @@
 <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta name="author" content="SONA DAILY LIFE HUB">
 <meta name="theme-color" content="#ffffff">
-<link rel="icon" type="image/png" href="https://cutesysona.shop/Red-YouTube-logo.png">
-<link rel="shortcut icon" href="https://cutesysona.shop/Red-YouTube-logo.png">
-<link rel="apple-touch-icon" href="https://cutesysona.shop/Red-YouTube-logo.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="shortcut icon" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/favicon.svg">
 <meta name="application-name" content="SONA DAILY LIFE HUB">
 <link rel="canonical" href="https://cutesysona.shop/">
 <link rel="alternate" hreflang="en" href="https://cutesysona.shop/">
@@ -25,11 +25,11 @@
 <meta property="og:title" content="SONA DAILY LIFE HUB | Daily Life, Learning, Rewards & Community">
 <meta property="og:description" content="Explore SONA DAILY LIFE HUB for learning, YouTube videos, social content, member tools, referrals, rewards and daily-life resources.">
 <meta property="og:url" content="https://cutesysona.shop/">
-<meta property="og:image" content="https://cutesysona.shop/Red-YouTube-logo.png">
+<meta property="og:image" content="https://cutesysona.shop/favicon.svg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="SONA DAILY LIFE HUB | Daily Life, Learning, Rewards & Community">
 <meta name="twitter:description" content="Learning, YouTube, community, member tools, referrals, rewards and daily-life resources in one hub.">
-<meta name="twitter:image" content="https://cutesysona.shop/Red-YouTube-logo.png">
+<meta name="twitter:image" content="https://cutesysona.shop/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -1255,6 +1255,23 @@ html:not(.dark-mode) #dashboardShell.active .toast{
 }
 </style>
 
+<script id="sona-safe-rpc-helper">
+(function(){
+  if (window.sonaSafeOwnerRpc) return;
+  window.sonaSafeOwnerRpc = async function(client, functionName, params){
+    try {
+      const result = await client.rpc(functionName, params || {});
+      if (result && result.error) {
+        console.warn('Owner RPC warning:', functionName, result.error);
+      }
+      return result;
+    } catch (error) {
+      console.warn('Owner RPC exception:', functionName, error);
+      return { data: null, error };
+    }
+  };
+})();
+</script>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-rose-500 selection:text-white">
 
@@ -1262,7 +1279,7 @@ html:not(.dark-mode) #dashboardShell.active .toast{
 <div id="sonaPageLoader" aria-hidden="false">
   <div class="sona-loader-card" role="status" aria-live="polite">
     <div class="sona-loader-logo" aria-hidden="true">
-      <img src="https://cutesysona.shop/Red-YouTube-logo.png" alt="">
+      <img src="/favicon.svg" alt="SONA logo">
     </div>
     <div class="sona-loader-spinner" aria-hidden="true"></div>
     <strong>SONA DAILY LIFE HUB</strong>
@@ -7276,7 +7293,7 @@ document.addEventListener('keydown',function(e){
       <p>This login is separate from the normal member dashboard. Only an account authorized in Supabase can enter.</p>
     </div>
     <div class="sona-owner-login-body">
-      <div class="sona-owner-field"><label for="sonaOwnerEmail">Owner Email</label><input id="sonaOwnerEmail" type="email" autocomplete="username" value="piyushmandal27753@gmail.com" placeholder="owner@example.com"></div>
+      <div class="sona-owner-field"><label for="sonaOwnerEmail">Owner Email</label><input id="sonaOwnerEmail" type="email" autocomplete="off" value="" placeholder="owner@example.com"></div>
       <div class="sona-owner-field"><label for="sonaOwnerPassword">Password</label><input id="sonaOwnerPassword" type="password" autocomplete="current-password" placeholder="Enter owner password"></div>
       <div id="sonaOwnerLoginStatus" class="sona-owner-status" role="alert"></div>
       <div class="sona-owner-actions"><button class="btn primary" type="button" onclick="sonaOwnerLogin()">🔐 Sign In to Owner Dashboard</button><button class="btn" type="button" onclick="closeSonaOwnerLogin()">Cancel</button></div>
@@ -7552,7 +7569,7 @@ document.addEventListener('keydown',function(e){
         ownerSession=null;
         throw new Error('This account is not authorized as an Owner/Admin.');
       }
-      await client.rpc('owner_log_action',{p_action:'owner_login'}).catch(()=>{});
+      await window.sonaSafeOwnerRpc(client,'owner_log_action',{p_action:'owner_login'});
       ownerStatus('Authorization confirmed. Opening Owner Dashboard…','success');
       setTimeout(()=>{ closeSonaOwnerLogin(); showOwnerDashboard(data.user,role); loadOwnerAll(); },250);
     }catch(err){
@@ -7564,7 +7581,7 @@ document.addEventListener('keydown',function(e){
   };
 
   window.sonaOwnerLogout=async function(){
-    try{ if(ownerClient) await ownerClient.rpc('owner_log_action',{p_action:'owner_logout'}).catch(()=>{}); }catch(_){}
+    try{ if(ownerClient) await window.sonaSafeOwnerRpc(ownerClient,'owner_log_action',{p_action:'owner_logout'}); }catch(_){}
     try{ if(ownerClient) await ownerClient.auth.signOut(); }catch(_){}
     ownerSession=null;
     hideOwnerDashboard();
@@ -7650,7 +7667,7 @@ document.addEventListener('keydown',function(e){
       if(section==='shopping'){ payload.amazon_affiliate_url=($id('ownerAmazonUrl')?.value||'').trim()||null; payload.flipkart_affiliate_url=($id('ownerFlipkartUrl')?.value||'').trim()||null; }
       const {error}=await client.from('owner_site_settings').update(payload).eq('settings_id',true);
       if(error) throw error;
-      await client.rpc('owner_log_action',{p_action:'update_site_media_settings',p_metadata:{section}}).catch(()=>{});
+      await window.sonaSafeOwnerRpc(client,'owner_log_action',{p_action:'update_site_media_settings',p_metadata:{section}});
       await loadPublicConfig();
       alert('Settings saved.');
     }catch(err){ alert(err?.message||'Could not save settings.'); }
@@ -7664,7 +7681,7 @@ document.addEventListener('keydown',function(e){
       const payload={settings_id:true,site_name:($id('ownerSiteName')?.value||'').trim()||'SONA DAILY LIFE HUB',support_email:($id('ownerSupportEmail')?.value||'').trim()||null,website_ads_enabled:$id('ownerAdsEnabled')?.value==='true',reward_policy:policy,updated_by:user.id,updated_at:new Date().toISOString()};
       const {error}=await client.from('owner_site_settings').update(payload).eq('settings_id',true);
       if(error) throw error;
-      await client.rpc('owner_log_action',{p_action:'update_site_settings'}).catch(()=>{});
+      await window.sonaSafeOwnerRpc(client,'owner_log_action',{p_action:'update_site_settings'});
       await loadPublicConfig();
       alert('Website settings saved.');
     }catch(err){ alert(err?.message||'Could not save settings.'); }
@@ -7687,7 +7704,7 @@ document.addEventListener('keydown',function(e){
       if(!name||!url) return alert('Enter product name and approved affiliate URL.');
       const {error}=await client.from('owner_products').insert({name,description:($id('ownerProductDescription')?.value||'').trim()||null,category:($id('ownerProductCategory')?.value||'').trim()||null,affiliate_url:url,image_url:($id('ownerProductImage')?.value||'').trim()||null,created_by:user.id,created_at:new Date().toISOString(),updated_at:new Date().toISOString()});
       if(error) throw error;
-      await client.rpc('owner_log_action',{p_action:'add_product',p_metadata:{name}}).catch(()=>{});
+      await window.sonaSafeOwnerRpc(client,'owner_log_action',{p_action:'add_product',p_metadata:{name}});
       ['ownerProductName','ownerProductUrl','ownerProductImage','ownerProductDescription','ownerProductCategory'].forEach(id=>{if($id(id))$id(id).value='';});
       await loadOwnerProducts(); await loadPublicProducts();
       alert('Product added.');
@@ -7705,7 +7722,7 @@ document.addEventListener('keydown',function(e){
   }
 
   window.sonaAddRevenue=async function(){
-    try{ const {client,user}=await requireOwner(); const source=($id('ownerRevenueSource')?.value||'').trim(); const amount=Number($id('ownerRevenueAmount')?.value||0); if(!source||!Number.isFinite(amount)||amount<0)return alert('Enter a revenue source and valid amount.'); const {error}=await client.from('owner_revenue_entries').insert({source,amount,status:$id('ownerRevenueStatus')?.value||'pending',revenue_date:$id('ownerRevenueDate')?.value||new Date().toISOString().slice(0,10),reference:($id('ownerRevenueReference')?.value||'').trim()||null,created_by:user.id,created_at:new Date().toISOString(),updated_at:new Date().toISOString()}); if(error)throw error; await client.rpc('owner_log_action',{p_action:'add_revenue_record',p_metadata:{source,amount}}).catch(()=>{}); ['ownerRevenueSource','ownerRevenueAmount','ownerRevenueReference'].forEach(id=>{if($id(id))$id(id).value='';}); await loadOwnerRevenue(); await loadOwnerSummary(); alert('Revenue record saved.'); }
+    try{ const {client,user}=await requireOwner(); const source=($id('ownerRevenueSource')?.value||'').trim(); const amount=Number($id('ownerRevenueAmount')?.value||0); if(!source||!Number.isFinite(amount)||amount<0)return alert('Enter a revenue source and valid amount.'); const {error}=await client.from('owner_revenue_entries').insert({source,amount,status:$id('ownerRevenueStatus')?.value||'pending',revenue_date:$id('ownerRevenueDate')?.value||new Date().toISOString().slice(0,10),reference:($id('ownerRevenueReference')?.value||'').trim()||null,created_by:user.id,created_at:new Date().toISOString(),updated_at:new Date().toISOString()}); if(error)throw error; await window.sonaSafeOwnerRpc(client,'owner_log_action',{p_action:'add_revenue_record',p_metadata:{source,amount}}); ['ownerRevenueSource','ownerRevenueAmount','ownerRevenueReference'].forEach(id=>{if($id(id))$id(id).value='';}); await loadOwnerRevenue(); await loadOwnerSummary(); alert('Revenue record saved.'); }
     catch(err){ alert(err?.message||'Could not save revenue.'); }
   };
 
@@ -7715,7 +7732,7 @@ document.addEventListener('keydown',function(e){
   }
 
   window.sonaAddInvestment=async function(){
-    try{ const {client,user}=await requireOwner(); const title=($id('ownerInvestmentTitle')?.value||'').trim(); if(!title)return alert('Enter an investment title.'); const principal=Number($id('ownerInvestmentPrincipal')?.value||0); const currentValue=Number($id('ownerInvestmentValue')?.value||0); if(!Number.isFinite(principal)||principal<0||!Number.isFinite(currentValue)||currentValue<0)return alert('Enter valid investment amounts.'); const {error}=await client.from('owner_investments').insert({title,provider:($id('ownerInvestmentProvider')?.value||'').trim()||null,principal_amount:principal,current_value:currentValue,status:$id('ownerInvestmentStatus')?.value||'active',investment_date:$id('ownerInvestmentDate')?.value||new Date().toISOString().slice(0,10),notes:($id('ownerInvestmentNotes')?.value||'').trim()||null,created_by:user.id,created_at:new Date().toISOString(),updated_at:new Date().toISOString()}); if(error)throw error; await client.rpc('owner_log_action',{p_action:'add_investment_record',p_metadata:{title}}).catch(()=>{}); ['ownerInvestmentTitle','ownerInvestmentProvider','ownerInvestmentPrincipal','ownerInvestmentValue','ownerInvestmentNotes'].forEach(id=>{if($id(id))$id(id).value='';}); await loadOwnerInvestments(); await loadOwnerSummary(); alert('Investment record saved.'); }
+    try{ const {client,user}=await requireOwner(); const title=($id('ownerInvestmentTitle')?.value||'').trim(); if(!title)return alert('Enter an investment title.'); const principal=Number($id('ownerInvestmentPrincipal')?.value||0); const currentValue=Number($id('ownerInvestmentValue')?.value||0); if(!Number.isFinite(principal)||principal<0||!Number.isFinite(currentValue)||currentValue<0)return alert('Enter valid investment amounts.'); const {error}=await client.from('owner_investments').insert({title,provider:($id('ownerInvestmentProvider')?.value||'').trim()||null,principal_amount:principal,current_value:currentValue,status:$id('ownerInvestmentStatus')?.value||'active',investment_date:$id('ownerInvestmentDate')?.value||new Date().toISOString().slice(0,10),notes:($id('ownerInvestmentNotes')?.value||'').trim()||null,created_by:user.id,created_at:new Date().toISOString(),updated_at:new Date().toISOString()}); if(error)throw error; await window.sonaSafeOwnerRpc(client,'owner_log_action',{p_action:'add_investment_record',p_metadata:{title}}); ['ownerInvestmentTitle','ownerInvestmentProvider','ownerInvestmentPrincipal','ownerInvestmentValue','ownerInvestmentNotes'].forEach(id=>{if($id(id))$id(id).value='';}); await loadOwnerInvestments(); await loadOwnerSummary(); alert('Investment record saved.'); }
     catch(err){ alert(err?.message||'Could not save investment.'); }
   };
 
@@ -7725,7 +7742,7 @@ document.addEventListener('keydown',function(e){
   }
 
   window.sonaAddNotification=async function(){
-    try{ const {client,user}=await requireOwner(); const title=($id('ownerNotificationTitle')?.value||'').trim(); const message=($id('ownerNotificationMessage')?.value||'').trim(); if(!title||!message)return alert('Enter notification title and message.'); const {error}=await client.from('owner_notifications').insert({title,message,is_published:$id('ownerNotificationPublished')?.value==='true',created_by:user.id}); if(error)throw error; await client.rpc('owner_log_action',{p_action:'add_notification',p_metadata:{title}}).catch(()=>{}); ['ownerNotificationTitle','ownerNotificationMessage'].forEach(id=>{if($id(id))$id(id).value='';}); await loadOwnerNotifications(); alert('Notification saved.'); }
+    try{ const {client,user}=await requireOwner(); const title=($id('ownerNotificationTitle')?.value||'').trim(); const message=($id('ownerNotificationMessage')?.value||'').trim(); if(!title||!message)return alert('Enter notification title and message.'); const {error}=await client.from('owner_notifications').insert({title,message,is_published:$id('ownerNotificationPublished')?.value==='true',created_by:user.id}); if(error)throw error; await window.sonaSafeOwnerRpc(client,'owner_log_action',{p_action:'add_notification',p_metadata:{title}}); ['ownerNotificationTitle','ownerNotificationMessage'].forEach(id=>{if($id(id))$id(id).value='';}); await loadOwnerNotifications(); alert('Notification saved.'); }
     catch(err){ alert(err?.message||'Could not save notification.'); }
   };
 
@@ -8309,16 +8326,7 @@ document.addEventListener('DOMContentLoaded',function(){
       if(side2) side2.classList.remove('owner-mobile-open');
     }
   });
-
-  /* Keep owner email prefilled, while password always stays in Supabase Auth. */
-  function seedOwnerEmail(){
-    var input=document.getElementById('sonaOwnerEmail');
-    if(input && !input.value) input.value='piyushmandal27753@gmail.com';
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',seedOwnerEmail,{once:true});
-  else seedOwnerEmail();
-
-  /*
+/*
    * Final avatar sync:
    * Supabase is the source of truth. Do not let a stale localStorage image
    * replace the server avatar on desktop.
@@ -8387,5 +8395,279 @@ document.addEventListener('DOMContentLoaded',function(){
 })();
 </script>
 
+<!-- =========================================================
+     SONA FINANCE EXTENSION
+     Adds owner payment verification, manual crediting and
+     withdrawal management to the existing owner dashboard.
+     Requires the SQL migration supplied separately.
+========================================================= -->
+<style id="sona-finance-extension-css">
+  .sona-finance-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:14px 0}
+  .sona-finance-stat{padding:16px;border:1px solid #e2e8f0;border-radius:14px;background:#fff}
+  .sona-finance-stat small{display:block;color:#667085;font-weight:700}
+  .sona-finance-stat strong{display:block;font-size:24px;margin-top:6px;color:#172033}
+  .sona-finance-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .sona-finance-status{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:12px;font-weight:800}
+  .sona-finance-status.pending{background:#fff7ed;color:#9a3412}
+  .sona-finance-status.verified,.sona-finance-status.completed{background:#ecfdf3;color:#166534}
+  .sona-finance-status.rejected,.sona-finance-status.failed{background:#fef2f2;color:#991b1b}
+  .sona-finance-status.processing,.sona-finance-status.under_review{background:#eff6ff;color:#1d4ed8}
+  .sona-finance-table{width:100%;border-collapse:collapse;min-width:1000px}
+  .sona-finance-table th,.sona-finance-table td{padding:11px;border-bottom:1px solid #e2e8f0;text-align:left;vertical-align:top}
+  .sona-finance-table th{background:#f8fafc;color:#526174}
+  .sona-finance-table td{color:#344054}
+  .sona-finance-note{font-size:12px;color:#667085;line-height:1.5}
+  @media(max-width:900px){.sona-finance-grid{grid-template-columns:1fr}}
+  html.dark-mode .sona-finance-stat{background:#111827;border-color:#263449}
+  html.dark-mode .sona-finance-stat strong,html.dark-mode .sona-finance-table td{color:#f1f5f9}
+  html.dark-mode .sona-finance-table th{background:#0b1220;color:#aab7ca}
+  html.dark-mode .sona-finance-table th,html.dark-mode .sona-finance-table td{border-color:#263449}
+</style>
+
+<script id="sona-finance-extension-js">
+(function(){
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  const esc = (value) => String(value ?? '').replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+  const money = (value) => '₹' + Number(value || 0).toLocaleString('en-IN',{maximumFractionDigits:2});
+  const status = (value) => {
+    const v = String(value || '').toLowerCase();
+    return '<span class="sona-finance-status '+esc(v)+'">'+esc(value || 'Unknown')+'</span>';
+  };
+  const ownerClient = () => {
+    if (typeof window.ensureOwnerClient === 'function') return window.ensureOwnerClient();
+    if (window.supabaseClient) return window.supabaseClient;
+    if (window.client) return window.client;
+    return null;
+  };
+  const ownerUser = async () => {
+    if (typeof window.requireOwner === 'function') {
+      const result = await window.requireOwner();
+      return result || {};
+    }
+    const client = ownerClient();
+    if (!client) throw new Error('Supabase client is not available.');
+    const {data:{user}} = await client.auth.getUser();
+    if (!user) throw new Error('Owner login is required.');
+    return {client,user};
+  };
+  const safe = (message) => {
+    if (typeof window.ownerStatus === 'function') window.ownerStatus(message,'error');
+    else alert(message);
+  };
+  const html = `
+    <section id="sonaOwnerPage-payment-verification" class="sona-owner-page">
+      <div class="sona-owner-hero">
+        <h2>Payment Verification</h2>
+        <p>Review user payment submissions. Verification does not automatically credit a balance.</p>
+      </div>
+      <div class="sona-finance-grid">
+        <div class="sona-finance-stat"><small>Pending payments</small><strong id="sonaFinancePendingPayments">0</strong></div>
+        <div class="sona-finance-stat"><small>Verified payments</small><strong id="sonaFinanceVerifiedPayments">0</strong></div>
+        <div class="sona-finance-stat"><small>Rejected payments</small><strong id="sonaFinanceRejectedPayments">0</strong></div>
+      </div>
+      <div class="sona-owner-card">
+        <div class="sona-finance-actions">
+          <button class="btn primary" type="button" id="sonaFinanceRefreshPayments">Refresh Payments</button>
+          <span class="sona-finance-note">Verify only after reviewing the proof and transaction reference.</span>
+        </div>
+      </div>
+      <div class="sona-owner-card" style="margin-top:14px">
+        <div class="sona-owner-table-wrap">
+          <table class="sona-finance-table">
+            <thead><tr><th>Date</th><th>User</th><th>Amount</th><th>Method</th><th>Reference</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="sonaFinancePaymentRows"><tr><td colspan="7">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="sonaOwnerPage-balance-management" class="sona-owner-page">
+      <div class="sona-owner-hero">
+        <h2>Balance Management</h2>
+        <p>Credit only an eligible verified payment. Duplicate credits are blocked by the database.</p>
+      </div>
+      <div class="sona-owner-card">
+        <div class="sona-owner-form">
+          <div><label>Payment Submission ID</label><input id="sonaFinanceCreditPaymentId" placeholder="UUID of verified payment"></div>
+          <div><label>Credit Note</label><input id="sonaFinanceCreditNote" placeholder="Reason / internal note"></div>
+        </div>
+        <div class="sona-finance-actions" style="margin-top:12px">
+          <button class="btn primary" type="button" id="sonaFinanceCreditButton">Credit Verified Payment</button>
+        </div>
+        <p class="sona-finance-note">The amount is read from the verified payment record. It is never accepted from a client-side amount input.</p>
+      </div>
+      <div class="sona-owner-card" style="margin-top:14px">
+        <h3>Recent Ledger Entries</h3>
+        <div class="sona-owner-table-wrap">
+          <table class="sona-finance-table">
+            <thead><tr><th>Date</th><th>User</th><th>Amount</th><th>Type</th><th>Reference</th></tr></thead>
+            <tbody id="sonaFinanceLedgerRows"><tr><td colspan="5">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="sonaOwnerPage-withdrawal-management" class="sona-owner-page">
+      <div class="sona-owner-hero">
+        <h2>Withdrawal Management</h2>
+        <p>Approve or reject requests securely. Approved does not mean completed until processing is confirmed.</p>
+      </div>
+      <div class="sona-owner-card">
+        <div class="sona-finance-actions">
+          <button class="btn primary" type="button" id="sonaFinanceRefreshWithdrawals">Refresh Withdrawals</button>
+        </div>
+      </div>
+      <div class="sona-owner-card" style="margin-top:14px">
+        <div class="sona-owner-table-wrap">
+          <table class="sona-finance-table">
+            <thead><tr><th>Date</th><th>User</th><th>Amount</th><th>Bank Details</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="sonaFinanceWithdrawalRows"><tr><td colspan="6">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>`;
+
+  function addSections(){
+    const content = document.querySelector('.sona-owner-content');
+    const nav = $('sonaOwnerNav');
+    if (!content || !nav || $('sonaOwnerPage-payment-verification')) return;
+    content.insertAdjacentHTML('beforeend',html);
+    const buttons = [
+      ['payment-verification','🧾 Payment Verification'],
+      ['balance-management','💳 Balance Management'],
+      ['withdrawal-management','🏦 Withdrawal Management']
+    ];
+    buttons.forEach(([page,label])=>{
+      const b=document.createElement('button');
+      b.type='button'; b.dataset.ownerPage=page; b.textContent=label;
+      nav.appendChild(b);
+    });
+    buttons.forEach(([page])=>{
+      const b=nav.querySelector('[data-owner-page="'+page+'"]');
+      if(b && typeof window.ownerShowPage==='function') b.addEventListener('click',()=>window.ownerShowPage(page));
+    });
+    $('sonaFinanceRefreshPayments').addEventListener('click',loadPayments);
+    $('sonaFinanceRefreshWithdrawals').addEventListener('click',loadWithdrawals);
+    $('sonaFinanceCreditButton').addEventListener('click',creditPayment);
+    loadPayments(); loadWithdrawals(); loadLedger();
+  }
+
+  async function loadPayments(){
+    const client=ownerClient(); if(!client) return;
+    const tbody=$('sonaFinancePaymentRows'); if(!tbody) return;
+    try{
+      const {data,error}=await client.from('sona_payment_submissions')
+        .select('id,created_at,user_id,member_id,amount,payment_method,transaction_reference,status,proof_path')
+        .order('created_at',{ascending:false}).limit(100);
+      if(error) throw error;
+      const rows=data||[];
+      $('sonaFinancePendingPayments').textContent=rows.filter(x=>x.status==='pending'||x.status==='under_review').length;
+      $('sonaFinanceVerifiedPayments').textContent=rows.filter(x=>x.status==='verified').length;
+      $('sonaFinanceRejectedPayments').textContent=rows.filter(x=>x.status==='rejected').length;
+      tbody.innerHTML=rows.length?rows.map(x=>`<tr>
+        <td>${esc(new Date(x.created_at).toLocaleString())}</td>
+        <td>${esc(x.member_id||x.user_id)}</td>
+        <td>${money(x.amount)}</td>
+        <td>${esc(x.payment_method)}</td>
+        <td>${esc(x.transaction_reference)}</td>
+        <td>${status(x.status)}</td>
+        <td><div class="sona-finance-actions">
+          ${x.status==='pending'||x.status==='under_review'
+            ? `<button class="btn green" data-verify-payment="${esc(x.id)}">Verify</button>
+               <button class="btn danger" data-reject-payment="${esc(x.id)}">Reject</button>`
+            : `<span class="sona-finance-note">No action</span>`}
+        </div></td></tr>`).join('')
+        : '<tr><td colspan="7">No payment submissions found.</td></tr>';
+      tbody.querySelectorAll('[data-verify-payment]').forEach(b=>b.addEventListener('click',()=>changePaymentStatus(b.dataset.verifyPayment,'verified')));
+      tbody.querySelectorAll('[data-reject-payment]').forEach(b=>b.addEventListener('click',()=>changePaymentStatus(b.dataset.rejectPayment,'rejected')));
+    }catch(e){ tbody.innerHTML='<tr><td colspan="7">'+esc(e.message)+'</td></tr>'; }
+  }
+
+  async function changePaymentStatus(id,nextStatus){
+    if(!confirm('Change payment status to '+nextStatus+'?')) return;
+    try{
+      const {client}=await ownerUser();
+      const {error}=await client.rpc('sona_owner_review_payment',{p_payment_id:id,p_new_status:nextStatus,p_note:null});
+      if(error) throw error;
+      await loadPayments();
+    }catch(e){safe(e.message);}
+  }
+
+  async function creditPayment(){
+    const id=$('sonaFinanceCreditPaymentId')?.value.trim();
+    const note=$('sonaFinanceCreditNote')?.value.trim()||null;
+    if(!id) return safe('Enter a verified payment submission ID.');
+    if(!confirm('Credit this verified payment exactly once?')) return;
+    try{
+      const {client}=await ownerUser();
+      const {error}=await client.rpc('sona_owner_credit_verified_payment',{p_payment_id:id,p_note:note});
+      if(error) throw error;
+      $('sonaFinanceCreditPaymentId').value='';
+      $('sonaFinanceCreditNote').value='';
+      await loadLedger(); await loadPayments();
+      alert('Verified payment credited successfully.');
+    }catch(e){safe(e.message);}
+  }
+
+  async function loadLedger(){
+    const client=ownerClient(); const tbody=$('sonaFinanceLedgerRows'); if(!client||!tbody) return;
+    try{
+      const {data,error}=await client.from('sona_account_ledger')
+        .select('created_at,user_id,amount,entry_type,reference')
+        .order('created_at',{ascending:false}).limit(100);
+      if(error) throw error;
+      tbody.innerHTML=(data||[]).map(x=>`<tr><td>${esc(new Date(x.created_at).toLocaleString())}</td><td>${esc(x.user_id)}</td><td>${money(x.amount)}</td><td>${esc(x.entry_type)}</td><td>${esc(x.reference)}</td></tr>`).join('')||'<tr><td colspan="5">No ledger entries.</td></tr>';
+    }catch(e){tbody.innerHTML='<tr><td colspan="5">'+esc(e.message)+'</td></tr>';}
+  }
+
+  async function loadWithdrawals(){
+    const client=ownerClient(); const tbody=$('sonaFinanceWithdrawalRows'); if(!client||!tbody) return;
+    try{
+      const {data,error}=await client.from('sona_withdrawal_requests')
+        .select('id,created_at,user_id,member_id,amount,bank_name,bank_account_masked,status')
+        .order('created_at',{ascending:false}).limit(100);
+      if(error) throw error;
+      tbody.innerHTML=(data||[]).map(x=>`<tr>
+        <td>${esc(new Date(x.created_at).toLocaleString())}</td>
+        <td>${esc(x.member_id||x.user_id)}</td>
+        <td>${money(x.amount)}</td>
+        <td>${esc(x.bank_name||'—')}<br>${esc(x.bank_account_masked||'—')}</td>
+        <td>${status(x.status)}</td>
+        <td><div class="sona-finance-actions">
+          ${x.status==='pending'||x.status==='under_review'
+            ? `<button class="btn green" data-withdraw-status="${esc(x.id)}" data-next="approved">Approve</button>
+               <button class="btn danger" data-withdraw-status="${esc(x.id)}" data-next="rejected">Reject</button>`
+            : x.status==='approved'
+              ? `<button class="btn primary" data-withdraw-status="${esc(x.id)}" data-next="processing">Mark Processing</button>`
+              : x.status==='processing'
+                ? `<button class="btn green" data-withdraw-status="${esc(x.id)}" data-next="completed">Mark Completed</button>`
+                : '<span class="sona-finance-note">No action</span>'}
+        </div></td></tr>`).join('')||'<tr><td colspan="6">No withdrawal requests.</td></tr>';
+      tbody.querySelectorAll('[data-withdraw-status]').forEach(b=>b.addEventListener('click',()=>changeWithdrawalStatus(b.dataset.withdrawStatus,b.dataset.next)));
+    }catch(e){tbody.innerHTML='<tr><td colspan="6">'+esc(e.message)+'</td></tr>';}
+  }
+
+  async function changeWithdrawalStatus(id,nextStatus){
+    if(!confirm('Change withdrawal status to '+nextStatus+'?')) return;
+    try{
+      const {client}=await ownerUser();
+      const {error}=await client.rpc('sona_owner_update_withdrawal_status',{p_request_id:id,p_new_status:nextStatus,p_note:null});
+      if(error) throw error;
+      await loadWithdrawals();
+    }catch(e){safe(e.message);}
+  }
+
+  function start(){
+    if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',addSections,{once:true});
+    else addSections();
+    const observer=new MutationObserver(()=>addSections());
+    observer.observe(document.body,{childList:true,subtree:true});
+  }
+  start();
+})();
+</script>
 </body>
 </html>
