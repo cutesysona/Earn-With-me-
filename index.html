@@ -1397,7 +1397,7 @@ html.dark-mode #sonaOwnerDashboard{background:#070b14;color:#f7f9fc}.owner-dark 
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Password</label>
                         <div class="password-field-wrap">
-                            <input type="password" autocomplete="current-password" id="loginPassword" required placeholder="••••••••" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500">
+                            <input type="password" id="loginPassword" required placeholder="••••••••" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500">
                             <button type="button" class="password-eye" onclick="togglePasswordVisibility('loginPassword',this)" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
                         </div>
                     </div>
@@ -6081,6 +6081,7 @@ document.addEventListener('keydown',function(e){
   );
 
 })();
+</script>
 
 <style>
 #sonaAuthStatus {
@@ -7702,77 +7703,168 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 </script>
 
+</body>
 
-<style id="sona-auth-working-fix">
-#authModal{position:fixed!important;inset:0!important;z-index:2147483000!important;pointer-events:auto!important;isolation:isolate!important}
-#authModal.hidden{display:none!important;pointer-events:none!important}
-#authModal:not(.hidden){display:flex!important;pointer-events:auto!important}
-#authModal>div{position:relative!important;z-index:2147483001!important;pointer-events:auto!important}
-#authModal button,#authModal input,#authModal select,#authModal textarea,#authModal a{position:relative;z-index:2147483002;pointer-events:auto!important}
-#authModal button:not(:disabled){cursor:pointer!important}
-#authModal button:disabled{cursor:wait!important}
-#modalHeaderTabs{position:relative!important;z-index:2147483003!important}
-#loginFormContainer,#signupFormContainer,#congratsScreenContainer{position:relative;z-index:2147483002}
-#tabLoginBtn,#tabSignupBtn,#modalHeaderTabs>button:last-child,
-#loginFormContainer button[type="submit"],#signupFormContainer button[type="submit"]{min-height:48px!important;user-select:none;-webkit-user-select:none}
-#authModal::before,#authModal::after,#authModal>div::before,#authModal>div::after{pointer-events:none!important}
+<!-- SONA AUTH CLICK / MODAL REPAIR PATCH -->
+<style id="sona-auth-click-repair">
+  #authModal {
+    z-index: 2147483001 !important;
+    pointer-events: auto !important;
+  }
+  #authModal.hidden { pointer-events: none !important; }
+  #authModal > div {
+    position: relative !important;
+    z-index: 2147483002 !important;
+    pointer-events: auto !important;
+  }
+  #authModal button,
+  #authModal input,
+  #authModal label,
+  #authModal form,
+  #authModal a {
+    pointer-events: auto !important;
+  }
+  #authModal button { cursor: pointer !important; }
+  #authModal input { cursor: text !important; }
+  #sonaAdModal:not(.show),
+  #sonaOwnerLoginModal:not(.show),
+  #sonaOwnerDashboard:not(.show),
+  .sona-workspace-modal:not(.show),
+  .sona-sidebar-backdrop:not(.is-open) {
+    pointer-events: none !important;
+  }
+  #emailVerificationModal.hidden { pointer-events: none !important; }
 </style>
+<script id="sona-auth-click-repair-js">
+(function () {
+  'use strict';
+  function byId(id) { return document.getElementById(id); }
 
-<script id="sona-auth-working-fix-js">
-(function(){
-'use strict';
-const $=id=>document.getElementById(id);
-function setTabButton(btn,on){
- if(!btn)return;
- btn.classList.toggle('text-rose-600',on);
- btn.classList.toggle('border-rose-600',on);
- btn.classList.toggle('text-slate-500',!on);
- btn.setAttribute('aria-selected',on?'true':'false');
-}
-window.switchTab=function(type){
- const login=$('tabLoginBtn'),signup=$('tabSignupBtn'),lf=$('loginFormContainer'),sf=$('signupFormContainer'),cg=$('congratsScreenContainer'),tabs=$('modalHeaderTabs');
- if(!login||!signup||!lf||!sf||!cg)return false;
- if(tabs)tabs.style.display=type==='congrats'?'none':'flex';
- lf.classList.add('hidden');sf.classList.add('hidden');cg.classList.add('hidden');
- setTabButton(login,false);setTabButton(signup,false);
- if(type==='signup'){
-   sf.classList.remove('hidden');setTabButton(signup,true);
-   setTimeout(()=>$('fullNameInput')?.focus(),30);
- }else if(type==='congrats'){
-   cg.classList.remove('hidden');
- }else{
-   lf.classList.remove('hidden');setTabButton(login,true);
-   setTimeout(()=>$('loginEmail')?.focus(),30);
- }
- return true;
-};
-window.openModal=function(type){
- const m=$('authModal');if(!m)return false;
- m.classList.remove('hidden');m.setAttribute('aria-hidden','false');
- document.body.classList.add('sona-auth-open');
- return window.switchTab(type||'login');
-};
-window.closeModal=function(){
- const m=$('authModal');if(!m)return;
- m.classList.add('hidden');m.setAttribute('aria-hidden','true');
- document.body.classList.remove('sona-auth-open');
-};
-function install(){
- const l=$('tabLoginBtn'),s=$('tabSignupBtn'),x=$('modalHeaderTabs')?.querySelector('button:last-child');
- if(l&&!l.dataset.sonaFixed){l.dataset.sonaFixed='1';l.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();window.switchTab('login')},true)}
- if(s&&!s.dataset.sonaFixed){s.dataset.sonaFixed='1';s.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();window.switchTab('signup')},true)}
- if(x&&!x.dataset.sonaFixed){x.dataset.sonaFixed='1';x.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();window.closeModal()},true)}
- const m=$('authModal');
- if(m&&!m.dataset.sonaOutsideFixed){
-   m.dataset.sonaOutsideFixed='1';
-   m.addEventListener('click',e=>{if(e.target===m)window.closeModal()});
- }
-}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});else install();
-window.addEventListener('load',install);
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('authModal')?.classList.contains('hidden'))window.closeModal()});
+  function setAuthVisible(visible) {
+    var modal = byId('authModal');
+    if (!modal) return;
+    if (visible) {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      modal.style.display = 'flex';
+      modal.style.pointerEvents = 'auto';
+      document.body.classList.add('sona-auth-open');
+    } else {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      modal.style.display = 'none';
+      modal.style.pointerEvents = 'none';
+      document.body.classList.remove('sona-auth-open');
+    }
+  }
+
+  function safeSwitchTab(type) {
+    var login = byId('loginFormContainer');
+    var signup = byId('signupFormContainer');
+    var congrats = byId('congratsScreenContainer');
+    var tabs = byId('modalHeaderTabs');
+    var loginBtn = byId('tabLoginBtn');
+    var signupBtn = byId('tabSignupBtn');
+    if (!login || !signup || !congrats) return;
+    if (tabs) tabs.style.display = type === 'congrats' ? 'none' : 'flex';
+    login.classList.toggle('hidden', type !== 'login');
+    signup.classList.toggle('hidden', type !== 'signup');
+    congrats.classList.toggle('hidden', type !== 'congrats');
+    if (loginBtn && signupBtn) {
+      var active = 'flex-1 py-4 text-center font-bold text-sm text-rose-600 border-b-2 border-rose-600 transition';
+      var inactive = 'flex-1 py-4 text-center font-bold text-sm text-slate-500 hover:text-slate-800 transition';
+      loginBtn.className = type === 'login' ? active : inactive;
+      signupBtn.className = type === 'signup' ? active : inactive;
+    }
+  }
+
+  window.openModal = function (type) {
+    setAuthVisible(true);
+    safeSwitchTab(type === 'signup' ? 'signup' : 'login');
+    var first = type === 'signup' ? byId('fullNameInput') : byId('loginEmail');
+    if (first) setTimeout(function () { try { first.focus(); } catch (_) {} }, 50);
+  };
+  window.closeModal = function () { setAuthVisible(false); };
+  window.switchTab = function (type) { setAuthVisible(true); safeSwitchTab(type); };
+
+  function wire() {
+    var modal = byId('authModal');
+    if (!modal || modal.dataset.sonaAuthRepair === '1') return;
+    modal.dataset.sonaAuthRepair = '1';
+
+    var loginTab = byId('tabLoginBtn');
+    var signupTab = byId('tabSignupBtn');
+    if (loginTab) {
+      loginTab.removeAttribute('onclick');
+      loginTab.addEventListener('click', function (e) {
+        e.preventDefault(); e.stopPropagation(); window.switchTab('login');
+      });
+    }
+    if (signupTab) {
+      signupTab.removeAttribute('onclick');
+      signupTab.addEventListener('click', function (e) {
+        e.preventDefault(); e.stopPropagation(); window.switchTab('signup');
+      });
+    }
+
+    var close = modal.querySelector('#modalHeaderTabs > button:last-child');
+    if (close) {
+      close.removeAttribute('onclick');
+      close.addEventListener('click', function (e) {
+        e.preventDefault(); e.stopPropagation(); window.closeModal();
+      });
+    }
+
+    var loginForm = modal.querySelector('#loginFormContainer form');
+    if (loginForm) {
+      loginForm.removeAttribute('onsubmit');
+      loginForm.addEventListener('submit', function (e) {
+        e.preventDefault(); e.stopPropagation();
+        if (typeof window.handleLogin === 'function') return window.handleLogin(e);
+      });
+    }
+
+    var signupForm = modal.querySelector('#signupFormContainer form');
+    if (signupForm) {
+      signupForm.removeAttribute('onsubmit');
+      signupForm.addEventListener('submit', function (e) {
+        e.preventDefault(); e.stopPropagation();
+        if (typeof window.handleSignup === 'function') return window.handleSignup(e);
+      });
+    }
+
+    document.querySelectorAll('a[onclick*="openModal(\'login\')"]').forEach(function (a) {
+      a.removeAttribute('onclick');
+      a.addEventListener('click', function (e) { e.preventDefault(); window.openModal('login'); });
+    });
+    document.querySelectorAll('a[onclick*="openModal(\'signup\')"]').forEach(function (a) {
+      a.removeAttribute('onclick');
+      a.addEventListener('click', function (e) { e.preventDefault(); window.openModal('signup'); });
+    });
+
+    ['sonaAdModal','sonaOwnerLoginModal','sonaOwnerDashboard'].forEach(function (id) {
+      var el = byId(id);
+      if (el && !el.classList.contains('show')) el.style.pointerEvents = 'none';
+    });
+
+    if (!modal.classList.contains('hidden')) safeSwitchTab('login');
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wire);
+  else wire();
+  window.addEventListener('load', wire);
+
+  var observer = new MutationObserver(function () {
+    var modal = byId('authModal');
+    if (modal && !modal.classList.contains('hidden')) {
+      modal.style.display = 'flex';
+      modal.style.pointerEvents = 'auto';
+    }
+  });
+  if (document.documentElement) observer.observe(document.documentElement, {
+    subtree: true, attributes: true, attributeFilter: ['class','style']
+  });
 })();
 </script>
 
-</body>
 </html>
