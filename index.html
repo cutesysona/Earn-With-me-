@@ -7046,5 +7046,262 @@ document.addEventListener('keydown',function(e){
   window.addEventListener('load',bind,{once:false});
 })();
 </script>
+
+
+<!-- SONA FINAL PROFILE PICTURE + TOAST VISIBILITY PATCH -->
+<style id="sona-profile-picture-final-fix">
+  /* Keep profile-update notifications readable in every theme. */
+  #toast,
+  .toast {
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,.22) !important;
+  }
+  #toast *,
+  .toast * {
+    color: inherit !important;
+  }
+
+  /* Make both avatar locations render the selected picture consistently. */
+  #avatarPreview {
+    width: 88px !important;
+    height: 88px !important;
+    min-width: 88px !important;
+    min-height: 88px !important;
+    overflow: hidden !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  #avatarPreview img,
+  #brandLogoImage {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+  }
+  #brandLogoImage {
+    border-radius: 15px !important;
+  }
+
+  @media (max-width: 800px) {
+    #toast, .toast {
+      color: #ffffff !important;
+    }
+  }
+</style>
+
+<script id="sona-profile-picture-final-fix-script">
+(function () {
+  'use strict';
+
+  function getDb() {
+    return window.sonaSupabase || window.db || window.supabaseClient || null;
+  }
+
+  function escAttr(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/"/g, '&quot;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function currentMemberKey(memberId) {
+    return 'sonaProfile_' + String(memberId || localStorage.getItem('sonaMemberId') || 'PM001').trim().toUpperCase();
+  }
+
+  function saveAvatarLocally(dataUrl, memberId) {
+    try {
+      const key = currentMemberKey(memberId);
+      let profile = {};
+      try { profile = JSON.parse(localStorage.getItem(key) || '{}'); } catch (_) {}
+      profile.avatar = dataUrl;
+      if (memberId) profile.memberId = memberId;
+      profile.savedAt = profile.savedAt || new Date().toISOString();
+      localStorage.setItem(key, JSON.stringify(profile));
+      localStorage.setItem('sonaAvatar', dataUrl);
+    } catch (error) {
+      console.warn('SONA local avatar storage:', error);
+    }
+  }
+
+  function renderAvatar(dataUrl) {
+    const preview = document.getElementById('avatarPreview');
+    if (preview) {
+      preview.innerHTML = dataUrl
+        ? '<img alt="Profile picture" src="' + escAttr(dataUrl) + '">'
+        : '👤';
+    }
+
+    const logo = document.getElementById('brandLogoImage');
+    const fallback = document.getElementById('brandLogoFallback');
+    if (logo) {
+      if (dataUrl) {
+        logo.src = dataUrl;
+        logo.style.display = 'block';
+        logo.style.visibility = 'visible';
+        logo.style.opacity = '1';
+      } else {
+        logo.removeAttribute('src');
+        logo.style.display = 'none';
+        logo.style.visibility = 'hidden';
+        if (fallback) fallback.style.display = '';
+      }
+    }
+  }
+
+  async function syncAvatarFromSupabase() {
+    const db = getDb();
+    if (!db || !db.auth || !db.from) return;
+
+    try {
+      const result = await db.auth.getUser();
+      const user = result?.data?.user;
+      if (!user) return;
+
+      const { data, error } = await db
+        .from('profiles')
+        .select('member_id, avatar_url')
+        .eq('id', user.id)
+        .maybeSingle();
+
+      if (error) {
+        console.warn('SONA avatar profile read:', error);
+        return;
+      }
+
+      const memberId = data?.member_id || localStorage.getItem('sonaMemberId') || 'PM001';
+      const avatarUrl = data?.avatar_url || '';
+
+      if (avatarUrl) {
+        localStorage.setItem('sonaMemberId', memberId);
+        saveAvatarLocally(avatarUrl, memberId);
+        renderAvatar(avatarUrl);
+      }
+    } catch (error) {
+      console.warn('SONA avatar sync:', error);
+    }
+  }
+
+  window.previewProfile = async function (event) {
+    const input = event && event.target;
+    const file = input?.files?.[0];
+    if (!file) return;
+
+    if (!file.type || !file.type.startsWith('image/')) {
+      input.value = '';
+      if (typeof window.toast === 'function') window.toast('Please select a valid image file.');
+      return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+      input.value = '';
+      if (typeof window.toast === 'function') window.toast('Profile picture must be 2 MB or smaller.');
+      return;
+    }
+
+    const db = getDb();
+    if (!db || !db.auth || !db.from) {
+      if (typeof window.toast === 'function') window.toast('Profile service is unavailable. Please refresh and try again.');
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = async function () {
+      const dataUrl = String(reader.result || '');
+      if (!dataUrl.startsWith('data:image/')) {
+        if (typeof window.toast === 'function') window.toast('The selected image could not be read.');
+        return;
+      }
+
+      // Show it immediately so the user can see the change before saving/reloading.
+      renderAvatar(dataUrl);
+
+      try {
+        const { data: authData, error: authError } = await db.auth.getUser();
+        if (authError) throw authError;
+        const user = authData?.user;
+        if (!user) {
+          if (typeof window.openModal === 'function') window.openModal('login');
+          return;
+        }
+
+        const { data: profileRow, error: profileReadError } = await db
+          .from('profiles')
+          .select('member_id')
+          .eq('id', user.id)
+          .maybeSingle();
+
+        if (profileReadError) throw profileReadError;
+
+        const memberId = profileRow?.member_id || localStorage.getItem('sonaMemberId') || 'PM001';
+
+        const { error: updateError } = await db
+          .from('profiles')
+          .update({
+            avatar_url: dataUrl,
+            updated_at: new Date().toISOString()
+          })
+          .eq('id', user.id);
+
+        if (updateError) throw updateError;
+
+        localStorage.setItem('sonaMemberId', memberId);
+        saveAvatarLocally(dataUrl, memberId);
+        renderAvatar(dataUrl);
+
+        if (typeof window.toast === 'function') {
+          window.toast('✓ Profile picture updated successfully.');
+        }
+      } catch (error) {
+        console.error('SONA profile picture update:', error);
+        if (typeof window.toast === 'function') {
+          window.toast('Could not update your profile picture. Please try again.');
+        }
+      }
+    };
+
+    reader.onerror = function () {
+      if (typeof window.toast === 'function') window.toast('Could not read the selected image.');
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+  // Make updateBrandLogo accept the actual image passed by Supabase/profile code.
+  window.updateBrandLogo = function (src) {
+    if (src) {
+      renderAvatar(src);
+      return;
+    }
+
+    const cached = localStorage.getItem('sonaAvatar') || '';
+    if (cached) renderAvatar(cached);
+  };
+
+  // Keep the saved Supabase avatar synchronized after the dashboard opens/reloads.
+  function bootAvatarSync() {
+    syncAvatarFromSupabase();
+    setTimeout(syncAvatarFromSupabase, 400);
+    setTimeout(syncAvatarFromSupabase, 1200);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootAvatarSync);
+  } else {
+    bootAvatarSync();
+  }
+
+  // Also retry after auth/dashboard transitions.
+  window.addEventListener('load', function () {
+    setTimeout(syncAvatarFromSupabase, 300);
+  });
+})();
+</script>
+
 </body>
 </html>
