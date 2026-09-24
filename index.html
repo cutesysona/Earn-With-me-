@@ -8679,6 +8679,7 @@ document.addEventListener('DOMContentLoaded',function(){
       const {error}=await client.rpc('sona_owner_update_withdrawal_status',{p_request_id:id,p_new_status:nextStatus,p_note:null});
       if(error) throw error;
       await loadWithdrawals();
+      window.location.reload();
     }catch(e){safe(e.message);}
   }
 
@@ -8807,6 +8808,192 @@ document.addEventListener('DOMContentLoaded',function(){
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',improveMobileSidebar,{once:true});
   else improveMobileSidebar();
   new MutationObserver(improveMobileSidebar).observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script>
+
+<style id="sona-finance-and-mobile-final-fix">
+/* Finance integration + reliable mobile drawer override */
+@media (max-width: 900px){
+  #dashboardShell.active .main{margin-left:0!important;width:100%!important;min-width:0!important}
+  #dashboardShell.active .sidebar{position:fixed!important;left:0!important;top:0!important;bottom:0!important;width:min(292px,86vw)!important;max-width:292px!important;transform:translate3d(-120%,0,0)!important;transition:transform .24s ease!important;z-index:10001!important;display:block!important;overflow-y:auto!important;background:#fff!important}
+  #dashboardShell.active .sidebar.is-open{transform:translate3d(0,0,0)!important}
+  #dashboardShell.active .sidebar .brand,#dashboardShell.active .sidebar .member,#dashboardShell.active .sidebar .nav-title,#dashboardShell.active .sidebar .nav button span{display:block!important}
+  #dashboardShell.active .sidebar .nav button{display:flex!important;align-items:center!important;gap:10px!important;font-size:14px!important;text-align:left!important;min-height:44px!important}
+  .sona-mobile-menu{display:flex!important;align-items:center!important;justify-content:center!important;position:fixed!important;left:12px!important;top:10px!important;width:44px!important;height:44px!important;z-index:10003!important}
+  .sona-sidebar-backdrop.is-open{display:block!important;position:fixed!important;inset:0!important;z-index:10000!important;background:rgba(15,23,42,.45)!important}
+}
+</style>
+<script id="sona-finance-and-mobile-final-js">
+(function(){
+  'use strict';
+  const $=(id)=>document.getElementById(id);
+  const db=()=>window.sonaSupabase||window.supabaseClient||window.client||null;
+  const esc=(v)=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const money=(v)=>'₹'+Number(v||0).toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const currentUser=async()=>{const c=db();if(!c)throw new Error('Supabase client is not available.');const {data,error}=await c.auth.getUser();if(error)throw error;if(!data?.user)throw new Error('Please log in first.');return {c,user:data.user};};
+  const notify=(msg)=>{if(typeof window.toast==='function')window.toast(msg);else alert(msg);};
+  const showStatus=(ok,title,msg)=>{if(typeof window.showDepositResult==='function')window.showDepositResult(ok,title,msg);else notify(msg);};
+
+  async function uploadProof(c,user,file){
+    if(!file)return null;
+    const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+    const path=user.id+'/'+Date.now()+'-'+safeName;
+    const {error}=await c.storage.from('sona-payment-proofs').upload(path,file,{upsert:false,contentType:file.type||'application/octet-stream'});
+    if(error)throw error;
+    return path;
+  }
+
+  /* Replace the old local-only deposit handler with a real Supabase submission. */
+  window.submitDepositProof=async function(){
+    const amount=Number($('depositAmount')?.value||0);
+    const name=($('payerName')?.value||'').trim();
+    const mobile=($('payerMobile')?.value||'').trim();
+    const method=$('paymentMethod')?.value||'';
+    const txn=($('transactionId')?.value||'').trim();
+    const paymentDate=$('paymentDate')?.value||new Date().toISOString().slice(0,10);
+    const screenshot=$('depositScreenshot')?.files?.[0];
+    const errors=[];
+    if(!Number.isFinite(amount)||amount<5000)errors.push('Minimum deposit is ₹5,000.');
+    if(!name)errors.push('Enter the exact payer name.');
+    if(!/^[0-9]{10}$/.test(mobile))errors.push('Enter a valid 10-digit mobile number.');
+    if(!method)errors.push('Select a payment method.');
+    if(!txn)errors.push('Enter the Transaction ID / UTR number.');
+    if(!screenshot)errors.push('Upload the payment screenshot.');
+    if(errors.length){showStatus(false,'Deposit Failed',errors.join(' '));return false;}
+    try{
+      const {c,user}=await currentUser();
+      const proofPath=await uploadProof(c,user,screenshot);
+      let memberId=localStorage.getItem('sonaMemberId')||null;
+      const profile=await c.from('profiles').select('member_id').eq('id',user.id).maybeSingle();
+      if(!profile.error&&profile.data?.member_id)memberId=profile.data.member_id;
+      const {error}=await c.rpc('sona_submit_payment_submission',{
+        p_member_id:memberId,p_amount:amount,p_payment_method:method,p_payment_date:paymentDate,
+        p_transaction_reference:txn,p_proof_path:proofPath,p_note:'Payer: '+name+'; Mobile: '+mobile
+      });
+      if(error)throw error;
+      if(typeof window.addPaymentHistory==='function')window.addPaymentHistory('Deposit',amount,'Pending / Checking',txn);
+      if(typeof window.renderPaymentHistory==='function')window.renderPaymentHistory();
+      showStatus(true,'Submitted Successfully','Your payment proof is now saved in Payment History and sent to the owner for verification.');
+      const form=$('depositForm');if(form&&typeof form.reset==='function')form.reset();
+      return false;
+    }catch(err){console.error('Deposit submission:',err);showStatus(false,'Deposit Failed',err.message||'Could not submit deposit.');return false;}
+  };
+
+  /* Replace the old local-only withdrawal handler. */
+  window.submitWithdrawal=async function(){
+    if(typeof window.isProfileComplete==='function'&&!window.isProfileComplete()){if(typeof window.updateWithdrawalGate==='function')window.updateWithdrawalGate();notify('Withdrawal is locked. Complete Profile & Wallet Address first.');return;}
+    const amount=Number($('withdrawalAmount')?.value||0);
+    const method=$('withdrawalMethod')?.value||'';
+    const wallet=String($('walletAddress')?.value||'').trim();
+    if(!Number.isFinite(amount)||amount<1000||!method){notify('Enter a valid withdrawal amount of at least ₹1,000 and select a method.');return;}
+    if(method==='USDT (BEP20)'&&!wallet){notify('Please add your USDT (BEP20) wallet address first.');if(typeof window.showPage==='function')window.showPage('account');return;}
+    try{
+      const {c,user}=await currentUser();
+      const p={p_amount:amount,p_method:method,p_wallet_address:method==='USDT (BEP20)'?wallet:null};
+      const {data,error}=await c.rpc('sona_submit_withdrawal_request',p);
+      if(error)throw error;
+      const id=data?.id||data?.[0]?.id||('WDR-'+Date.now());
+      if(typeof window.addPaymentHistory==='function')window.addPaymentHistory('Withdrawal',amount,'Pending / Checking',id);
+      if(typeof window.renderPaymentHistory==='function')window.renderPaymentHistory();
+      notify('Withdrawal request submitted. Status: Pending.');
+      if($('withdrawalAmount'))$('withdrawalAmount').value='';
+      if(typeof window.loadUserFinanceData==='function')await window.loadUserFinanceData();
+    }catch(err){console.error('Withdrawal submission:',err);notify(err.message||'Could not submit withdrawal request.');}
+  };
+
+  async function loadUserFinanceData(){
+    try{
+      const {c}=await currentUser();
+      const {data,error}=await c.rpc('sona_get_my_balance');
+      if(error)throw error;
+      const balance=Array.isArray(data)?data[0]:data;
+      const value=Number(balance?.available_balance||balance?.balance||0);
+      ['withdrawalAvailableBalance','incomeWalletBalance','walletBalance','availableBalance'].forEach(id=>{if($(id))$(id).textContent=money(value);});
+    }catch(err){console.debug('User finance refresh:',err.message||err);}
+  }
+  window.loadUserFinanceData=loadUserFinanceData;
+
+  /* Reliable mobile menu binding. Uses event delegation so it survives rerenders. */
+  function setMobileMenu(open){
+    const sidebar=document.querySelector('#dashboardShell.active .sidebar, #dashboardShell .sidebar, .sidebar');
+    const button=document.querySelector('.sona-mobile-menu');
+    const backdrop=document.querySelector('.sona-sidebar-backdrop');
+    if(!sidebar||!button||!backdrop)return;
+    sidebar.classList.toggle('is-open',!!open);
+    backdrop.classList.toggle('is-open',!!open);
+    button.textContent=open?'✕':'☰';
+    button.setAttribute('aria-expanded',String(!!open));
+    button.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu');
+  }
+  document.addEventListener('click',function(e){
+    const menu=e.target.closest&&e.target.closest('.sona-mobile-menu');
+    if(menu){e.preventDefault();e.stopPropagation();const sidebar=document.querySelector('#dashboardShell.active .sidebar, #dashboardShell .sidebar, .sidebar');setMobileMenu(!sidebar?.classList.contains('is-open'));return;}
+    if(e.target.closest&&e.target.closest('.sona-sidebar-backdrop')){setMobileMenu(false);return;}
+    if(e.target.closest&&e.target.closest('#dashboardShell .sidebar button, #dashboardShell .sidebar a')){if(window.innerWidth<=900)setMobileMenu(false);}
+  },true);
+  window.addEventListener('resize',()=>{if(window.innerWidth>900)setMobileMenu(false);});
+
+  function init(){
+    if(typeof window.submitDepositProof==='function'){
+      const form=$('depositForm');
+      if(form&&!form.dataset.sonaRemoteBound){form.dataset.sonaRemoteBound='1';form.addEventListener('submit',e=>{e.preventDefault();window.submitDepositProof();});}
+    }
+    loadUserFinanceData();
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(init,300),{once:true});else setTimeout(init,300);
+})();
+</script>
+
+<script id="sona-remote-history-and-owner-balances-final">
+(function(){
+  'use strict';
+  const $=id=>document.getElementById(id);
+  const db=()=>window.sonaSupabase||window.supabaseClient||window.client||null;
+  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const money=v=>'₹'+Number(v||0).toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const statusLabel=v=>String(v||'').replace(/_/g,' ');
+  async function getUserClient(){const c=db();if(!c)throw new Error('Supabase client is not available.');const {data,error}=await c.auth.getUser();if(error)throw error;if(!data?.user)throw new Error('Login required');return {c,user:data.user};}
+
+  /* Persistent payment history: Supabase is the source of truth after refresh. */
+  window.renderPaymentHistory=async function(){
+    const body=$('paymentHistoryRows');if(!body)return;
+    try{
+      const {c}=await getUserClient();
+      const [payments,withdrawals]=await Promise.all([
+        c.from('sona_payment_submissions').select('created_at,amount,status,transaction_reference').order('created_at',{ascending:false}).limit(100),
+        c.from('sona_withdrawal_requests').select('created_at,amount,status,id').order('created_at',{ascending:false}).limit(100)
+      ]);
+      if(payments.error)throw payments.error;
+      if(withdrawals.error)throw withdrawals.error;
+      const rows=[...(payments.data||[]).map(x=>({date:x.created_at,type:'Deposit',amount:x.amount,status:x.status==='pending'?'Pending / Checking':statusLabel(x.status),reference:x.transaction_reference})),
+        ...(withdrawals.data||[]).map(x=>({date:x.created_at,type:'Withdrawal',amount:x.amount,status:x.status==='pending'?'Pending / Checking':statusLabel(x.status),reference:x.id}))]
+        .sort((a,b)=>new Date(b.date)-new Date(a.date));
+      body.innerHTML=rows.length?rows.map(x=>`<tr><td>${esc(new Date(x.date).toLocaleString('en-IN'))}</td><td class="${x.type==='Deposit'?'history-deposit':'history-withdrawal'}">${esc(x.type)}</td><td>${money(x.amount)}</td><td>${esc(x.status)}</td><td>${esc(x.reference||'-')}</td></tr>`).join(''):'<tr><td colspan="5" class="small-muted">No deposit or withdrawal records yet.</td></tr>';
+    }catch(err){console.debug('Remote payment history:',err.message||err);if(typeof window.getPaymentHistory==='function'){const rows=window.getPaymentHistory();body.innerHTML=rows.length?rows.slice().reverse().map(x=>`<tr><td>${esc(x.date)}</td><td>${esc(x.type)}</td><td>${money(x.amount)}</td><td>${esc(x.status)}</td><td>${esc(x.reference||'-')}</td></tr>`).join(''):'<tr><td colspan="5" class="small-muted">No records yet.</td></tr>';}}
+  };
+
+  function installBalanceTable(){
+    const page=$('sonaOwnerPage-balance-management');if(!page||$('sonaFinanceBalanceRows'))return;
+    const card=document.createElement('div');card.className='sona-owner-card';card.style.marginTop='14px';
+    card.innerHTML='<h3>User Balances</h3><div class="sona-owner-table-wrap"><table class="sona-finance-table"><thead><tr><th>Member ID</th><th>User</th><th>Email</th><th>Ledger Balance</th><th>Held</th><th>Available</th></tr></thead><tbody id="sonaFinanceBalanceRows"><tr><td colspan="6">Loading…</td></tr></tbody></table></div>';
+    page.appendChild(card);
+  }
+  async function loadOwnerBalances(){
+    installBalanceTable();const tbody=$('sonaFinanceBalanceRows');if(!tbody)return;
+    try{
+      const c=db();if(!c)throw new Error('Supabase client is not available.');
+      const {data,error}=await c.rpc('sona_owner_list_balances');if(error)throw error;
+      tbody.innerHTML=(data||[]).map(x=>`<tr><td>${esc(x.member_id||x.user_id)}</td><td>${esc(x.full_name||'-')}</td><td>${esc(x.email||'-')}</td><td>${money(x.ledger_balance)}</td><td>${money(x.held_balance)}</td><td><strong>${money(x.available_balance)}</strong></td></tr>`).join('')||'<tr><td colspan="6">No user balances found.</td></tr>';
+    }catch(err){tbody.innerHTML='<tr><td colspan="6">'+esc(err.message||'Could not load balances')+'</td></tr>';}
+  }
+  window.sonaFinanceLoadOwnerBalances=loadOwnerBalances;
+  document.addEventListener('click',function(e){
+    const b=e.target.closest&&e.target.closest('#sonaOwnerNav button[data-owner-page="balance-management"]');
+    if(b)setTimeout(loadOwnerBalances,100);
+  });
+  function init(){installBalanceTable();loadOwnerBalances();window.renderPaymentHistory();}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(init,500),{once:true});else setTimeout(init,500);
+  new MutationObserver(()=>{installBalanceTable();}).observe(document.body,{childList:true,subtree:true});
 })();
 </script>
 </body>
