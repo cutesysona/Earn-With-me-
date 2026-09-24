@@ -2705,10 +2705,11 @@ function copyIfsc(){
 }
 
 function demoWithdraw(){const a=document.getElementById('withdrawAmount')?.value||'';if(!a||Number(a)<1000)return toast('Minimum withdrawal amount is ₹1,000');toast('Withdrawal request prepared for ₹'+Number(a).toFixed(2))}
+let sessionStart=Date.now();
+let lastTick=Date.now();
 (function init(){const id=getMemberId();const name=localStorage.getItem('sonaMemberName')||'Member Name';document.getElementById('memberNameSide').textContent=name;document.getElementById('nameInput').value=name;setMemberId(id);const avatar=localStorage.getItem('sonaAvatar');if(avatar)document.getElementById('avatarPreview').innerHTML='<img alt="Profile" src="'+avatar+'">';loadEngagement()})()
 
 const leaderData=[['PM002','Member Two',920,12.4],['PM014','Member Fourteen',810,10.8],['PM031','Member Thirty-One',760,9.6],['PM007','Member Seven',690,8.7],['PM001','You',0,0]];
-let sessionStart=Date.now(); let lastTick=Date.now();
 function loadEngagement(){let pts=Number(localStorage.getItem('sonaHubPoints')||0);let mins=Math.floor((Date.now()-sessionStart)/60000);document.getElementById('myPoints').textContent=pts.toLocaleString('en-IN');document.getElementById('myPointsBar').style.width=Math.min(100,pts/10)+'%';document.getElementById('myHours').textContent=Math.floor(mins/60)+'h '+String(mins%60).padStart(2,'0')+'m';renderLeaderboard(pts,mins/60)}
 function engagementTick(){if(document.hidden)return;const now=Date.now();if(now-lastTick>=60000){let pts=Number(localStorage.getItem('sonaHubPoints')||0)+1;localStorage.setItem('sonaHubPoints',pts);lastTick=now;loadEngagement()}}
 function renderLeaderboard(myPts,myHours){let rows=leaderData.map(x=>[...x]);rows[4][2]=myPts;rows[4][3]=myHours;rows.sort((a,b)=>b[2]-a[2]);document.getElementById('leaderRows').innerHTML=rows.map((x,i)=>`<div class="leader-row"><div class="rank-badge ${i<3?'top':''}">${i+1}</div><div><strong>${x[1]}</strong><br><span class="muted">${x[0]}</span></div><div><strong>${Number(x[2]).toLocaleString('en-IN')}</strong><br><span class="muted">points</span></div><div><strong>${Number(x[3]).toFixed(1)}h</strong><br><span class="muted">active time</span></div></div>`).join('')}
@@ -5021,9 +5022,17 @@ document.addEventListener('keydown',function(e){
   },60000);
 
   async function currentUser(){
-    const {data:{user},error}=await db.auth.getUser();
-    if(error) throw error;
-    return user || null;
+    try{
+      const {data:{session}} = await db.auth.getSession();
+      if(!session?.user) return null;
+      return session.user;
+    }catch(error){
+      if(error?.name === 'AuthSessionMissingError' || error?.code === 'AuthSessionMissingError'){
+        return null;
+      }
+      console.warn('Supabase currentUser:', error?.message || error);
+      return null;
+    }
   }
 
   async function loadProfile(){
@@ -7487,7 +7496,7 @@ document.addEventListener('keydown',function(e){
   }
 
   function pageTitle(page){
-    return ({overview:'Owner Overview',users:'Users',activity:'User Activity',youtube:'YouTube Management',instagram:'Instagram / Reels',shopping:'Shopping Analytics',products:'Products',revenue:'Revenue',investments:'Investments',notifications:'Notifications',settings:'Website Settings',security:'Security'})[page] || 'Owner Overview';
+    return ({overview:'Owner Overview',users:'Users',activity:'User Activity',youtube:'YouTube Management',instagram:'Instagram / Reels',shopping:'Shopping Analytics',products:'Products',revenue:'Revenue',investments:'Investments',notifications:'Notifications',settings:'Website Settings',security:'Security', 'payment-verification':'Payment Verification', 'balance-management':'Balance Management', 'withdrawal-management':'Withdrawal Management'})[page] || 'Owner Overview';
   }
 
   function ownerShowPage(page){
@@ -7503,6 +7512,9 @@ document.addEventListener('keydown',function(e){
     if(page==='investments') loadOwnerInvestments();
     if(page==='notifications') loadOwnerNotifications();
     if(page==='security') loadOwnerSecurity();
+    if(['payment-verification','balance-management','withdrawal-management'].includes(page) && typeof window.sonaFinanceRefresh==='function'){
+      window.sonaFinanceRefresh();
+    }
   }
   window.sonaOwnerShowPage=ownerShowPage;
 
@@ -7614,9 +7626,9 @@ document.addEventListener('keydown',function(e){
       };
       Object.entries(values).forEach(([id,v])=>{ if($id(id)) $id(id).textContent = typeof v==='number' ? v.toLocaleString('en-IN') : v; });
       if($id('sonaOwnerLastUpdated')) $id('sonaOwnerLastUpdated').textContent='Updated '+new Date().toLocaleTimeString();
-      const {data:act,error:ae}=await client.rpc('owner_recent_activity',{p_limit:8});
+      const {data:act,error:ae}=await client.rpc('owner_recent_activity');
       if(!ae){
-        $id('ownerOverviewActivity').innerHTML=(act||[]).map(a=>`<div class="sona-owner-kpi-row"><span>${esc(a.member_id||'Member')} · ${esc(a.activity_type)} · ${esc(a.page||'')}</span><strong>${new Date(a.occurred_at).toLocaleTimeString()}</strong></div>`).join('') || '<div class="sona-owner-empty">No activity recorded yet.</div>';
+        $id('ownerOverviewActivity').innerHTML=(act||[]).slice(0,8).map(a=>`<div class="sona-owner-kpi-row"><span>${esc(a.member_id||'Member')} · ${esc(a.activity_type)} · ${esc(a.page||'')}</span><strong>${new Date(a.occurred_at).toLocaleTimeString()}</strong></div>`).join('') || '<div class="sona-owner-empty">No activity recorded yet.</div>';
       }
     }catch(err){ console.warn('Owner summary',err); }
   }
@@ -7624,9 +7636,9 @@ document.addEventListener('keydown',function(e){
   async function loadOwnerUsers(){
     try{
       const {client}=await requireOwner();
-      const {data,error}=await client.rpc('owner_list_users',{p_limit:200});
+      const {data,error}=await client.rpc('owner_list_users');
       if(error) throw error;
-      $id('ownerUsersRows').innerHTML=(data||[]).map(u=>`<tr><td><b>${esc(u.member_id||'—')}</b></td><td>${esc(u.full_name||'—')}</td><td>${esc(u.email||'—')}</td><td>${new Date(u.created_at).toLocaleDateString()}</td><td>${money(u.package_amount)}</td><td>${money(u.deposit_wallet)}</td><td>${money(u.withdrawal_balance)}</td><td>${Number(u.points||0).toLocaleString('en-IN')}</td></tr>`).join('') || '<tr><td colspan="8" class="sona-owner-empty">No users found.</td></tr>';
+      $id('ownerUsersRows').innerHTML=(data||[]).slice(0,200).map(u=>`<tr><td><b>${esc(u.member_id||'—')}</b></td><td>${esc(u.full_name||'—')}</td><td>${esc(u.email||'—')}</td><td>${new Date(u.created_at).toLocaleDateString()}</td><td>${money(u.package_amount)}</td><td>${money(u.deposit_wallet)}</td><td>${money(u.withdrawal_balance)}</td><td>${Number(u.points||0).toLocaleString('en-IN')}</td></tr>`).join('') || '<tr><td colspan="8" class="sona-owner-empty">No users found.</td></tr>';
     }catch(err){ ownerTableError('ownerUsersRows',8,err); }
   }
 
@@ -7634,12 +7646,12 @@ document.addEventListener('keydown',function(e){
     try{
       const {client}=await requireOwner();
       const [recent,breakdown]=await Promise.all([
-        client.rpc('owner_recent_activity',{p_limit:250}),
+        client.rpc('owner_recent_activity'),
         client.rpc('owner_activity_breakdown',{p_days:7})
       ]);
       if(recent.error) throw recent.error;
       if(breakdown.error) throw breakdown.error;
-      $id('ownerActivityRows').innerHTML=(recent.data||[]).map(a=>`<tr><td>${new Date(a.occurred_at).toLocaleString()}</td><td>${esc(a.member_id||'—')}</td><td>${esc(a.email||'—')}</td><td><span class="sona-owner-chip">${esc(a.activity_type)}</span></td><td>${esc(a.page||'—')}</td></tr>`).join('') || '<tr><td colspan="5" class="sona-owner-empty">No tracked activity.</td></tr>';
+      $id('ownerActivityRows').innerHTML=(recent.data||[]).slice(0,250).map(a=>`<tr><td>${new Date(a.occurred_at).toLocaleString()}</td><td>${esc(a.member_id||'—')}</td><td>${esc(a.email||'—')}</td><td><span class="sona-owner-chip">${esc(a.activity_type)}</span></td><td>${esc(a.page||'—')}</td></tr>`).join('') || '<tr><td colspan="5" class="sona-owner-empty">No tracked activity.</td></tr>';
       $id('ownerActivityBreakdown').innerHTML=(breakdown.data||[]).map(a=>`<div class="sona-owner-kpi-row"><span>${esc(a.activity_type)}</span><strong>${Number(a.event_count||0).toLocaleString('en-IN')} events / ${Number(a.unique_users||0).toLocaleString('en-IN')} users</strong></div>`).join('') || '<div class="sona-owner-empty">No activity yet.</div>';
     }catch(err){ ownerTableError('ownerActivityRows',5,err); }
   }
@@ -8422,6 +8434,12 @@ document.addEventListener('DOMContentLoaded',function(){
   html.dark-mode .sona-finance-stat strong,html.dark-mode .sona-finance-table td{color:#f1f5f9}
   html.dark-mode .sona-finance-table th{background:#0b1220;color:#aab7ca}
   html.dark-mode .sona-finance-table th,html.dark-mode .sona-finance-table td{border-color:#263449}
+.sona-owner-page#sonaOwnerPage-payment-verification,
+.sona-owner-page#sonaOwnerPage-balance-management,
+.sona-owner-page#sonaOwnerPage-withdrawal-management{display:none}
+.sona-owner-page#sonaOwnerPage-payment-verification.active,
+.sona-owner-page#sonaOwnerPage-balance-management.active,
+.sona-owner-page#sonaOwnerPage-withdrawal-management.active{display:block}
 </style>
 
 <script id="sona-finance-extension-js">
@@ -8438,6 +8456,7 @@ document.addEventListener('DOMContentLoaded',function(){
   };
   const ownerClient = () => {
     if (typeof window.ensureOwnerClient === 'function') return window.ensureOwnerClient();
+    if (window.sonaSupabase) return window.sonaSupabase;
     if (window.supabaseClient) return window.supabaseClient;
     if (window.client) return window.client;
     return null;
@@ -8552,7 +8571,10 @@ document.addEventListener('DOMContentLoaded',function(){
     $('sonaFinanceRefreshPayments').addEventListener('click',loadPayments);
     $('sonaFinanceRefreshWithdrawals').addEventListener('click',loadWithdrawals);
     $('sonaFinanceCreditButton').addEventListener('click',creditPayment);
-    loadPayments(); loadWithdrawals(); loadLedger();
+    window.sonaFinanceRefresh = function(){
+      return Promise.all([loadPayments(), loadWithdrawals(), loadLedger()]);
+    };
+    window.sonaFinanceRefresh();
   }
 
   async function loadPayments(){
