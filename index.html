@@ -7626,7 +7626,7 @@ document.addEventListener('keydown',function(e){
       };
       Object.entries(values).forEach(([id,v])=>{ if($id(id)) $id(id).textContent = typeof v==='number' ? v.toLocaleString('en-IN') : v; });
       if($id('sonaOwnerLastUpdated')) $id('sonaOwnerLastUpdated').textContent='Updated '+new Date().toLocaleTimeString();
-      const {data:act,error:ae}=await client.rpc('owner_recent_activity');
+      const {data:act,error:ae}=await client.rpc('owner_recent_activity', {p_limit: 250});
       if(!ae){
         $id('ownerOverviewActivity').innerHTML=(act||[]).slice(0,8).map(a=>`<div class="sona-owner-kpi-row"><span>${esc(a.member_id||'Member')} · ${esc(a.activity_type)} · ${esc(a.page||'')}</span><strong>${new Date(a.occurred_at).toLocaleTimeString()}</strong></div>`).join('') || '<div class="sona-owner-empty">No activity recorded yet.</div>';
       }
@@ -7636,7 +7636,7 @@ document.addEventListener('keydown',function(e){
   async function loadOwnerUsers(){
     try{
       const {client}=await requireOwner();
-      const {data,error}=await client.rpc('owner_list_users');
+      const {data,error}=await client.rpc('owner_list_users', {p_limit: 200});
       if(error) throw error;
       $id('ownerUsersRows').innerHTML=(data||[]).slice(0,200).map(u=>`<tr><td><b>${esc(u.member_id||'—')}</b></td><td>${esc(u.full_name||'—')}</td><td>${esc(u.email||'—')}</td><td>${new Date(u.created_at).toLocaleDateString()}</td><td>${money(u.package_amount)}</td><td>${money(u.deposit_wallet)}</td><td>${money(u.withdrawal_balance)}</td><td>${Number(u.points||0).toLocaleString('en-IN')}</td></tr>`).join('') || '<tr><td colspan="8" class="sona-owner-empty">No users found.</td></tr>';
     }catch(err){ ownerTableError('ownerUsersRows',8,err); }
@@ -7646,7 +7646,7 @@ document.addEventListener('keydown',function(e){
     try{
       const {client}=await requireOwner();
       const [recent,breakdown]=await Promise.all([
-        client.rpc('owner_recent_activity'),
+        client.rpc('owner_recent_activity', {p_limit: 250}),
         client.rpc('owner_activity_breakdown',{p_days:7})
       ]);
       if(recent.error) throw recent.error;
