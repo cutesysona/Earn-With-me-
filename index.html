@@ -2562,6 +2562,92 @@ html:not(.dark-mode) #dashboardShell.active .toast{
     </div>
   </div>
 
+
+<style id="sona-extra-games-css">
+.extra-games-title{margin-top:24px}
+.extra-game-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.extra-game-card{overflow:hidden}
+.arcade-stage{background:#08111f;border-radius:16px;border:1px solid #334155;padding:10px;display:flex;justify-content:center}
+#carCanvas,#runnerCanvas,#catchCanvas{width:100%;max-width:520px;height:auto;border-radius:12px;display:block;background:#0b1220}
+.race-controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;justify-content:center}
+.race-hud{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.race-hud div{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:8px;text-align:center}
+.race-hud small{display:block;color:#64748b;font-size:10px}.race-hud b{font-size:18px}
+.fun-buttons{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+@media(max-width:950px){.extra-game-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:650px){.extra-game-grid{grid-template-columns:1fr}.race-hud b{font-size:16px}}
+html.dark-mode .race-hud div{background:#111827;border-color:#263449}
+html.dark-mode .race-hud small{color:#94a3b8}
+</style>
+
+<div class="extra-games-title">
+  <div class="hero gaming-hero">
+    <div class="kicker">MORE ARCADE FUN</div>
+    <h2>🏎️ More Games</h2>
+    <p>Try a realistic-style car race, a 3D-style endless runner and a funny catch game.</p>
+  </div>
+</div>
+
+<div class="extra-game-grid">
+  <!-- Car Racing -->
+  <div class="card extra-game-card">
+    <h3>🏎️ Real Car Racing</h3>
+    <p class="game-help">Drive your car, avoid traffic and survive as long as possible. Use ← → or A/D. Mobile buttons are below.</p>
+    <div class="race-hud">
+      <div><small>SCORE</small><b id="carScore">0</b></div>
+      <div><small>SPEED</small><b id="carSpeed">1x</b></div>
+      <div><small>BEST</small><b id="carBest">0</b></div>
+    </div>
+    <div class="arcade-stage"><canvas id="carCanvas" width="520" height="650"></canvas></div>
+    <div class="race-controls">
+      <button class="btn primary" type="button" onclick="startCarGame()">🏁 Start Race</button>
+      <button class="btn" type="button" onclick="pauseCarGame()">⏸ Pause</button>
+      <button class="btn" type="button" onclick="carMove(-1)">⬅️</button>
+      <button class="btn" type="button" onclick="carMove(1)">➡️</button>
+    </div>
+    <div id="carMessage" class="game-over"></div>
+  </div>
+
+  <!-- 3D-style Runner -->
+  <div class="card extra-game-card">
+    <h3>🌀 3D Sky Runner</h3>
+    <p class="game-help">A lightweight 3D-style perspective runner. Move left/right and jump over obstacles. Space/↑ jumps.</p>
+    <div class="race-hud">
+      <div><small>SCORE</small><b id="runnerScore">0</b></div>
+      <div><small>LEVEL</small><b id="runnerLevel">1</b></div>
+      <div><small>BEST</small><b id="runnerBest">0</b></div>
+    </div>
+    <div class="arcade-stage"><canvas id="runnerCanvas" width="520" height="650"></canvas></div>
+    <div class="race-controls">
+      <button class="btn primary" type="button" onclick="startRunner()">▶ Start</button>
+      <button class="btn" type="button" onclick="pauseRunner()">⏸ Pause</button>
+      <button class="btn" type="button" onclick="runnerMove(-1)">⬅️</button>
+      <button class="btn" type="button" onclick="runnerJump()">⬆️ Jump</button>
+      <button class="btn" type="button" onclick="runnerMove(1)">➡️</button>
+    </div>
+    <div id="runnerMessage" class="game-over"></div>
+  </div>
+
+  <!-- Funny Catch -->
+  <div class="card extra-game-card">
+    <h3>😂 Funny Catch</h3>
+    <p class="game-help">Catch the falling funny faces and avoid the angry bombs. Missed faces cost lives.</p>
+    <div class="race-hud">
+      <div><small>SCORE</small><b id="catchScore">0</b></div>
+      <div><small>LIVES</small><b id="catchLives">3</b></div>
+      <div><small>BEST</small><b id="catchBest">0</b></div>
+    </div>
+    <div class="arcade-stage"><canvas id="catchCanvas" width="520" height="650"></canvas></div>
+    <div class="race-controls">
+      <button class="btn primary" type="button" onclick="startCatch()">😂 Start</button>
+      <button class="btn" type="button" onclick="pauseCatch()">⏸ Pause</button>
+      <button class="btn" type="button" onclick="catchMove(-1)">⬅️</button>
+      <button class="btn" type="button" onclick="catchMove(1)">➡️</button>
+    </div>
+    <div id="catchMessage" class="game-over"></div>
+  </div>
+</div>
+
   <div class="notice" style="margin-top:16px">
     <b>Gaming is a browser feature:</b> these demo games run inside your existing page and do not replace your current Supabase authentication.
   </div>
@@ -9217,9 +9303,165 @@ let deck=[],first=null,second=null,lock=false,pairs=0,moves=0,seconds=0,memoryTi
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function renderMemory(){const g=$('memoryGrid');if(!g)return;g.innerHTML='';deck.forEach((c,i)=>{const b=document.createElement('button');b.type='button';b.className='memory-card'+(c.flipped?' flipped':'')+(c.matched?' matched':'');b.innerHTML='<span class="memory-inner"><span class="memory-face memory-front">?</span><span class="memory-face memory-back">'+c.value+'</span></span>';b.onclick=()=>flipMemory(i);g.appendChild(b)});$('memoryMoves').textContent=moves;$('memoryPairs').textContent=pairs+'/8';$('memoryTime').textContent=seconds+'s'}
 window.resetMemory=function(){clearInterval(memoryTimer);deck=shuffle([...icons,...icons]).map(value=>({value,flipped:false,matched:false}));first=null;second=null;lock=false;pairs=0;moves=0;seconds=0;memoryStarted=false;if($('memoryMessage'))$('memoryMessage').style.display='none';renderMemory()}
-function flipMemory(i){if(lock||deck[i].matched||deck[i].flipped)return;if(!memoryStarted){memoryStarted=true;memoryTimer=setInterval(()=>{seconds++;renderMemory()},1000)}deck[i].flipped=true;if(first===null){first=i;renderMemory();return}second=i;moves++;lock=true;renderMemory();setTimeout(()=>{if(deck[first].value===deck[second].value){deck[first].matched=true;deck[second].matched=true;pairs++}else{deck[first].flipped=false;deck[second].flipped=false}first=null;second=null;lock=false;renderMemory();if(pairs===8){clearInterval(memoryTimer);$('memoryMessage').textContent='🎉 All pairs matched in '+moves+' moves and '+seconds+' seconds!';$('memoryMessage').style.display='block'}},650)}
+function flipMemory(i){
+ if(lock||!deck[i]||deck[i].matched||deck[i].flipped)return;
+ if(!memoryStarted){memoryStarted=true;memoryTimer=setInterval(()=>{seconds++;renderMemory()},1000)}
+ deck[i].flipped=true;
+ if(first===null){first=i;renderMemory();return}
+ second=i;moves++;lock=true;renderMemory();
+ const a=first,b=second;
+ setTimeout(()=>{
+   if(!deck[a]||!deck[b]){first=null;second=null;lock=false;renderMemory();return}
+   if(deck[a].value===deck[b].value){deck[a].matched=true;deck[b].matched=true;pairs++}
+   else{deck[a].flipped=false;deck[b].flipped=false}
+   first=null;second=null;lock=false;renderMemory();
+   if(pairs===8){
+     clearInterval(memoryTimer);
+     if($('memoryMessage')){
+       $('memoryMessage').textContent='🎉 All pairs matched in '+moves+' moves and '+seconds+' seconds!';
+       $('memoryMessage').style.display='block';
+     }
+   }
+ },650)
+}
 
 document.addEventListener('DOMContentLoaded',()=>{initSnake();resetTtt();resetMemory()});
+})();
+</script>
+
+
+<script id="sona-extra-games-engine">
+(function(){
+'use strict';
+const q=id=>document.getElementById(id);
+const st={get(k,d='0'){try{return localStorage.getItem(k)??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,String(v))}catch(e){}}};
+
+/* ---------- Real-style car racing ---------- */
+const cc=q('carCanvas'),cx=cc?.getContext('2d');
+let carRun=false,carTimer=null,carScore=0,carBest=Number(st.get('sona_car_best','0')),carX=260,carSpeed=4,traffic=[],roadOffset=0;
+function carHud(){q('carScore').textContent=carScore;q('carBest').textContent=carBest;q('carSpeed').textContent=(carSpeed/4).toFixed(1)+'x'}
+function carReset(){carX=260;carSpeed=4;traffic=[];carScore=0;roadOffset=0;carHud();drawCar()}
+function drawCar(){
+ if(!cx)return;const W=520,H=650;
+ cx.clearRect(0,0,W,H);
+ /* sky */
+ const sky=cx.createLinearGradient(0,0,0,300);sky.addColorStop(0,'#78c8ff');sky.addColorStop(1,'#dff6ff');cx.fillStyle=sky;cx.fillRect(0,0,W,H);
+ /* distant city */
+ for(let x=0;x<W;x+=46){const h=35+(x*17%85);cx.fillStyle='#718096';cx.fillRect(x,205-h,38,h);cx.fillStyle='#f7d774';for(let y=215-h;y<200;y+=18)cx.fillRect(x+8,y,7,6)}
+ /* road perspective */
+ cx.fillStyle='#30343b';cx.beginPath();cx.moveTo(180,230);cx.lineTo(340,230);cx.lineTo(510,650);cx.lineTo(10,650);cx.closePath();cx.fill();
+ /* road edges */
+ cx.strokeStyle='#fff';cx.lineWidth=6;cx.beginPath();cx.moveTo(180,230);cx.lineTo(10,650);cx.moveTo(340,230);cx.lineTo(510,650);cx.stroke();
+ /* lane markers */
+ cx.strokeStyle='#f7f7f7';cx.lineWidth=5;cx.setLineDash([30,30]);cx.lineDashOffset=roadOffset;
+ [250,270].forEach(x=>{cx.beginPath();cx.moveTo(x,230);cx.lineTo(x+(x<260?-90:90),650);cx.stroke()});cx.setLineDash([]);
+ /* traffic */
+ traffic.forEach(t=>drawCarShape(t.x,t.y,t.w,t.h,t.color,false));
+ drawCarShape(carX,545,68,105,'#e11d48',true);
+}
+function drawCarShape(x,y,w,h,color,player){
+ cx.save();cx.translate(x-w/2,y-h/2);
+ cx.fillStyle='rgba(0,0,0,.28)';cx.fillRect(5,h-8,w-10,12);
+ cx.fillStyle=color;cx.beginPath();cx.roundRect(0,15,w,h-20,13);cx.fill();
+ cx.fillStyle=player?'#dbeafe':'#cbd5e1';cx.beginPath();cx.roundRect(12,0,w-24,42,10);cx.fill();
+ cx.fillStyle='#0f172a';cx.fillRect(15,8,w-30,20);
+ cx.fillStyle='#111827';cx.fillRect(-5,28,9,28);cx.fillRect(w-4,28,9,28);cx.fillRect(-5,h-55,9,28);cx.fillRect(w-4,h-55,9,28);
+ cx.fillStyle='#fde68a';cx.fillRect(8,h-18,13,7);cx.fillRect(w-21,h-18,13,7);cx.restore();
+}
+function carTick(){
+ if(!carRun)return;
+ roadOffset=(roadOffset+carSpeed)%60;
+ traffic=traffic.map(t=>({...t,y:t.y+carSpeed*(1.15+(650-t.y)/650)})).filter(t=>t.y<720);
+ if(Math.random()<.035)traffic.push({x:[200,260,320][Math.floor(Math.random()*3)]+(Math.random()*18-9),y:-120,w:58,h:92,color:['#2563eb','#16a34a','#f59e0b','#9333ea'][Math.floor(Math.random()*4)]});
+ const player={x:carX,y:545,w:68,h:105};
+ for(const t of traffic){
+  if(Math.abs(t.x-player.x)<52&&Math.abs(t.y-player.y)<78){carOver();return}
+ }
+ const passed=traffic.filter(t=>t.y>680).length;
+ if(passed){carScore+=passed;if(carScore>carBest){carBest=carScore;st.set('sona_car_best',carBest)}carSpeed=Math.min(10,4+carScore*.08)}
+ carHud();drawCar();
+}
+function carOver(){carRun=false;clearInterval(carTimer);q('carMessage').textContent='💥 Crash! Your score: '+carScore+'. Start a new race.';q('carMessage').style.display='block'}
+window.carMove=d=>{carX=Math.max(205,Math.min(315,carX+d*28));drawCar()}
+window.startCarGame=()=>{clearInterval(carTimer);q('carMessage').style.display='none';carRun=true;carReset();carRun=true;carTimer=setInterval(carTick,35)}
+window.pauseCarGame=()=>{carRun=false;clearInterval(carTimer);q('carMessage').textContent='Race paused.';q('carMessage').style.display='block'}
+carReset();
+
+/* ---------- 3D-style perspective runner ---------- */
+const rc=q('runnerCanvas'),rx=rc?.getContext('2d');
+let runGame=false,runTimer=null,runScore=0,runBest=Number(st.get('sona_runner_best','0')),runX=260,jumpY=0,jumpV=0,obstacles=[],runTickN=0;
+function runnerHud(){q('runnerScore').textContent=runScore;q('runnerBest').textContent=runBest;q('runnerLevel').textContent=Math.floor(runScore/10)+1}
+function runnerReset(){runScore=0;runX=260;jumpY=0;jumpV=0;obstacles=[];runTickN=0;runnerHud();drawRunner()}
+function drawRunner(){
+ if(!rx)return;const W=520,H=650;rx.clearRect(0,0,W,H);
+ const sky=rx.createLinearGradient(0,0,0,H);sky.addColorStop(0,'#172554');sky.addColorStop(.5,'#38bdf8');sky.addColorStop(1,'#dbeafe');rx.fillStyle=sky;rx.fillRect(0,0,W,H);
+ /* sun */
+ rx.fillStyle='#fde68a';rx.beginPath();rx.arc(405,110,55,0,Math.PI*2);rx.fill();
+ /* 3D road */
+ rx.fillStyle='#1e293b';rx.beginPath();rx.moveTo(210,245);rx.lineTo(310,245);rx.lineTo(520,650);rx.lineTo(0,650);rx.closePath();rx.fill();
+ /* perspective stripes */
+ rx.strokeStyle='rgba(255,255,255,.7)';rx.lineWidth=5;for(let i=0;i<9;i++){const y=270+i*50+((runTickN*3)%50);const t=(y-245)/405;const left=210*(1-t),right=310+(210*t);rx.beginPath();rx.moveTo((left+right)/2-7,y);rx.lineTo((left+right)/2+7,y);rx.stroke()}
+ /* obstacles with perspective */
+ obstacles.forEach(o=>{const scale=.25+o.z*.75;const x=260+(o.lane-1)*120*scale;const y=235+o.z*390;const s=42*scale;rx.fillStyle='#f97316';rx.beginPath();rx.roundRect(x-s/2,y-s,s,s,8);rx.fill();rx.fillStyle='#fff';rx.font=Math.max(9,s*.28)+'px sans-serif';rx.textAlign='center';rx.fillText('⚠',x,y-s*.4)});
+ /* player */
+ const py=535-jumpY;rx.fillStyle='#a855f7';rx.beginPath();rx.ellipse(runX,py,32,45,0,0,Math.PI*2);rx.fill();rx.fillStyle='#fde68a';rx.beginPath();rx.arc(runX,py-38,25,0,Math.PI*2);rx.fill();rx.fillStyle='#111827';rx.beginPath();rx.arc(runX-8,py-40,4,0,Math.PI*2);rx.arc(runX+8,py-40,4,0,Math.PI*2);rx.fill();rx.fillStyle='#f43f5e';rx.fillRect(runX-26,py+35,18,10);rx.fillRect(runX+8,py+35,18,10);
+}
+function runnerTick(){
+ if(!runGame)return;runTickN++;
+ if(jumpY>0||jumpV!==0){jumpY+=jumpV;jumpV-=1.1;if(jumpY<=0){jumpY=0;jumpV=0}}
+ obstacles.forEach(o=>o.z+=.012+runScore*.00003);
+ if(Math.random()<.035)obstacles.push({lane:Math.floor(Math.random()*3),z:0});
+ for(const o of obstacles){
+  if(o.z>.85&&o.z<1.04&&Math.abs((260+(o.lane-1)*110)-runX)<48&&jumpY<45){runnerOver();return}
+ }
+ const old=obstacles.length;obstacles=obstacles.filter(o=>o.z<1.15);runScore+=old-obstacles.length;
+ if(runScore>runBest){runBest=runScore;st.set('sona_runner_best',runBest)}
+ runnerHud();drawRunner();
+}
+function runnerOver(){runGame=false;clearInterval(runTimer);q('runnerMessage').textContent='😵 Oops! You hit an obstacle. Score: '+runScore+'.';q('runnerMessage').style.display='block'}
+window.runnerMove=d=>{runX=Math.max(155,Math.min(365,runX+d*70));drawRunner()}
+window.runnerJump=()=>{if(jumpY===0){jumpV=15;drawRunner()}}
+window.startRunner=()=>{clearInterval(runTimer);q('runnerMessage').style.display='none';runGame=true;runnerReset();runGame=true;runTimer=setInterval(runnerTick,30)}
+window.pauseRunner=()=>{runGame=false;clearInterval(runTimer);q('runnerMessage').textContent='Runner paused.';q('runnerMessage').style.display='block'}
+runnerReset();
+
+/* ---------- Funny Catch ---------- */
+const fc=q('catchCanvas'),fx=fc?.getContext('2d');
+let catchRun=false,catchTimer=null,catchScore=0,catchLives=3,catchBest=Number(st.get('sona_catch_best','0')),basketX=260,falling=[],catchN=0;
+function catchHud(){q('catchScore').textContent=catchScore;q('catchLives').textContent=catchLives;q('catchBest').textContent=catchBest}
+function catchReset(){catchScore=0;catchLives=3;basketX=260;falling=[];catchN=0;catchHud();drawCatch()}
+function drawCatch(){
+ if(!fx)return;const W=520,H=650;fx.clearRect(0,0,W,H);
+ const bg=fx.createLinearGradient(0,0,W,H);bg.addColorStop(0,'#fce7f3');bg.addColorStop(1,'#dbeafe');fx.fillStyle=bg;fx.fillRect(0,0,W,H);
+ fx.fillStyle='rgba(255,255,255,.65)';for(let i=0;i<12;i++){fx.beginPath();fx.arc((i*71+catchN*1.5)%520,(i*93)%650,28,0,Math.PI*2);fx.fill()}
+ falling.forEach(o=>{fx.font='38px sans-serif';fx.textAlign='center';fx.fillText(o.good?'😂':'💣',o.x,o.y)});
+ fx.fillStyle='#7c3aed';fx.beginPath();fx.roundRect(basketX-55,560,110,52,18);fx.fill();fx.fillStyle='#fff';fx.font='24px sans-serif';fx.textAlign='center';fx.fillText('🧺',basketX,595);
+}
+function catchTick(){
+ if(!catchRun)return;catchN++;
+ if(Math.random()<.055)falling.push({x:30+Math.random()*460,y:-30,good:Math.random()>.22,vy:2.2+Math.random()*2});
+ falling.forEach(o=>o.y+=o.vy+catchScore*.008);
+ const keep=[];
+ for(const o of falling){
+  if(o.y>555&&Math.abs(o.x-basketX)<65){
+   if(o.good){catchScore++;if(catchScore>catchBest){catchBest=catchScore;st.set('sona_catch_best',catchBest)}}
+   else catchLives--;
+  }else if(o.y>680){if(o.good)catchLives--;else{}}
+  else keep.push(o)
+ }
+ falling=keep;catchHud();drawCatch();if(catchLives<=0)catchOver()
+}
+function catchOver(){catchRun=false;clearInterval(catchTimer);q('catchMessage').textContent='😂 Game over! Score: '+catchScore+'.';q('catchMessage').style.display='block'}
+window.catchMove=d=>{basketX=Math.max(70,Math.min(450,basketX+d*45));drawCatch()}
+window.startCatch=()=>{clearInterval(catchTimer);q('catchMessage').style.display='none';catchRun=true;catchReset();catchRun=true;catchTimer=setInterval(catchTick,35)}
+window.pauseCatch=()=>{catchRun=false;clearInterval(catchTimer);q('catchMessage').textContent='Funny Catch paused.';q('catchMessage').style.display='block'}
+catchReset();
+
+document.addEventListener('keydown',e=>{
+ if(['ArrowLeft','a','A'].includes(e.key)){carMove(-1);runnerMove(-1);catchMove(-1)}
+ if(['ArrowRight','d','D'].includes(e.key)){carMove(1);runnerMove(1);catchMove(1)}
+ if(['ArrowUp','w','W',' '].includes(e.key)){if(e.key===' '||e.key==='ArrowUp')runnerJump()}
+});
 })();
 </script>
 
