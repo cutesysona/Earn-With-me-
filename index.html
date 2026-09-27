@@ -147,6 +147,33 @@
 </style>
 
 
+
+<style id="sona-car-dealer-3d-css">
+.car3d-hero{background:radial-gradient(circle at 85% 10%,rgba(34,197,94,.16),transparent 22rem),radial-gradient(circle at 10% 90%,rgba(59,130,246,.16),transparent 22rem),linear-gradient(135deg,#101827,#08111d);border-color:rgba(34,197,94,.28)}
+.car3d-shell{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(280px,.55fr);gap:16px}
+.car3d-stage-card{background:#08111d;border:1px solid #24354c;border-radius:18px;padding:10px;box-shadow:0 18px 55px rgba(0,0,0,.24)}
+.car3d-viewport{position:relative;width:100%;height:min(72vh,720px);min-height:520px;border-radius:14px;overflow:hidden;background:#06101a;touch-action:none}
+.car3d-viewport canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.car3d-loading{position:absolute;inset:0;z-index:8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;background:radial-gradient(circle at 50% 40%,rgba(35,80,120,.55),rgba(2,7,14,.96));color:#fff;text-align:center;pointer-events:none}
+.car3d-loading-icon{font-size:58px;filter:drop-shadow(0 12px 22px rgba(0,0,0,.45))}
+.car3d-loading strong{font-size:25px;letter-spacing:.08em}
+.car3d-loading span{color:#a8bad0;font-size:13px}
+.car3d-crosshair{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5;color:rgba(255,255,255,.8);font:700 22px/1 monospace;pointer-events:none;text-shadow:0 1px 5px #000}
+.car3d-hud-top{position:absolute;left:14px;right:14px;top:12px;z-index:5;display:flex;justify-content:space-between;pointer-events:none;color:#fff;font-size:12px;font-weight:900;letter-spacing:.08em;text-shadow:0 2px 5px #000}
+.car3d-hud-bottom{position:absolute;left:12px;right:12px;bottom:12px;z-index:5;display:flex;gap:8px;align-items:end;pointer-events:none}
+.car3d-stat{min-width:90px;padding:9px 11px;border-radius:11px;background:rgba(5,11,19,.76);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px);color:#fff}
+.car3d-stat small{display:block;color:#8fa4bd;font-size:9px;font-weight:800;letter-spacing:.08em}.car3d-stat b{display:block;margin-top:3px;font-size:14px}
+.car3d-prompt{margin-left:auto;max-width:420px;padding:10px 13px;border-radius:11px;background:rgba(5,11,19,.76);border:1px solid rgba(255,255,255,.12);color:#dce8f5;font-size:12px;text-align:right;backdrop-filter:blur(8px)}
+.car3d-side{display:flex;flex-direction:column;gap:16px}
+.car3d-card{background:linear-gradient(145deg,rgba(17,24,39,.9),rgba(9,17,29,.9));border-color:#26384f}
+.car3d-card-title{font-size:15px;font-weight:900;margin-bottom:13px}
+.car3d-mission{display:flex;flex-direction:column;gap:5px;padding:12px;border-radius:12px;background:#0b1625;border:1px solid #22354c}.car3d-mission b{color:#fff}.car3d-mission span{color:#9fb1c8;font-size:12px;line-height:1.45}
+.car3d-progress{height:8px;background:#07101b;border-radius:999px;overflow:hidden;margin:12px 0}.car3d-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#22c55e,#60a5fa);border-radius:999px;transition:width .3s}
+.car3d-controls{display:grid;grid-template-columns:auto 1fr;gap:8px 10px;align-items:center;color:#9fb1c8;font-size:12px}.car3d-controls kbd{background:#18263a;border:1px solid #334862;color:#fff;padding:5px 7px;border-radius:6px;font:800 10px/1 monospace;text-align:center}
+.car3d-vehicle-info{color:#a8b9ce;font-size:13px;line-height:1.6;min-height:88px}.car3d-vehicle-info strong{color:#fff}.car3d-vehicle-info .profit{color:#4ade80}.car3d-list{margin:0;padding-left:19px;color:#a8b9ce;font-size:12px;line-height:1.75}.car3d-list b{color:#fff}
+@media(max-width:1050px){.car3d-shell{grid-template-columns:1fr}.car3d-viewport{height:65vh;min-height:470px}}
+@media(max-width:650px){.car3d-viewport{height:62vh;min-height:420px}.car3d-hud-bottom{flex-wrap:wrap}.car3d-prompt{order:5;width:100%;max-width:none;text-align:center}.car3d-stat{min-width:0;flex:1}.car3d-stat b{font-size:12px}}
+</style>
 <style id="sona-gaming-ui">
 .gaming-hero{position:relative;overflow:hidden;background:radial-gradient(circle at 85% 15%,rgba(124,58,237,.2),transparent 22rem),radial-gradient(circle at 10% 90%,rgba(14,165,233,.16),transparent 20rem),linear-gradient(135deg,#111827,#0b1220);border:1px solid rgba(124,58,237,.3)}
 .gaming-hero h1{color:#fff}.gaming-hero p{color:#cbd5e1}
@@ -1741,6 +1768,7 @@ html:not(.dark-mode) #dashboardShell.active .toast{
     <button onclick="showPage('income',this)">💰 <span>My Income</span></button>
     <button onclick="showPage('watch',this)">▶️ <span>Watch & Learn</span></button>
     <button onclick="showPage('gaming',this)">🎮 <span>Gaming</span></button>
+    <button onclick="showPage('car-game',this)">🚗 <span>3D Car Dealer</span></button>
     <button onclick="showPage('instagram',this)">📸 <span>Instagram Reels</span></button>
     <button onclick="showPage('shop',this)">🛒 <span>Shop & Earn</span></button>
     <button onclick="showPage('creator',this)">🎥 <span>Become a Creator</span></button>
@@ -2479,6 +2507,7 @@ html:not(.dark-mode) #dashboardShell.active .toast{
       <button class="btn primary" type="button" onclick="openGame('snake')">🐍 Play Snake</button>
       <button class="btn" type="button" onclick="openGame('ttt')">⭕ Tic-Tac-Toe</button>
       <button class="btn" type="button" onclick="openGame('memory')">🧠 Memory Match</button>
+      <button class="btn primary" type="button" onclick="showPage('car-game')">🚗 Enter 3D Car Dealer</button>
     </div>
   </div>
 
@@ -2653,13 +2682,81 @@ html.dark-mode .race-hud small{color:#94a3b8}
   </div>
 </section>
 
+
+<section id="car-game" class="page">
+  <div class="hero car3d-hero">
+    <div class="kicker">SONA 3D CAR WORLD</div>
+    <h1>🚗 Used Car Dealer — 3D Open World</h1>
+    <p>Walk around the dealership, explore the neighborhood, inspect old cars, buy bargains, repair or wash them, then bring them back and sell for profit.</p>
+    <div class="mini-actions">
+      <button class="btn primary" type="button" onclick="startCarDealerGame()">▶ Enter World</button>
+      <button class="btn" type="button" onclick="resetCarDealerGame()">↻ Reset Business</button>
+      <button class="btn" type="button" onclick="exitCarDealerPointerLock()">🖱 Release Mouse</button>
+    </div>
+  </div>
+
+  <div class="car3d-shell">
+    <div class="car3d-stage-card">
+      <div id="car3dViewport" class="car3d-viewport">
+        <div id="car3dLoading" class="car3d-loading">
+          <div class="car3d-loading-icon">🚘</div>
+          <strong>SONA MOTORS</strong>
+          <span>Click “Enter World” to start exploring</span>
+        </div>
+        <div class="car3d-crosshair">+</div>
+        <div class="car3d-hud-top">
+          <span>SONA MOTORS</span>
+          <span id="car3dClock">DAY 1 · 10:00 AM</span>
+        </div>
+        <div class="car3d-hud-bottom">
+          <div class="car3d-stat"><small>CASH</small><b id="car3dCash">₹5,000</b></div>
+          <div class="car3d-stat"><small>STOCK</small><b id="car3dStock">0 CARS</b></div>
+          <div class="car3d-stat"><small>REPUTATION</small><b id="car3dRep">1</b></div>
+          <div id="car3dPrompt" class="car3d-prompt">Click the world to look around · WASD to walk</div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="car3d-side">
+      <div class="card car3d-card">
+        <div class="car3d-card-title">🗺️ Your Dealership</div>
+        <div class="car3d-mission"><b>Daily Goal</b><span id="car3dGoal">Buy a bargain and sell it for profit.</span></div>
+        <div class="car3d-progress"><span id="car3dProgress"></span></div>
+        <div class="car3d-controls">
+          <kbd>W A S D</kbd><span>Walk</span>
+          <kbd>MOUSE</kbd><span>Look</span>
+          <kbd>E</kbd><span>Inspect / interact</span>
+          <kbd>B</kbd><span>Buy inspected car</span>
+          <kbd>V</kbd><span>Sell owned car near office</span>
+          <kbd>ESC</kbd><span>Release mouse</span>
+        </div>
+      </div>
+      <div class="card car3d-card">
+        <div class="car3d-card-title">🚘 Nearby Vehicle</div>
+        <div id="car3dVehicleInfo" class="car3d-vehicle-info">Walk up to a car and press <b>E</b>.</div>
+      </div>
+      <div class="card car3d-card">
+        <div class="car3d-card-title">💡 How to Play</div>
+        <ol class="car3d-list">
+          <li>Explore the dealership and nearby houses.</li>
+          <li>Find a used car with a low purchase price.</li>
+          <li>Press <b>E</b> to inspect its condition and resale value.</li>
+          <li>Press <b>B</b> to buy it, then return to the office.</li>
+          <li>Stand near the <b>SELL DESK</b> and press <b>V</b> to sell.</li>
+          <li>Use the profit to build a bigger car collection.</li>
+        </ol>
+      </div>
+    </aside>
+  </div>
+</section>
+
 </main></div><div id="toast" class="toast"></div>
 
 </div>
 
 <script>
 
-const pages={home:'Dashboard Overview',income:'My Income',deposit:'Deposit',withdraw:'Withdrawal',reports:'Income Reports',business:'Business',activation:'Activation',payout:'Payout Reports',fund:'Fund Management',watch:'Watch & Learn',instagram:'Instagram Reels',shop:'Shop & Earn',creator:'Become a Creator & Make Money',account:'Profile & Wallet Address',leaderboard:'Leaderboard',investors:'Top Investors',settings:'Settings','payment-history':'Payment History','withdrawal-panel':'Withdraw Money','business-management':'Business Management',tasks:'SONA DAILY CHALLENGE','my-youtube':'My YouTube',meeting:'Meeting / KICK Live',gaming:'Gaming Zone'};
+const pages={home:'Dashboard Overview',income:'My Income',deposit:'Deposit',withdraw:'Withdrawal',reports:'Income Reports',business:'Business',activation:'Activation',payout:'Payout Reports',fund:'Fund Management',watch:'Watch & Learn',instagram:'Instagram Reels',shop:'Shop & Earn',creator:'Become a Creator & Make Money',account:'Profile & Wallet Address',leaderboard:'Leaderboard',investors:'Top Investors',settings:'Settings','payment-history':'Payment History','withdrawal-panel':'Withdraw Money','business-management':'Business Management',tasks:'SONA DAILY CHALLENGE','my-youtube':'My YouTube',meeting:'Meeting / KICK Live',gaming:'Gaming Zone','car-game':'3D Car Dealership'};
 const REF_BASE='';
 const INSTAGRAM_URL='https://www.instagram.com/';
 const AMAZON_URL='https://www.amazon.in/';
@@ -9462,6 +9559,167 @@ document.addEventListener('keydown',e=>{
  if(['ArrowRight','d','D'].includes(e.key)){carMove(1);runnerMove(1);catchMove(1)}
  if(['ArrowUp','w','W',' '].includes(e.key)){if(e.key===' '||e.key==='ArrowUp')runnerJump()}
 });
+})();
+</script>
+
+
+<script id="sona-car-dealer-3d-engine" src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script id="sona-car-dealer-3d-game">
+(function(){
+'use strict';
+const q=id=>document.getElementById(id);
+const state={
+  started:false, cash:Number(localStorage.getItem('sona_car_cash')||5000),
+  rep:Number(localStorage.getItem('sona_car_rep')||1), stock:[],
+  inspected:null, soldToday:false, day:1, time:10*60
+};
+const cars=[
+ {id:'sedan',name:'Old Sedan',price:1800,resale:2850,condition:78,color:0xc0392b,x:-13,z:-5,angle:.25},
+ {id:'hatch',name:'City Hatchback',price:2400,resale:3550,condition:86,color:0x2980b9,x:-5,z:8,angle:-.35},
+ {id:'suv',name:'Family SUV',price:3900,resale:5200,condition:68,color:0x6c5ce7,x:11,z:2,angle:.7},
+ {id:'pickup',name:'Old Pickup',price:1500,resale:2600,condition:61,color:0xe67e22,x:8,z:-10,angle:-.2},
+ {id:'coupe',name:'Sport Coupe',price:3200,resale:4700,condition:91,color:0x16a085,x:18,z:9,angle:1.4}
+];
+let scene,camera,renderer,player,clock,active=false,keys={},yaw=0,pitch=0,locked=false,nearCar=null,carMeshes=[];
+const speed=5.8, world={w:58,d:48};
+
+function money(n){return '₹'+Math.max(0,Math.round(n)).toLocaleString('en-IN')}
+function save(){localStorage.setItem('sona_car_cash',state.cash);localStorage.setItem('sona_car_rep',state.rep)}
+function setText(id,v){const e=q(id);if(e)e.textContent=v}
+function setHtml(id,v){const e=q(id);if(e)e.innerHTML=v}
+function hud(){setText('car3dCash',money(state.cash));setText('car3dStock',state.stock.length+' CAR'+(state.stock.length===1?'':'S'));setText('car3dRep',state.rep);setText('car3dClock','DAY '+state.day+' · '+String(Math.floor(state.time/60)).padStart(2,'0')+':'+String(Math.floor(state.time%60)).padStart(2,'0')+' AM');q('car3dProgress').style.width=Math.min(100,state.rep*20)+'%'}
+function mat(color,rough=.8){return new THREE.MeshStandardMaterial({color,roughness:rough,metalness:.08})}
+function box(w,h,d,color,x,y,z,rot=0){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat(color));m.position.set(x,y,z);m.rotation.y=rot;scene.add(m);return m}
+function cyl(r,h,color,x,y,z){const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,16),mat(color));m.position.set(x,y,z);scene.add(m);return m}
+function textSprite(txt,color='#ffffff',bg='rgba(5,12,20,.78)'){
+ const c=document.createElement('canvas');c.width=512;c.height=128;const g=c.getContext('2d');g.fillStyle=bg;g.roundRect(4,4,504,120,18);g.fill();g.fillStyle=color;g.font='bold 42px Arial';g.textAlign='center';g.textBaseline='middle';g.fillText(txt,256,64);
+ const t=new THREE.CanvasTexture(c),m=new THREE.SpriteMaterial({map:t,transparent:true});const s=new THREE.Sprite(m);s.scale.set(6.2,1.55,1);return s;
+}
+function buildWorld(){
+ scene=new THREE.Scene();scene.background=new THREE.Color(0x8fc9f5);scene.fog=new THREE.Fog(0x8fc9f5,45,105);
+ camera=new THREE.PerspectiveCamera(72,1,.05,180);
+ camera.position.set(0,1.7,20);
+ renderer=new THREE.WebGLRenderer({antialias:true});
+ renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+ q('car3dViewport').appendChild(renderer.domElement);
+ clock=new THREE.Clock();
+ const hemi=new THREE.HemisphereLight(0xdff4ff,0x6c7657,2.0);scene.add(hemi);
+ const sun=new THREE.DirectionalLight(0xffffff,2.5);sun.position.set(-25,35,18);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);scene.add(sun);
+ // ground and roads
+ box(world.w,.25,world.d,0x78936a,0,-.15,0);
+ box(58,.03,9,0x303b46,0,.01,15); box(58,.03,7,0x303b46,0,.01,-17);
+ for(let x=-25;x<=25;x+=7) box(.18,.05,1.8,0xf3d36b,x,.05,15);
+ // dealership lot
+ box(34,.08,22,0x4a4f55,0,.04,-2);
+ // office
+ box(15,5.5,7,0xeee8dc,0,2.75,-11);
+ box(15.4,.6,7.4,0x26384a,0,5.75,-11);
+ box(16,.5,1.8,0x162536,0,6.9,-11);
+ const sign=textSprite('SONA MOTORS','#fff','#d97706');sign.position.set(0,6.8,-7.15);scene.add(sign);
+ // windows and door
+ for(let x=-5;x<=5;x+=5) box(3.2,2.1,.15,0x7cc7e8,x,3,-7.45);
+ box(2.2,3,.18,0x172a3d,0,1.5,-7.5);
+ const desk=box(3,.9,1.3,0x6b4226,0,1,-4.8);desk.userData.sellDesk=true;
+ const sell=textSprite('SELL DESK','#fef3c7','#92400e');sell.scale.set(3.7,.9,1);sell.position.set(0,2.3,-4.5);scene.add(sell);
+ // car wash
+ box(8,4,6,0x2e6b8c,22,2,-8);box(8.5,.5,6.5,0x1e3a5a,22,4.2,-8);
+ for(let x=19;x<=25;x+=2) box(.35,3.6,.35,0x8bd3dd,x,2,-5.1);
+ const wash=textSprite('CAR WASH','#e0f2fe','#075985');wash.scale.set(4,.9,1);wash.position.set(22,4.9,-5);scene.add(wash);
+ // trees + houses
+ for(let z=-21;z<=21;z+=10){tree(-25,z);tree(25,z)}
+ house(-19,-20,0xead7c0,0x9a4d3b);house(18,-20,0xd5e3ee,0x4b6584);house(-18,22,0xe6dfc7,0x657a50);house(17,22,0xf0d0b4,0x9b5b38);
+ // cars
+ cars.forEach(addCar);
+ const roadLabel=textSprite('SUBURBAN NEIGHBORHOOD','#e5f3ff','#1e3a5a');roadLabel.scale.set(6,.9,1);roadLabel.position.set(0,3.4,16);scene.add(roadLabel);
+}
+function tree(x,z){cyl(1.05,3,0x76512f,x,1.5,z);const c=new THREE.Mesh(new THREE.SphereGeometry(2.5,12,8),mat(0x3e8f57));c.position.set(x,4,z);scene.add(c)}
+function house(x,z,wall,roof){box(7,4.2,6,wall,x,2.1,z);const r=box(8,.8,7,roof,x,4.6,z);r.rotation.z=.02;box(1.6,2.4,0.2,0x62402c,x,1.2,z-3.1);for(let dx=-2;dx<=2;dx+=4)box(1.6,1.4,.15,0x8bd0e8,x+dx,2.5,z-3.1)}
+function addCar(c){
+ const g=new THREE.Group();g.position.set(c.x,.35,c.z);g.rotation.y=c.angle;
+ const body=new THREE.Mesh(new THREE.BoxGeometry(3.4,.85,1.65),mat(c.color,.5));body.position.y=.7;g.add(body);
+ const cabin=new THREE.Mesh(new THREE.BoxGeometry(1.8,.75,1.35),mat(c.color,.42));cabin.position.set(.15,1.3,0);g.add(cabin);
+ const glass=mat(0x1b3348,.15);const win=new THREE.Mesh(new THREE.BoxGeometry(1.35,.45,1.38),glass);win.position.set(.15,1.42,0);g.add(win);
+ [-1.15,1.15].forEach(x=>[-.78,.78].forEach(z=>{const w=new THREE.Mesh(new THREE.CylinderGeometry(.34,.34,.22,18),mat(0x14181d,.6));w.rotation.z=Math.PI/2;w.position.set(x,.43,z);g.add(w)}));
+ const tag=textSprite(c.name,'#fff','#111827');tag.scale.set(3.5,.8,1);tag.position.set(0,2.6,0);g.add(tag);
+ g.userData.car=c;scene.add(g);carMeshes.push(g);
+}
+function startCarDealerGame(){
+ if(!window.THREE){alert('3D engine is still loading. Please try again in a moment.');return}
+ if(!state.started){buildWorld();state.started=true;resize();animate();q('car3dLoading').style.display='none'}
+ active=true;document.body.style.cursor='default';q('car3dViewport').focus();requestPointerLock();hud();
+}
+function requestPointerLock(){if(renderer&&renderer.domElement.requestPointerLock)renderer.domElement.requestPointerLock()}
+function exitCarDealerPointerLock(){if(document.exitPointerLock)document.exitPointerLock()}
+document.addEventListener('pointerlockchange',()=>{locked=document.pointerLockElement===q('car3dViewport').querySelector('canvas');setPrompt(locked?'WASD move · Mouse look · E inspect · B buy · V sell':'Click the 3D world to control the player')});
+function setPrompt(s){setText('car3dPrompt',s)}
+function inspectCar(c){
+ state.inspected=c;
+ const owned=state.stock.some(x=>x.id===c.id);
+ setHtml('car3dVehicleInfo','<b>'+c.name+'</b> · Condition '+c.condition+'%<br>Buy: <strong>'+money(c.price)+'</strong> · Resale: <strong class="profit">'+money(c.resale)+'</strong><br>'+(owned?'Already in your stock.':'Press <b>B</b> to buy if you can afford it.'));
+}
+function tryBuy(){
+ if(!state.inspected){setPrompt('Inspect a car first with E');return}
+ const c=state.inspected;
+ if(state.stock.some(x=>x.id===c.id)){setPrompt(c.name+' is already in your stock');return}
+ if(state.cash<c.price){setPrompt('Not enough cash for '+c.name);return}
+ state.cash-=c.price;state.stock.push(c);state.inspected=null;save();hud();
+ setHtml('car3dVehicleInfo','Purchased <b>'+c.name+'</b>! Return to the SELL DESK and press V.');
+ setPrompt('Deal complete! Take the car back to SONA MOTORS.')
+}
+function trySell(){
+ const nearDesk=camera.position.distanceTo(new THREE.Vector3(0,1.7,-4.5))<5;
+ if(!nearDesk){setPrompt('Walk to the SELL DESK inside SONA MOTORS first');return}
+ if(!state.stock.length){setPrompt('Your stock is empty. Buy a used car first.');return}
+ const c=state.stock.shift();const profit=c.resale-c.price;state.cash+=c.resale;state.rep=Math.min(5,state.rep+(profit>0?1:0));state.soldToday=true;save();hud();
+ setHtml('car3dVehicleInfo','Sold <b>'+c.name+'</b> for '+money(c.resale)+' · Profit <span class="profit">'+money(profit)+'</span>');
+ setText('car3dGoal','Great sale! Explore again and build a larger inventory.');
+ setPrompt('Car sold! Your dealership earned '+money(profit)+' profit.')
+}
+function resetCarDealerGame(){
+ localStorage.removeItem('sona_car_cash');localStorage.removeItem('sona_car_rep');
+ state.cash=5000;state.rep=1;state.stock=[];state.inspected=null;state.soldToday=false;state.day=1;state.time=600;save();hud();
+ setHtml('car3dVehicleInfo','Business reset. Walk up to a car and press <b>E</b>.');
+ setText('car3dGoal','Buy a bargain and sell it for profit.');
+ if(scene){scene.clear();renderer.dispose();renderer.domElement.remove();scene=null;renderer=null;state.started=false;q('car3dLoading').style.display='flex'}
+}
+function resize(){if(!renderer||!camera)return;const el=q('car3dViewport');const w=el.clientWidth,h=el.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
+function nearestCar(){
+ let best=null,dist=999;
+ carMeshes.forEach(g=>{const d=camera.position.distanceTo(g.position);if(d<dist){dist=d;best=g.userData.car}});
+ return dist<4.8?best:null;
+}
+function move(dt){
+ const dir=new THREE.Vector3();
+ if(keys.w)dir.z-=1;if(keys.s)dir.z+=1;if(keys.a)dir.x-=1;if(keys.d)dir.x+=1;
+ if(dir.lengthSq()){dir.normalize();const angle=yaw;const x=dir.x*Math.cos(angle)-dir.z*Math.sin(angle);const z=dir.x*Math.sin(angle)+dir.z*Math.cos(angle);camera.position.x+=x*speed*dt;camera.position.z+=z*speed*dt}
+ camera.position.x=Math.max(-27,Math.min(27,camera.position.x));camera.position.z=Math.max(-22,Math.min(22,camera.position.z));camera.position.y=1.7;
+}
+function animate(){
+ if(!renderer)return;
+ requestAnimationFrame(animate);
+ const dt=Math.min(.05,clock.getDelta());
+ if(active&&locked)move(dt);
+ camera.rotation.order='YXZ';camera.rotation.y=yaw;camera.rotation.x=pitch;
+ nearCar=nearestCar();
+ if(nearCar){setPrompt('E inspect '+nearCar.name+' · B buy');inspectCar(nearCar)}else if(locked){setPrompt('Explore the lot and neighborhood · Walk to the SELL DESK to sell')}
+ state.time+=dt*1.7;if(state.time>=12*60){state.time=10*60;state.day++}hud();
+ renderer.render(scene,camera);
+}
+window.addEventListener('keydown',e=>{
+ if(['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName))return;
+ keys[e.key.toLowerCase()]=true;
+ if(e.key.toLowerCase()==='e'&&nearCar)inspectCar(nearCar);
+ if(e.key.toLowerCase()==='b')tryBuy();
+ if(e.key.toLowerCase()==='v')trySell();
+});
+window.addEventListener('keyup',e=>{keys[e.key.toLowerCase()]=false});
+window.addEventListener('mousemove',e=>{
+ if(!locked)return;yaw-=e.movementX*.0024;pitch-=e.movementY*.0019;pitch=Math.max(-1.35,Math.min(1.35,pitch));
+});
+window.addEventListener('resize',resize);
+q('car3dViewport').addEventListener('click',()=>{if(state.started&&!locked)requestPointerLock()});
+window.startCarDealerGame=startCarDealerGame;window.resetCarDealerGame=resetCarDealerGame;window.exitCarDealerPointerLock=exitCarDealerPointerLock;
+hud();
 })();
 </script>
 
